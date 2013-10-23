@@ -103,7 +103,7 @@ public:
 	typedef format<float>					formatf;
 	typedef format<double>					formatd;
 	typedef format<int>						formati;
-	typedef format<__int64>					formati64;
+	typedef format<int64>					formati64;
 	typedef std::pair<const char*, size_t>	substr;
 
 	// 构造（析构）
@@ -185,28 +185,28 @@ public:
 	}
 
 	/// 导入数字
-	basic_ostrbuf& operator<<(short int si)
+	basic_ostrbuf& operator<<(short  si)
 	{
 		return operator<<(long(si));
 	}
-	basic_ostrbuf& operator<<(unsigned short int usi)
+	basic_ostrbuf& operator<<(unsigned short  usi)
 	{
-		return operator<<(unsigned long(usi));
+		return operator<<( (unsigned long)(usi));
 	}
-	basic_ostrbuf& operator<<(int __w64 i)
+	basic_ostrbuf& operator<<(int i)
 	{
 #ifdef INT_64_BITS
-		return operator<<(__int64(i));
+		return operator<<(int64(i));
 #else
 		return operator<<(long(i));
 #endif
 	}
-	basic_ostrbuf& operator<<(unsigned int __w64 ui)
+	basic_ostrbuf& operator<<(unsigned int ui)
 	{
 #ifdef INT_64_BITS
-		return operator<<(unsigned __int64(ui));
+		return operator<<(unsigned int64(ui));
 #else
-		return operator<<(unsigned long(ui));
+		return operator<<( (unsigned long)(ui));
 #endif
 	}
 	basic_ostrbuf& operator<<(long l)
@@ -223,14 +223,14 @@ public:
 		_pos += strlen(cur());
 		return (*this);
 	}
-	basic_ostrbuf& operator<<(__int64 i64)
+	basic_ostrbuf& operator<<(int64 i64)
 	{
 		grow(_Int64MaxLength);
 		_i64toa_s(i64, cur(), _Int64MaxLength, 10);
 		_pos += strlen(cur());
 		return (*this);
 	}
-	basic_ostrbuf& operator<<(unsigned __int64 ui64)
+	basic_ostrbuf& operator<<(uint64 ui64)
 	{
 		grow(_Int64MaxLength);
 		_ui64toa_s(ui64, cur(), _Int64MaxLength, 10);

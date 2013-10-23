@@ -46,9 +46,9 @@ namespace xs
 		char			Name[256];
 #endif
 		int				TotalCalls;
-		float				TotalTime;
-		float				MaxTime,MinTime;
-		__int64			StartTime;
+		float			TotalTime;
+		float			MaxTime,MinTime;
+		int64			StartTime;
 		int				RecursionCounter;
 
 		CProfileNode *	Parent;
@@ -71,7 +71,7 @@ namespace xs
 		static	CProfileNode			Root;
 		static	IProfileNode *			CurrentNode;
 		static	int						FrameCounter;
-		static	__int64					ResetTime;
+		static	int64					ResetTime;
 	};
 
 	class CProfiler : public IProfile

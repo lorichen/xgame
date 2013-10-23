@@ -9,7 +9,7 @@
 namespace xs
 {
 #ifndef _NO_PERF_PROF
-	inline void Profile_Get_Ticks(__int64 * ticks)
+	inline void Profile_Get_Ticks(int64 * ticks)
 	{
 		LARGE_INTEGER *p = (LARGE_INTEGER *)ticks;
 		QueryPerformanceCounter(p);

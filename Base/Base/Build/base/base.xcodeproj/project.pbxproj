@@ -31,7 +31,6 @@
 		CDA68F77181791FD00B2FDC7 /* MemObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F59181791FD00B2FDC7 /* MemObj.cpp */; };
 		CDA68F78181791FD00B2FDC7 /* MemStat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F5A181791FD00B2FDC7 /* MemStat.cpp */; };
 		CDA68F79181791FD00B2FDC7 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F5B181791FD00B2FDC7 /* Object.cpp */; };
-		CDA68F7A181791FD00B2FDC7 /* PerfProf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F5C181791FD00B2FDC7 /* PerfProf.cpp */; };
 		CDA68F7B181791FD00B2FDC7 /* profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F5D181791FD00B2FDC7 /* profile.cpp */; };
 		CDA68F7C181791FD00B2FDC7 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F60181791FD00B2FDC7 /* stdafx.cpp */; };
 		CDA68F7D181791FD00B2FDC7 /* StringHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F62181791FD00B2FDC7 /* StringHash.cpp */; };
@@ -147,7 +146,6 @@
 		CDA68F59181791FD00B2FDC7 /* MemObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MemObj.cpp; path = ../../Src/MemObj.cpp; sourceTree = "<group>"; };
 		CDA68F5A181791FD00B2FDC7 /* MemStat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MemStat.cpp; path = ../../Src/MemStat.cpp; sourceTree = "<group>"; };
 		CDA68F5B181791FD00B2FDC7 /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Object.cpp; path = ../../Src/Object.cpp; sourceTree = "<group>"; };
-		CDA68F5C181791FD00B2FDC7 /* PerfProf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PerfProf.cpp; path = ../../Src/PerfProf.cpp; sourceTree = "<group>"; };
 		CDA68F5D181791FD00B2FDC7 /* profile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = profile.cpp; path = ../../Src/profile.cpp; sourceTree = "<group>"; };
 		CDA68F5E181791FD00B2FDC7 /* profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = profile.h; path = ../../Src/profile.h; sourceTree = "<group>"; };
 		CDA68F5F181791FD00B2FDC7 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource.h; path = ../../Src/resource.h; sourceTree = "<group>"; };
@@ -371,7 +369,6 @@
 				CDA68F59181791FD00B2FDC7 /* MemObj.cpp */,
 				CDA68F5A181791FD00B2FDC7 /* MemStat.cpp */,
 				CDA68F5B181791FD00B2FDC7 /* Object.cpp */,
-				CDA68F5C181791FD00B2FDC7 /* PerfProf.cpp */,
 				CDA68F5D181791FD00B2FDC7 /* profile.cpp */,
 				CDA68F5E181791FD00B2FDC7 /* profile.h */,
 				CDA68F5F181791FD00B2FDC7 /* resource.h */,
@@ -620,7 +617,6 @@
 				CDA68F74181791FD00B2FDC7 /* md5.cpp in Sources */,
 				CDA68FF61817927500B2FDC7 /* FileSystem.cpp in Sources */,
 				CDA68F81181791FD00B2FDC7 /* tinyxml.cpp in Sources */,
-				CDA68F7A181791FD00B2FDC7 /* PerfProf.cpp in Sources */,
 				CDA68FD91817924F00B2FDC7 /* tolua_event.c in Sources */,
 				CDA68F82181791FD00B2FDC7 /* tinyxmlerror.cpp in Sources */,
 				CDA68F76181791FD00B2FDC7 /* MemAlloc.cpp in Sources */,

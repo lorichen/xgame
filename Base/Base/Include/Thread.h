@@ -5,6 +5,10 @@
 #include "Trace.h"
 #include <vector>
 
+#if (TARGET_PLATFORM != PLATFORM_WIN32)
+#define PTHREAD_MUTEX_RECURSIVE_NP PTHREAD_MUTEX_RECURSIVE
+#endif
+
 namespace xs {
 
 // Create thread
@@ -22,7 +26,7 @@ typedef _FN_THREAD_ROUTINE FN_THREAD_ROUTINE;
 	(unsigned)					(dwCreate), \
 	(unsigned*)					(piThreadId)))
 #else
-typedef void* (SYS_API * _FN_THREAD_ROUTINE)(void* pvContext);
+typedef void* ( * _FN_THREAD_ROUTINE)(void* pvContext);
 typedef _FN_THREAD_ROUTINE FN_THREAD_ROUTINE;
 
 #define beginThread(pThreadId, pAttr, fnStartAddr, pvContext) \
@@ -138,6 +142,8 @@ public:
 	typedef ResGuard<FakeMutex>	scopelock;
 };
 // 多线程模型，自增减互斥处理
+    
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 class MultiThread
 {
 public:
@@ -146,8 +152,31 @@ public:
 	typedef Mutex				mutex;
 	typedef ResGuard<Mutex>		scopelock;
 };
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+#include <libkern/OSAtomic.h>
+class MultiThread
+{
+public:
+    static int _Increment(int* p){ return OSAtomicIncrement32(p); }
+    static int _Decrement(int* p){ return OSAtomicDecrement32(p); }
+    typedef Mutex				mutex;
+    typedef ResGuard<Mutex>		scopelock;
+};
+    
+#else
+    class MultiThread
+    {
+    public:
+        static long _Increment(long* p){ return ::atomic_inc(p); }
+        static long _Decrement(long* p){ return ::atomic_dec(p); }
+        typedef Mutex				mutex;
+        typedef ResGuard<Mutex>		scopelock;
+    };
+    
+    
+#endif
 
-#ifdef WIN32
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 // 信号量
 class Semaphore
 {
@@ -170,6 +199,54 @@ public:
 	}
 	void Post(){ BOOL bret = ::ReleaseSemaphore(m_h, 1, NULL); }
 };
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+    #include <semaphore.h>
+    class Semaphore
+    {
+        sem_t m_sem;
+    public:
+        Semaphore(int initCount = 0)
+        {
+            int ret = sem_init(&m_sem, 0, initCount);
+        }
+        ~Semaphore(){ sem_destroy(&m_sem); }
+        BOOL Wait(ULONG timeOut = 0xffffffff)
+        {
+            int ret = 0;
+            if(timeOut == 0xffffffff)
+            {
+                while(1)
+                {
+                    ret = sem_wait(&m_sem);
+                    if(ret == 0)
+                    {
+                        return TRUE;
+                    }
+                    
+                }
+            }
+            else
+            {
+                timespec ts;
+                ret = clock_gettime(CLOCK_REALTIME, &ts);
+                ts.tv_sec += timeOut / 1000;
+                ts.tv_nsec += (timeOut % 1000) * 1000000;
+                if(ts.tv_nsec >= 1000000000)
+                {
+                    ts.tv_sec += 1;
+                    ts.tv_nsec -= 1000000000;
+                }
+                while(1)
+                {
+                    ret = sem_wait(&m_sem); //sem_timedwait ???
+                    if(ret == 0) return TRUE;
+                    return FALSE;
+                }
+            }
+            return FALSE;
+        }
+        void Post(){ int ret = sem_post(&m_sem); }
+    };
 #else
 class Semaphore
 {

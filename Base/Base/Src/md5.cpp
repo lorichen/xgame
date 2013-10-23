@@ -50,6 +50,7 @@
 #include "StdAfx.h"
 #include "MD5.h"
 
+
 /* Padding */
 static unsigned char MD5_PADDING[64] = {
 	0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

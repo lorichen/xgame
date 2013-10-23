@@ -7,7 +7,10 @@
 
 #include "Common.h"
 #include "ostrbuf.h"
+
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #include <tchar.h>
+#endif
 
 /**
 	Trace设计要点：
