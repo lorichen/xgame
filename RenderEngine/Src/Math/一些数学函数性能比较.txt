@@ -1,0 +1,30 @@
+Test1:  sqrt,__fsqrt,fastsqrtµÄ±È½Ï
+
+	float test_sqrt;
+	DWORD t1 = GetTickCount();
+	for(float fa = 0;fa < 235.4323f;fa += 0.123f)
+	for(float fb = 0;fb < 222.2f;fb += 0.0333f)
+	{
+		test_sqrt = sqrt(fa / fb);
+	}
+	DWORD t2 = GetTickCount();
+
+		DWORD t3 = GetTickCount();
+	for(float fa = 0;fa < 235.4323f;fa += 0.123f)
+	for(float fb = 0;fb < 222.2f;fb += 0.0333f)
+	{
+		test_sqrt = __fsqrt(fa / fb);
+	}
+	DWORD t4 = GetTickCount();
+
+	DWORD t5 = GetTickCount();
+	for(float fa = 0;fa < 235.4323f;fa += 0.123f)
+	for(float fb = 0;fb < 222.2f;fb += 0.0333f)
+	{
+		test_sqrt = fastsqrt(fa / fb);
+	}
+	DWORD t6 = GetTickCount();
+  
+  	t4-t3	343	unsigned long
+	t2-t1	797	unsigned long
+	t6-t5	469	unsigned long

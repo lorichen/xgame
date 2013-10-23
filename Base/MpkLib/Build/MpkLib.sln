@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MpkLib", "MpkLib.vcproj", "{E2E3BA44-C21C-4406-922A-435D8F7EAA6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		ReleaseDebug|Win32 = ReleaseDebug|Win32
+		ReleaseDebugT|Win32 = ReleaseDebugT|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2E3BA44-C21C-4406-922A-435D8F7EAA6D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E2E3BA44-C21C-4406-922A-435D8F7EAA6D}.Debug|Win32.Build.0 = Debug|Win32
+		{E2E3BA44-C21C-4406-922A-435D8F7EAA6D}.Release|Win32.ActiveCfg = Release|Win32
+		{E2E3BA44-C21C-4406-922A-435D8F7EAA6D}.Release|Win32.Build.0 = Release|Win32
+		{E2E3BA44-C21C-4406-922A-435D8F7EAA6D}.ReleaseDebug|Win32.ActiveCfg = ReleaseDebug|Win32
+		{E2E3BA44-C21C-4406-922A-435D8F7EAA6D}.ReleaseDebug|Win32.Build.0 = ReleaseDebug|Win32
+		{E2E3BA44-C21C-4406-922A-435D8F7EAA6D}.ReleaseDebugT|Win32.ActiveCfg = ReleaseDebugT|Win32
+		{E2E3BA44-C21C-4406-922A-435D8F7EAA6D}.ReleaseDebugT|Win32.Build.0 = ReleaseDebugT|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

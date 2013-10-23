@@ -1,0 +1,9 @@
+SCC = This is a Source Code Control file
+
+[dlltest.dsp]
+SCC_Aux_Path = "\\192.168.70.151\xinsong_vss\"
+SCC_Project_Name = "$/03_开发域/01_软件/01_源代码/Base/MpkLib/Src/bzlib", DRTBAAAA
+
+[libbz2.dsp]
+SCC_Aux_Path = "\\192.168.70.151\xinsong_vss\"
+SCC_Project_Name = "$/03_开发域/01_软件/01_源代码/Base/MpkLib/Src/bzlib", DRTBAAAA

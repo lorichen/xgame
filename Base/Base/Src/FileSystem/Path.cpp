@@ -1,0 +1,34 @@
+#include "stdafx.h"
+#include "path.h"
+
+#define new RKT_NEW
+
+namespace xs{
+
+#ifdef WIN32
+#include <windows.h>
+#include <direct.h>
+#else
+#include <direct.h>
+#endif
+
+RKT_API const char* getWorkDir()
+{
+	static char g_workDir[MAX_PATH] = {0};
+	if (g_workDir[0] != (char)0)
+		return g_workDir;
+
+#ifdef WIN32
+	if (GetModuleFileName(NULL, g_workDir, MAX_PATH - 1))
+	{
+		CPath filename(g_workDir);
+		lstrcpyn(g_workDir, filename.getParentDir().c_str(), MAX_PATH - 1);
+	}
+#else
+	_tgetcwd(g_workDir, MAX_PATH - 1);
+#endif
+
+	return g_workDir;
+}
+
+}
