@@ -4,10 +4,16 @@
 #if (TARGET_PLATFORM != PLATFORM_WIN32)
 
 typedef unsigned long size_t;
+typedef unsigned long size_type;
+
 typedef unsigned int  DWORD;
 typedef void*         HWND;
 typedef void*         HTREEITEM;
 typedef unsigned long ULONG;
+typedef void*         HANDLE;
+
+#define IN
+#define OUT
 
 #define BOOL bool
 #define TRUE true
@@ -62,6 +68,34 @@ inline char *strupr(char *str)
     return str;
 }
 
+#include <iostream>
+#include <string>
+#include <ext/hash_map>
+
+
+namespace __gnu_cxx
+{
+    template<> struct hash< std::string >
+    {
+        size_t operator()( const std::string& x ) const
+        {
+            return hash< const char* >()( x.c_str() );
+        }
+    };
+    
+    template<> struct hash<long long>
+    {
+        size_t operator()(long long x) const
+        {
+            return x;
+        }
+    };
+}
+
+#else
+
+#include <hash_map>
+#include <io.h>
 
 #endif
 
@@ -71,13 +105,14 @@ inline char *strupr(char *str)
 #if (TARGET_PLATFORM == PLATFORM_IOS)
 
 #include <mach/mach_time.h>
+#include <sys/_types/_timespec.h>
 #define ORWL_NANO (+1.0E-9)
 #define ORWL_GIGA UINT64_C(1000000000)
 
 static double orwl_timebase = 0.0;
 static uint64_t orwl_timestart = 0;
 
-inline  timespec clock_gettime(void)
+inline  struct timespec clock_gettime(void)
 {
     // be more careful in a multithreaded environement
     if (!orwl_timestart) {

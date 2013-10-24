@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "Object.h"
-#include <hash_map>
+
 
 #define new RKT_NEW
 
@@ -70,7 +70,7 @@ namespace xs {
 
 		ar >> nLen;
 
-		if (nLen >= _countof(szClassName) ||
+		if (nLen >= 64 ||
 			ar.read(szClassName, nLen*sizeof(char)) != nLen*sizeof(char))
 		{
 			return NULL;

@@ -2,7 +2,6 @@
 #define __STREAM_H__
 
 #include <stdio.h>
-#include <io.h>
 #include "Common.h"
 #include "Path.h"
 

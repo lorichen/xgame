@@ -99,7 +99,7 @@ namespace xs {
 			DataNode* old_node = ptr2DataNode(p);
 
 			if (old_node && old_node->size > 0)
-				memcpy(new_node->ptr, old_node->ptr, min(old_node->size,new_node->size));//old_node->size > new_node->size会越界写
+				memcpy(new_node->ptr, old_node->ptr, std::min(old_node->size,new_node->size));//old_node->size > new_node->size会越界写
 		}
 
 		dealloc(p FILE_LINE_PARAM);

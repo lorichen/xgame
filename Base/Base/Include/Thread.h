@@ -228,7 +228,7 @@ public:
             else
             {
                 timespec ts;
-                ret = clock_gettime(CLOCK_REALTIME, &ts);
+                ts = clock_gettime();//ret = clock_gettime(CLOCK_REALTIME, &ts);
                 ts.tv_sec += timeOut / 1000;
                 ts.tv_nsec += (timeOut % 1000) * 1000000;
                 if(ts.tv_nsec >= 1000000000)
@@ -310,6 +310,7 @@ public:
 	};
 
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	/// 简单线程封装
 	class Thread
 	{
@@ -395,35 +396,149 @@ public:
 			return 0;
 		}
 	};
+    
+    
+#else
+    
+    
+    class Thread
+	{
+    public:
+        enum Priority
+        {
+            Low,
+            Normal,
+            High,
+        };
+        
+	protected:
+		pthread_t       mThreadId;
+		pthread_attr_t  mThreadAttr;
+        Priority        mPriority;
+	public:
+      
+        
+		Thread() : mThreadId(0)
+		{
+            pthread_attr_init(&mThreadAttr);
+		}
+        
+		~Thread()
+		{
+            pthread_attr_destroy(&mThreadAttr);
+		}
+        
+	public:
+		void* spawn(IRunnable* task, int priority = Normal)
+		{
+            mPriority = (Priority)priority;
+			sched_param param;
+            
+            
+            switch(mPriority)
+            {
+                case Low:
+                {
+                    pthread_attr_setschedpolicy(&mThreadAttr, SCHED_RR);
+                    int min_priority = sched_get_priority_min(SCHED_RR);
+                    param.sched_priority = min_priority;
+                    pthread_attr_setschedparam(&mThreadAttr, &param);
+                }
+                    break;
+                case High:
+                {
+                    pthread_attr_setschedpolicy(&mThreadAttr, SCHED_RR);
+                    int max_priority = sched_get_priority_max(SCHED_RR);
+                    param.sched_priority = max_priority;
+                    pthread_attr_setschedparam(&mThreadAttr, &param);
+                }
+                    break;
+                case Normal:
+                break;
+            }
+            
+            pthread_t nVal;
+            pthread_create(&nVal, &mThreadAttr,&_dispatch , task);
+            pthread_attr_destroy(&mThreadAttr);
+            if (nVal <= 0)
+            {
+                return 0;
+            }
+            mThreadId = nVal;
+			return (void*)mThreadId;
+		}
+        
+		void wait()
+		{
+			if(mThreadId == 0)
+				return;
+			
+            bool ret = pthread_join(mThreadId,NULL);
+			mThreadId = NULL;
+            if(0 == ret)
+                return;
+            else
+                pthread_kill(mThreadId,9);
+		}
+        
+		void start()
+		{
+			//::ResumeThread(mThreadHandle);
+            assert(0);
+		}
+        
+		void pause()
+		{
+			//::SuspendThread(mThreadHandle);
+            assert(0);
+		}
+        
+		static void sleep(unsigned long timeout)
+		{
+			usleep(timeout * 1000);
+		}
+        
+	protected:
+		static void* _dispatch(void* arg)
+		{
+			IRunnable* task = reinterpret_cast<IRunnable*>(arg);
+			assert(task);
+			{
+                
+				task->run();
+			}
+			task->release();
+			return 0;
+		};
+	};
+    
+    
+#endif
 
 
-
-	/// 简单线程池
 	class ThreadPool
 	{
 	protected:
 		typedef std::vector<Thread*>	ThreadList;
 		ThreadList	mThreads;
-		bool mAutoRemove;	/// 当工作线程执行结束后，自动删除
+		bool mAutoRemove;
 
 	public:
-		ThreadPool::ThreadPool(void)
-		{
-		}
+		ThreadPool(){}
 
-		ThreadPool::~ThreadPool(void)
+		~ThreadPool()
 		{
 			clear();
 		}
 
-		HANDLE ThreadPool::add(IRunnable* task, int priority = THREAD_PRIORITY_NORMAL)
+		HANDLE add(IRunnable* task, int priority = Thread::Normal)
 		{
 			Thread* thread = new Thread();
 			mThreads.push_back(thread);
 			return	thread->spawn(task, priority);
 		}
 
-		void ThreadPool::start()
+		void start()
 		{
 			for (ThreadList::iterator it=mThreads.begin(); it!=mThreads.end(); ++it)
 			{
@@ -431,7 +546,7 @@ public:
 			}
 		}
 
-		void ThreadPool::pause()
+		void pause()
 		{
 			for (ThreadList::iterator it=mThreads.begin(); it!=mThreads.end(); ++it)
 			{
@@ -439,7 +554,7 @@ public:
 			}
 		}
 
-		void ThreadPool::wait()
+		void wait()
 		{
 			for (ThreadList::iterator it=mThreads.begin(); it!=mThreads.end(); ++it)
 			{
@@ -447,7 +562,7 @@ public:
 			}
 		}
 
-		void ThreadPool::clear()
+		void clear()
 		{
 			for (ThreadList::iterator it=mThreads.begin(); it!=mThreads.end(); ++it)
 			{

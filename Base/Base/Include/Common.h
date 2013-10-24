@@ -202,7 +202,7 @@ namespace COMPILE_ASSERT
 #endif
 
 #ifdef RKT_DEBUG
-#define debugBreak		_asm{int 3}
+#define debugBreak		assert(0)//_asm{int 3}
 #else
 #define debugBreak		(void)0
 #endif

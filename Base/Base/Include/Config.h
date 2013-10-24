@@ -11,7 +11,7 @@
 
 
 /// 调试宏，定义此行则会加入调试信息（注：不同于编译器的_DEBUG宏）
-#define RKT_DEBUG
+//#define RKT_DEBUG
 
 /// 是否打开性能测试宏
 #define RKT_PROFILE

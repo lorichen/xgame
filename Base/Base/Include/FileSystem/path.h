@@ -28,7 +28,7 @@ class basic_path : public std::basic_string<_Elem>
 {
 public:
 	typedef typename std::basic_string<_Elem>	_String;
-	typedef typename basic_path<_Elem>			_MyType;
+	typedef typename xs::basic_path<_Elem>			_MyType;
 
 	///////////////////////////////////////////////////////////////////////////////
 	// 构造函数
@@ -41,7 +41,7 @@ public:
 	{
 		//normalize();
 	}
-	basic_path(const _Elem* p, size_type roff, size_type count, bool isFilePath = true) 
+	basic_path(const _Elem* p, size_type roff, size_type count, bool isFilePath = true)
 		: _isFile(isFilePath), _String(p,roff,count)
 	{
 		normalize();
@@ -96,7 +96,7 @@ public:
 		if (search_len==0)
 			return;
 
-		long/*size_type*/ pos = (long)(length()-search_len); // 原来size_type是无符号的
+		long/*size_type*/ pos = (long)(this->length()-search_len); // 原来size_type是无符号的
 		for (;pos>=0;)
 		{
 			if (compare(pos,search_len,substr)==0)
@@ -117,7 +117,7 @@ public:
 
 		size_type pos = getLastSlashPos();
 
-		return substr(pos + 1, length() - pos - 1);
+		return substr(pos + 1, this->length() - pos - 1);
 	}
 
 	_String getFileTitle() const
@@ -127,19 +127,19 @@ public:
 
 		size_type slashPos = getLastSlashPos();
 		size_type dotPos = getLastDotPos();
-		return substr(slashPos + 1, dotPos - slashPos - 1);
+		return this->substr(slashPos + 1, dotPos - slashPos - 1);
 	}
 
 	_String getFileExt() const
 	{
-		if (!isFile() || empty())
+		if (!this->isFile() || this->empty())
 			return _String();
 
 		size_type pos = getLastDotPos();
-		if (pos == npos) // no ext
+		if (pos == this->npos) // no ext
 			return _String();
 
-		return substr(pos + 1, length() - pos - 1);
+		return this->substr(pos + 1, this->length() - pos - 1);
 	}
 
 	_String getParentDir()
@@ -148,22 +148,22 @@ public:
 			removeTailSlash();
 
 		size_type pos = getLastSlashPos();
-		if (pos == npos)
+		if (pos == this->npos)
 			return _String();
-		return substr(0, pos);
+		return this->substr(0, pos);
 	}
 
 	_MyType& addTailSlash()
 	{
-		if (*(end() - 1) != CHAR_SLASH)
+		if (*(this->end() - 1) != CHAR_SLASH)
 			*this += CHAR_SLASH;
 		return (*this);
 	}
 
 	_MyType& removeTailSlash()
 	{
-		if (*(end() - 1) == CHAR_SLASH)
-			erase(end() - 1);
+		if (*(this->end() - 1) == CHAR_SLASH)
+			erase(this->end() - 1);
 		return (*this);
 	}
 
@@ -178,18 +178,18 @@ public:
 protected:
 	inline size_type getLastDotPos() const
 	{
-		return find_last_of(CHAR_DOT);
+		return this->find_last_of(CHAR_DOT);
 	}
 	inline size_type getLastSlashPos() const
 	{
-		return find_last_of(CHAR_SLASH);
+		return this->find_last_of(CHAR_SLASH);
 	}
 	inline size_type getLastSlashPos(int count) const
 	{
 		size_type pos;
-		pos = find_last_of(CHAR_SLASH);
-		while (pos != npos && --count > 0)
-			pos = find_last_of(CHAR_SLASH, pos - 1);
+		pos = this->find_last_of(CHAR_SLASH);
+		while (pos != this->npos && --count > 0)
+			pos = this->find_last_of(CHAR_SLASH, pos - 1);
 		return pos;
 	}
 private:

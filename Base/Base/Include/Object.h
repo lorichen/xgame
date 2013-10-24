@@ -9,7 +9,7 @@
 #include "Trace.h"
 #include <string>
 #include <vector>
-#include <hash_map>
+
 
 /**
 	对象序列化例子
@@ -276,8 +276,8 @@ namespace xs {
 		{ Assert(isStoring()); grow(sizeof(ushort)); *(ushort*)mCur = v; mCur += sizeof(ushort); return *this; }
 		Archive& operator<<(ulong v)
 		{ Assert(isStoring()); grow(sizeof(ulong)); *(ulong*)mCur = v; mCur += sizeof(ulong); return *this; }
-		Archive& operator<<(uint _w64 v)
-		{ Assert(isStoring()); grow(sizeof(uint)); *(uint _w64*)mCur = v; mCur += sizeof(uint); return *this; }
+		Archive& operator<<(uint  v)
+		{ Assert(isStoring()); grow(sizeof(uint)); *(uint *)mCur = v; mCur += sizeof(uint); return *this; }
 		Archive& operator<<(uint64 v)
 		{ Assert(isStoring()); grow(sizeof(int64)); *(int64*)mCur = v; mCur += sizeof(int64); return *this; }
 		Archive& operator<<(const std::string& v)
