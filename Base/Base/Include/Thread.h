@@ -4,6 +4,7 @@
 
 #include "Trace.h"
 #include <vector>
+#include <assert.h>
 
 #if (TARGET_PLATFORM != PLATFORM_WIN32)
 #define PTHREAD_MUTEX_RECURSIVE_NP PTHREAD_MUTEX_RECURSIVE

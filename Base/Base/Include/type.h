@@ -12,6 +12,7 @@ typedef void*         HTREEITEM;
 typedef unsigned long ULONG;
 typedef void*         HANDLE;
 
+
 #define IN
 #define OUT
 
@@ -21,6 +22,20 @@ typedef void*         HANDLE;
 
 #define __cdecl 
 #define _cdecl
+
+#define MAX_PATH 256
+#define OutputDebugStringA(msg) printf(msg)
+
+#define _fileno fileno
+#define _stat stat
+
+#define _chsize chsize
+#define _access access
+
+#define sprintf_s snprintf
+#define _vsnprintf vsnprintf
+
+#define GetCurrentThreadId GetCurrentThread
 
 
 inline char *_itoa(int num,char *str,int radix)
@@ -71,8 +86,8 @@ inline char *strupr(char *str)
 #include <iostream>
 #include <string>
 #include <ext/hash_map>
-
-
+using namespace __gnu_cxx;
+#define HASH_MAP_NAMESPACE __gnu_cxx
 namespace __gnu_cxx
 {
     template<> struct hash< std::string >
@@ -90,12 +105,27 @@ namespace __gnu_cxx
             return x;
         }
     };
+    
+    template<> struct hash<void*>
+    {
+        size_t operator()(void* x) const
+        {
+            return (size_t)x;
+        }
+    };
 }
+
+#include <unistd.h>
+#include <fcntl.h>
 
 #else
 
+#include <direct.h>
 #include <hash_map>
 #include <io.h>
+#include <direct
+using namespace stdext;
+#define HASH_MAP_NAMESPACE stdext
 
 #endif
 
@@ -104,6 +134,7 @@ namespace __gnu_cxx
 
 #if (TARGET_PLATFORM == PLATFORM_IOS)
 
+#include <CoreFoundation/CFBase.h>
 #include <mach/mach_time.h>
 #include <sys/_types/_timespec.h>
 #define ORWL_NANO (+1.0E-9)

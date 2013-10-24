@@ -295,8 +295,8 @@ bool MemoryStream::save(const char* newName)
 {
 	if (m_buffer)
 	{
-		CPathA path = newName;
-		CPathA parent = path.getParentDir();
+		CPathA path(newName);
+		CPathA parent(path.getParentDir().c_str());
 		if (!parent.empty())
 			createDirectoryRecursive(parent.c_str());
 

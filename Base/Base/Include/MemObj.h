@@ -116,7 +116,7 @@ namespace xs {
 	public:
 		void* alloc()
 		{
-			ThreadModel::scopelock guard(mMutex);
+			typename ThreadModel::scopelock guard(mMutex);
 
 			if (!mFreeNode)
 			{
@@ -141,7 +141,7 @@ namespace xs {
 
 		void freeObj(void* ptr)
 		{
-			ThreadModel::scopelock guard(mMutex);
+			typename ThreadModel::scopelock guard(mMutex);
 
 			if (ptr)
 			{
@@ -153,7 +153,7 @@ namespace xs {
 
 		void freeAll()
 		{
-			ThreadModel::scopelock guard(mMutex);
+			typename ThreadModel::scopelock guard(mMutex);
 
 			mChainList->close();
 			mChainList = 0;

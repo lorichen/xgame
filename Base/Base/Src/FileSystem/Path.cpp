@@ -9,7 +9,8 @@ namespace xs{
 #include <windows.h>
 #include <direct.h>
 #else
-#include <direct.h>
+//#include <direct.h>
+    #  include <unistd.h>
 #endif
 
 RKT_API const char* getWorkDir()
@@ -25,7 +26,7 @@ RKT_API const char* getWorkDir()
 		lstrcpyn(g_workDir, filename.getParentDir().c_str(), MAX_PATH - 1);
 	}
 #else
-	_tgetcwd(g_workDir, MAX_PATH - 1);
+	getcwd(g_workDir, MAX_PATH - 1);
 #endif
 
 	return g_workDir;

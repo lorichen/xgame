@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1864912E1819A977006D94B4 /* MpkPortMac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1864912D1819A977006D94B4 /* MpkPortMac.cpp */; };
 		CDA68F22181791BC00B2FDC7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA68F21181791BC00B2FDC7 /* Foundation.framework */; };
 		CDA68F27181791BC00B2FDC7 /* base.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDA68F26181791BC00B2FDC7 /* base.h */; };
 		CDA68F29181791BC00B2FDC7 /* base.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F28181791BC00B2FDC7 /* base.m */; };
@@ -31,7 +32,6 @@
 		CDA68F77181791FD00B2FDC7 /* MemObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F59181791FD00B2FDC7 /* MemObj.cpp */; };
 		CDA68F78181791FD00B2FDC7 /* MemStat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F5A181791FD00B2FDC7 /* MemStat.cpp */; };
 		CDA68F79181791FD00B2FDC7 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F5B181791FD00B2FDC7 /* Object.cpp */; };
-		CDA68F7B181791FD00B2FDC7 /* profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F5D181791FD00B2FDC7 /* profile.cpp */; };
 		CDA68F7C181791FD00B2FDC7 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F60181791FD00B2FDC7 /* stdafx.cpp */; };
 		CDA68F7D181791FD00B2FDC7 /* StringHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F62181791FD00B2FDC7 /* StringHash.cpp */; };
 		CDA68F7E181791FD00B2FDC7 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F63181791FD00B2FDC7 /* Timer.cpp */; };
@@ -83,8 +83,6 @@
 		CDA68FF81817927500B2FDC7 /* MpkFileManip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FE41817927500B2FDC7 /* MpkFileManip.cpp */; };
 		CDA68FF91817927500B2FDC7 /* MpkFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FE61817927500B2FDC7 /* MpkFileSystem.cpp */; };
 		CDA68FFA1817927500B2FDC7 /* MpkManip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FE81817927500B2FDC7 /* MpkManip.cpp */; };
-		CDA68FFB1817927600B2FDC7 /* MpkPortLinux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FEA1817927500B2FDC7 /* MpkPortLinux.cpp */; };
-		CDA68FFC1817927600B2FDC7 /* MpkPortMac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FEB1817927500B2FDC7 /* MpkPortMac.cpp */; };
 		CDA68FFD1817927600B2FDC7 /* MpkStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FEC1817927500B2FDC7 /* MpkStream.cpp */; };
 		CDA68FFE1817927600B2FDC7 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FEE1817927500B2FDC7 /* Path.cpp */; };
 		CDA68FFF1817927600B2FDC7 /* StdFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FEF1817927500B2FDC7 /* StdFileSystem.cpp */; };
@@ -116,6 +114,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1864912D1819A977006D94B4 /* MpkPortMac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpkPortMac.cpp; path = ../../Src/FileSystem/MpkPortMac.cpp; sourceTree = "<group>"; };
 		CDA68F1E181791BC00B2FDC7 /* libbase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA68F21181791BC00B2FDC7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CDA68F25181791BC00B2FDC7 /* base-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "base-Prefix.pch"; sourceTree = "<group>"; };
@@ -130,9 +129,7 @@
 		CDA68F47181791FD00B2FDC7 /* Api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Api.cpp; path = ../../Src/Api.cpp; sourceTree = "<group>"; };
 		CDA68F48181791FD00B2FDC7 /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = App.cpp; path = ../../Src/App.cpp; sourceTree = "<group>"; };
 		CDA68F49181791FD00B2FDC7 /* autostring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = autostring.cpp; path = ../../Src/autostring.cpp; sourceTree = "<group>"; };
-		CDA68F4A181791FD00B2FDC7 /* Base.aps */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base.aps; path = ../../Src/Base.aps; sourceTree = "<group>"; };
 		CDA68F4B181791FD00B2FDC7 /* Base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Base.cpp; path = ../../Src/Base.cpp; sourceTree = "<group>"; };
-		CDA68F4C181791FD00B2FDC7 /* Base.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Base.rc; path = ../../Src/Base.rc; sourceTree = "<group>"; };
 		CDA68F4D181791FD00B2FDC7 /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Command.cpp; path = ../../Src/Command.cpp; sourceTree = "<group>"; };
 		CDA68F4E181791FD00B2FDC7 /* CommandFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CommandFactory.cpp; path = ../../Src/CommandFactory.cpp; sourceTree = "<group>"; };
 		CDA68F4F181791FD00B2FDC7 /* CommandFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandFactory.h; path = ../../Src/CommandFactory.h; sourceTree = "<group>"; };
@@ -146,7 +143,6 @@
 		CDA68F59181791FD00B2FDC7 /* MemObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MemObj.cpp; path = ../../Src/MemObj.cpp; sourceTree = "<group>"; };
 		CDA68F5A181791FD00B2FDC7 /* MemStat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MemStat.cpp; path = ../../Src/MemStat.cpp; sourceTree = "<group>"; };
 		CDA68F5B181791FD00B2FDC7 /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Object.cpp; path = ../../Src/Object.cpp; sourceTree = "<group>"; };
-		CDA68F5D181791FD00B2FDC7 /* profile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = profile.cpp; path = ../../Src/profile.cpp; sourceTree = "<group>"; };
 		CDA68F5E181791FD00B2FDC7 /* profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = profile.h; path = ../../Src/profile.h; sourceTree = "<group>"; };
 		CDA68F5F181791FD00B2FDC7 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource.h; path = ../../Src/resource.h; sourceTree = "<group>"; };
 		CDA68F60181791FD00B2FDC7 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = ../../Src/stdafx.cpp; sourceTree = "<group>"; };
@@ -225,8 +221,6 @@
 		CDA68FE71817927500B2FDC7 /* MpkFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MpkFileSystem.h; path = ../../Src/FileSystem/MpkFileSystem.h; sourceTree = "<group>"; };
 		CDA68FE81817927500B2FDC7 /* MpkManip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpkManip.cpp; path = ../../Src/FileSystem/MpkManip.cpp; sourceTree = "<group>"; };
 		CDA68FE91817927500B2FDC7 /* MpkManip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MpkManip.h; path = ../../Src/FileSystem/MpkManip.h; sourceTree = "<group>"; };
-		CDA68FEA1817927500B2FDC7 /* MpkPortLinux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpkPortLinux.cpp; path = ../../Src/FileSystem/MpkPortLinux.cpp; sourceTree = "<group>"; };
-		CDA68FEB1817927500B2FDC7 /* MpkPortMac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpkPortMac.cpp; path = ../../Src/FileSystem/MpkPortMac.cpp; sourceTree = "<group>"; };
 		CDA68FEC1817927500B2FDC7 /* MpkStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpkStream.cpp; path = ../../Src/FileSystem/MpkStream.cpp; sourceTree = "<group>"; };
 		CDA68FED1817927500B2FDC7 /* MpkStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MpkStream.h; path = ../../Src/FileSystem/MpkStream.h; sourceTree = "<group>"; };
 		CDA68FEE1817927500B2FDC7 /* Path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Path.cpp; path = ../../Src/FileSystem/Path.cpp; sourceTree = "<group>"; };
@@ -353,9 +347,7 @@
 				CDA68F47181791FD00B2FDC7 /* Api.cpp */,
 				CDA68F48181791FD00B2FDC7 /* App.cpp */,
 				CDA68F49181791FD00B2FDC7 /* autostring.cpp */,
-				CDA68F4A181791FD00B2FDC7 /* Base.aps */,
 				CDA68F4B181791FD00B2FDC7 /* Base.cpp */,
-				CDA68F4C181791FD00B2FDC7 /* Base.rc */,
 				CDA68F4D181791FD00B2FDC7 /* Command.cpp */,
 				CDA68F4E181791FD00B2FDC7 /* CommandFactory.cpp */,
 				CDA68F4F181791FD00B2FDC7 /* CommandFactory.h */,
@@ -369,7 +361,6 @@
 				CDA68F59181791FD00B2FDC7 /* MemObj.cpp */,
 				CDA68F5A181791FD00B2FDC7 /* MemStat.cpp */,
 				CDA68F5B181791FD00B2FDC7 /* Object.cpp */,
-				CDA68F5D181791FD00B2FDC7 /* profile.cpp */,
 				CDA68F5E181791FD00B2FDC7 /* profile.h */,
 				CDA68F5F181791FD00B2FDC7 /* resource.h */,
 				CDA68F60181791FD00B2FDC7 /* stdafx.cpp */,
@@ -448,6 +439,7 @@
 		CDA68F861817922600B2FDC7 /* FileSystem */ = {
 			isa = PBXGroup;
 			children = (
+				1864912D1819A977006D94B4 /* MpkPortMac.cpp */,
 				CDA68FDE1817927500B2FDC7 /* DataChunk.cpp */,
 				CDA68FDF1817927500B2FDC7 /* DataStream.cpp */,
 				CDA68FE01817927500B2FDC7 /* FileStream.cpp */,
@@ -460,8 +452,6 @@
 				CDA68FE71817927500B2FDC7 /* MpkFileSystem.h */,
 				CDA68FE81817927500B2FDC7 /* MpkManip.cpp */,
 				CDA68FE91817927500B2FDC7 /* MpkManip.h */,
-				CDA68FEA1817927500B2FDC7 /* MpkPortLinux.cpp */,
-				CDA68FEB1817927500B2FDC7 /* MpkPortMac.cpp */,
 				CDA68FEC1817927500B2FDC7 /* MpkStream.cpp */,
 				CDA68FED1817927500B2FDC7 /* MpkStream.h */,
 				CDA68FEE1817927500B2FDC7 /* Path.cpp */,
@@ -624,6 +614,7 @@
 				CDA68FDA1817924F00B2FDC7 /* tolua_is.c in Sources */,
 				CDA68F80181791FD00B2FDC7 /* tinystr.cpp in Sources */,
 				CDA68FC51817924F00B2FDC7 /* lfunc.c in Sources */,
+				1864912E1819A977006D94B4 /* MpkPortMac.cpp in Sources */,
 				CDA68FD11817924F00B2FDC7 /* lstrlib.c in Sources */,
 				CDA68FF41817927500B2FDC7 /* DataStream.cpp in Sources */,
 				CDA68F79181791FD00B2FDC7 /* Object.cpp in Sources */,
@@ -663,11 +654,9 @@
 				CDA68F7C181791FD00B2FDC7 /* stdafx.cpp in Sources */,
 				CDA68FF51817927500B2FDC7 /* FileStream.cpp in Sources */,
 				CDA68F71181791FD00B2FDC7 /* des.cpp in Sources */,
-				CDA68FFC1817927600B2FDC7 /* MpkPortMac.cpp in Sources */,
 				CDA68F85181791FD00B2FDC7 /* XlsValue.cpp in Sources */,
 				CDA68FBE1817924F00B2FDC7 /* lauxlib.c in Sources */,
 				CDA68FBF1817924F00B2FDC7 /* lbaselib.c in Sources */,
-				CDA68F7B181791FD00B2FDC7 /* profile.cpp in Sources */,
 				CDA68FCA1817924F00B2FDC7 /* lmem.c in Sources */,
 				CDA68FCD1817924F00B2FDC7 /* lopcodes.c in Sources */,
 				CDA690001817927600B2FDC7 /* Stream.cpp in Sources */,
@@ -685,7 +674,6 @@
 				CDA68F84181791FD00B2FDC7 /* Trace.cpp in Sources */,
 				CDA690011817927600B2FDC7 /* VirtualFileSystem.cpp in Sources */,
 				CDA68FD41817924F00B2FDC7 /* ltests.c in Sources */,
-				CDA68FFB1817927600B2FDC7 /* MpkPortLinux.cpp in Sources */,
 				CDA68F6D181791FD00B2FDC7 /* autostring.cpp in Sources */,
 				CDA68F6E181791FD00B2FDC7 /* Base.cpp in Sources */,
 				CDA68FC01817924F00B2FDC7 /* lcode.c in Sources */,
@@ -806,10 +794,12 @@
 					../../Include,
 					../../Include/lua,
 					../../Include/FileSystem,
+					../../../MpkLib/Include,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -827,10 +817,12 @@
 					../../Include,
 					../../Include/lua,
 					../../Include/FileSystem,
+					../../../MpkLib/Include,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -891,6 +883,7 @@
 				CDA68F43181791BC00B2FDC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CDA68F44181791BC00B2FDC7 /* Build configuration list for PBXNativeTarget "baseTests" */ = {
 			isa = XCConfigurationList;
@@ -899,6 +892,7 @@
 				CDA68F46181791BC00B2FDC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

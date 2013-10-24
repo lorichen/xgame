@@ -72,13 +72,13 @@ public:
 	 @param from 从那种指定的位置开始进行偏移，参考: SEEK_SET 文件头; SEEK_CUR 文件当前位置; SEEK_END 文件尾
 	 @return 
 	 */ 
-	virtual bool seek(int offset, uint from = SEEK_SET) { return false; }
+	virtual bool seek(int offset, uint from = SEEK_SET) const { return false; }
 
 	/// 文件读写位置定位到文件头
-	virtual bool seekToBegin() { return false; }
+	virtual bool seekToBegin() const { return false; }
 
 	/// 文件读写位置定位到文件尾
-	virtual bool seekToEnd() { return false; }
+	virtual bool seekToEnd() const { return false; }
 
 	/// 获得文件指针的位置
 	virtual int getPosition() const { return 0; }

@@ -27,7 +27,7 @@
 #ifdef WIN32
 #	include <windows.h>
 #else
-	typedef unsigned long DWORD;
+	
 #endif
 
 #ifdef RKT_COMPILER_MSVC
@@ -193,7 +193,7 @@ namespace xs {
 
 	protected:
 		/// 取得当前时间,你可以修改成使用其他API
-		inline DWORD GetTickCount() { return ::GetTickCount();}
+		inline DWORD GetTickCount() { return getTickCount();}
 
 	protected:
 		struct Timer

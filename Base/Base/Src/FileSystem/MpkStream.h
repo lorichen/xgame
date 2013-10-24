@@ -16,9 +16,9 @@ public:
 	virtual bool close(){return true;}
 	virtual bool read(IN OUT void* buffer, uint toRead);
 	virtual bool readString(IN OUT char* str,IN OUT uint& length);
-	virtual bool seek(int offset, uint from = SEEK_SET);
-	virtual bool seekToBegin();
-	virtual bool seekToEnd();
+	virtual bool seek(int offset, uint from = SEEK_SET) const;
+	virtual bool seekToBegin() const;
+	virtual bool seekToEnd() const;
 	virtual int getPosition() const;
 	virtual uint getLength() const;
 	virtual void release();

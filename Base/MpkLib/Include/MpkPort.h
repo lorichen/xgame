@@ -22,7 +22,7 @@
 
   // Macintosh using Carbon
   #if defined(__MACH__)
-    #include <Carbon/Carbon.h> // Mac OS X
+    //#include <Carbon/Carbon.h> // Mac OS X
     #define stricmp strcasecmp  // Case insensitive strcmp has a different name on this platform.
   #else
     #include <Carbon.h> // Mac OS 9 Using Carbon Lib
@@ -70,7 +70,7 @@
   typedef short          SHORT;
   typedef unsigned short WORD;
   typedef long           LONG;
-  typedef unsigned long  DWORD;
+  //typedef unsigned long  DWORD;
 #ifndef __OBJC__
   #define BOOL           bool
 #endif

@@ -548,6 +548,7 @@ int CDES::CheckPad(int nType,unsigned char *data)
 			}
 		}
 	}
+    return 0;
 }
   
   

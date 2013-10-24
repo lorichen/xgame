@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <utility>
 #include <string>
+#include <sstream>
 
 namespace xs {
 
@@ -212,14 +213,24 @@ public:
 	basic_ostrbuf& operator<<(long l)
 	{
 		grow(_LongMaxLength);
-		_ltoa_s(l, cur(), _LongMaxLength, 10);
+		
+#if defined(_MSC_VER) && _MSC_VER >= 1400
+        _ltoa_s(l, cur(), _LongMaxLength, 10);
+#else
+        _itoa(l, cur(), 10);
+#endif
 		_pos += strlen(cur());
 		return (*this);
 	}
 	basic_ostrbuf& operator<<(unsigned long ul)
 	{
 		grow(_LongMaxLength);
-		_ultoa_s(ul, cur(), _LongMaxLength, 10);
+        
+#if defined(_MSC_VER) && _MSC_VER >= 1400
+        _ultoa_s(ul, cur(), _LongMaxLength, 10);
+#else
+        _itoa(ul, cur(), 10);
+#endif
 		_pos += strlen(cur());
 		return (*this);
 	}

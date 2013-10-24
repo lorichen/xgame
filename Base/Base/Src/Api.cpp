@@ -7,14 +7,23 @@
 
 #define new RKT_NEW
 
+#if (TARGET_PLATFORM == PLATFORM_IOS)
+#include <sys/time.h>
+#endif
+
 namespace xs {
 
 
 	RKT_API	ulong getTickCount()
 	{
-#ifdef RKT_WIN32
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		return ::GetTickCount();
-#elif defined(RKT_LINUX)
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+        struct timeval tv;
+		struct timezone tz;
+		gettimeofday(&tv , &tz);
+		return (ulong)((tv.tv_sec & 0xfffff) * 1000 + tv.tv_usec / 1000);
+#else
 		struct timeval tv;
 		struct timezone tz;
 		gettimeofday(&tv , &tz);
@@ -35,13 +44,17 @@ namespace xs {
 
 	static double initPerformanceTimer()
 	{
-#ifdef RKT_WIN32
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		LARGE_INTEGER litmp;
 		if (!::QueryPerformanceFrequency(&litmp))
 		{
 			//Error("the computer not support QueryPerformanceFrequency!\n");
 		}
 		return (double)litmp.QuadPart;
+        
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+        //not impl
+        return 1;
 #else
 		char buffer[10];
 		getProcValue("/proc/cpuinfo","cpu MHz", buffer);
@@ -57,11 +70,14 @@ namespace xs {
 
 	RKT_API int64 getPerformanceCount()
 	{
-#ifdef RKT_WIN32
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		LARGE_INTEGER litmp;
 		::QueryPerformanceCounter(&litmp);
 		return (int64)litmp.QuadPart;
-#elif defined(RKT_LINUX)
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+        //not impl
+        return getTickCount();
+#else
 		register int64 ticks;
 		__asm__ volatile (".byte 0x0f, 0x31" : "=A" (ticks));
 		return ticks;

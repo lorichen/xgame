@@ -134,7 +134,7 @@ namespace xs {
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 			::_itoa_s(_Val, (char*)str.c_str(), 40, _Radix);
 #else
-			::_itoa(_Val, (char*)str.c_str(), _Radix);
+			str = _itoa(_Val, (char*)str.c_str(), _Radix);
 #endif
 			return str;
 		}
@@ -146,7 +146,7 @@ namespace xs {
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 			::_ltoa_s(_Val, (char*)str.c_str(), 40, _Radix);
 #else
-			::_ltoa(_Val, (char*)str.c_str(), _Radix);
+			str = _itoa(_Val, (char*)str.c_str(), _Radix);
 #endif
 			return str;
 		}
@@ -158,7 +158,7 @@ namespace xs {
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 			::_i64toa_s(_Val, (char*)str.c_str(), 80, _Radix);
 #else
-			::_i64toa(_Val, (char*)str.c_str(), _Radix);
+			str = _i64toa(_Val, (char*)str.c_str(), _Radix);
 #endif
 			return str;
 		}

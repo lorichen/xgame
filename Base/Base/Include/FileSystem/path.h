@@ -28,7 +28,7 @@ class basic_path : public std::basic_string<_Elem>
 {
 public:
 	typedef typename std::basic_string<_Elem>	_String;
-	typedef typename xs::basic_path<_Elem>			_MyType;
+	typedef typename xs::basic_path<_Elem>		_MyType;
 
 	///////////////////////////////////////////////////////////////////////////////
 	// 构造函数
@@ -39,7 +39,7 @@ public:
 	basic_path(const _Elem* p, bool isFilePath = true)
 		: _isFile(isFilePath), _String(p)
 	{
-		//normalize();
+		normalize();
 	}
 	basic_path(const _Elem* p, size_type roff, size_type count, bool isFilePath = true)
 		: _isFile(isFilePath), _String(p,roff,count)
@@ -66,7 +66,23 @@ public:
 		_String::assign(1, _Ch);
 		return (*this);
 	}
+    
+    _MyType& operator=(const _Elem* p)
+    {
+        *this = p;
+        _isFile = true;
+        normalize();
+        return *this;
+    }
 
+    _MyType& operator=(_String& str)
+    {
+        *this = str;
+        _isFile = true;
+        normalize();
+        return *this;
+    }
+    
 	/*
 	~basic_path()
 	{
@@ -99,9 +115,9 @@ public:
 		long/*size_type*/ pos = (long)(this->length()-search_len); // 原来size_type是无符号的
 		for (;pos>=0;)
 		{
-			if (compare(pos,search_len,substr)==0)
+			if (this->compare(pos,search_len,substr)==0)
 			{
-				replace(pos,search_len,str);
+				this->replace(pos,search_len,str);
 				pos -= (long)search_len;
 			}else
 			{
@@ -163,7 +179,7 @@ public:
 	_MyType& removeTailSlash()
 	{
 		if (*(this->end() - 1) == CHAR_SLASH)
-			erase(this->end() - 1);
+			this->erase(this->end() - 1);
 		return (*this);
 	}
 

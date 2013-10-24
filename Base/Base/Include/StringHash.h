@@ -6,12 +6,40 @@
 #define RKT_STRINGHASH_H
 
 #include "Common.h"
-#include <hash_map>
 #include <functional>
 
 #ifdef RKT_COMPILER_MSVC
 #	pragma warning(push)
 #	pragma warning(disable:4996)
+#endif
+
+
+namespace xs {
+    struct StrHashKeyType
+	{
+		ulong name;
+		ulong name1;
+		ulong name2;
+	};
+}
+
+#if (TARGET_PLATFORM != PLATFORM_WIN32)
+namespace __gnu_cxx {
+   /*
+    template<> struct hash< xs::StrHashKeyType >
+    {
+        size_t operator()(const xs::StrHashKeyType& x) const
+        {
+            size_t s = hash< unsigned long >()( x.name ) +
+            hash< unsigned long >()( x.name1 ) +
+            hash< unsigned long >()( x.name2 ) ;
+            
+            return hash<size_t>()(s);
+        }
+    };
+    */
+}
+
 #endif
 
 namespace xs {
@@ -26,13 +54,7 @@ namespace xs {
 	RKT_API bool makeMap(uchar* buffer, ulong size, ulong key);
 
 
-	struct StrHashKeyType
-	{
-		ulong name;
-		ulong name1;
-		ulong name2;
-	};
-
+	
 	struct my_less
 	{
 		bool operator()(const xs::StrHashKeyType& l, const xs::StrHashKeyType& r) const
@@ -40,11 +62,15 @@ namespace xs {
 			return (l.name1 == r.name1 && l.name2 == r.name2) ? false : true;
 		}
 	};
-
-
+    
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	template<class T>
-	class StrHashMap: public HashMap<StrHashKeyType, T, stdext::hash_compare<StrHashKeyType, my_less> >
-	{
+	class StrHashMap: public HashMap<StrHashKeyType, T, hash_compare< xs::StrHashKeyType, my_less>  >
+#else
+    template<class T>
+	class StrHashMap : public HashMap<StrHashKeyType, T  >
+#endif
+    {
 	public:
 		mapped_type& operator[](const char* str)
 		{

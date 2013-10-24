@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <map>
 #include <set>
+#include <list>
 #include <string>
 #include "Common.h"
 #include "Stream.h"
@@ -9,6 +10,10 @@
 #include "StdFileSystem.h"
 #include "VirtualFileSystem.h"
 #include "StringHash.h"
+
+#if (TARGET_PLATFORM != PLATFORM_WIN32)
+#include <pthread.h>
+#endif
 
 #define new RKT_NEW
 
@@ -187,7 +192,7 @@ namespace xs{
 		public:
 			~FileSystemList()
 			{
-				for (FileSystemList::const_iterator iter = begin(); iter != end(); iter++)
+				for (FileSystemList::iterator iter = begin(); iter != end(); iter++)
 				{
 					FileSystem* pFileSystem = (*iter).pFileSystem;
 					delete pFileSystem;
@@ -254,7 +259,7 @@ namespace xs{
 		if (isFile(path.c_str()))
 		{
 			std::string ext = path.substr(path.length() - 4,4);
-			if(!stricmp(ext.c_str(),".PAK") || !stricmp(ext.c_str(),".MPQ"))
+			if(!strcmp(ext.c_str(),".PAK") || !strcmp(ext.c_str(),".MPQ"))
 			{
 				streamSystem = static_cast<IFileSystem*>(new MpkFileSystem);
 			}

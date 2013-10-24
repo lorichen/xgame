@@ -1,9 +1,13 @@
 #include "stdafx.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 #include <sys/stat.h>
-#include <io.h>
 #include <fcntl.h>
 #include "FileStream.h"
 #include "Trace.h"
+#include <string.h>
+
 
 #define new RKT_NEW
 
@@ -37,8 +41,10 @@ bool FileStream::open(const char* mode)
 
 	Assert(!m_path.empty() && stringIsValid(mode));
 
-	fopen_s(&m_stream,m_path.c_str(),mode);
-	//if (NULL == (m_stream = fopen(m_path.c_str(), mode)))
+	//fopen_s(&m_stream,m_path.c_str(),mode);
+	m_stream = fopen(m_path.c_str(),mode);
+    
+    //if (NULL == (m_stream = fopen(m_path.c_str(), mode)))
 	if(m_stream == NULL)
 	{
 		//setLastErrorWithFormat(UNLERR_STREAM_OPEN, m_path.c_str());
@@ -139,19 +145,19 @@ bool FileStream::write(const void* buffer, uint toWrite)
 	return true;
 }
 
-bool FileStream::seek(int offset, uint from)
+bool FileStream::seek(int offset, uint from) const
 {
 	Assert(m_stream != NULL);
 	return (fseek(m_stream, offset, from) == 0);
 }
 
-bool FileStream::seekToBegin()
+bool FileStream::seekToBegin() const
 {
 	Assert(m_stream != NULL);
 	return seek(0, SEEK_SET);
 }
 
-bool FileStream::seekToEnd()
+bool FileStream::seekToEnd() const
 {
 	Assert(m_stream != NULL);
 	return seek(0, SEEK_END);
@@ -166,13 +172,14 @@ bool FileStream::flush() const
 uint FileStream::getLength() const
 {
 	if (isOpen())
-	{/*
+	{
 		uint curPos = getPosition();
 		seekToEnd();
 		uint len = getPosition();
 		seek(curPos, SEEK_SET);
-		return len;*/
-		return _filelength(_fileno(m_stream));
+		return len;
+        
+		//return _filelength(_fileno(m_stream));
 	}
 
 	if (m_path.empty())
@@ -186,7 +193,11 @@ uint FileStream::getLength() const
 bool FileStream::setLength(uint newLen)
 {
 	Assert(m_stream != NULL);
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	return _chsize(_fileno(m_stream), newLen) == 0;
+#else
+    return (ftruncate (_fileno(m_stream), newLen) != -1);
+#endif
 }
 
 int FileStream::getPosition() const

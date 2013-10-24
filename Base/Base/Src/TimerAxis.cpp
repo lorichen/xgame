@@ -16,7 +16,14 @@
 #include "stdafx.h"
 #include <set>
 #include <assert.h>
+
+#if (TARGET_PLATFROM == PLATFORM_WIN32)
 #include <windows.h>
+#else
+#include <sys/timeb.h>
+#endif
+
+
 #include <ctime>
 #include <sys/timeb.h>
 
@@ -308,9 +315,14 @@ namespace xs {
 			return false;
 		}
 
-		//转换成格林威治时间
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		struct _timeb tstruct;
-		_ftime( &tstruct ); 
+        _ftime( &tstruct );
+#else
+        struct timeb tstruct;
+        ftime( &tstruct ); 
+#endif
+		
 		//timezone	Difference in minutes, moving westward, between UTC and local time
 		dwFixStartTime += SECONDS_PER_DAY + tstruct.timezone * SECONDS_PER_MINUTE;
 

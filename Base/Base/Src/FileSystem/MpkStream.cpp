@@ -51,17 +51,17 @@ bool MpkStream::readString(IN OUT char* str,IN OUT uint& length)
 	return true;
 }
 
-bool MpkStream::seek(int offset, uint from)
+bool MpkStream::seek(int offset, uint from) const
 {
 	return m_pFileManip->seek(offset,from);
 }
 
-bool MpkStream::seekToBegin()
+bool MpkStream::seekToBegin() const
 {
 	return m_pFileManip->seek(0,SEEK_SET);
 }
 
-bool MpkStream::seekToEnd()
+bool MpkStream::seekToEnd() const
 {
 	return m_pFileManip->seek(0,SEEK_END);
 }

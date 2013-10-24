@@ -2,6 +2,7 @@
 
 #ifndef _WIN32
 #include "MpkPort.h"
+#include <sys/stat.h>
 
 int globalerr;
 

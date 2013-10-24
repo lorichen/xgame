@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include <sys/stat.h>
-#include <direct.h>
+
 #include "Stream.h"
 #include "Trace.h"
 
