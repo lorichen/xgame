@@ -131,7 +131,8 @@ namespace xs {
 
 		return wstr;
 #else
-#error No implement!!
+    #error No implement!!
+        return 0;
 #endif
 	}
 
