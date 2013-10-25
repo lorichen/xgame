@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1864912E1819A977006D94B4 /* MpkPortMac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1864912D1819A977006D94B4 /* MpkPortMac.cpp */; };
 		CDA68F22181791BC00B2FDC7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA68F21181791BC00B2FDC7 /* Foundation.framework */; };
 		CDA68F27181791BC00B2FDC7 /* base.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDA68F26181791BC00B2FDC7 /* base.h */; };
 		CDA68F29181791BC00B2FDC7 /* base.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA68F28181791BC00B2FDC7 /* base.m */; };
@@ -86,8 +85,8 @@
 		CDA68FFD1817927600B2FDC7 /* MpkStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FEC1817927500B2FDC7 /* MpkStream.cpp */; };
 		CDA68FFE1817927600B2FDC7 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FEE1817927500B2FDC7 /* Path.cpp */; };
 		CDA68FFF1817927600B2FDC7 /* StdFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FEF1817927500B2FDC7 /* StdFileSystem.cpp */; };
-		CDA690001817927600B2FDC7 /* Stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FF11817927500B2FDC7 /* Stream.cpp */; };
 		CDA690011817927600B2FDC7 /* VirtualFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA68FF21817927500B2FDC7 /* VirtualFileSystem.cpp */; };
+		CDA6909E181A4D5C00B2FDC7 /* ios_imple.mm in Sources */ = {isa = PBXBuildFile; fileRef = CDA6909D181A4D5C00B2FDC7 /* ios_imple.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,7 +113,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1864912D1819A977006D94B4 /* MpkPortMac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpkPortMac.cpp; path = ../../Src/FileSystem/MpkPortMac.cpp; sourceTree = "<group>"; };
 		CDA68F1E181791BC00B2FDC7 /* libbase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA68F21181791BC00B2FDC7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CDA68F25181791BC00B2FDC7 /* base-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "base-Prefix.pch"; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 		CDA68FEE1817927500B2FDC7 /* Path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Path.cpp; path = ../../Src/FileSystem/Path.cpp; sourceTree = "<group>"; };
 		CDA68FEF1817927500B2FDC7 /* StdFileSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StdFileSystem.cpp; path = ../../Src/FileSystem/StdFileSystem.cpp; sourceTree = "<group>"; };
 		CDA68FF01817927500B2FDC7 /* StdFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StdFileSystem.h; path = ../../Src/FileSystem/StdFileSystem.h; sourceTree = "<group>"; };
-		CDA68FF11817927500B2FDC7 /* Stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Stream.cpp; path = ../../Src/FileSystem/Stream.cpp; sourceTree = "<group>"; };
 		CDA68FF21817927500B2FDC7 /* VirtualFileSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileSystem.cpp; path = ../../Src/FileSystem/VirtualFileSystem.cpp; sourceTree = "<group>"; };
 		CDA690021817937300B2FDC7 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = ../../Include/platform.h; sourceTree = "<group>"; };
 		CDA690031817937300B2FDC7 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../Include/type.h; sourceTree = "<group>"; };
@@ -271,6 +268,7 @@
 		CDA690351817D14600B2FDC7 /* tolua++.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "tolua++.h"; path = "../../Include/tolua++.h"; sourceTree = "<group>"; };
 		CDA690361817D14600B2FDC7 /* Trace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Trace.h; path = ../../Include/Trace.h; sourceTree = "<group>"; };
 		CDA690371817D14600B2FDC7 /* XlsValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XlsValue.h; path = ../../Include/XlsValue.h; sourceTree = "<group>"; };
+		CDA6909D181A4D5C00B2FDC7 /* ios_imple.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ios_imple.mm; path = ../../Src/ios_imple.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +297,7 @@
 		CDA68F15181791BC00B2FDC7 = {
 			isa = PBXGroup;
 			children = (
+				CDA6909D181A4D5C00B2FDC7 /* ios_imple.mm */,
 				CDA6900F1817D14500B2FDC7 /* Api.h */,
 				CDA690101817D14500B2FDC7 /* App.h */,
 				CDA690111817D14500B2FDC7 /* autostring.h */,
@@ -439,7 +438,6 @@
 		CDA68F861817922600B2FDC7 /* FileSystem */ = {
 			isa = PBXGroup;
 			children = (
-				1864912D1819A977006D94B4 /* MpkPortMac.cpp */,
 				CDA68FDE1817927500B2FDC7 /* DataChunk.cpp */,
 				CDA68FDF1817927500B2FDC7 /* DataStream.cpp */,
 				CDA68FE01817927500B2FDC7 /* FileStream.cpp */,
@@ -457,7 +455,6 @@
 				CDA68FEE1817927500B2FDC7 /* Path.cpp */,
 				CDA68FEF1817927500B2FDC7 /* StdFileSystem.cpp */,
 				CDA68FF01817927500B2FDC7 /* StdFileSystem.h */,
-				CDA68FF11817927500B2FDC7 /* Stream.cpp */,
 				CDA68FF21817927500B2FDC7 /* VirtualFileSystem.cpp */,
 			);
 			name = FileSystem;
@@ -614,10 +611,10 @@
 				CDA68FDA1817924F00B2FDC7 /* tolua_is.c in Sources */,
 				CDA68F80181791FD00B2FDC7 /* tinystr.cpp in Sources */,
 				CDA68FC51817924F00B2FDC7 /* lfunc.c in Sources */,
-				1864912E1819A977006D94B4 /* MpkPortMac.cpp in Sources */,
 				CDA68FD11817924F00B2FDC7 /* lstrlib.c in Sources */,
 				CDA68FF41817927500B2FDC7 /* DataStream.cpp in Sources */,
 				CDA68F79181791FD00B2FDC7 /* Object.cpp in Sources */,
+				CDA6909E181A4D5C00B2FDC7 /* ios_imple.mm in Sources */,
 				CDA68FDB1817924F00B2FDC7 /* tolua_map.c in Sources */,
 				CDA68FCB1817924F00B2FDC7 /* loadlib.c in Sources */,
 				CDA68F6C181791FD00B2FDC7 /* App.cpp in Sources */,
@@ -659,7 +656,6 @@
 				CDA68FBF1817924F00B2FDC7 /* lbaselib.c in Sources */,
 				CDA68FCA1817924F00B2FDC7 /* lmem.c in Sources */,
 				CDA68FCD1817924F00B2FDC7 /* lopcodes.c in Sources */,
-				CDA690001817927600B2FDC7 /* Stream.cpp in Sources */,
 				CDA68FF31817927500B2FDC7 /* DataChunk.cpp in Sources */,
 				CDA68FFF1817927600B2FDC7 /* StdFileSystem.cpp in Sources */,
 				CDA68FF71817927500B2FDC7 /* MemStream.cpp in Sources */,

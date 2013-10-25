@@ -43,8 +43,10 @@ namespace __gnu_cxx {
 #endif
 
 namespace xs {
-
-	/// ×Ö·û´®Ó³Éä³ÉÕûÊý
+    
+    
+	
+    /// ×Ö·û´®Ó³Éä³ÉÕûÊý
 	#define STR2ID(str)	hashString((str), 0)
 
 	/// ¹þÏ£Ò»¸ö×Ö·û´®
@@ -72,7 +74,9 @@ namespace xs {
 #endif
     {
 	public:
-		mapped_type& operator[](const char* str)
+        // kevin.chen hide , i am not sure!!!
+        /*
+        T& operator[](const char* str)
 		{
 			StrHashKeyType _Keyval;
 			calcHashValue(_Keyval, str);
@@ -81,7 +85,7 @@ namespace xs {
 				_Where = this->insert(value_type(_Keyval, mapped_type())).first;
 			return ((*_Where).second);
 		}
-		mapped_type& operator[](StrHashKeyType key)
+		T& operator[](StrHashKeyType key)
 		{
 			iterator _Where = this->lower_bound(key);
 			if (_Where == this->end())
@@ -100,6 +104,7 @@ namespace xs {
 			calcHashValue(_Keyval, str);
 			return lower_bound(_Keyval);
 		}
+        */
 
 		StrHashKeyType strToKeyType(const char* str)
 		{

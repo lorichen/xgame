@@ -78,7 +78,7 @@ namespace xs {
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 			return ::_stricmp(str1.c_str(), str2.c_str());
 #else
-			return ::stricmp(str1.c_str(), str2.c_str());
+			return ::strcmp(str1.c_str(), str2.c_str());
 #endif
 		}
 
@@ -118,7 +118,8 @@ namespace xs {
 		/// 转换成int64
 		static int64 toInt64(const std::string& str)
 		{
-			return ::_atoi64(str.c_str());
+			//return ::_atoi64(str.c_str());  //modify by kevin.chen
+            return ::atol(str.c_str());
 		}
 
 		/// 转换成浮点
@@ -158,7 +159,8 @@ namespace xs {
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 			::_i64toa_s(_Val, (char*)str.c_str(), 80, _Radix);
 #else
-			str = _i64toa(_Val, (char*)str.c_str(), _Radix);
+			//str = _i64toa(_Val, (char*)str.c_str(), _Radix);  //modify by kevin.chen !
+            str = _itoa(_Val, (char*)str.c_str(), _Radix);
 #endif
 			return str;
 		}

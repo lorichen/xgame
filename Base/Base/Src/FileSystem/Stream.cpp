@@ -122,7 +122,7 @@ RKT_API bool createDirectoryRecursive(const char* absolutePath)
 		return true;
 
 	// 获取父目录
-	CPathA strParent(strDir.getParentDir(), false);
+	CPathA strParent(strDir.getParentDir().c_str(), false);
 	if (strParent.empty()) // 目录名称错误
 		return false; 
 

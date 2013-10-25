@@ -35,7 +35,6 @@ typedef void*         HANDLE;
 #define sprintf_s snprintf
 #define _vsnprintf vsnprintf
 
-#define GetCurrentThreadId GetCurrentThread
 
 
 inline char *_itoa(int num,char *str,int radix)
@@ -94,7 +93,21 @@ namespace __gnu_cxx
     {
         size_t operator()( const std::string& x ) const
         {
-            return hash< const char* >()( x.c_str() );
+            //return hash< const char* >()( x.c_str() );
+            
+            const char *key = x.c_str();
+            size_t len = x.length();
+            unsigned int hash, i;
+            for(hash = i = 0; i < len; ++i)
+            {
+                hash += key[i];
+                hash += (hash << 10);
+                hash ^= (hash >> 6);
+            }
+            hash += (hash << 3);
+            hash ^= (hash >> 11);
+            hash += (hash << 15);
+            return hash;
         }
     };
     
@@ -114,6 +127,9 @@ namespace __gnu_cxx
         }
     };
 }
+
+
+extern unsigned int GetCurrentThreadId();
 
 #include <unistd.h>
 #include <fcntl.h>
