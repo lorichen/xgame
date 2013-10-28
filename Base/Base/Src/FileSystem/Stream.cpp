@@ -1,15 +1,23 @@
 #include "stdafx.h"
-#include <sys/stat.h>
 
 #include "Stream.h"
 #include "Trace.h"
+#include <assert.h>
+
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+
+#else
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#endif
 
 #define new RKT_NEW
 
 namespace xs{
 
 //////////////////////////////////////////////////////////////////////////
-// �ļ��������
+// Œƒº˛∂‘œÛª˘¿‡
 Stream::Stream(const char* path)
 {
 	m_path.isFile(true);
@@ -44,20 +52,32 @@ bool Stream::setPath(const char* path)
 //////////////////////////////////////////////////////////////////////////
 inline static bool _isDirectoryExist(CPathA& absolutePath)
 {
+#if (TAGET_PLATFORM == PLATFORM_WIN32)
 	_finddata_t fd;
-	intptr_t r = _findfirst(absolutePath.c_str(), &fd); // "c:\"Ҳ�᷵�أ�1����Ŀ¼�����ڣ���Ϊ����������Ŀ¼
+	intptr_t r = _findfirst(absolutePath.c_str(), &fd); // "c:\"“≤ª·∑µªÿ£≠1£¨µ±ƒø¬º≤ª¥Ê‘⁄£¨“ÚŒ™«˝∂Ø∆˜≤ª «ƒø¬º
 	_findclose(r);
 	return (r != -1 && fd.attrib & 16);
+#else
+    DIR* dir;
+    if(!(dir = opendir(absolutePath.c_str())))
+        return false;
+    return true;
+#endif
 }
 
 inline static bool _isAbsolutePath(CPathA& path)
 {
-	//	������ж���������ȫ����Ϊpath.length()Ϊ0ʱ����path�Ķ������ǿ��ܻᵼ���쳣�ģ���������޸�Ϊ
-	//	ֱ��ʹ��api ::PathIsRelative()��
+	//	’‚¿Ôµƒ≈–∂œÃıº˛≤ª∞≤»´£¨“ÚŒ™path.length()Œ™0 ±£¨∂‘pathµƒ∂¡≤Ÿ◊˜ «ø…ƒ‹ª·µº÷¬“Ï≥£µƒ£¨“Ú¥À’‚¿Ô–ﬁ∏ƒŒ™
+	//	÷±Ω” π”√api ::PathIsRelative()£ª
+#if (TAGET_PLATFORM == PLATFORM_WIN32)
 #if 0
 	return (path.length() >= 3 && path[0] == '\\' || path[1] == ':');
 #endif
 	return !::PathIsRelativeA(path.c_str());
+    
+#else
+    return (path.length() >= 3 && path[0] == '\\' || path[0] == '/' || path[1] == ':' );
+#endif
 }
 
 RKT_API void toggleFullPath(CPathA& path)
@@ -70,7 +90,7 @@ RKT_API void toggleFullPath(CPathA& path)
 
 	if (!_isAbsolutePath(path))
 	{
-		CPathA workPath = getWorkDir();
+		CPathA workPath(getWorkDir());
 		workPath.addTailSlash();
 		path.insert(0, workPath);
 	}
@@ -78,20 +98,33 @@ RKT_API void toggleFullPath(CPathA& path)
 
 RKT_API bool checkPath(const char* path, bool& isAbsolutePath, uint& attrib)
 {
-	CPathA mypath = path;
+	CPathA mypath(path);
 	toggleFullPath(mypath);
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	_finddata_t fd;
-	intptr_t r = _findfirst(mypath.c_str(), &fd); // "c:\"Ҳ�᷵�أ�1����Ŀ¼�����ڣ���Ϊ����������Ŀ¼
+	intptr_t r = _findfirst(mypath.c_str(), &fd); // "c:\"“≤ª·∑µªÿ£≠1£¨µ±ƒø¬º≤ª¥Ê‘⁄£¨“ÚŒ™«˝∂Ø∆˜≤ª «ƒø¬º
 	attrib = fd.attrib;
 	_findclose(r);
-
 	return r != -1;
+#else
+    DIR* dir;
+    if((dir = opendir(mypath.c_str())))
+        return true;
+    
+    FILE* fp = fopen(mypath.c_str(),"rb");
+    if(!fp)
+        return false;
+    
+    fclose(fp);
+    return true;
+#endif
 }
 
 RKT_API bool isAbsolutePath(const char* path)
 {
-	return _isAbsolutePath(CPathA(path));
+    CPathA p(path);
+	return _isAbsolutePath(p);
 }
 
 RKT_API bool isFile(const char* path)
@@ -110,8 +143,8 @@ RKT_API bool isDirectory(const char* path)
 	return (ret && (attrib & 16));
 }
 
-// �ݹ鴴��Ŀ¼(�����༶,absolutePath�����·����)
-// �Զ����Ŀ¼�Ƿ����
+// µ›πÈ¥¥Ω®ƒø¬º(∞¸¿®∂‡º∂,absolutePath–Ëæ¯∂‘¬∑æ∂√˚)
+// ◊‘∂ØºÏ≤‚ƒø¬º «∑Ò¥Ê‘⁄
 RKT_API bool createDirectoryRecursive(const char* absolutePath)
 {
 	Assert(stringIsValid(absolutePath));
@@ -121,21 +154,25 @@ RKT_API bool createDirectoryRecursive(const char* absolutePath)
 	if (_isDirectoryExist(strDir))
 		return true;
 
-	// ��ȡ��Ŀ¼
+	// ªÒ»°∏∏ƒø¬º
 	CPathA strParent(strDir.getParentDir().c_str(), false);
-	if (strParent.empty()) // Ŀ¼���ƴ���
+	if (strParent.empty()) // ƒø¬º√˚≥∆¥ÌŒÛ
 		return false; 
 
 	bool ret = true;
-	if (strParent.length() > 3) // �������С��3����ʾΪ���̸�Ŀ¼
-		ret = _isDirectoryExist(strParent);// ��鸸Ŀ¼�Ƿ����
+	if (strParent.length() > 3) // »Áπ˚≥§∂»–°”⁄3£¨±Ì æŒ™¥≈≈Ã∏˘ƒø¬º
+		ret = _isDirectoryExist(strParent);// ºÏ≤È∏∏ƒø¬º «∑Ò¥Ê‘⁄
 
-	if (!ret) // ��Ŀ¼������,�ݹ���ô�����Ŀ¼
+	if (!ret) // ∏∏ƒø¬º≤ª¥Ê‘⁄,µ›πÈµ˜”√¥¥Ω®∏∏ƒø¬º
 		ret = createDirectoryRecursive(strParent.c_str()); 
 
-	if (ret) // ��Ŀ¼����,ֱ�Ӵ���Ŀ¼
+	if (ret) // ∏∏ƒø¬º¥Ê‘⁄,÷±Ω”¥¥Ω®ƒø¬º
 	{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		int r = _mkdir(strDir.c_str());
+#else
+        int r = mkdir(strDir.c_str(),0777);
+#endif
 		//if (r == -1) // error
 		//	setLastError(UNLERR_STREAM_CREATE_DIRECTORY);
 		ret = r != -1;
@@ -150,10 +187,11 @@ RKT_API bool removeDirectoryRecursive(const char* absolutePath)
 
 	CPathA strDir(absolutePath, false);
 
-	// �������ȱ������3��������Ϊ���̸�Ŀ¼��հ�
+	// ≤Œ ˝≥§∂»±ÿ–Î¥Û”⁄3£¨º¥≤ªƒ‹Œ™¥≈≈Ã∏˘ƒø¬ºªÚø’∞◊
 	if (strDir.empty() || strDir.length() <= 3)
 		return false;
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	CPathA strFiles(strDir, true);
 	strFiles += "\\*.*";
 
@@ -206,6 +244,11 @@ RKT_API bool removeDirectoryRecursive(const char* absolutePath)
 			return true;
 		}
 	}
+    
+#else
+    assert(0); //not imple yet
+    
+#endif
 
 	return false;
 }
@@ -213,6 +256,8 @@ RKT_API bool removeDirectoryRecursive(const char* absolutePath)
 static bool _browseDir(CPathA& absoluteDir, CPathA& relativeDir, bool (*DIRPROC)(const char*, const char*, uint), 
 					  bool (*FILEPROC)(const char*, const char*, uint), uint userData, uint mask,bool recursive)
 {
+    
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	intptr_t hFile;
 	_finddata_t fd;
 
@@ -251,7 +296,7 @@ static bool _browseDir(CPathA& absoluteDir, CPathA& relativeDir, bool (*DIRPROC)
 					}
 				}
 			}
-			else // ���ļ�
+			else //  «Œƒº˛
 			{
 				if (mask & 2)
 				{
@@ -276,6 +321,10 @@ static bool _browseDir(CPathA& absoluteDir, CPathA& relativeDir, bool (*DIRPROC)
 	}
 
 	return true;
+#else
+    assert(0);
+    return false;
+#endif
 }
 
 RKT_API bool browseDirectory(const char* absoluteDir, const char* relativeDir, bool (*DIRPROC)(const char*, const char*, uint), 

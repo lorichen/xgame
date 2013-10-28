@@ -407,8 +407,10 @@ namespace xs {
 			return (*this);
 		}
 
+        // hide by kevin.chen
+        /*
 		/// 对常字符串的特化处理
-		template<> obuffer& operator << (const char* value)
+		template<> obuffer& operator<<(const char* value)
 		{
 			if (value)
 				return push_back((const void*)value, strlen(value) + sizeof(char));;
@@ -436,6 +438,7 @@ namespace xs {
 		{
 			return operator << ((const wchar_t*)value);
 		}
+        */
 
 		/// 跳过某种数据类型（不进行赋值，仅仅改变当前位置）
 		template <class T> obuffer& skip()
@@ -444,7 +447,6 @@ namespace xs {
 			return (*this);
 		}
 	};
-
 
 
 
@@ -467,9 +469,11 @@ namespace xs {
 		/// 获取缓冲区中数据的实际占用尺寸
 		size_t size() const
 		{
-			return cap();
+			return this->cap();
 		}
 
+        //hide by kevin.chen
+        /*
 		/// 从缓冲区导出各种具有固定长度的数据类型，包括简单类型和复合类型（结构）
 		/// 该方法仅仅支持对象的浅拷贝，如果对象需要进行深拷贝，需要定制该操作符
 		template <class T> ibuffer& operator >> (T& value)
@@ -548,6 +552,7 @@ namespace xs {
 		{
 			return operator>>((const wchar_t*&)value);
 		}
+         */
 
 		/// 跳过某种数据类型（不进行赋值，仅仅改变当前位置）
 		template <class T> ibuffer& skip()
@@ -611,7 +616,9 @@ namespace xs {
 		inline ibuffer& _cdecl operator>>(ibuffer& ib, std::string& val)
 		{
 			const char* str = 0;
-			ib>>str;
+			
+            assert(0);//ib>>str;  //by kevin.chen
+            
 			if (str) val = str;
 			return ib;
 		}

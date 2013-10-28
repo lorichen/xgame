@@ -1,0 +1,508 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18F8E189181C175C00E96D41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8E188181C175C00E96D41 /* Foundation.framework */; };
+		18F8E18E181C175C00E96D41 /* model.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18F8E18D181C175C00E96D41 /* model.h */; };
+		18F8E190181C175C00E96D41 /* model.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E18F181C175C00E96D41 /* model.m */; };
+		18F8E197181C175C00E96D41 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8E196181C175C00E96D41 /* XCTest.framework */; };
+		18F8E198181C175C00E96D41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8E188181C175C00E96D41 /* Foundation.framework */; };
+		18F8E19A181C175C00E96D41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8E199181C175C00E96D41 /* UIKit.framework */; };
+		18F8E19D181C175C00E96D41 /* libmodel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8E185181C175C00E96D41 /* libmodel.a */; };
+		18F8E1A3181C175C00E96D41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18F8E1A1181C175C00E96D41 /* InfoPlist.strings */; };
+		18F8E1A5181C175C00E96D41 /* modelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1A4181C175C00E96D41 /* modelTests.m */; };
+		18F8E1C2181C17CF00E96D41 /* BoneAnimationSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1AE181C17CF00E96D41 /* BoneAnimationSet.cpp */; };
+		18F8E1C3181C17CF00E96D41 /* BoneAnimationSetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1AF181C17CF00E96D41 /* BoneAnimationSetManager.cpp */; };
+		18F8E1C4181C17CF00E96D41 /* CollisionDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B0181C17CF00E96D41 /* CollisionDetection.cpp */; };
+		18F8E1C5181C17CF00E96D41 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B1181C17CF00E96D41 /* Model.cpp */; };
+		18F8E1C6181C17CF00E96D41 /* ModelCodecMm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B3181C17CF00E96D41 /* ModelCodecMm.cpp */; };
+		18F8E1C7181C17CF00E96D41 /* ModelCodecMx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B5181C17CF00E96D41 /* ModelCodecMx.cpp */; };
+		18F8E1C8181C17CF00E96D41 /* ModelCodecMz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B7181C17CF00E96D41 /* ModelCodecMz.cpp */; };
+		18F8E1C9181C17CF00E96D41 /* ModelCodecTx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B9181C17CF00E96D41 /* ModelCodecTx.cpp */; };
+		18F8E1CA181C17CF00E96D41 /* ModelCodecWarcraft3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1BB181C17CF00E96D41 /* ModelCodecWarcraft3.cpp */; };
+		18F8E1CB181C17CF00E96D41 /* ModelDll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1BD181C17CF00E96D41 /* ModelDll.cpp */; };
+		18F8E1CC181C17CF00E96D41 /* ModelManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1BE181C17CF00E96D41 /* ModelManager.cpp */; };
+		18F8E1CD181C17CF00E96D41 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1BF181C17CF00E96D41 /* stdafx.cpp */; };
+		18F8E1CE181C17CF00E96D41 /* SubModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1C1181C17CF00E96D41 /* SubModel.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18F8E19B181C175C00E96D41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18F8E17D181C175B00E96D41 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18F8E184181C175C00E96D41;
+			remoteInfo = model;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		18F8E183181C175C00E96D41 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				18F8E18E181C175C00E96D41 /* model.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		18F8E185181C175C00E96D41 /* libmodel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmodel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		18F8E188181C175C00E96D41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		18F8E18C181C175C00E96D41 /* model-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "model-Prefix.pch"; sourceTree = "<group>"; };
+		18F8E18D181C175C00E96D41 /* model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
+		18F8E18F181C175C00E96D41 /* model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = model.m; sourceTree = "<group>"; };
+		18F8E195181C175C00E96D41 /* modelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = modelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18F8E196181C175C00E96D41 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		18F8E199181C175C00E96D41 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		18F8E1A0181C175C00E96D41 /* modelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "modelTests-Info.plist"; sourceTree = "<group>"; };
+		18F8E1A2181C175C00E96D41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		18F8E1A4181C175C00E96D41 /* modelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = modelTests.m; sourceTree = "<group>"; };
+		18F8E1AE181C17CF00E96D41 /* BoneAnimationSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoneAnimationSet.cpp; path = ../../Src/Model/BoneAnimationSet.cpp; sourceTree = "<group>"; };
+		18F8E1AF181C17CF00E96D41 /* BoneAnimationSetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoneAnimationSetManager.cpp; path = ../../Src/Model/BoneAnimationSetManager.cpp; sourceTree = "<group>"; };
+		18F8E1B0181C17CF00E96D41 /* CollisionDetection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionDetection.cpp; path = ../../Src/Model/CollisionDetection.cpp; sourceTree = "<group>"; };
+		18F8E1B1181C17CF00E96D41 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Model.cpp; path = ../../Src/Model/Model.cpp; sourceTree = "<group>"; };
+		18F8E1B2181C17CF00E96D41 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = ../../Src/Model/Model.h; sourceTree = "<group>"; };
+		18F8E1B3181C17CF00E96D41 /* ModelCodecMm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecMm.cpp; path = ../../Src/Model/ModelCodecMm.cpp; sourceTree = "<group>"; };
+		18F8E1B4181C17CF00E96D41 /* ModelCodecMm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecMm.h; path = ../../Src/Model/ModelCodecMm.h; sourceTree = "<group>"; };
+		18F8E1B5181C17CF00E96D41 /* ModelCodecMx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecMx.cpp; path = ../../Src/Model/ModelCodecMx.cpp; sourceTree = "<group>"; };
+		18F8E1B6181C17CF00E96D41 /* ModelCodecMx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecMx.h; path = ../../Src/Model/ModelCodecMx.h; sourceTree = "<group>"; };
+		18F8E1B7181C17CF00E96D41 /* ModelCodecMz.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecMz.cpp; path = ../../Src/Model/ModelCodecMz.cpp; sourceTree = "<group>"; };
+		18F8E1B8181C17CF00E96D41 /* ModelCodecMz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecMz.h; path = ../../Src/Model/ModelCodecMz.h; sourceTree = "<group>"; };
+		18F8E1B9181C17CF00E96D41 /* ModelCodecTx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecTx.cpp; path = ../../Src/Model/ModelCodecTx.cpp; sourceTree = "<group>"; };
+		18F8E1BA181C17CF00E96D41 /* ModelCodecTx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecTx.h; path = ../../Src/Model/ModelCodecTx.h; sourceTree = "<group>"; };
+		18F8E1BB181C17CF00E96D41 /* ModelCodecWarcraft3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecWarcraft3.cpp; path = ../../Src/Model/ModelCodecWarcraft3.cpp; sourceTree = "<group>"; };
+		18F8E1BC181C17CF00E96D41 /* ModelCodecWarcraft3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecWarcraft3.h; path = ../../Src/Model/ModelCodecWarcraft3.h; sourceTree = "<group>"; };
+		18F8E1BD181C17CF00E96D41 /* ModelDll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelDll.cpp; path = ../../Src/Model/ModelDll.cpp; sourceTree = "<group>"; };
+		18F8E1BE181C17CF00E96D41 /* ModelManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelManager.cpp; path = ../../Src/Model/ModelManager.cpp; sourceTree = "<group>"; };
+		18F8E1BF181C17CF00E96D41 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = ../../Src/Model/stdafx.cpp; sourceTree = "<group>"; };
+		18F8E1C0181C17CF00E96D41 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = ../../Src/Model/stdafx.h; sourceTree = "<group>"; };
+		18F8E1C1181C17CF00E96D41 /* SubModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SubModel.cpp; path = ../../Src/Model/SubModel.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18F8E182181C175C00E96D41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F8E189181C175C00E96D41 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18F8E192181C175C00E96D41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F8E197181C175C00E96D41 /* XCTest.framework in Frameworks */,
+				18F8E19D181C175C00E96D41 /* libmodel.a in Frameworks */,
+				18F8E19A181C175C00E96D41 /* UIKit.framework in Frameworks */,
+				18F8E198181C175C00E96D41 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18F8E17C181C175B00E96D41 = {
+			isa = PBXGroup;
+			children = (
+				18F8E1AE181C17CF00E96D41 /* BoneAnimationSet.cpp */,
+				18F8E1AF181C17CF00E96D41 /* BoneAnimationSetManager.cpp */,
+				18F8E1B0181C17CF00E96D41 /* CollisionDetection.cpp */,
+				18F8E1B1181C17CF00E96D41 /* Model.cpp */,
+				18F8E1B2181C17CF00E96D41 /* Model.h */,
+				18F8E1B3181C17CF00E96D41 /* ModelCodecMm.cpp */,
+				18F8E1B4181C17CF00E96D41 /* ModelCodecMm.h */,
+				18F8E1B5181C17CF00E96D41 /* ModelCodecMx.cpp */,
+				18F8E1B6181C17CF00E96D41 /* ModelCodecMx.h */,
+				18F8E1B7181C17CF00E96D41 /* ModelCodecMz.cpp */,
+				18F8E1B8181C17CF00E96D41 /* ModelCodecMz.h */,
+				18F8E1B9181C17CF00E96D41 /* ModelCodecTx.cpp */,
+				18F8E1BA181C17CF00E96D41 /* ModelCodecTx.h */,
+				18F8E1BB181C17CF00E96D41 /* ModelCodecWarcraft3.cpp */,
+				18F8E1BC181C17CF00E96D41 /* ModelCodecWarcraft3.h */,
+				18F8E1BD181C17CF00E96D41 /* ModelDll.cpp */,
+				18F8E1BE181C17CF00E96D41 /* ModelManager.cpp */,
+				18F8E1BF181C17CF00E96D41 /* stdafx.cpp */,
+				18F8E1C0181C17CF00E96D41 /* stdafx.h */,
+				18F8E1C1181C17CF00E96D41 /* SubModel.cpp */,
+				18F8E18A181C175C00E96D41 /* model */,
+				18F8E19E181C175C00E96D41 /* modelTests */,
+				18F8E187181C175C00E96D41 /* Frameworks */,
+				18F8E186181C175C00E96D41 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18F8E186181C175C00E96D41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18F8E185181C175C00E96D41 /* libmodel.a */,
+				18F8E195181C175C00E96D41 /* modelTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18F8E187181C175C00E96D41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18F8E188181C175C00E96D41 /* Foundation.framework */,
+				18F8E196181C175C00E96D41 /* XCTest.framework */,
+				18F8E199181C175C00E96D41 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18F8E18A181C175C00E96D41 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				18F8E18D181C175C00E96D41 /* model.h */,
+				18F8E18F181C175C00E96D41 /* model.m */,
+				18F8E18B181C175C00E96D41 /* Supporting Files */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		18F8E18B181C175C00E96D41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18F8E18C181C175C00E96D41 /* model-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18F8E19E181C175C00E96D41 /* modelTests */ = {
+			isa = PBXGroup;
+			children = (
+				18F8E1A4181C175C00E96D41 /* modelTests.m */,
+				18F8E19F181C175C00E96D41 /* Supporting Files */,
+			);
+			path = modelTests;
+			sourceTree = "<group>";
+		};
+		18F8E19F181C175C00E96D41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18F8E1A0181C175C00E96D41 /* modelTests-Info.plist */,
+				18F8E1A1181C175C00E96D41 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18F8E184181C175C00E96D41 /* model */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18F8E1A8181C175C00E96D41 /* Build configuration list for PBXNativeTarget "model" */;
+			buildPhases = (
+				18F8E181181C175C00E96D41 /* Sources */,
+				18F8E182181C175C00E96D41 /* Frameworks */,
+				18F8E183181C175C00E96D41 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = model;
+			productName = model;
+			productReference = 18F8E185181C175C00E96D41 /* libmodel.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		18F8E194181C175C00E96D41 /* modelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18F8E1AB181C175C00E96D41 /* Build configuration list for PBXNativeTarget "modelTests" */;
+			buildPhases = (
+				18F8E191181C175C00E96D41 /* Sources */,
+				18F8E192181C175C00E96D41 /* Frameworks */,
+				18F8E193181C175C00E96D41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18F8E19C181C175C00E96D41 /* PBXTargetDependency */,
+			);
+			name = modelTests;
+			productName = modelTests;
+			productReference = 18F8E195181C175C00E96D41 /* modelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18F8E17D181C175B00E96D41 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "陈 波";
+			};
+			buildConfigurationList = 18F8E180181C175B00E96D41 /* Build configuration list for PBXProject "model" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 18F8E17C181C175B00E96D41;
+			productRefGroup = 18F8E186181C175C00E96D41 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18F8E184181C175C00E96D41 /* model */,
+				18F8E194181C175C00E96D41 /* modelTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18F8E193181C175C00E96D41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F8E1A3181C175C00E96D41 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18F8E181181C175C00E96D41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F8E1CE181C17CF00E96D41 /* SubModel.cpp in Sources */,
+				18F8E1C6181C17CF00E96D41 /* ModelCodecMm.cpp in Sources */,
+				18F8E1C7181C17CF00E96D41 /* ModelCodecMx.cpp in Sources */,
+				18F8E190181C175C00E96D41 /* model.m in Sources */,
+				18F8E1C9181C17CF00E96D41 /* ModelCodecTx.cpp in Sources */,
+				18F8E1CB181C17CF00E96D41 /* ModelDll.cpp in Sources */,
+				18F8E1CC181C17CF00E96D41 /* ModelManager.cpp in Sources */,
+				18F8E1C2181C17CF00E96D41 /* BoneAnimationSet.cpp in Sources */,
+				18F8E1C5181C17CF00E96D41 /* Model.cpp in Sources */,
+				18F8E1C4181C17CF00E96D41 /* CollisionDetection.cpp in Sources */,
+				18F8E1CD181C17CF00E96D41 /* stdafx.cpp in Sources */,
+				18F8E1C3181C17CF00E96D41 /* BoneAnimationSetManager.cpp in Sources */,
+				18F8E1CA181C17CF00E96D41 /* ModelCodecWarcraft3.cpp in Sources */,
+				18F8E1C8181C17CF00E96D41 /* ModelCodecMz.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18F8E191181C175C00E96D41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18F8E1A5181C175C00E96D41 /* modelTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18F8E19C181C175C00E96D41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18F8E184181C175C00E96D41 /* model */;
+			targetProxy = 18F8E19B181C175C00E96D41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18F8E1A1181C175C00E96D41 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18F8E1A2181C175C00E96D41 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18F8E1A6181C175C00E96D41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		18F8E1A7181C175C00E96D41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18F8E1A9181C175C00E96D41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				DSTROOT = /tmp/model.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "model/model-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../Base/Base/Include,
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		18F8E1AA181C175C00E96D41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				DSTROOT = /tmp/model.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "model/model-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../Base/Base/Include,
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		18F8E1AC181C175C00E96D41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "model/model-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "modelTests/modelTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		18F8E1AD181C175C00E96D41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "model/model-Prefix.pch";
+				INFOPLIST_FILE = "modelTests/modelTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18F8E180181C175B00E96D41 /* Build configuration list for PBXProject "model" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18F8E1A6181C175C00E96D41 /* Debug */,
+				18F8E1A7181C175C00E96D41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18F8E1A8181C175C00E96D41 /* Build configuration list for PBXNativeTarget "model" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18F8E1A9181C175C00E96D41 /* Debug */,
+				18F8E1AA181C175C00E96D41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		18F8E1AB181C175C00E96D41 /* Build configuration list for PBXNativeTarget "modelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18F8E1AC181C175C00E96D41 /* Debug */,
+				18F8E1AD181C175C00E96D41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18F8E17D181C175B00E96D41 /* Project object */;
+}

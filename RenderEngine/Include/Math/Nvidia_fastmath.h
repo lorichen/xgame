@@ -27,7 +27,7 @@ Comments:
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <wtypes.h>
+#include <wtypes.h>  //hide by kevin.chen
 
 
 #define FP_BITS(fp) (*(DWORD *)&(fp))
@@ -126,11 +126,14 @@ inline float fastsqrt(float n)
 
 __forceinline void FloatToInt(int *int_pointer, float f) 
 {
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	__asm  fld  f
   __asm  mov  edx,int_pointer
   __asm  FRNDINT
   __asm  fistp dword ptr [edx];
-
+#else
+    *int_pointer = f;
+#endif
 }
 
 #endif

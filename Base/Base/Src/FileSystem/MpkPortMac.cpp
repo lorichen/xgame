@@ -5,6 +5,8 @@
 #include "MpkLib.h"
 
 #include <MacTypes.h>
+#include <Carbon/Carbon.h>
+
 
 // FUNCTIONS EXTRACTED FROM MOREFILE PACKAGE!!!
 // FEEL FREE TO REMOVE THEM AND TO ADD THE ORIGINAL ONES!

@@ -10,9 +10,14 @@
 #include <cassert>
 #include <vector>
 #include <algorithm>
+#include <assert.h>
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #include <windows.h>
 #include <process.h>
+#else
+
+#endif
 
 #pragma once
 
@@ -79,7 +84,7 @@ template<typename T>
 bool CAS_assembly(node<T> * volatile * _ptr, node<T> * oldVal, node<T> * newVal)
 {
     register bool f;
-
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #ifdef __GNUC__
     __asm__ __volatile__(
         "lock; cmpxchgl %%ebx, %1;"
@@ -98,6 +103,12 @@ bool CAS_assembly(node<T> * volatile * _ptr, node<T> * oldVal, node<T> * newVal)
     }
 #endif // __GNUC__
 
+    
+#else
+    
+    assert(0);
+    //todo...
+#endif
     return f;
 }
 

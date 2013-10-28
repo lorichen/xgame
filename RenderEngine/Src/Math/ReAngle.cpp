@@ -1,8 +1,10 @@
 #include "ReMathPch.h"
 
+//#include "ReFPU.h"
+//#include "Nvidia_fastmath.h"
+
 #include "ReAngle.h"
 #include "ReAsmMath.h"
-#include "ReFPU.h"
 #include "ReVector3.h"
 #include "ReVector4.h"
 #include "ReRay.h"

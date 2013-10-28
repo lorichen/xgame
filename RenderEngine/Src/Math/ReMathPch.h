@@ -55,9 +55,12 @@
 #include "ReMathInc.h"
 
 // 只定义无符号的简单类型，便于书写
-typedef unsigned char			uchar;
-typedef unsigned short			ushort;
-typedef unsigned int			uint;
-typedef unsigned long			ulong;
+//typedef unsigned char			uchar;
+//typedef unsigned short			ushort;
+//typedef unsigned int			uint;
+//typedef unsigned long			ulong;
+
+#include "platform.h"
+#include "type.h"
 
 #endif

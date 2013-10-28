@@ -37,16 +37,21 @@ inline float __FastFabs(float x)
 //! Fast square root for floating-point values.
 inline float __FastSqrt(float square)
 {
+	
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	float retval;
-
-	__asm {
+    __asm {
 		mov             eax, square
 			sub             eax, 0x3F800000
 			sar             eax, 1
 			add             eax, 0x3F800000
 			mov             [retval], eax
 	}
-	return retval;
+    return retval;
+#else
+    assert(0);
+#endif
+	
 }
 
 //! Saturates positive to zero.
@@ -70,9 +75,19 @@ inline float __frsqrt(float f)
 //! Computes 1.0f / sqrtf(x). Comes from NVIDIA.
 inline float __InvSqrt(const float& x)
 {
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	unsigned int tmp = (unsigned int(__IEEE_1_0 << 1) + __IEEE_1_0 - *(unsigned int*)&x) >> 1;   
 	float y = *(float*)&tmp;                                             
 	return y * (1.47f - 0.47f * x * y * y);
+#else
+    //from quake by kevin.chen
+    float xhalf = 0.5f * x;
+    int i = *(int*)&x; // store floating-point bits in integer
+    i = 0x5f3759d5 - (i >> 1); // initial guess for Newton's method
+    x = *(float*)&i; // convert new bits into float
+    x = x*(1.5f - xhalf*x*x); // One round of Newton's method
+    return x;
+#endif
 }
 
 //! Computes 1.0f / sqrtf(x). Comes from Quake3. Looks like the first one I had above.

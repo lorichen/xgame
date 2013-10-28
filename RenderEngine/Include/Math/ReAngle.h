@@ -2,6 +2,8 @@
 #define __Math_H__
 
 #include "ReMathPrerequisite.h"
+
+//hide by kevin.chen
 #include "ReFPU.H"
 #include "Nvidia_fastmath.h"
 

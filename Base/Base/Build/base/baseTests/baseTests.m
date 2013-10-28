@@ -2,8 +2,8 @@
 //  baseTests.m
 //  baseTests
 //
-//  Created by lorichen on 13-10-23.
-//  Copyright (c) 2013年 lorichen. All rights reserved.
+//  Created by 陈 波 on 13-10-26.
+//  Copyright (c) 2013年 陈 波. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

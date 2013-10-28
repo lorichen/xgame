@@ -4,6 +4,10 @@
 
 #include "stdafx.h"
 #include "autostring.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <locale.h>
 
 #define new RKT_NEW
 
@@ -99,14 +103,14 @@ namespace xs {
 		return *this;
 	}
 */
-	// ×ª»»
+	// â—Šâ„¢ÂªÂª
 	const wchar_t* autostring::c_wstr()
 	{
 		if (!wstr) convert();
 		return wstr;
 	}
 
-	// Çå³ıwstr»º´æ
+	// Â«Ã‚â‰¥ËwstrÂªâˆ«Â¥ÃŠ
 	void autostring::clear_wstr()
 	{
 		if (wstr)
@@ -116,31 +120,61 @@ namespace xs {
 		}
 	}
 
-
+    
+    size_t get_wchar_size(const char *str)
+    {
+        size_t len = strlen(str);
+        size_t size=0;
+        size_t i;
+        for(i=0; i < len; i++)
+        {
+            if( str[size] >= 0 && str[size] <= 127 )
+                size+=sizeof(wchar_t);
+            else  // is chinanese char
+            {
+                size+=sizeof(wchar_t);
+                i+=2;
+            }
+        }
+        return size;
+    }
+    
+    
 	const wchar_t* autostring::to_wchar(const char* str)
 	{
 #ifdef RKT_WIN32
 		if (str == 0)
 			return 0;
-
+        
 		UINT const cp = GetACP();
 		int const len = ::MultiByteToWideChar(cp, 0, str, -1, 0, 0);
-
+        
 		wchar_t* wstr = new wchar_t[len];
 		::MultiByteToWideChar(cp, 0, str, -1, wstr, len);
-
+        
 		return wstr;
 #else
-    #error No implement!!
-        return 0;
+        if(!str)
+            return 0;
+        
+        size_t size_of_ch = strlen(str)*sizeof(char);
+        size_t size_of_wc = get_wchar_size(str);
+        wchar_t *pw = 0;
+        if(!(pw =  new wchar_t[size_of_wc]))
+        {
+            //printf("malloc fail");
+            return NULL;
+        }
+        mbstowcs(pw,str,size_of_wc);
+        return pw;
 #endif
 	}
-
+    
 	void autostring::convert()
 	{
 		wstr = autostring::to_wchar(this->c_str());
 	}
-
+    
 } // namespace xs
 
 #ifdef _MSC_VER

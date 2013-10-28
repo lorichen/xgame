@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A7C63EB2-EB92-4AC6-B3C3-7769770175A4</string>
+	<string>C64FB4A4-AB38-449B-AD3D-1D868EA09A2C</string>
 	<key>IDESourceControlProjectName</key>
 	<string>base</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>24891B4D-BE9B-46FC-B57D-65BF19AD8B69</key>
+		<key>EF5F1629-0406-410C-938A-5216DE78A4F9</key>
 		<string>https://github.com/lorichen/xgame.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Base/Base/Build/base/base.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>24891B4D-BE9B-46FC-B57D-65BF19AD8B69</key>
+		<key>EF5F1629-0406-410C-938A-5216DE78A4F9</key>
 		<string>../../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>24891B4D-BE9B-46FC-B57D-65BF19AD8B69</string>
+	<string>EF5F1629-0406-410C-938A-5216DE78A4F9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>24891B4D-BE9B-46FC-B57D-65BF19AD8B69</string>
+			<string>EF5F1629-0406-410C-938A-5216DE78A4F9</string>
 			<key>IDESourceControlWCCName</key>
 			<string>xgame</string>
 		</dict>
