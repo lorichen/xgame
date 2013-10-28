@@ -7,7 +7,7 @@
 ** 日  期: 
 ** 描  述: 
 ********************************************************************/
-#include "StdAfx.h"
+#include "../StdAfx.h"
 #include "MpwFormat.h"
 
 
@@ -234,7 +234,8 @@ void PackFileHeader::SetReserve(char * pszReserve, int nLen)
 */
 void PackFileHeader::SetFileFormat(LPCSTR szFileFormat)
 {
-	lstrcpyn(m_PackFileHeader.m_szFileFormat, szFileFormat, sizeof(m_PackFileHeader.m_szFileFormat));
+	//lstrcpyn(m_PackFileHeader.m_szFileFormat, szFileFormat, sizeof(m_PackFileHeader.m_szFileFormat));
+    strncpy(m_PackFileHeader.m_szFileFormat, szFileFormat, sizeof(m_PackFileHeader.m_szFileFormat));
 }
 
 /** 文件格式

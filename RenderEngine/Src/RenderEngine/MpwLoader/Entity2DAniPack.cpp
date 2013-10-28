@@ -6,7 +6,7 @@
 ** 日  期: 
 ** 描  述: 
 ********************************************************************/
-#include "StdAfx.h"
+#include "../stdafx.h"
 #include "MpwFormat.h"
 #include "Mpwdecoder.h"
 #include "Entity2DAniPack.h"
@@ -162,11 +162,11 @@ namespace xs
 			// 初始化
 			if(m_dwLastTickCount == 0)
 			{
-				m_dwLastTickCount = ::GetTickCount();
+				m_dwLastTickCount = getTickCount();
 			}
 
 			// 图片翻转
-			DWORD dwTickCount = ::GetTickCount();
+			DWORD dwTickCount = getTickCount();
 			if((dwTickCount - m_dwLastTickCount) >= m_pMpwDecoder->getPlayDelay())
 			{
 				m_itlistImageRes++;

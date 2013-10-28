@@ -70,7 +70,7 @@ namespace xs
 			return &codec;
 		}
 	public:
-		ImageCodecInterface(;)
+		ImageCodecImplement
 	private:
 		bool decodeBLP1(xs::Stream* input,ImageData& data) const;
 		bool decodeBLP2(xs::Stream* input,ImageData& data) const;

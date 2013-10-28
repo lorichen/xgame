@@ -360,7 +360,7 @@ namespace xs
 	}
 	Animation * BoneAnimationSet::getAnimationByName(const std::string& animation)
 	{
-		stdext::hash_map<std::string,Animation*>::iterator it = m_AnimationMap.find(animation);
+		HASH_MAP_NAMESPACE::hash_map<std::string,Animation*>::iterator it = m_AnimationMap.find(animation);
 		if(it == m_AnimationMap.end())return 0;
 
 		return it->second;

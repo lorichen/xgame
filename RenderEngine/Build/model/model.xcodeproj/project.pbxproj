@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18D0B369181E8847005AEEF8 /* BoneAnimationSetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B366181E8847005AEEF8 /* BoneAnimationSetManager.cpp */; };
+		18D0B36A181E8847005AEEF8 /* CollisionDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B367181E8847005AEEF8 /* CollisionDetection.cpp */; };
+		18D0B371181E8BEE005AEEF8 /* ModelCodecMm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B36C181E8BEE005AEEF8 /* ModelCodecMm.cpp */; };
+		18D0B372181E8BEE005AEEF8 /* ModelCodecMx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B36D181E8BEE005AEEF8 /* ModelCodecMx.cpp */; };
+		18D0B373181E8BEE005AEEF8 /* ModelCodecMz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B36E181E8BEE005AEEF8 /* ModelCodecMz.cpp */; };
+		18D0B374181E8BEE005AEEF8 /* ModelCodecTx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B36F181E8BEE005AEEF8 /* ModelCodecTx.cpp */; };
+		18D0B375181E8BEE005AEEF8 /* ModelCodecWarcraft3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B370181E8BEE005AEEF8 /* ModelCodecWarcraft3.cpp */; };
+		18D0B37A181E8CCA005AEEF8 /* ModelDll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B377181E8CCA005AEEF8 /* ModelDll.cpp */; };
+		18D0B37B181E8CCA005AEEF8 /* ModelManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B378181E8CCA005AEEF8 /* ModelManager.cpp */; };
 		18F8E189181C175C00E96D41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8E188181C175C00E96D41 /* Foundation.framework */; };
 		18F8E18E181C175C00E96D41 /* model.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18F8E18D181C175C00E96D41 /* model.h */; };
 		18F8E190181C175C00E96D41 /* model.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E18F181C175C00E96D41 /* model.m */; };
@@ -17,16 +26,6 @@
 		18F8E1A3181C175C00E96D41 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18F8E1A1181C175C00E96D41 /* InfoPlist.strings */; };
 		18F8E1A5181C175C00E96D41 /* modelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1A4181C175C00E96D41 /* modelTests.m */; };
 		18F8E1C2181C17CF00E96D41 /* BoneAnimationSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1AE181C17CF00E96D41 /* BoneAnimationSet.cpp */; };
-		18F8E1C3181C17CF00E96D41 /* BoneAnimationSetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1AF181C17CF00E96D41 /* BoneAnimationSetManager.cpp */; };
-		18F8E1C4181C17CF00E96D41 /* CollisionDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B0181C17CF00E96D41 /* CollisionDetection.cpp */; };
-		18F8E1C5181C17CF00E96D41 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B1181C17CF00E96D41 /* Model.cpp */; };
-		18F8E1C6181C17CF00E96D41 /* ModelCodecMm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B3181C17CF00E96D41 /* ModelCodecMm.cpp */; };
-		18F8E1C7181C17CF00E96D41 /* ModelCodecMx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B5181C17CF00E96D41 /* ModelCodecMx.cpp */; };
-		18F8E1C8181C17CF00E96D41 /* ModelCodecMz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B7181C17CF00E96D41 /* ModelCodecMz.cpp */; };
-		18F8E1C9181C17CF00E96D41 /* ModelCodecTx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1B9181C17CF00E96D41 /* ModelCodecTx.cpp */; };
-		18F8E1CA181C17CF00E96D41 /* ModelCodecWarcraft3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1BB181C17CF00E96D41 /* ModelCodecWarcraft3.cpp */; };
-		18F8E1CB181C17CF00E96D41 /* ModelDll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1BD181C17CF00E96D41 /* ModelDll.cpp */; };
-		18F8E1CC181C17CF00E96D41 /* ModelManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1BE181C17CF00E96D41 /* ModelManager.cpp */; };
 		18F8E1CD181C17CF00E96D41 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1BF181C17CF00E96D41 /* stdafx.cpp */; };
 		18F8E1CE181C17CF00E96D41 /* SubModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1C1181C17CF00E96D41 /* SubModel.cpp */; };
 /* End PBXBuildFile section */
@@ -55,6 +54,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		18D0B366181E8847005AEEF8 /* BoneAnimationSetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoneAnimationSetManager.cpp; path = ../../Src/Model/BoneAnimationSetManager.cpp; sourceTree = "<group>"; };
+		18D0B367181E8847005AEEF8 /* CollisionDetection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionDetection.cpp; path = ../../Src/Model/CollisionDetection.cpp; sourceTree = "<group>"; };
+		18D0B36C181E8BEE005AEEF8 /* ModelCodecMm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecMm.cpp; path = ../../Src/Model/ModelCodecMm.cpp; sourceTree = "<group>"; };
+		18D0B36D181E8BEE005AEEF8 /* ModelCodecMx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecMx.cpp; path = ../../Src/Model/ModelCodecMx.cpp; sourceTree = "<group>"; };
+		18D0B36E181E8BEE005AEEF8 /* ModelCodecMz.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecMz.cpp; path = ../../Src/Model/ModelCodecMz.cpp; sourceTree = "<group>"; };
+		18D0B36F181E8BEE005AEEF8 /* ModelCodecTx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecTx.cpp; path = ../../Src/Model/ModelCodecTx.cpp; sourceTree = "<group>"; };
+		18D0B370181E8BEE005AEEF8 /* ModelCodecWarcraft3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecWarcraft3.cpp; path = ../../Src/Model/ModelCodecWarcraft3.cpp; sourceTree = "<group>"; };
+		18D0B377181E8CCA005AEEF8 /* ModelDll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelDll.cpp; path = ../../Src/Model/ModelDll.cpp; sourceTree = "<group>"; };
+		18D0B378181E8CCA005AEEF8 /* ModelManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelManager.cpp; path = ../../Src/Model/ModelManager.cpp; sourceTree = "<group>"; };
 		18F8E185181C175C00E96D41 /* libmodel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmodel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F8E188181C175C00E96D41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		18F8E18C181C175C00E96D41 /* model-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "model-Prefix.pch"; sourceTree = "<group>"; };
@@ -67,22 +75,6 @@
 		18F8E1A2181C175C00E96D41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18F8E1A4181C175C00E96D41 /* modelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = modelTests.m; sourceTree = "<group>"; };
 		18F8E1AE181C17CF00E96D41 /* BoneAnimationSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoneAnimationSet.cpp; path = ../../Src/Model/BoneAnimationSet.cpp; sourceTree = "<group>"; };
-		18F8E1AF181C17CF00E96D41 /* BoneAnimationSetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoneAnimationSetManager.cpp; path = ../../Src/Model/BoneAnimationSetManager.cpp; sourceTree = "<group>"; };
-		18F8E1B0181C17CF00E96D41 /* CollisionDetection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionDetection.cpp; path = ../../Src/Model/CollisionDetection.cpp; sourceTree = "<group>"; };
-		18F8E1B1181C17CF00E96D41 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Model.cpp; path = ../../Src/Model/Model.cpp; sourceTree = "<group>"; };
-		18F8E1B2181C17CF00E96D41 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = ../../Src/Model/Model.h; sourceTree = "<group>"; };
-		18F8E1B3181C17CF00E96D41 /* ModelCodecMm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecMm.cpp; path = ../../Src/Model/ModelCodecMm.cpp; sourceTree = "<group>"; };
-		18F8E1B4181C17CF00E96D41 /* ModelCodecMm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecMm.h; path = ../../Src/Model/ModelCodecMm.h; sourceTree = "<group>"; };
-		18F8E1B5181C17CF00E96D41 /* ModelCodecMx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecMx.cpp; path = ../../Src/Model/ModelCodecMx.cpp; sourceTree = "<group>"; };
-		18F8E1B6181C17CF00E96D41 /* ModelCodecMx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecMx.h; path = ../../Src/Model/ModelCodecMx.h; sourceTree = "<group>"; };
-		18F8E1B7181C17CF00E96D41 /* ModelCodecMz.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecMz.cpp; path = ../../Src/Model/ModelCodecMz.cpp; sourceTree = "<group>"; };
-		18F8E1B8181C17CF00E96D41 /* ModelCodecMz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecMz.h; path = ../../Src/Model/ModelCodecMz.h; sourceTree = "<group>"; };
-		18F8E1B9181C17CF00E96D41 /* ModelCodecTx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecTx.cpp; path = ../../Src/Model/ModelCodecTx.cpp; sourceTree = "<group>"; };
-		18F8E1BA181C17CF00E96D41 /* ModelCodecTx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecTx.h; path = ../../Src/Model/ModelCodecTx.h; sourceTree = "<group>"; };
-		18F8E1BB181C17CF00E96D41 /* ModelCodecWarcraft3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelCodecWarcraft3.cpp; path = ../../Src/Model/ModelCodecWarcraft3.cpp; sourceTree = "<group>"; };
-		18F8E1BC181C17CF00E96D41 /* ModelCodecWarcraft3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCodecWarcraft3.h; path = ../../Src/Model/ModelCodecWarcraft3.h; sourceTree = "<group>"; };
-		18F8E1BD181C17CF00E96D41 /* ModelDll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelDll.cpp; path = ../../Src/Model/ModelDll.cpp; sourceTree = "<group>"; };
-		18F8E1BE181C17CF00E96D41 /* ModelManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelManager.cpp; path = ../../Src/Model/ModelManager.cpp; sourceTree = "<group>"; };
 		18F8E1BF181C17CF00E96D41 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = ../../Src/Model/stdafx.cpp; sourceTree = "<group>"; };
 		18F8E1C0181C17CF00E96D41 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = ../../Src/Model/stdafx.h; sourceTree = "<group>"; };
 		18F8E1C1181C17CF00E96D41 /* SubModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SubModel.cpp; path = ../../Src/Model/SubModel.cpp; sourceTree = "<group>"; };
@@ -115,24 +107,17 @@
 		18F8E17C181C175B00E96D41 = {
 			isa = PBXGroup;
 			children = (
+				18D0B377181E8CCA005AEEF8 /* ModelDll.cpp */,
+				18D0B378181E8CCA005AEEF8 /* ModelManager.cpp */,
+				18D0B36C181E8BEE005AEEF8 /* ModelCodecMm.cpp */,
+				18D0B36D181E8BEE005AEEF8 /* ModelCodecMx.cpp */,
+				18D0B36E181E8BEE005AEEF8 /* ModelCodecMz.cpp */,
+				18D0B36F181E8BEE005AEEF8 /* ModelCodecTx.cpp */,
+				18D0B370181E8BEE005AEEF8 /* ModelCodecWarcraft3.cpp */,
+				18D0B366181E8847005AEEF8 /* BoneAnimationSetManager.cpp */,
+				18D0B367181E8847005AEEF8 /* CollisionDetection.cpp */,
 				CDA690C6181E0A9E00B2FDC7 /* type.h */,
 				18F8E1AE181C17CF00E96D41 /* BoneAnimationSet.cpp */,
-				18F8E1AF181C17CF00E96D41 /* BoneAnimationSetManager.cpp */,
-				18F8E1B0181C17CF00E96D41 /* CollisionDetection.cpp */,
-				18F8E1B1181C17CF00E96D41 /* Model.cpp */,
-				18F8E1B2181C17CF00E96D41 /* Model.h */,
-				18F8E1B3181C17CF00E96D41 /* ModelCodecMm.cpp */,
-				18F8E1B4181C17CF00E96D41 /* ModelCodecMm.h */,
-				18F8E1B5181C17CF00E96D41 /* ModelCodecMx.cpp */,
-				18F8E1B6181C17CF00E96D41 /* ModelCodecMx.h */,
-				18F8E1B7181C17CF00E96D41 /* ModelCodecMz.cpp */,
-				18F8E1B8181C17CF00E96D41 /* ModelCodecMz.h */,
-				18F8E1B9181C17CF00E96D41 /* ModelCodecTx.cpp */,
-				18F8E1BA181C17CF00E96D41 /* ModelCodecTx.h */,
-				18F8E1BB181C17CF00E96D41 /* ModelCodecWarcraft3.cpp */,
-				18F8E1BC181C17CF00E96D41 /* ModelCodecWarcraft3.h */,
-				18F8E1BD181C17CF00E96D41 /* ModelDll.cpp */,
-				18F8E1BE181C17CF00E96D41 /* ModelManager.cpp */,
 				18F8E1BF181C17CF00E96D41 /* stdafx.cpp */,
 				18F8E1C0181C17CF00E96D41 /* stdafx.h */,
 				18F8E1C1181C17CF00E96D41 /* SubModel.cpp */,
@@ -279,20 +264,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D0B36A181E8847005AEEF8 /* CollisionDetection.cpp in Sources */,
+				18D0B37B181E8CCA005AEEF8 /* ModelManager.cpp in Sources */,
 				18F8E1CE181C17CF00E96D41 /* SubModel.cpp in Sources */,
-				18F8E1C6181C17CF00E96D41 /* ModelCodecMm.cpp in Sources */,
-				18F8E1C7181C17CF00E96D41 /* ModelCodecMx.cpp in Sources */,
 				18F8E190181C175C00E96D41 /* model.m in Sources */,
-				18F8E1C9181C17CF00E96D41 /* ModelCodecTx.cpp in Sources */,
-				18F8E1CB181C17CF00E96D41 /* ModelDll.cpp in Sources */,
-				18F8E1CC181C17CF00E96D41 /* ModelManager.cpp in Sources */,
+				18D0B373181E8BEE005AEEF8 /* ModelCodecMz.cpp in Sources */,
+				18D0B37A181E8CCA005AEEF8 /* ModelDll.cpp in Sources */,
 				18F8E1C2181C17CF00E96D41 /* BoneAnimationSet.cpp in Sources */,
-				18F8E1C5181C17CF00E96D41 /* Model.cpp in Sources */,
-				18F8E1C4181C17CF00E96D41 /* CollisionDetection.cpp in Sources */,
+				18D0B375181E8BEE005AEEF8 /* ModelCodecWarcraft3.cpp in Sources */,
+				18D0B371181E8BEE005AEEF8 /* ModelCodecMm.cpp in Sources */,
+				18D0B372181E8BEE005AEEF8 /* ModelCodecMx.cpp in Sources */,
+				18D0B369181E8847005AEEF8 /* BoneAnimationSetManager.cpp in Sources */,
+				18D0B374181E8BEE005AEEF8 /* ModelCodecTx.cpp in Sources */,
 				18F8E1CD181C17CF00E96D41 /* stdafx.cpp in Sources */,
-				18F8E1C3181C17CF00E96D41 /* BoneAnimationSetManager.cpp in Sources */,
-				18F8E1CA181C17CF00E96D41 /* ModelCodecWarcraft3.cpp in Sources */,
-				18F8E1C8181C17CF00E96D41 /* ModelCodecMz.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +395,7 @@
 					../../../Base/Base/Include,
 					../../Include,
 					../../Include/Model,
+					../../Include/RenderEngine,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -434,6 +419,7 @@
 					../../../Base/Base/Include,
 					../../Include,
 					../../Include/Model,
+					../../Include/RenderEngine,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

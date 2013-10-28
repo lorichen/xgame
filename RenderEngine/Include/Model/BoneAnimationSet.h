@@ -62,7 +62,7 @@ namespace xs
 		std::vector<BoneData*>	m_vBones;//骨骼数据
 		CoreSkeleton			m_skeleton;//骨架
 		std::vector<Animation*>		m_vAnimations;//动画数值
-		stdext::hash_map<std::string,Animation*>	m_AnimationMap;//动画映射表
+		HASH_MAP_NAMESPACE::hash_map<std::string,Animation*>	m_AnimationMap;//动画映射表
 		uint m_version;//版本号
 		size_t m_memorySize;//所占用的内存数
 	};

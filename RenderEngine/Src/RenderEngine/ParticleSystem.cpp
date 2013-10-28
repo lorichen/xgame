@@ -169,8 +169,8 @@ namespace xs
 
 			if(m_pData->tail)
 			{
-				p.m_numTailFrames = static_cast<INT>((m_pData->tailLifeSpan.y - m_pData->tailLifeSpan.x + 1.0f) * m_pData->tailLifeSpan.z);
-				p.m_numTailDecayFrames = static_cast<INT>((m_pData->tailDecay.y - m_pData->tailDecay.x + 1.0f) * m_pData->tailDecay.z);
+				p.m_numTailFrames = static_cast<int>((m_pData->tailLifeSpan.y - m_pData->tailLifeSpan.x + 1.0f) * m_pData->tailLifeSpan.z);
+				p.m_numTailDecayFrames = static_cast<int>((m_pData->tailDecay.y - m_pData->tailDecay.x + 1.0f) * m_pData->tailDecay.z);
 			}
 			else
 			{
@@ -277,8 +277,8 @@ namespace xs
 
 		if(m_pData->tail)
 		{
-			p.m_numTailFrames = static_cast<INT>((m_pData->tailLifeSpan.y - m_pData->tailLifeSpan.x + 1.0f) * m_pData->tailLifeSpan.z);
-			p.m_numTailDecayFrames = static_cast<INT>((m_pData->tailDecay.y - m_pData->tailDecay.x + 1.0f) * m_pData->tailDecay.z);
+			p.m_numTailFrames = static_cast<int>((m_pData->tailLifeSpan.y - m_pData->tailLifeSpan.x + 1.0f) * m_pData->tailLifeSpan.z);
+			p.m_numTailDecayFrames = static_cast<int>((m_pData->tailDecay.y - m_pData->tailDecay.x + 1.0f) * m_pData->tailDecay.z);
 		}
 		else
 		{

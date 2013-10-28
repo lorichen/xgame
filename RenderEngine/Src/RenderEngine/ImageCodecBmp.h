@@ -54,7 +54,7 @@ namespace xs
 			return &codec;
 		}
 	public:
-		ImageCodecInterface(;)
+		ImageCodecImplement
 	private:
 		bool	decode1(xs::Stream *input,ImageData& data,BITMAPFILEHEADER& fh,BITMAPINFOHEADER& ih) const;
 		bool	decode4(xs::Stream *input,ImageData& data,BITMAPFILEHEADER& fh,BITMAPINFOHEADER& ih) const;

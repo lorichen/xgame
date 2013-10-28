@@ -1,7 +1,9 @@
-#include "pch.h"
+//#include "pch.h"
+#include "StdAfx.h"
 #include "Model.h"
 
-namespace RE
+//namespace RE
+namespace xs
 {
 #define SAFE_RELEASE_MODEL(x)	{if(x){x->release();x=0;}}
 

@@ -145,7 +145,7 @@ char& BUFFER::operator [](int Index) const
 }
 
 #define XMD_H
-#include <ijg/jpeglib.h>
+#include "ijg/jpeglib.h"
 
 
 //+-----------------------------------------------------------------------------

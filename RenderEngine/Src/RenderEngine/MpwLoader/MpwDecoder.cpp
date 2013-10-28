@@ -3,7 +3,7 @@
 ** 描  述:	Mpw文件加载器			
 ** 应  用:  
 ******************************************************************/
-#include "StdAfx.h"
+#include "../StdAfx.h"
 #include "MpwFormat.h"
 #include "MpwDecoder.h"
 namespace xs

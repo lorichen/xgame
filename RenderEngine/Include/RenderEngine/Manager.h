@@ -30,6 +30,10 @@ namespace xs
 	private:
 		std::map<std::string, IDTYPE> m_realMap;
 	public:
+        typedef std::map<std::string , IDTYPE> IDMap;
+        typedef typename IDMap::iterator IDMapIterator;
+        typedef typename IDMap::const_iterator IDMapConstIterator;
+        
 		ManagerHelper_LowerStringMap() {}
 		IDTYPE & operator[] ( const std::string  & key )
 		{
@@ -38,27 +42,29 @@ namespace xs
 			return m_realMap[_str];
 		}
 
-		typename std::map<std::string , IDTYPE>::iterator end() { return m_realMap.end(); }
+		IDMapIterator end() { return m_realMap.end(); }
 
-		typename std::map<std::string, IDTYPE>::const_iterator end() const { return m_realMap.end(); }
+		IDMapConstIterator end() const { return m_realMap.end(); }
 
-		typename std::map<std::string, IDTYPE>::const_iterator find( const std::string & str) const
+		IDMapConstIterator find( const std::string & str) const
 		{
 			std::string _str( str );
 			StringHelper::toLower(_str );
 			return m_realMap.find( _str );
 		}
 
-		typename std::map<std::string, IDTYPE>::iterator find ( const  std::string & str)
+		IDMapIterator find ( const  std::string & str)
 		{
 			std::string _str( str );
 			StringHelper::toLower(_str );
 			return m_realMap.find(_str);
 		}
 
-		typename std::map<std::string, IDTYPE>::iterator erase( typename  std::map<std::string , IDTYPE>::const_iterator it)
+		IDMapIterator erase(IDMapIterator it)
 		{
-			return m_realMap.erase(it);
+            IDMapIterator i = it++;
+            m_realMap.erase(i);
+            return it;
 		}
 
 		void clear() { m_realMap.clear(); }
@@ -67,7 +73,7 @@ namespace xs
 
 	/** 带引用计数的对象管理单位基类
 	*/
-	class _RenderEngineExport ManagedItem 
+	class _RenderEngineExport ManagedItem
 	{
 	private:
 		int m_i32Refcount;
@@ -83,7 +89,7 @@ namespace xs
 	/** 带引用计数的对象管理器
 	*/
 	template <class IDTYPE>
-	class _RenderEngineExport Manager 
+	class _RenderEngineExport Manager
 	{
 	protected: 
 		//modified by xxh 20091012 , 用ManagerHelper_LowerStringMap取代std::map<std::string,IDTYPE>,实现全部字符转化为小写。

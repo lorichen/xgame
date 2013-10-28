@@ -16,7 +16,7 @@ namespace xs
 			return &codec;
 		}
 	public:
-		ImageCodecInterface(;)
+		ImageCodecImplement
 	private:
 		uchar m_defaultPal[512];
 	};

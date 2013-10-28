@@ -60,7 +60,8 @@ namespace xs
 			}
 		}
 
-		CPath path = modelName;
+		CPath path;
+        path = modelName;
 		std::string ext = path.getFileExt();
 		if(StringHelper::casecmp(ext,"mdx") == 0)
 			m_mt = MT_MDX;

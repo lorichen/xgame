@@ -62,7 +62,7 @@ namespace xs
 
 	Animation* ModelCodecMz::hasAnimation(const std::string& animation)
 	{
-		stdext::hash_map<std::string,Animation*>::iterator it = m_AnimationMap.find(animation.c_str());
+		HASH_MAP_NAMESPACE::hash_map<std::string,Animation*>::iterator it = m_AnimationMap.find(animation.c_str());
 		if(it == m_AnimationMap.end())return 0;
 
 		return it->second;
@@ -783,8 +783,8 @@ namespace xs
 							stream.read(str,filenameLen);
 							str[filenameLen] = 0;
 
-							CPath path = m_strName;
-							CPath pathP = path.getParentDir();
+							CPath path (m_strName);
+							CPath pathP (path.getParentDir());
 							if(!pathP.empty())
 							{
 								pathP.addTailSlash();
@@ -1005,8 +1005,8 @@ namespace xs
 							pData->alpha.setStaticData(alpha);
 							pData->filterMode = (BlendMode)blendMode;
 
-							CPath path = m_strName;
-							CPath pathP = path.getParentDir();
+							CPath path (m_strName);
+							CPath pathP (path.getParentDir());
 							if(!pathP.empty())
 							{
 								pathP.addTailSlash();
@@ -1102,8 +1102,8 @@ namespace xs
 							pData->width.setStaticData(width);
 							pData->length.setStaticData(length);
 
-							CPath path = m_strName;
-							CPath pathP = path.getParentDir();
+							CPath path (m_strName);
+							CPath pathP (path.getParentDir());
 							if(!pathP.empty())
 							{
 								pathP.addTailSlash();
@@ -1464,7 +1464,7 @@ namespace xs
 				pDataStream->write( &nTexture, sizeof(nTexture) );
 				for( uint ii = 0; ii < nTexture; ii ++)
 				{
-					CPath path = m_vMaterials[i].getLayer(ii)->m_szTexture;
+					CPath path (m_vMaterials[i].getLayer(ii)->m_szTexture);
 					string filename = path.getFileName().c_str();
 					uchar filenameLen = filename.size();
 					pDataStream->write(&filenameLen,sizeof(filenameLen));

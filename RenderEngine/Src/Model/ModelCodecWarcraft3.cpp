@@ -1538,7 +1538,8 @@ namespace xs
 					if(iPos != std::string::npos)
 					{
 						std::string strTargetDir(m_strName.c_str(),0,iPos);
-						CPath path = texture.fileName;
+						CPath path ;
+                        path = texture.fileName;
 						std::string fn = path.getFileName();
 						layer.m_szTexture = strTargetDir + "\\" + fn;
 					}
@@ -1587,7 +1588,7 @@ namespace xs
 				if(iPos != std::string::npos)
 				{
 					std::string strTargetDir(m_strName.c_str(),0,iPos);
-					CPath path = pData->textureFilename;
+					CPath path (pData->textureFilename);
 					std::string fn = path.getFileName();
 					pData->textureFilename = strTargetDir + "\\" + fn;
 				}
@@ -1611,7 +1612,7 @@ namespace xs
 				if(iPos != std::string::npos)
 				{
 					std::string strTargetDir(m_strName.c_str(),0,iPos);
-					CPath path = pData->textureFilename;
+					CPath path ( pData->textureFilename );
 					std::string fn = path.getFileName();
 					pData->textureFilename = strTargetDir + "\\" + fn;
 				}

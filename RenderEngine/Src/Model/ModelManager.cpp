@@ -48,8 +48,11 @@ namespace xs
 	bool fbProc(const char* path, const char* relativePath, uint userData)
 	{
 		_Temp *pT = (_Temp*)userData;
-		CPath title = CPath(pT->model).getFileTitle().c_str();
-		CPath fb = path;
+        CPath temp;
+        temp = pT->model;
+		CPath title (temp.getFileTitle());
+		CPath fb;
+        fb = path;
 		std::string fbname = path;
 		if(StringHelper::casecmp(fb.getFileExt(),"fb"))return true;
 
@@ -125,7 +128,7 @@ namespace xs
 					std::string mziFile = strFileName;
 					mziFile += "i";
 
-					CPath path = strFileName.c_str();
+					CPath path (strFileName);
 					std::string title = path.getFileTitle();
 
 					std::vector<std::string> vFbs;
@@ -163,7 +166,7 @@ namespace xs
 					{
 						std::string& fb = (*begin);
 						//提取非编的非模型名称部分为动画名
-						CPath pathFb = fb.c_str();
+						CPath pathFb (fb);
 						std::string fbTitle = pathFb.getFileTitle();
 						std::string animationName = fbTitle.substr(title.size(),fbTitle.size() - title.size());
 						if(animationName.empty() || animationName[0] != '_')
@@ -205,7 +208,7 @@ namespace xs
 					std::string txiFile = strFileName;
 					txiFile += "i";
 
-					CPath path = strFileName.c_str();
+					CPath path (strFileName);
 					std::string title = path.getFileTitle();
 
 					std::vector<std::string> vFbs;
@@ -243,7 +246,7 @@ namespace xs
 					{
 						std::string& fb = (*begin);
 						//提取非编的非模型名称部分为动画名
-						CPath pathFb = fb.c_str();
+						CPath pathFb (fb);
 						std::string fbTitle = pathFb.getFileTitle();
 						std::string animationName = fbTitle.substr(title.size(),fbTitle.size() - title.size());
 						if(animationName.empty() || animationName[0] != '_')

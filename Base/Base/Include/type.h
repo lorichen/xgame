@@ -13,12 +13,19 @@ typedef void*         HTREEITEM;
 typedef unsigned long ULONG;
 typedef void*         HANDLE;
 typedef char*         LPCSTR;
+typedef unsigned char BYTE;
+typedef long          LONG;
 
 
 typedef unsigned char			uchar;
 typedef unsigned short			ushort;
 typedef unsigned int			uint;
 typedef unsigned long			ulong;
+typedef unsigned int            uint32;
+typedef unsigned short          uint16;
+typedef float                   Real;
+
+typedef long long               __int64;
 
 
 #define IN
@@ -44,6 +51,8 @@ typedef unsigned long			ulong;
 #define _vsnprintf vsnprintf
 
 #define FORCEINLINE inline
+
+#define _stricmp strcmp
 
 
 inline char *_itoa(int num,char *str,int radix)
@@ -147,6 +156,13 @@ extern unsigned int GetCurrentThreadId();
 
 #include <math.h>
 #define FLT_MAX 3.40282347e+38F
+
+
+void ZeroMemory(void* p,unsigned int size)
+{
+    memset(p,0x00,size);
+}
+
 
 #else   //win32
 

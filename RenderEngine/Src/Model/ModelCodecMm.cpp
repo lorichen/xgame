@@ -1014,14 +1014,15 @@ namespace xs
 						str[filenameLen] = 0;
 
 						char *fileName = strrchr(str,'\\');
-						xs::CPath fn = str;
+						xs::CPath fn;
+                        fn = str;
 						if(fileName)
 						{
 							fileName++;
 							fn = fileName;
 						}
-						CPath path = m_strName;
-						CPath pathP = path.getParentDir();
+						CPath path(m_strName);
+						CPath pathP (path.getParentDir());
 						if(!pathP.empty())
 						{
 							pathP.addTailSlash();
@@ -1284,14 +1285,15 @@ namespace xs
 
 						//
 						char *fileName = strrchr(texture,'\\');
-						xs::CPath fn = texture;
+						xs::CPath fn;
+                        fn = texture;
 						if(fileName)
 						{
 							fileName++;
 							fn = fileName;
 						}
-						CPath path = m_strName;
-						CPath pathP = path.getParentDir();
+						CPath path (m_strName);
+						CPath pathP ( path.getParentDir() );
 						if(!pathP.empty())
 						{
 							pathP.addTailSlash();

@@ -45,11 +45,11 @@ namespace xs
 		ImageCodec::registerCodec(ImageCodecBlp::Instance());
 		ImageCodec::registerCodec(ImageCodecDds::Instance());
 		ImageCodec::registerCodec(ImageCodecTga::Instance());
-		ImageCodec::registerCodec(ImageCodecBmp::Instance());
+		//ImageCodec::registerCodec(ImageCodecBmp::Instance());
 		ImageCodec::registerCodec(ImageCodecJpg::Instance());
 		ImageCodec::registerCodec(ImageCodecPng::Instance());
 		ImageCodec::registerCodec(ImageCodecPcx::Instance());
 		ImageCodec::registerCodec(ImageCodecRaw::Instance());
-		ImageCodec::registerCodec(ImageCodecSfp::Instance());
+		//ImageCodec::registerCodec(ImageCodecSfp::Instance());
 	}
 }

@@ -16,6 +16,90 @@
 		181BC032181CB08500786855 /* libRenderEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 181BC01A181CB08500786855 /* libRenderEngine.a */; };
 		181BC038181CB08500786855 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 181BC036181CB08500786855 /* InfoPlist.strings */; };
 		181BC03A181CB08500786855 /* RenderEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 181BC039181CB08500786855 /* RenderEngineTests.m */; };
+		18D0B390181E9284005AEEF8 /* jcapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B382181E9284005AEEF8 /* jcapimin.c */; };
+		18D0B391181E9284005AEEF8 /* jcapistd.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B383181E9284005AEEF8 /* jcapistd.c */; };
+		18D0B392181E9284005AEEF8 /* jccoefct.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B384181E9284005AEEF8 /* jccoefct.c */; };
+		18D0B393181E9284005AEEF8 /* jccolor.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B385181E9284005AEEF8 /* jccolor.c */; };
+		18D0B394181E9284005AEEF8 /* jcdctmgr.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B386181E9284005AEEF8 /* jcdctmgr.c */; };
+		18D0B395181E9284005AEEF8 /* jchuff.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B387181E9284005AEEF8 /* jchuff.c */; };
+		18D0B396181E9284005AEEF8 /* jcinit.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B389181E9284005AEEF8 /* jcinit.c */; };
+		18D0B397181E9284005AEEF8 /* jcmainct.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B38A181E9284005AEEF8 /* jcmainct.c */; };
+		18D0B398181E9284005AEEF8 /* jcmarker.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B38B181E9284005AEEF8 /* jcmarker.c */; };
+		18D0B399181E9284005AEEF8 /* jcmaster.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B38C181E9284005AEEF8 /* jcmaster.c */; };
+		18D0B39A181E9284005AEEF8 /* jcomapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B38D181E9284005AEEF8 /* jcomapi.c */; };
+		18D0B39B181E9284005AEEF8 /* jcparam.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B38F181E9284005AEEF8 /* jcparam.c */; };
+		18D0B3AF181E92A0005AEEF8 /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B39C181E92A0005AEEF8 /* png.c */; };
+		18D0B3B0181E92A0005AEEF8 /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B39F181E92A0005AEEF8 /* pngerror.c */; };
+		18D0B3B1181E92A0005AEEF8 /* pnggccrd.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A0181E92A0005AEEF8 /* pnggccrd.c */; };
+		18D0B3B2181E92A0005AEEF8 /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A1181E92A0005AEEF8 /* pngget.c */; };
+		18D0B3B3181E92A0005AEEF8 /* pngmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A2181E92A0005AEEF8 /* pngmem.c */; };
+		18D0B3B4181E92A0005AEEF8 /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A3181E92A0005AEEF8 /* pngpread.c */; };
+		18D0B3B5181E92A0005AEEF8 /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A4181E92A0005AEEF8 /* pngread.c */; };
+		18D0B3B6181E92A0005AEEF8 /* pngrio.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A5181E92A0005AEEF8 /* pngrio.c */; };
+		18D0B3B7181E92A0005AEEF8 /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A6181E92A0005AEEF8 /* pngrtran.c */; };
+		18D0B3B8181E92A0005AEEF8 /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A7181E92A0005AEEF8 /* pngrutil.c */; };
+		18D0B3B9181E92A0005AEEF8 /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A8181E92A0005AEEF8 /* pngset.c */; };
+		18D0B3BA181E92A0005AEEF8 /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3A9181E92A0005AEEF8 /* pngtrans.c */; };
+		18D0B3BB181E92A0005AEEF8 /* pngvcrd.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3AA181E92A0005AEEF8 /* pngvcrd.c */; };
+		18D0B3BC181E92A0005AEEF8 /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3AB181E92A0005AEEF8 /* pngwio.c */; };
+		18D0B3BD181E92A0005AEEF8 /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3AC181E92A0005AEEF8 /* pngwrite.c */; };
+		18D0B3BE181E92A0005AEEF8 /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3AD181E92A0005AEEF8 /* pngwtran.c */; };
+		18D0B3BF181E92A0005AEEF8 /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3AE181E92A0005AEEF8 /* pngwutil.c */; };
+		18D0B3DF181E92CB005AEEF8 /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3C1181E92CB005AEEF8 /* adler32.c */; };
+		18D0B3E0181E92CB005AEEF8 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3C5181E92CB005AEEF8 /* compress.c */; };
+		18D0B3E1181E92CB005AEEF8 /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3C6181E92CB005AEEF8 /* crc32.c */; };
+		18D0B3E2181E92CB005AEEF8 /* deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3C8181E92CB005AEEF8 /* deflate.c */; };
+		18D0B3E3181E92CB005AEEF8 /* gzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3CB181E92CB005AEEF8 /* gzio.c */; };
+		18D0B3E4181E92CB005AEEF8 /* inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3CD181E92CB005AEEF8 /* inffast.c */; };
+		18D0B3E5181E92CB005AEEF8 /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3D0181E92CB005AEEF8 /* inflate.c */; };
+		18D0B3E6181E92CB005AEEF8 /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3D2181E92CB005AEEF8 /* inftrees.c */; };
+		18D0B3E7181E92CB005AEEF8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3D5181E92CB005AEEF8 /* Makefile */; };
+		18D0B3E8181E92CB005AEEF8 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3D8181E92CB005AEEF8 /* trees.c */; };
+		18D0B3E9181E92CB005AEEF8 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3DA181E92CB005AEEF8 /* uncompr.c */; };
+		18D0B3EA181E92CB005AEEF8 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3DE181E92CB005AEEF8 /* zutil.c */; };
+		18D0B3EF181E935A005AEEF8 /* Entity2DAniPack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3EC181E935A005AEEF8 /* Entity2DAniPack.cpp */; };
+		18D0B3F0181E935A005AEEF8 /* MpwDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3ED181E935A005AEEF8 /* MpwDecoder.cpp */; };
+		18D0B3F1181E935A005AEEF8 /* MpwFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3EE181E935A005AEEF8 /* MpwFormat.cpp */; };
+		18D0B3FB181E9671005AEEF8 /* _Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3F2181E9671005AEEF8 /* _Particle.cpp */; };
+		18D0B3FC181E9671005AEEF8 /* _ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3F3181E9671005AEEF8 /* _ParticleSystem.cpp */; };
+		18D0B3FD181E9671005AEEF8 /* _ParticleSystemEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3F4181E9671005AEEF8 /* _ParticleSystemEmitter.cpp */; };
+		18D0B3FE181E9671005AEEF8 /* _ParticleSystemEmitterPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3F5181E9671005AEEF8 /* _ParticleSystemEmitterPlane.cpp */; };
+		18D0B3FF181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3F7181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.cpp */; };
+		18D0B400181E9671005AEEF8 /* _ParticleSystemEmitterSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3F9181E9671005AEEF8 /* _ParticleSystemEmitterSphere.cpp */; };
+		18D0B404181E9697005AEEF8 /* MpwFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B401181E9697005AEEF8 /* MpwFrame.cpp */; };
+		18D0B405181E9697005AEEF8 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B402181E9697005AEEF8 /* Particle.cpp */; };
+		18D0B406181E9697005AEEF8 /* ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B403181E9697005AEEF8 /* ParticleSystem.cpp */; };
+		18D0B40F181E9789005AEEF8 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B408181E9789005AEEF8 /* Animation.cpp */; };
+		18D0B410181E9789005AEEF8 /* Bone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B409181E9789005AEEF8 /* Bone.cpp */; };
+		18D0B411181E9789005AEEF8 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B40A181E9789005AEEF8 /* Camera.cpp */; };
+		18D0B413181E9789005AEEF8 /* CoordinateFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B40C181E9789005AEEF8 /* CoordinateFrame.cpp */; };
+		18D0B414181E9789005AEEF8 /* CoreBone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B40D181E9789005AEEF8 /* CoreBone.cpp */; };
+		18D0B415181E9789005AEEF8 /* CoreSkeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B40E181E9789005AEEF8 /* CoreSkeleton.cpp */; };
+		18D0B431181E980F005AEEF8 /* ImageCodecPng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B423181E980F005AEEF8 /* ImageCodecPng.cpp */; };
+		18D0B446181E9AE9005AEEF8 /* ImageCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B435181E9AE9005AEEF8 /* ImageCodec.cpp */; };
+		18D0B447181E9AE9005AEEF8 /* ImageCodecBlp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B436181E9AE9005AEEF8 /* ImageCodecBlp.cpp */; };
+		18D0B449181E9AE9005AEEF8 /* ImageCodecDds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B43A181E9AE9005AEEF8 /* ImageCodecDds.cpp */; };
+		18D0B44A181E9AE9005AEEF8 /* ImageCodecJpg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B43C181E9AE9005AEEF8 /* ImageCodecJpg.cpp */; };
+		18D0B44B181E9AE9005AEEF8 /* ImageCodecPcx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B43E181E9AE9005AEEF8 /* ImageCodecPcx.cpp */; };
+		18D0B44C181E9AE9005AEEF8 /* ImageCodecRaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B440181E9AE9005AEEF8 /* ImageCodecRaw.cpp */; };
+		18D0B44E181E9AE9005AEEF8 /* ImageCodecTga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B444181E9AE9005AEEF8 /* ImageCodecTga.cpp */; };
+		18D0B458181E9C89005AEEF8 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B44F181E9C89005AEEF8 /* Image.cpp */; };
+		18D0B459181E9C89005AEEF8 /* ImageRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B451181E9C89005AEEF8 /* ImageRect.cpp */; };
+		18D0B45A181E9C89005AEEF8 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B452181E9C89005AEEF8 /* Light.cpp */; };
+		18D0B45B181E9C89005AEEF8 /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B453181E9C89005AEEF8 /* Manager.cpp */; };
+		18D0B45C181E9C89005AEEF8 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B454181E9C89005AEEF8 /* Material.cpp */; };
+		18D0B45D181E9C89005AEEF8 /* ModelInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B455181E9C89005AEEF8 /* ModelInstance.cpp */; };
+		18D0B45E181E9C89005AEEF8 /* ModelNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B456181E9C89005AEEF8 /* ModelNode.cpp */; };
+		18D0B45F181E9C89005AEEF8 /* ModelNodeCreater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B457181E9C89005AEEF8 /* ModelNodeCreater.cpp */; };
+		18D0B467181E9CDB005AEEF8 /* RenderOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B460181E9CDB005AEEF8 /* RenderOperation.cpp */; };
+		18D0B468181E9CDB005AEEF8 /* RenderQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B461181E9CDB005AEEF8 /* RenderQueue.cpp */; };
+		18D0B469181E9CDB005AEEF8 /* RibbonSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B462181E9CDB005AEEF8 /* RibbonSystem.cpp */; };
+		18D0B46A181E9CDB005AEEF8 /* Skeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B463181E9CDB005AEEF8 /* Skeleton.cpp */; };
+		18D0B46B181E9CDB005AEEF8 /* SubModelInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B464181E9CDB005AEEF8 /* SubModelInstance.cpp */; };
+		18D0B46C181E9CDB005AEEF8 /* VertexData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B465181E9CDB005AEEF8 /* VertexData.cpp */; };
+		18D0B46D181E9CDB005AEEF8 /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B466181E9CDB005AEEF8 /* Viewport.cpp */; };
+		18D0B471181E9E39005AEEF8 /* IndexData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B46E181E9E39005AEEF8 /* IndexData.cpp */; };
+		18D0B475181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B474181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +137,127 @@
 		181BC035181CB08500786855 /* RenderEngineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RenderEngineTests-Info.plist"; sourceTree = "<group>"; };
 		181BC037181CB08500786855 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		181BC039181CB08500786855 /* RenderEngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenderEngineTests.m; sourceTree = "<group>"; };
+		18D0B380181E9284005AEEF8 /* cderror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cderror.h; path = ../../Src/RenderEngine/IJG/cderror.h; sourceTree = "<group>"; };
+		18D0B381181E9284005AEEF8 /* cdjpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cdjpeg.h; path = ../../Src/RenderEngine/IJG/cdjpeg.h; sourceTree = "<group>"; };
+		18D0B382181E9284005AEEF8 /* jcapimin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcapimin.c; path = ../../Src/RenderEngine/IJG/jcapimin.c; sourceTree = "<group>"; };
+		18D0B383181E9284005AEEF8 /* jcapistd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcapistd.c; path = ../../Src/RenderEngine/IJG/jcapistd.c; sourceTree = "<group>"; };
+		18D0B384181E9284005AEEF8 /* jccoefct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jccoefct.c; path = ../../Src/RenderEngine/IJG/jccoefct.c; sourceTree = "<group>"; };
+		18D0B385181E9284005AEEF8 /* jccolor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jccolor.c; path = ../../Src/RenderEngine/IJG/jccolor.c; sourceTree = "<group>"; };
+		18D0B386181E9284005AEEF8 /* jcdctmgr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcdctmgr.c; path = ../../Src/RenderEngine/IJG/jcdctmgr.c; sourceTree = "<group>"; };
+		18D0B387181E9284005AEEF8 /* jchuff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jchuff.c; path = ../../Src/RenderEngine/IJG/jchuff.c; sourceTree = "<group>"; };
+		18D0B388181E9284005AEEF8 /* jchuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jchuff.h; path = ../../Src/RenderEngine/IJG/jchuff.h; sourceTree = "<group>"; };
+		18D0B389181E9284005AEEF8 /* jcinit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcinit.c; path = ../../Src/RenderEngine/IJG/jcinit.c; sourceTree = "<group>"; };
+		18D0B38A181E9284005AEEF8 /* jcmainct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcmainct.c; path = ../../Src/RenderEngine/IJG/jcmainct.c; sourceTree = "<group>"; };
+		18D0B38B181E9284005AEEF8 /* jcmarker.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcmarker.c; path = ../../Src/RenderEngine/IJG/jcmarker.c; sourceTree = "<group>"; };
+		18D0B38C181E9284005AEEF8 /* jcmaster.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcmaster.c; path = ../../Src/RenderEngine/IJG/jcmaster.c; sourceTree = "<group>"; };
+		18D0B38D181E9284005AEEF8 /* jcomapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcomapi.c; path = ../../Src/RenderEngine/IJG/jcomapi.c; sourceTree = "<group>"; };
+		18D0B38E181E9284005AEEF8 /* jconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jconfig.h; path = ../../Src/RenderEngine/IJG/jconfig.h; sourceTree = "<group>"; };
+		18D0B38F181E9284005AEEF8 /* jcparam.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcparam.c; path = ../../Src/RenderEngine/IJG/jcparam.c; sourceTree = "<group>"; };
+		18D0B39C181E92A0005AEEF8 /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = png.c; path = ../../Src/RenderEngine/png/png.c; sourceTree = "<group>"; };
+		18D0B39D181E92A0005AEEF8 /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = png.h; path = ../../Src/RenderEngine/png/png.h; sourceTree = "<group>"; };
+		18D0B39E181E92A0005AEEF8 /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pngconf.h; path = ../../Src/RenderEngine/png/pngconf.h; sourceTree = "<group>"; };
+		18D0B39F181E92A0005AEEF8 /* pngerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngerror.c; path = ../../Src/RenderEngine/png/pngerror.c; sourceTree = "<group>"; };
+		18D0B3A0181E92A0005AEEF8 /* pnggccrd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pnggccrd.c; path = ../../Src/RenderEngine/png/pnggccrd.c; sourceTree = "<group>"; };
+		18D0B3A1181E92A0005AEEF8 /* pngget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngget.c; path = ../../Src/RenderEngine/png/pngget.c; sourceTree = "<group>"; };
+		18D0B3A2181E92A0005AEEF8 /* pngmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngmem.c; path = ../../Src/RenderEngine/png/pngmem.c; sourceTree = "<group>"; };
+		18D0B3A3181E92A0005AEEF8 /* pngpread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngpread.c; path = ../../Src/RenderEngine/png/pngpread.c; sourceTree = "<group>"; };
+		18D0B3A4181E92A0005AEEF8 /* pngread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngread.c; path = ../../Src/RenderEngine/png/pngread.c; sourceTree = "<group>"; };
+		18D0B3A5181E92A0005AEEF8 /* pngrio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngrio.c; path = ../../Src/RenderEngine/png/pngrio.c; sourceTree = "<group>"; };
+		18D0B3A6181E92A0005AEEF8 /* pngrtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngrtran.c; path = ../../Src/RenderEngine/png/pngrtran.c; sourceTree = "<group>"; };
+		18D0B3A7181E92A0005AEEF8 /* pngrutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngrutil.c; path = ../../Src/RenderEngine/png/pngrutil.c; sourceTree = "<group>"; };
+		18D0B3A8181E92A0005AEEF8 /* pngset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngset.c; path = ../../Src/RenderEngine/png/pngset.c; sourceTree = "<group>"; };
+		18D0B3A9181E92A0005AEEF8 /* pngtrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngtrans.c; path = ../../Src/RenderEngine/png/pngtrans.c; sourceTree = "<group>"; };
+		18D0B3AA181E92A0005AEEF8 /* pngvcrd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngvcrd.c; path = ../../Src/RenderEngine/png/pngvcrd.c; sourceTree = "<group>"; };
+		18D0B3AB181E92A0005AEEF8 /* pngwio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngwio.c; path = ../../Src/RenderEngine/png/pngwio.c; sourceTree = "<group>"; };
+		18D0B3AC181E92A0005AEEF8 /* pngwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngwrite.c; path = ../../Src/RenderEngine/png/pngwrite.c; sourceTree = "<group>"; };
+		18D0B3AD181E92A0005AEEF8 /* pngwtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngwtran.c; path = ../../Src/RenderEngine/png/pngwtran.c; sourceTree = "<group>"; };
+		18D0B3AE181E92A0005AEEF8 /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngwutil.c; path = ../../Src/RenderEngine/png/pngwutil.c; sourceTree = "<group>"; };
+		18D0B3C1181E92CB005AEEF8 /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = adler32.c; path = ../../Src/RenderEngine/png/zlib/adler32.c; sourceTree = "<group>"; };
+		18D0B3C2181E92CB005AEEF8 /* algorithm.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = algorithm.txt; path = ../../Src/RenderEngine/png/zlib/algorithm.txt; sourceTree = "<group>"; };
+		18D0B3C3181E92CB005AEEF8 /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ChangeLog; path = ../../Src/RenderEngine/png/zlib/ChangeLog; sourceTree = "<group>"; };
+		18D0B3C4181E92CB005AEEF8 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = ../../Src/RenderEngine/png/zlib/CMakeLists.txt; sourceTree = "<group>"; };
+		18D0B3C5181E92CB005AEEF8 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = compress.c; path = ../../Src/RenderEngine/png/zlib/compress.c; sourceTree = "<group>"; };
+		18D0B3C6181E92CB005AEEF8 /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crc32.c; path = ../../Src/RenderEngine/png/zlib/crc32.c; sourceTree = "<group>"; };
+		18D0B3C7181E92CB005AEEF8 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crc32.h; path = ../../Src/RenderEngine/png/zlib/crc32.h; sourceTree = "<group>"; };
+		18D0B3C8181E92CB005AEEF8 /* deflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = deflate.c; path = ../../Src/RenderEngine/png/zlib/deflate.c; sourceTree = "<group>"; };
+		18D0B3C9181E92CB005AEEF8 /* deflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = deflate.h; path = ../../Src/RenderEngine/png/zlib/deflate.h; sourceTree = "<group>"; };
+		18D0B3CA181E92CB005AEEF8 /* FAQ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FAQ; path = ../../Src/RenderEngine/png/zlib/FAQ; sourceTree = "<group>"; };
+		18D0B3CB181E92CB005AEEF8 /* gzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = gzio.c; path = ../../Src/RenderEngine/png/zlib/gzio.c; sourceTree = "<group>"; };
+		18D0B3CC181E92CB005AEEF8 /* INDEX */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = INDEX; path = ../../Src/RenderEngine/png/zlib/INDEX; sourceTree = "<group>"; };
+		18D0B3CD181E92CB005AEEF8 /* inffast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = inffast.c; path = ../../Src/RenderEngine/png/zlib/inffast.c; sourceTree = "<group>"; };
+		18D0B3CE181E92CB005AEEF8 /* inffast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inffast.h; path = ../../Src/RenderEngine/png/zlib/inffast.h; sourceTree = "<group>"; };
+		18D0B3CF181E92CB005AEEF8 /* inffixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inffixed.h; path = ../../Src/RenderEngine/png/zlib/inffixed.h; sourceTree = "<group>"; };
+		18D0B3D0181E92CB005AEEF8 /* inflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = inflate.c; path = ../../Src/RenderEngine/png/zlib/inflate.c; sourceTree = "<group>"; };
+		18D0B3D1181E92CB005AEEF8 /* inflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inflate.h; path = ../../Src/RenderEngine/png/zlib/inflate.h; sourceTree = "<group>"; };
+		18D0B3D2181E92CB005AEEF8 /* inftrees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = inftrees.c; path = ../../Src/RenderEngine/png/zlib/inftrees.c; sourceTree = "<group>"; };
+		18D0B3D3181E92CB005AEEF8 /* inftrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inftrees.h; path = ../../Src/RenderEngine/png/zlib/inftrees.h; sourceTree = "<group>"; };
+		18D0B3D4181E92CB005AEEF8 /* makedepend */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = makedepend; path = ../../Src/RenderEngine/png/zlib/makedepend; sourceTree = "<group>"; };
+		18D0B3D5181E92CB005AEEF8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = ../../Src/RenderEngine/png/zlib/Makefile; sourceTree = "<group>"; };
+		18D0B3D6181E92CB005AEEF8 /* makefile.wat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = makefile.wat; path = ../../Src/RenderEngine/png/zlib/makefile.wat; sourceTree = "<group>"; };
+		18D0B3D7181E92CB005AEEF8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../../Src/RenderEngine/png/zlib/README; sourceTree = "<group>"; };
+		18D0B3D8181E92CB005AEEF8 /* trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = trees.c; path = ../../Src/RenderEngine/png/zlib/trees.c; sourceTree = "<group>"; };
+		18D0B3D9181E92CB005AEEF8 /* trees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = trees.h; path = ../../Src/RenderEngine/png/zlib/trees.h; sourceTree = "<group>"; };
+		18D0B3DA181E92CB005AEEF8 /* uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = uncompr.c; path = ../../Src/RenderEngine/png/zlib/uncompr.c; sourceTree = "<group>"; };
+		18D0B3DB181E92CB005AEEF8 /* zconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zconf.h; path = ../../Src/RenderEngine/png/zlib/zconf.h; sourceTree = "<group>"; };
+		18D0B3DC181E92CB005AEEF8 /* zlib.3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = zlib.3; path = ../../Src/RenderEngine/png/zlib/zlib.3; sourceTree = "<group>"; };
+		18D0B3DD181E92CB005AEEF8 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zlib.h; path = ../../Src/RenderEngine/png/zlib/zlib.h; sourceTree = "<group>"; };
+		18D0B3DE181E92CB005AEEF8 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zutil.c; path = ../../Src/RenderEngine/png/zlib/zutil.c; sourceTree = "<group>"; };
+		18D0B3EC181E935A005AEEF8 /* Entity2DAniPack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity2DAniPack.cpp; path = ../../Src/RenderEngine/MpwLoader/Entity2DAniPack.cpp; sourceTree = "<group>"; };
+		18D0B3ED181E935A005AEEF8 /* MpwDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpwDecoder.cpp; path = ../../Src/RenderEngine/MpwLoader/MpwDecoder.cpp; sourceTree = "<group>"; };
+		18D0B3EE181E935A005AEEF8 /* MpwFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpwFormat.cpp; path = ../../Src/RenderEngine/MpwLoader/MpwFormat.cpp; sourceTree = "<group>"; };
+		18D0B3F2181E9671005AEEF8 /* _Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _Particle.cpp; path = ../../Src/RenderEngine/_Particle.cpp; sourceTree = "<group>"; };
+		18D0B3F3181E9671005AEEF8 /* _ParticleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _ParticleSystem.cpp; path = ../../Src/RenderEngine/_ParticleSystem.cpp; sourceTree = "<group>"; };
+		18D0B3F4181E9671005AEEF8 /* _ParticleSystemEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _ParticleSystemEmitter.cpp; path = ../../Src/RenderEngine/_ParticleSystemEmitter.cpp; sourceTree = "<group>"; };
+		18D0B3F5181E9671005AEEF8 /* _ParticleSystemEmitterPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _ParticleSystemEmitterPlane.cpp; path = ../../Src/RenderEngine/_ParticleSystemEmitterPlane.cpp; sourceTree = "<group>"; };
+		18D0B3F6181E9671005AEEF8 /* _ParticleSystemEmitterPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _ParticleSystemEmitterPlane.h; path = ../../Src/RenderEngine/_ParticleSystemEmitterPlane.h; sourceTree = "<group>"; };
+		18D0B3F7181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _ParticleSystemEmitterRealSphere.cpp; path = ../../Src/RenderEngine/_ParticleSystemEmitterRealSphere.cpp; sourceTree = "<group>"; };
+		18D0B3F8181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _ParticleSystemEmitterRealSphere.h; path = ../../Src/RenderEngine/_ParticleSystemEmitterRealSphere.h; sourceTree = "<group>"; };
+		18D0B3F9181E9671005AEEF8 /* _ParticleSystemEmitterSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _ParticleSystemEmitterSphere.cpp; path = ../../Src/RenderEngine/_ParticleSystemEmitterSphere.cpp; sourceTree = "<group>"; };
+		18D0B3FA181E9671005AEEF8 /* _ParticleSystemEmitterSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _ParticleSystemEmitterSphere.h; path = ../../Src/RenderEngine/_ParticleSystemEmitterSphere.h; sourceTree = "<group>"; };
+		18D0B401181E9697005AEEF8 /* MpwFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpwFrame.cpp; path = ../../Src/RenderEngine/MpwFrame.cpp; sourceTree = "<group>"; };
+		18D0B402181E9697005AEEF8 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Particle.cpp; path = ../../Src/RenderEngine/Particle.cpp; sourceTree = "<group>"; };
+		18D0B403181E9697005AEEF8 /* ParticleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleSystem.cpp; path = ../../Src/RenderEngine/ParticleSystem.cpp; sourceTree = "<group>"; };
+		18D0B407181E96D6005AEEF8 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../../Base/Base/Include/type.h; sourceTree = "<group>"; };
+		18D0B408181E9789005AEEF8 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animation.cpp; path = ../../Src/RenderEngine/Animation.cpp; sourceTree = "<group>"; };
+		18D0B409181E9789005AEEF8 /* Bone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bone.cpp; path = ../../Src/RenderEngine/Bone.cpp; sourceTree = "<group>"; };
+		18D0B40A181E9789005AEEF8 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = ../../Src/RenderEngine/Camera.cpp; sourceTree = "<group>"; };
+		18D0B40C181E9789005AEEF8 /* CoordinateFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoordinateFrame.cpp; path = ../../Src/RenderEngine/CoordinateFrame.cpp; sourceTree = "<group>"; };
+		18D0B40D181E9789005AEEF8 /* CoreBone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreBone.cpp; path = ../../Src/RenderEngine/CoreBone.cpp; sourceTree = "<group>"; };
+		18D0B40E181E9789005AEEF8 /* CoreSkeleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreSkeleton.cpp; path = ../../Src/RenderEngine/CoreSkeleton.cpp; sourceTree = "<group>"; };
+		18D0B423181E980F005AEEF8 /* ImageCodecPng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecPng.cpp; path = ../../Src/RenderEngine/ImageCodecPng.cpp; sourceTree = "<group>"; };
+		18D0B424181E980F005AEEF8 /* ImageCodecPng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecPng.h; path = ../../Src/RenderEngine/ImageCodecPng.h; sourceTree = "<group>"; };
+		18D0B435181E9AE9005AEEF8 /* ImageCodec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodec.cpp; path = ../../Src/RenderEngine/ImageCodec.cpp; sourceTree = "<group>"; };
+		18D0B436181E9AE9005AEEF8 /* ImageCodecBlp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecBlp.cpp; path = ../../Src/RenderEngine/ImageCodecBlp.cpp; sourceTree = "<group>"; };
+		18D0B437181E9AE9005AEEF8 /* ImageCodecBlp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecBlp.h; path = ../../Src/RenderEngine/ImageCodecBlp.h; sourceTree = "<group>"; };
+		18D0B439181E9AE9005AEEF8 /* ImageCodecBmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecBmp.h; path = ../../Src/RenderEngine/ImageCodecBmp.h; sourceTree = "<group>"; };
+		18D0B43A181E9AE9005AEEF8 /* ImageCodecDds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecDds.cpp; path = ../../Src/RenderEngine/ImageCodecDds.cpp; sourceTree = "<group>"; };
+		18D0B43B181E9AE9005AEEF8 /* ImageCodecDds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecDds.h; path = ../../Src/RenderEngine/ImageCodecDds.h; sourceTree = "<group>"; };
+		18D0B43C181E9AE9005AEEF8 /* ImageCodecJpg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecJpg.cpp; path = ../../Src/RenderEngine/ImageCodecJpg.cpp; sourceTree = "<group>"; };
+		18D0B43D181E9AE9005AEEF8 /* ImageCodecJpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecJpg.h; path = ../../Src/RenderEngine/ImageCodecJpg.h; sourceTree = "<group>"; };
+		18D0B43E181E9AE9005AEEF8 /* ImageCodecPcx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecPcx.cpp; path = ../../Src/RenderEngine/ImageCodecPcx.cpp; sourceTree = "<group>"; };
+		18D0B43F181E9AE9005AEEF8 /* ImageCodecPcx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecPcx.h; path = ../../Src/RenderEngine/ImageCodecPcx.h; sourceTree = "<group>"; };
+		18D0B440181E9AE9005AEEF8 /* ImageCodecRaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecRaw.cpp; path = ../../Src/RenderEngine/ImageCodecRaw.cpp; sourceTree = "<group>"; };
+		18D0B441181E9AE9005AEEF8 /* ImageCodecRaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecRaw.h; path = ../../Src/RenderEngine/ImageCodecRaw.h; sourceTree = "<group>"; };
+		18D0B444181E9AE9005AEEF8 /* ImageCodecTga.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecTga.cpp; path = ../../Src/RenderEngine/ImageCodecTga.cpp; sourceTree = "<group>"; };
+		18D0B445181E9AE9005AEEF8 /* ImageCodecTga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecTga.h; path = ../../Src/RenderEngine/ImageCodecTga.h; sourceTree = "<group>"; };
+		18D0B44F181E9C89005AEEF8 /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Image.cpp; path = ../../Src/RenderEngine/Image.cpp; sourceTree = "<group>"; };
+		18D0B450181E9C89005AEEF8 /* ImageCodecSfp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecSfp.h; path = ../../Src/RenderEngine/ImageCodecSfp.h; sourceTree = "<group>"; };
+		18D0B451181E9C89005AEEF8 /* ImageRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageRect.cpp; path = ../../Src/RenderEngine/ImageRect.cpp; sourceTree = "<group>"; };
+		18D0B452181E9C89005AEEF8 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Light.cpp; path = ../../Src/RenderEngine/Light.cpp; sourceTree = "<group>"; };
+		18D0B453181E9C89005AEEF8 /* Manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Manager.cpp; path = ../../Src/RenderEngine/Manager.cpp; sourceTree = "<group>"; };
+		18D0B454181E9C89005AEEF8 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Material.cpp; path = ../../Src/RenderEngine/Material.cpp; sourceTree = "<group>"; };
+		18D0B455181E9C89005AEEF8 /* ModelInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelInstance.cpp; path = ../../Src/RenderEngine/ModelInstance.cpp; sourceTree = "<group>"; };
+		18D0B456181E9C89005AEEF8 /* ModelNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelNode.cpp; path = ../../Src/RenderEngine/ModelNode.cpp; sourceTree = "<group>"; };
+		18D0B457181E9C89005AEEF8 /* ModelNodeCreater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelNodeCreater.cpp; path = ../../Src/RenderEngine/ModelNodeCreater.cpp; sourceTree = "<group>"; };
+		18D0B460181E9CDB005AEEF8 /* RenderOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderOperation.cpp; path = ../../Src/RenderEngine/RenderOperation.cpp; sourceTree = "<group>"; };
+		18D0B461181E9CDB005AEEF8 /* RenderQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderQueue.cpp; path = ../../Src/RenderEngine/RenderQueue.cpp; sourceTree = "<group>"; };
+		18D0B462181E9CDB005AEEF8 /* RibbonSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RibbonSystem.cpp; path = ../../Src/RenderEngine/RibbonSystem.cpp; sourceTree = "<group>"; };
+		18D0B463181E9CDB005AEEF8 /* Skeleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Skeleton.cpp; path = ../../Src/RenderEngine/Skeleton.cpp; sourceTree = "<group>"; };
+		18D0B464181E9CDB005AEEF8 /* SubModelInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SubModelInstance.cpp; path = ../../Src/RenderEngine/SubModelInstance.cpp; sourceTree = "<group>"; };
+		18D0B465181E9CDB005AEEF8 /* VertexData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexData.cpp; path = ../../Src/RenderEngine/VertexData.cpp; sourceTree = "<group>"; };
+		18D0B466181E9CDB005AEEF8 /* Viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Viewport.cpp; path = ../../Src/RenderEngine/Viewport.cpp; sourceTree = "<group>"; };
+		18D0B46E181E9E39005AEEF8 /* IndexData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IndexData.cpp; path = ../../Src/RenderEngine/IndexData.cpp; sourceTree = "<group>"; };
+		18D0B474181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderSystemCapabilities.cpp; path = ../../Src/RenderEngine/RenderSystemCapabilities.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +286,49 @@
 		181BC011181CB08500786855 = {
 			isa = PBXGroup;
 			children = (
+				18D0B474181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp */,
+				18D0B46E181E9E39005AEEF8 /* IndexData.cpp */,
+				18D0B460181E9CDB005AEEF8 /* RenderOperation.cpp */,
+				18D0B461181E9CDB005AEEF8 /* RenderQueue.cpp */,
+				18D0B462181E9CDB005AEEF8 /* RibbonSystem.cpp */,
+				18D0B463181E9CDB005AEEF8 /* Skeleton.cpp */,
+				18D0B464181E9CDB005AEEF8 /* SubModelInstance.cpp */,
+				18D0B465181E9CDB005AEEF8 /* VertexData.cpp */,
+				18D0B466181E9CDB005AEEF8 /* Viewport.cpp */,
+				18D0B44F181E9C89005AEEF8 /* Image.cpp */,
+				18D0B450181E9C89005AEEF8 /* ImageCodecSfp.h */,
+				18D0B451181E9C89005AEEF8 /* ImageRect.cpp */,
+				18D0B452181E9C89005AEEF8 /* Light.cpp */,
+				18D0B453181E9C89005AEEF8 /* Manager.cpp */,
+				18D0B454181E9C89005AEEF8 /* Material.cpp */,
+				18D0B455181E9C89005AEEF8 /* ModelInstance.cpp */,
+				18D0B456181E9C89005AEEF8 /* ModelNode.cpp */,
+				18D0B457181E9C89005AEEF8 /* ModelNodeCreater.cpp */,
+				18D0B417181E97FA005AEEF8 /* imagedecode */,
+				18D0B416181E97E1005AEEF8 /* font */,
+				18D0B408181E9789005AEEF8 /* Animation.cpp */,
+				18D0B409181E9789005AEEF8 /* Bone.cpp */,
+				18D0B40A181E9789005AEEF8 /* Camera.cpp */,
+				18D0B40C181E9789005AEEF8 /* CoordinateFrame.cpp */,
+				18D0B40D181E9789005AEEF8 /* CoreBone.cpp */,
+				18D0B40E181E9789005AEEF8 /* CoreSkeleton.cpp */,
+				18D0B407181E96D6005AEEF8 /* type.h */,
+				18D0B401181E9697005AEEF8 /* MpwFrame.cpp */,
+				18D0B402181E9697005AEEF8 /* Particle.cpp */,
+				18D0B403181E9697005AEEF8 /* ParticleSystem.cpp */,
+				18D0B3F2181E9671005AEEF8 /* _Particle.cpp */,
+				18D0B3F3181E9671005AEEF8 /* _ParticleSystem.cpp */,
+				18D0B3F4181E9671005AEEF8 /* _ParticleSystemEmitter.cpp */,
+				18D0B3F5181E9671005AEEF8 /* _ParticleSystemEmitterPlane.cpp */,
+				18D0B3F6181E9671005AEEF8 /* _ParticleSystemEmitterPlane.h */,
+				18D0B3F7181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.cpp */,
+				18D0B3F8181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.h */,
+				18D0B3F9181E9671005AEEF8 /* _ParticleSystemEmitterSphere.cpp */,
+				18D0B3FA181E9671005AEEF8 /* _ParticleSystemEmitterSphere.h */,
+				18D0B3EB181E9344005AEEF8 /* MPWLoader */,
+				18D0B3C0181E92A9005AEEF8 /* zip */,
+				18D0B37F181E9262005AEEF8 /* png */,
+				18D0B37E181E9253005AEEF8 /* IJG */,
 				181BC01F181CB08500786855 /* RenderEngine */,
 				181BC033181CB08500786855 /* RenderEngineTests */,
 				181BC01C181CB08500786855 /* Frameworks */,
@@ -141,6 +389,132 @@
 				181BC036181CB08500786855 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18D0B37E181E9253005AEEF8 /* IJG */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B380181E9284005AEEF8 /* cderror.h */,
+				18D0B381181E9284005AEEF8 /* cdjpeg.h */,
+				18D0B382181E9284005AEEF8 /* jcapimin.c */,
+				18D0B383181E9284005AEEF8 /* jcapistd.c */,
+				18D0B384181E9284005AEEF8 /* jccoefct.c */,
+				18D0B385181E9284005AEEF8 /* jccolor.c */,
+				18D0B386181E9284005AEEF8 /* jcdctmgr.c */,
+				18D0B387181E9284005AEEF8 /* jchuff.c */,
+				18D0B388181E9284005AEEF8 /* jchuff.h */,
+				18D0B389181E9284005AEEF8 /* jcinit.c */,
+				18D0B38A181E9284005AEEF8 /* jcmainct.c */,
+				18D0B38B181E9284005AEEF8 /* jcmarker.c */,
+				18D0B38C181E9284005AEEF8 /* jcmaster.c */,
+				18D0B38D181E9284005AEEF8 /* jcomapi.c */,
+				18D0B38E181E9284005AEEF8 /* jconfig.h */,
+				18D0B38F181E9284005AEEF8 /* jcparam.c */,
+			);
+			name = IJG;
+			sourceTree = "<group>";
+		};
+		18D0B37F181E9262005AEEF8 /* png */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B39C181E92A0005AEEF8 /* png.c */,
+				18D0B39D181E92A0005AEEF8 /* png.h */,
+				18D0B39E181E92A0005AEEF8 /* pngconf.h */,
+				18D0B39F181E92A0005AEEF8 /* pngerror.c */,
+				18D0B3A0181E92A0005AEEF8 /* pnggccrd.c */,
+				18D0B3A1181E92A0005AEEF8 /* pngget.c */,
+				18D0B3A2181E92A0005AEEF8 /* pngmem.c */,
+				18D0B3A3181E92A0005AEEF8 /* pngpread.c */,
+				18D0B3A4181E92A0005AEEF8 /* pngread.c */,
+				18D0B3A5181E92A0005AEEF8 /* pngrio.c */,
+				18D0B3A6181E92A0005AEEF8 /* pngrtran.c */,
+				18D0B3A7181E92A0005AEEF8 /* pngrutil.c */,
+				18D0B3A8181E92A0005AEEF8 /* pngset.c */,
+				18D0B3A9181E92A0005AEEF8 /* pngtrans.c */,
+				18D0B3AA181E92A0005AEEF8 /* pngvcrd.c */,
+				18D0B3AB181E92A0005AEEF8 /* pngwio.c */,
+				18D0B3AC181E92A0005AEEF8 /* pngwrite.c */,
+				18D0B3AD181E92A0005AEEF8 /* pngwtran.c */,
+				18D0B3AE181E92A0005AEEF8 /* pngwutil.c */,
+			);
+			name = png;
+			sourceTree = "<group>";
+		};
+		18D0B3C0181E92A9005AEEF8 /* zip */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B3C1181E92CB005AEEF8 /* adler32.c */,
+				18D0B3C2181E92CB005AEEF8 /* algorithm.txt */,
+				18D0B3C3181E92CB005AEEF8 /* ChangeLog */,
+				18D0B3C4181E92CB005AEEF8 /* CMakeLists.txt */,
+				18D0B3C5181E92CB005AEEF8 /* compress.c */,
+				18D0B3C6181E92CB005AEEF8 /* crc32.c */,
+				18D0B3C7181E92CB005AEEF8 /* crc32.h */,
+				18D0B3C8181E92CB005AEEF8 /* deflate.c */,
+				18D0B3C9181E92CB005AEEF8 /* deflate.h */,
+				18D0B3CA181E92CB005AEEF8 /* FAQ */,
+				18D0B3CB181E92CB005AEEF8 /* gzio.c */,
+				18D0B3CC181E92CB005AEEF8 /* INDEX */,
+				18D0B3CD181E92CB005AEEF8 /* inffast.c */,
+				18D0B3CE181E92CB005AEEF8 /* inffast.h */,
+				18D0B3CF181E92CB005AEEF8 /* inffixed.h */,
+				18D0B3D0181E92CB005AEEF8 /* inflate.c */,
+				18D0B3D1181E92CB005AEEF8 /* inflate.h */,
+				18D0B3D2181E92CB005AEEF8 /* inftrees.c */,
+				18D0B3D3181E92CB005AEEF8 /* inftrees.h */,
+				18D0B3D4181E92CB005AEEF8 /* makedepend */,
+				18D0B3D5181E92CB005AEEF8 /* Makefile */,
+				18D0B3D6181E92CB005AEEF8 /* makefile.wat */,
+				18D0B3D7181E92CB005AEEF8 /* README */,
+				18D0B3D8181E92CB005AEEF8 /* trees.c */,
+				18D0B3D9181E92CB005AEEF8 /* trees.h */,
+				18D0B3DA181E92CB005AEEF8 /* uncompr.c */,
+				18D0B3DB181E92CB005AEEF8 /* zconf.h */,
+				18D0B3DC181E92CB005AEEF8 /* zlib.3 */,
+				18D0B3DD181E92CB005AEEF8 /* zlib.h */,
+				18D0B3DE181E92CB005AEEF8 /* zutil.c */,
+			);
+			name = zip;
+			sourceTree = "<group>";
+		};
+		18D0B3EB181E9344005AEEF8 /* MPWLoader */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B3EC181E935A005AEEF8 /* Entity2DAniPack.cpp */,
+				18D0B3ED181E935A005AEEF8 /* MpwDecoder.cpp */,
+				18D0B3EE181E935A005AEEF8 /* MpwFormat.cpp */,
+			);
+			name = MPWLoader;
+			sourceTree = "<group>";
+		};
+		18D0B416181E97E1005AEEF8 /* font */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = font;
+			sourceTree = "<group>";
+		};
+		18D0B417181E97FA005AEEF8 /* imagedecode */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B435181E9AE9005AEEF8 /* ImageCodec.cpp */,
+				18D0B436181E9AE9005AEEF8 /* ImageCodecBlp.cpp */,
+				18D0B437181E9AE9005AEEF8 /* ImageCodecBlp.h */,
+				18D0B439181E9AE9005AEEF8 /* ImageCodecBmp.h */,
+				18D0B43A181E9AE9005AEEF8 /* ImageCodecDds.cpp */,
+				18D0B43B181E9AE9005AEEF8 /* ImageCodecDds.h */,
+				18D0B43C181E9AE9005AEEF8 /* ImageCodecJpg.cpp */,
+				18D0B43D181E9AE9005AEEF8 /* ImageCodecJpg.h */,
+				18D0B43E181E9AE9005AEEF8 /* ImageCodecPcx.cpp */,
+				18D0B43F181E9AE9005AEEF8 /* ImageCodecPcx.h */,
+				18D0B440181E9AE9005AEEF8 /* ImageCodecRaw.cpp */,
+				18D0B441181E9AE9005AEEF8 /* ImageCodecRaw.h */,
+				18D0B444181E9AE9005AEEF8 /* ImageCodecTga.cpp */,
+				18D0B445181E9AE9005AEEF8 /* ImageCodecTga.h */,
+				18D0B423181E980F005AEEF8 /* ImageCodecPng.cpp */,
+				18D0B424181E980F005AEEF8 /* ImageCodecPng.h */,
+			);
+			name = imagedecode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,7 +598,91 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D0B3EF181E935A005AEEF8 /* Entity2DAniPack.cpp in Sources */,
+				18D0B393181E9284005AEEF8 /* jccolor.c in Sources */,
+				18D0B394181E9284005AEEF8 /* jcdctmgr.c in Sources */,
+				18D0B3B9181E92A0005AEEF8 /* pngset.c in Sources */,
+				18D0B415181E9789005AEEF8 /* CoreSkeleton.cpp in Sources */,
+				18D0B3FF181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.cpp in Sources */,
+				18D0B3E8181E92CB005AEEF8 /* trees.c in Sources */,
+				18D0B468181E9CDB005AEEF8 /* RenderQueue.cpp in Sources */,
+				18D0B45B181E9C89005AEEF8 /* Manager.cpp in Sources */,
+				18D0B3FE181E9671005AEEF8 /* _ParticleSystemEmitterPlane.cpp in Sources */,
+				18D0B3BD181E92A0005AEEF8 /* pngwrite.c in Sources */,
+				18D0B3B6181E92A0005AEEF8 /* pngrio.c in Sources */,
+				18D0B46B181E9CDB005AEEF8 /* SubModelInstance.cpp in Sources */,
+				18D0B469181E9CDB005AEEF8 /* RibbonSystem.cpp in Sources */,
+				18D0B3E6181E92CB005AEEF8 /* inftrees.c in Sources */,
+				18D0B396181E9284005AEEF8 /* jcinit.c in Sources */,
+				18D0B3E1181E92CB005AEEF8 /* crc32.c in Sources */,
+				18D0B3B1181E92A0005AEEF8 /* pnggccrd.c in Sources */,
+				18D0B446181E9AE9005AEEF8 /* ImageCodec.cpp in Sources */,
+				18D0B411181E9789005AEEF8 /* Camera.cpp in Sources */,
+				18D0B3E0181E92CB005AEEF8 /* compress.c in Sources */,
+				18D0B3F1181E935A005AEEF8 /* MpwFormat.cpp in Sources */,
+				18D0B449181E9AE9005AEEF8 /* ImageCodecDds.cpp in Sources */,
+				18D0B3B0181E92A0005AEEF8 /* pngerror.c in Sources */,
+				18D0B3F0181E935A005AEEF8 /* MpwDecoder.cpp in Sources */,
+				18D0B397181E9284005AEEF8 /* jcmainct.c in Sources */,
+				18D0B44E181E9AE9005AEEF8 /* ImageCodecTga.cpp in Sources */,
+				18D0B45A181E9C89005AEEF8 /* Light.cpp in Sources */,
+				18D0B3E2181E92CB005AEEF8 /* deflate.c in Sources */,
+				18D0B3FB181E9671005AEEF8 /* _Particle.cpp in Sources */,
+				18D0B3B7181E92A0005AEEF8 /* pngrtran.c in Sources */,
+				18D0B398181E9284005AEEF8 /* jcmarker.c in Sources */,
+				18D0B3B4181E92A0005AEEF8 /* pngpread.c in Sources */,
+				18D0B3E3181E92CB005AEEF8 /* gzio.c in Sources */,
+				18D0B404181E9697005AEEF8 /* MpwFrame.cpp in Sources */,
+				18D0B467181E9CDB005AEEF8 /* RenderOperation.cpp in Sources */,
+				18D0B458181E9C89005AEEF8 /* Image.cpp in Sources */,
+				18D0B3B8181E92A0005AEEF8 /* pngrutil.c in Sources */,
+				18D0B45F181E9C89005AEEF8 /* ModelNodeCreater.cpp in Sources */,
+				18D0B447181E9AE9005AEEF8 /* ImageCodecBlp.cpp in Sources */,
+				18D0B3E4181E92CB005AEEF8 /* inffast.c in Sources */,
+				18D0B45E181E9C89005AEEF8 /* ModelNode.cpp in Sources */,
+				18D0B3BF181E92A0005AEEF8 /* pngwutil.c in Sources */,
+				18D0B46C181E9CDB005AEEF8 /* VertexData.cpp in Sources */,
+				18D0B3FC181E9671005AEEF8 /* _ParticleSystem.cpp in Sources */,
+				18D0B392181E9284005AEEF8 /* jccoefct.c in Sources */,
+				18D0B390181E9284005AEEF8 /* jcapimin.c in Sources */,
+				18D0B3BE181E92A0005AEEF8 /* pngwtran.c in Sources */,
+				18D0B46D181E9CDB005AEEF8 /* Viewport.cpp in Sources */,
+				18D0B3FD181E9671005AEEF8 /* _ParticleSystemEmitter.cpp in Sources */,
+				18D0B3B3181E92A0005AEEF8 /* pngmem.c in Sources */,
+				18D0B431181E980F005AEEF8 /* ImageCodecPng.cpp in Sources */,
+				18D0B3B5181E92A0005AEEF8 /* pngread.c in Sources */,
+				18D0B3E9181E92CB005AEEF8 /* uncompr.c in Sources */,
+				18D0B414181E9789005AEEF8 /* CoreBone.cpp in Sources */,
+				18D0B3AF181E92A0005AEEF8 /* png.c in Sources */,
+				18D0B395181E9284005AEEF8 /* jchuff.c in Sources */,
+				18D0B3BA181E92A0005AEEF8 /* pngtrans.c in Sources */,
+				18D0B3EA181E92CB005AEEF8 /* zutil.c in Sources */,
+				18D0B39B181E9284005AEEF8 /* jcparam.c in Sources */,
+				18D0B471181E9E39005AEEF8 /* IndexData.cpp in Sources */,
+				18D0B475181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp in Sources */,
+				18D0B3E5181E92CB005AEEF8 /* inflate.c in Sources */,
+				18D0B459181E9C89005AEEF8 /* ImageRect.cpp in Sources */,
+				18D0B45D181E9C89005AEEF8 /* ModelInstance.cpp in Sources */,
+				18D0B44A181E9AE9005AEEF8 /* ImageCodecJpg.cpp in Sources */,
+				18D0B413181E9789005AEEF8 /* CoordinateFrame.cpp in Sources */,
+				18D0B45C181E9C89005AEEF8 /* Material.cpp in Sources */,
+				18D0B400181E9671005AEEF8 /* _ParticleSystemEmitterSphere.cpp in Sources */,
+				18D0B3B2181E92A0005AEEF8 /* pngget.c in Sources */,
+				18D0B406181E9697005AEEF8 /* ParticleSystem.cpp in Sources */,
+				18D0B46A181E9CDB005AEEF8 /* Skeleton.cpp in Sources */,
 				181BC025181CB08500786855 /* RenderEngine.m in Sources */,
+				18D0B3BB181E92A0005AEEF8 /* pngvcrd.c in Sources */,
+				18D0B3BC181E92A0005AEEF8 /* pngwio.c in Sources */,
+				18D0B405181E9697005AEEF8 /* Particle.cpp in Sources */,
+				18D0B39A181E9284005AEEF8 /* jcomapi.c in Sources */,
+				18D0B3DF181E92CB005AEEF8 /* adler32.c in Sources */,
+				18D0B44B181E9AE9005AEEF8 /* ImageCodecPcx.cpp in Sources */,
+				18D0B3E7181E92CB005AEEF8 /* Makefile in Sources */,
+				18D0B391181E9284005AEEF8 /* jcapistd.c in Sources */,
+				18D0B410181E9789005AEEF8 /* Bone.cpp in Sources */,
+				18D0B44C181E9AE9005AEEF8 /* ImageCodecRaw.cpp in Sources */,
+				18D0B399181E9284005AEEF8 /* jcmaster.c in Sources */,
+				18D0B40F181E9789005AEEF8 /* Animation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +795,13 @@
 				DSTROOT = /tmp/RenderEngine.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RenderEngine/RenderEngine-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../Base/Base/Include,
+					../../Include,
+					../../Include/RenderEngine,
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -353,6 +818,13 @@
 				DSTROOT = /tmp/RenderEngine.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RenderEngine/RenderEngine-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../Base/Base/Include,
+					../../Include,
+					../../Include/RenderEngine,
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -417,6 +889,7 @@
 				181BC03F181CB08500786855 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		181BC040181CB08500786855 /* Build configuration list for PBXNativeTarget "RenderEngineTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +898,7 @@
 				181BC042181CB08500786855 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

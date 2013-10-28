@@ -11,6 +11,23 @@
 #define MAKE555RGB(w,r,g,b) (r = (w & 0x7C00) >> 7, g = (w & 0x03E0) >> 2, b = (w & 0x001F) << 3); 
 #define MAKE444RGB(w,r,g,b) (r = (w & 0x0F00) >> 4, g = (w & 0x00F0) >> 0, b = (w & 0x000F) << 4); 
 
+
+
+#define ImageCodecInterface  \
+virtual const char*	getType() const = 0;	\
+virtual bool decode(xs::Stream*,ImageData& data,const void  *p1 = 0,const void  *p2 = 0) const = 0;	\
+virtual bool code(void ) const = 0; \
+virtual bool codeToFile(xs::FileStream&,const ImageData& data) const = 0;	\
+virtual bool getDimension(xs::Stream*,uint& width,uint& height,uint& depth) = 0;
+
+#define ImageCodecImplement \
+virtual const char*	getType() const;	\
+virtual bool decode(xs::Stream*,ImageData& data,const void  *p1 = 0,const void  *p2 = 0) const ;	\
+virtual bool code(void ) const ; \
+virtual bool codeToFile(xs::FileStream&,const ImageData& data) const ;	\
+virtual bool getDimension(xs::Stream*,uint& width,uint& height,uint& depth);
+
+
 namespace xs
 {
 	/*! \addtogroup RenderEngine
@@ -75,14 +92,8 @@ namespace xs
 	public:
 		/** Returns the type of the codec as a std::string
 		*/
-		#define ImageCodecInterface(pure) \
-			virtual const char*	getType() const ## pure	\
-			virtual bool decode(xs::Stream*,ImageData& data,const void  *p1 = 0,const void  *p2 = 0) const ## pure	\
-			virtual bool code(void ) const ## pure \
-			virtual bool codeToFile(xs::FileStream&,const ImageData& data) const ## pure	\
-			virtual bool getDimension(xs::Stream*,uint& width,uint& height,uint& depth) ## pure
-
-		ImageCodecInterface(=0;)
+        
+		ImageCodecInterface
 	};
 	/** @} */
 

@@ -772,8 +772,8 @@ namespace xs
 							stream.read(str,filenameLen);
 							str[filenameLen] = 0;
 
-							CPath path = m_strName;
-							CPath pathP = path.getParentDir();
+							CPath path (m_strName);
+							CPath pathP (path.getParentDir());
 							if(!pathP.empty())
 							{
 								pathP.addTailSlash();

@@ -246,8 +246,8 @@ public:
         const CoordinateFrame&  other,
         float                   alpha) const;
 
-	Ray CoordinateFrame::toWorldSpace(const Ray& r) const;
-	Ray CoordinateFrame::toObjectSpace(const Ray& r) const;
+	Ray toWorldSpace(const Ray& r) const;
+	Ray toObjectSpace(const Ray& r) const;
 };
 
 	/** @} */

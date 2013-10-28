@@ -650,7 +650,7 @@ namespace xs
 		AABB		m_aabb;
 		Sphere		m_sphere;
 
-		typedef stdext::hash_map<std::string,Animation*> AnimationMap;
+		typedef HASH_MAP_NAMESPACE::hash_map<std::string,Animation*> AnimationMap;
 		AnimationMap m_AnimationMap;
 
 		std::vector<SubModel> m_vSubModels;

@@ -1158,8 +1158,8 @@ namespace xs
 								stream.read(str,filenameLen);
 								str[filenameLen] = 0;
 
-								CPath path = m_strName;
-								CPath pathP = path.getParentDir();
+								CPath path (m_strName);
+								CPath pathP (path.getParentDir());
 								if(!pathP.empty())
 								{
 									pathP.addTailSlash();
@@ -1280,8 +1280,8 @@ namespace xs
 								char str[128];
 								stream.read(str,filenameLen);
 								str[filenameLen] = 0;
-								CPath path = m_strName;
-								CPath pathP = path.getParentDir();
+								CPath path (m_strName);
+								CPath pathP ( path.getParentDir());
 								if(!pathP.empty())
 								{
 									pathP.addTailSlash();
@@ -1645,8 +1645,8 @@ namespace xs
 							pData->alpha.setStaticData(alpha);
 							pData->filterMode = (BlendMode)blendMode;
 
-							CPath path = m_strName;
-							CPath pathP = path.getParentDir();
+							CPath path (m_strName);
+							CPath pathP (path.getParentDir());
 							if(!pathP.empty())
 							{
 								pathP.addTailSlash();
@@ -1908,8 +1908,8 @@ namespace xs
 						pData->width.setStaticData(width);
 						pData->length.setStaticData(length);
 
-						CPath path = m_strName;
-						CPath pathP = path.getParentDir();
+						CPath path (m_strName);
+						CPath pathP (path.getParentDir());
 						if(!pathP.empty())
 						{
 							pathP.addTailSlash();
@@ -2164,14 +2164,15 @@ namespace xs
 
 						//
 						char *fileName = strrchr(texture,'\\');
-						xs::CPath fn = texture;
+						xs::CPath fn;
+                        fn = texture;
 						if(fileName)
 						{
 							fileName++;
 							fn = fileName;
 						}
-						CPath path = m_strName;
-						CPath pathP = path.getParentDir();
+						CPath path ( m_strName );
+						CPath pathP ( path.getParentDir() );
 						if(!pathP.empty())
 						{
 							pathP.addTailSlash();
@@ -3453,7 +3454,7 @@ namespace xs
 				for( uint ii = 0; ii < nTexture; ii ++)
 				{
 					//ÎÆÀíÃû×Ö
-					CPath path = m_vMaterials[i].getLayer(ii)->m_szTexture;
+					CPath path (m_vMaterials[i].getLayer(ii)->m_szTexture);
 					string filename = path.getFileName().c_str();
 					uchar filenameLen = filename.size();
 					pDataStream->write(&filenameLen,sizeof(filenameLen));
@@ -3818,7 +3819,7 @@ namespace xs
 				pDataStream->write( &alpha, sizeof(alpha));
 				short blendMode =(short) m_vRibbonEmitters[i]->filterMode;
 				pDataStream->write( &blendMode, sizeof(blendMode));
-				CPath path = m_vRibbonEmitters[i]->textureFilename;
+				CPath path (m_vRibbonEmitters[i]->textureFilename );
 				string filename = path.getFileName().c_str();	
 				uchar textureFilenameLen = filename.size();
 				pDataStream->write( &textureFilenameLen, sizeof(textureFilenameLen));
@@ -3930,7 +3931,7 @@ namespace xs
 				pDataStream->write( &unshaded, sizeof(unshaded));
 				unfogged = m_vParticleEmitters[i]->unfogged;
 				pDataStream->write(&unfogged, sizeof(unfogged));				
-				CPath path = m_vParticleEmitters[i]->textureFilename;
+				CPath path ( m_vParticleEmitters[i]->textureFilename );
 				string filename = path.getFileName().c_str();
 				uchar textureFilenameLen = filename.size();
 				pDataStream->write( &textureFilenameLen, sizeof(textureFilenameLen));
@@ -4026,7 +4027,7 @@ namespace xs
 				pDataStream->write(&pdata->p.f2[0], sizeof(pdata->p.f2) );
 
 				pDataStream->write(&pdata->pos, sizeof(pdata->pos) );
-				CPath parpath= pdata->texture;
+				CPath parpath ( pdata->texture );
 				string parfilename = parpath.getFileName();
 				uchar len = parfilename.size();
 				pDataStream->write(&len, sizeof(len) );

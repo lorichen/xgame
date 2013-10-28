@@ -3,6 +3,7 @@
 #include "Bone.h"
 #include "ModelNode.h"
 #include "ModelInstance.h"
+#include <stdlib.h>
 
 //飘带系统最多支持的面片数
 #define RIBBONSYSTEM_SEGMENT_OVERFLOW 256
@@ -69,7 +70,7 @@ namespace xs
 			// 计算运动速度
 			lifespeed = ( ( (v3CurPivot - m_v3PreviousPivot ).length()/scale) * 1000.0f) / tickDelta;
 
-			if (abs(lifespeed) < 0.05)
+			if (lifespeed > -0.05 && lifespeed < 0.05)
 			{
 				lifespeed = 0.01;
 			}

@@ -36,6 +36,12 @@ public:
 		: _isFile(true)
 	{
 	}
+    
+    basic_path(const _Elem* p)
+    : _isFile(true), _String(p)
+	{
+        normalize();
+    }
 	basic_path(const _Elem* p, bool isFilePath = true)
 		: _isFile(isFilePath), _String(p)
 	{
@@ -43,6 +49,11 @@ public:
 	}
 	basic_path(const _Elem* p, size_type roff, size_type count, bool isFilePath = true)
 		: _isFile(isFilePath), _String(p,roff,count)
+	{
+		normalize();
+	}
+    basic_path(const _String& str)
+    : _isFile(true), _String(str)
 	{
 		normalize();
 	}

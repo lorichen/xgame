@@ -84,7 +84,12 @@ template<typename T>
 bool CAS_assembly(node<T> * volatile * _ptr, node<T> * oldVal, node<T> * newVal)
 {
     register bool f;
-#if (TARGET_PLATFORM == PLATFORM_WIN32)
+#if (TARGET_PLATFORM == PLATFORM_IOS)
+    assert(0);
+    //todo...
+    
+#else
+    
 #ifdef __GNUC__
     __asm__ __volatile__(
         "lock; cmpxchgl %%ebx, %1;"
@@ -102,12 +107,8 @@ bool CAS_assembly(node<T> * volatile * _ptr, node<T> * oldVal, node<T> * newVal)
         setz f
     }
 #endif // __GNUC__
-
     
-#else
     
-    assert(0);
-    //todo...
 #endif
     return f;
 }
@@ -136,7 +137,13 @@ bool CAS_intrinsic(node<T> * volatile * _ptr, node<T> * oldVal, node<T> * newVal
 template<typename T>
 bool CAS_windows(node<T> * volatile * _ptr, node<T> * oldVal, node<T> * newVal)
 {
-    return InterlockedCompareExchange((long *)_ptr, (long)newVal, (long)oldVal) == (long)oldVal;
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+    return InterlockedCompareExchange((long *)_ptr, (long)newVal, (long)oldVal) == (long)oldVal;  //????
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+    return OSAtomicCompareAndSwapPtr (oldVal, newVal, _ptr) == oldVal;
+#else
+    return __sync_val_compare_and_swap(_ptr, oldVal, newVal) == oldVal;
+#endif
 }
 
 //------------------------------------------------------------------------------
@@ -163,6 +170,12 @@ template<typename T>
 bool CAS2_assembly(node<T> * volatile * _ptr, node<T> * old1, uint32_t old2, node<T> * new1, uint32_t new2)
 {
     register bool f;
+    
+#if (TARGET_PLATFORM == PLATFORM_IOS)
+    assert(0);
+    //todo...
+#else
+    
 #ifdef __GNUC__
     __asm__ __volatile__(
         "lock; cmpxchg8b %1;"
@@ -181,6 +194,8 @@ bool CAS2_assembly(node<T> * volatile * _ptr, node<T> * old1, uint32_t old2, nod
         lock cmpxchg8b [esi]
         setz f
     }
+#endif
+    
 #endif
     return f;
 }

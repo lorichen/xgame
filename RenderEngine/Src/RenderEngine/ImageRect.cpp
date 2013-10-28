@@ -167,7 +167,7 @@ namespace xs
 						uchar c[8];
 						stream.read(a,8);
 						stream.read(c,8);
-						unsigned __int64 bits = (((((((((((((__int64)(a[7] << 8) + (__int64)a[6]) << 8) + (__int64)a[5]) << 8) + (__int64)a[4]) << 8) + (__int64)a[3]) << 8) + (__int64)a[2]) << 8) + (__int64)a[1]) << 8) + (__int64)a[0];
+						__int64 bits = (((((((((((((__int64)(a[7] << 8) + (__int64)a[6]) << 8) + (__int64)a[5]) << 8) + (__int64)a[4]) << 8) + (__int64)a[3]) << 8) + (__int64)a[2]) << 8) + (__int64)a[1]) << 8) + (__int64)a[0];
 						for(uint i = 0;i < 4;i++)
 						for(uint j = 0;j < 4;j++)
 						{
