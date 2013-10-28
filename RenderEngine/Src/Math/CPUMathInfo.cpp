@@ -57,7 +57,7 @@ namespace xs
 		}
 		return 1;
 #else
-		return 0
+		return 0;
 #endif
 
 	}
@@ -74,6 +74,7 @@ namespace xs
 
 	void CPUMathInfo::initializeCPUCapability()
 	{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		uint uiFeature = 0;//标准功能
 		uint uiExt = 0;//扩展功能
 		_asm {
@@ -99,6 +100,7 @@ notamd:
 				pop ecx
 				pop ebx
 				pop edx
+
 		}
 
 		if (uiFeature & _MMX_FEATURE_BIT) 
@@ -132,6 +134,10 @@ notamd:
 				s_capability |= CPUMC_3DNOW;
 			}
 		}
+        
+#else
+        
+#endif
 	}
 
 	uint CPUMathInfo::getCapability()

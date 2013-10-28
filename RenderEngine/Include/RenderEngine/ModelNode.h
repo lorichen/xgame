@@ -360,7 +360,7 @@ namespace xs
 
 	public:
 		ModelNode();
-		ModelNode::~ModelNode();
+		~ModelNode();
 	public:
 		virtual bool		setModel(const char* modelName);
 	private:

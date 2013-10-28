@@ -621,12 +621,12 @@ namespace xs
             return o;
         }
 		//----------------------------------------------------------------------------
-		inline Vector3 Vector3::Min(const Vector3 &v) const {
+		inline Vector3 Min(const Vector3 &v) const {
 			return Vector3(std::min(v.x, x), std::min(v.y, y), std::min(v.z, z));
 		}
 
 		//----------------------------------------------------------------------------
-		inline Vector3 Vector3::Max(const Vector3 &v) const {
+		inline Vector3 Max(const Vector3 &v) const {
 			return Vector3(std::max(v.x, x), std::max(v.y, y), std::max(v.z, z));
 		}
     };

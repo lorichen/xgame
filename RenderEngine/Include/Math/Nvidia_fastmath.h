@@ -27,7 +27,12 @@ Comments:
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #include <wtypes.h>  //hide by kevin.chen
+#else
+
+#endif
 
 
 #define FP_BITS(fp) (*(DWORD *)&(fp))

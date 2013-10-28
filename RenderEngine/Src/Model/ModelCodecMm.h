@@ -185,7 +185,7 @@ namespace xs
 
 		//Animations
 		std::vector<Animation*>	m_vAnimations;
-		stdext::hash_map<std::string,Animation*> m_AniamtionMap;
+        HASH_MAP_NAMESPACE::hash_map<std::string,Animation*> m_AniamtionMap;
 
 		std::vector<SubModel> m_vRenderPasses;
 		std::vector<int> m_vRecordMaterialIndex;//谢学辉修改，记录SubModel的MaterialIndex

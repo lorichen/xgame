@@ -197,7 +197,7 @@ namespace xs
 		std::vector<bool>	m_vShouldSavePasses;
 		//Textures
 		std::vector<Animation*>		m_vAnimations;
-		stdext::hash_map<std::string,Animation*>	m_AnimationMap;
+        HASH_MAP_NAMESPACE::hash_map<std::string,Animation*>	m_AnimationMap;
 		//VertexBuffer
 		IVertexBuffer	*m_pVBTexcoord;
 		uint				m_ui32VerticeNum;

@@ -83,7 +83,7 @@ namespace xs
 		std::vector<ModelKeyframeTM> *m_pMKTM;//暂时没用
 		std::vector<uint>		m_keyTime;//记录所有的关键时间
 		//关键帧索引表，用于加速查找,第一个uint，每个动画的开始时间，第二个int，m_keyTime里面的第一个关键时间的位置，第三个int，m_keyTime里面关键时间的个数
-		stdext::hash_map<uint, std::pair<uint, uint> > m_keyTimeIndex;
+		HASH_MAP_NAMESPACE::hash_map<uint, std::pair<uint, uint> > m_keyTimeIndex;
 	private:
 		//void 					_calcMatrix_NoPivotRotation(IRenderSystem *pRenderSystem,AnimationTime* pTime,int rangeIndex);
 		//void 					_calcMatrix_PivotRotation(IRenderSystem *pRenderSystem,AnimationTime* pTime,int rangeIndex);
@@ -109,7 +109,7 @@ namespace xs
 			xs::Matrix4		m_mtxTransform;
 			xs::Quaternion		m_quatRotation;
 		};
-		typedef stdext::hash_map<uint, KeyFrameData*> KeyFrameDataContainer;//关键时间和骨骼数据的映射表
+		typedef HASH_MAP_NAMESPACE::hash_map<uint, KeyFrameData*> KeyFrameDataContainer;//关键时间和骨骼数据的映射表
 		typedef KeyFrameDataContainer::iterator KeyFrameDataContainerIterator;
 
 		KeyFrameDataContainer	m_vNoPivotData;

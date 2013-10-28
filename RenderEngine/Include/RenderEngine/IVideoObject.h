@@ -12,10 +12,10 @@ namespace xs
 
 	struct IVideoObject
 	{
-		virtual ITexture *	getTexture( uint frame) = NULL;
-		virtual uint		getFrameCount() = NULL;
-		virtual void		release()=NULL;
-		virtual float		getFrameInterval()=NULL;
+		virtual ITexture *	getTexture( uint frame) = 0;
+		virtual uint		getFrameCount() = 0;
+		virtual void		release()=0;
+		virtual float		getFrameInterval()=0;
 	};
 }
 

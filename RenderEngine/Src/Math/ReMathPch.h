@@ -63,4 +63,11 @@
 #include "platform.h"
 #include "type.h"
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+
+#else
+
+
+#endif
+
 #endif

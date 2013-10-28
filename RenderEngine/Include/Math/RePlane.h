@@ -58,12 +58,12 @@ namespace xs {
 		The absolute value of the return value is the true distance only
 		when the plane normal is a unit length vector.
 		*/
-		inline float Plane::getDistance (const Vector3& rkPoint) const
+		inline float getDistance (const Vector3& rkPoint) const
 		{
 			return normal.dotProduct(rkPoint) + d;
 		}
 		//-----------------------------------------------------------------------
-		inline Plane::Side Plane::getSide (const Vector3& rkPoint) const
+		inline Plane::Side getSide (const Vector3& rkPoint) const
 		{
 			float fDistance = getDistance(rkPoint);
 

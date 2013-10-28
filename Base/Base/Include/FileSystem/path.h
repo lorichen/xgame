@@ -133,7 +133,7 @@ public:
 
 		size_type pos = getLastSlashPos();
 
-		return substr(pos + 1, this->length() - pos - 1);
+		return this->substr(pos + 1, this->length() - pos - 1);
 	}
 
 	_String getFileTitle() const

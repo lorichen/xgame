@@ -7,10 +7,18 @@ typedef unsigned long size_t;
 typedef unsigned long size_type;
 
 typedef unsigned int  DWORD;
+typedef unsigned short WORD;
 typedef void*         HWND;
 typedef void*         HTREEITEM;
 typedef unsigned long ULONG;
 typedef void*         HANDLE;
+typedef char*         LPCSTR;
+
+
+typedef unsigned char			uchar;
+typedef unsigned short			ushort;
+typedef unsigned int			uint;
+typedef unsigned long			ulong;
 
 
 #define IN
@@ -35,6 +43,7 @@ typedef void*         HANDLE;
 #define sprintf_s snprintf
 #define _vsnprintf vsnprintf
 
+#define FORCEINLINE inline
 
 
 inline char *_itoa(int num,char *str,int radix)
@@ -67,6 +76,8 @@ inline char *_itoa(int num,char *str,int radix)
     }
     return str;
 }
+
+#define itoa _itoa
 
 #include <ctype.h>
 inline char *strupr(char *str)
@@ -134,7 +145,10 @@ extern unsigned int GetCurrentThreadId();
 #include <unistd.h>
 #include <fcntl.h>
 
-#else
+#include <math.h>
+#define FLT_MAX 3.40282347e+38F
+
+#else   //win32
 
 #include <direct.h>
 #include <hash_map>

@@ -49,7 +49,7 @@ inline float __FastSqrt(float square)
 	}
     return retval;
 #else
-    assert(0);
+    return sqrtf(square);
 #endif
 	
 }
@@ -80,13 +80,16 @@ inline float __InvSqrt(const float& x)
 	float y = *(float*)&tmp;                                             
 	return y * (1.47f - 0.47f * x * y * y);
 #else
-    //from quake by kevin.chen
-    float xhalf = 0.5f * x;
-    int i = *(int*)&x; // store floating-point bits in integer
-    i = 0x5f3759d5 - (i >> 1); // initial guess for Newton's method
-    x = *(float*)&i; // convert new bits into float
-    x = x*(1.5f - xhalf*x*x); // One round of Newton's method
-    return x;
+    
+    //from  by kevin.chen
+    float res = x;
+    float xhalf = 0.5f * res;
+    int i = *(int*)&res;          // get bits for floating value
+    i =  0x5f375a86 - (i>>1);    // gives initial guess
+    res = *(float*)&i;            // convert bits back to float
+    res = res * (1.5f - xhalf*res*res); // Newton step
+    return res;
+    
 #endif
 }
 
@@ -232,6 +235,8 @@ inline bool __IsFloatZero(float x, float epsilon=1e-6f)
 //! A global function to find MAX(a,b) using FCOMI/FCMOV
 inline float __FCMax2(float a, float b)
 {
+    
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	float Res;
 	_asm	fld		[a]
 	_asm	fld		[b]
@@ -240,11 +245,16 @@ inline float __FCMax2(float a, float b)
 		_asm	fstp	[Res]
 		_asm	fcomp
 			return Res;
+#else
+    return (a > b)?a:b;
+#endif
 }
 
 //! A global function to find MIN(a,b) using FCOMI/FCMOV
 inline float __FCMin2(float a, float b)
 {
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+    
 	float Res;
 	_asm	fld		[a]
 	_asm	fld		[b]
@@ -253,11 +263,15 @@ inline float __FCMin2(float a, float b)
 		_asm	fstp	[Res]
 		_asm	fcomp
 			return Res;
+#else
+    return (a < b)?a:b;
+#endif
 }
 
 //! A global function to find MAX(a,b,c) using FCOMI/FCMOV
 inline float __FCMax3(float a, float b, float c)
 {
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	float Res;
 	_asm	fld		[a]
 	_asm	fld		[b]
@@ -269,11 +283,16 @@ inline float __FCMax3(float a, float b, float c)
 		_asm	fstp	[Res]
 		_asm	fcompp
 			return Res;
+#else
+    float x = __FCMax2(a,b);
+    return __FCMax2(x,c);
+#endif
 }
 
 //! A global function to find MIN(a,b,c) using FCOMI/FCMOV
 inline float __FCMin3(float a, float b, float c)
 {
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	float Res;
 	_asm	fld		[a]
 	_asm	fld		[b]
@@ -285,6 +304,10 @@ inline float __FCMin3(float a, float b, float c)
 		_asm	fstp	[Res]
 		_asm	fcompp
 			return Res;
+#else
+    float x = __FCMin2(a,b);
+    return __FCMin2(x,c);
+#endif
 }
 
 inline int __ConvertToSortable(float f)

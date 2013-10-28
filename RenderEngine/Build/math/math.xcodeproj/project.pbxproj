@@ -113,6 +113,7 @@
 		18F8E211181CA58A00E96D41 /* ReSimpleSpline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReSimpleSpline.cpp; path = ../../Src/Math/ReSimpleSpline.cpp; sourceTree = "<group>"; };
 		18F8E212181CA58A00E96D41 /* ReVector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReVector2.cpp; path = ../../Src/Math/ReVector2.cpp; sourceTree = "<group>"; };
 		18F8E213181CA58A00E96D41 /* ReVector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReVector3.cpp; path = ../../Src/Math/ReVector3.cpp; sourceTree = "<group>"; };
+		CDA690C4181DFCF400B2FDC7 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../../Base/Base/Include/type.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +142,7 @@
 		18F8E1CF181CA52B00E96D41 = {
 			isa = PBXGroup;
 			children = (
+				CDA690C4181DFCF400B2FDC7 /* type.h */,
 				181BC00F181CAEE000786855 /* ReAngle.cpp */,
 				181BBFF6181CAC5D00786855 /* Capsule.h */,
 				181BBFF7181CAC5D00786855 /* CPUMathInfo.h */,

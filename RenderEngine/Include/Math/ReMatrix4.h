@@ -196,7 +196,8 @@ namespace xs
         inline Matrix4 concatenate(const Matrix4 &m2) const
         {
             Matrix4 r;
-
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+            
 			if(s_CPUAcceFlag == -1 )//初始化标志
 			{
 				s_CPUAcceFlag = CPUMathInfo::getCapability();
@@ -484,20 +485,24 @@ namespace xs
 				r.m[3][2] = m[3][0] * m2.m[0][2] + m[3][1] * m2.m[1][2] + m[3][2] * m2.m[2][2] + m[3][3] * m2.m[3][2];
 				r.m[3][3] = m[3][0] * m2.m[0][3] + m[3][1] * m2.m[1][3] + m[3][2] * m2.m[2][3] + m[3][3] * m2.m[3][3];
 			}
-
+#else
+            assert(0);
+#endif
             return r;
+    
         }
 
         /** Matrix concatenation using '*'.
         */
         inline Matrix4 operator * ( const Matrix4 &m2 ) const
         {
-#if 0
-            return concatenate( m2 );
-#else
+
+            //return concatenate( m2 );
+
 
 			Matrix4 r;
 
+    #if (TARGET_PLATFORM == PLATFORM_WIN32)
 			if(s_CPUAcceFlag == -1 )//初始化标志
 			{
 				s_CPUAcceFlag = CPUMathInfo::getCapability();
@@ -764,6 +769,7 @@ namespace xs
 
 			}
 			else
+#endif
 			{
 				r.m[0][0] = m[0][0] * m2.m[0][0] + m[0][1] * m2.m[1][0] + m[0][2] * m2.m[2][0] + m[0][3] * m2.m[3][0];
 				r.m[0][1] = m[0][0] * m2.m[0][1] + m[0][1] * m2.m[1][1] + m[0][2] * m2.m[2][1] + m[0][3] * m2.m[3][1];
@@ -787,7 +793,8 @@ namespace xs
 			}
 
 			return r;
-#endif
+
+
         }
 
         /** Vector transformation using '*'.
@@ -1124,7 +1131,7 @@ namespace xs
 			float			aspect,
 			float            nearval,
 			float            farval);
-		static Matrix4 Matrix4::orthogonalProjection(
+		static Matrix4       orthogonalProjection(
 			float            left,
 			float            right,
 			float            bottom,

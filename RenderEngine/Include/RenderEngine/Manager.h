@@ -112,10 +112,10 @@ namespace xs
 				ManagedItem *i = items[id];
 				std::string name = i->m_strName;
 				doDelete(id);
-				std::map<std::string,IDTYPE>::iterator it = names.find(name);
+				typename std::map<std::string,IDTYPE>::iterator it = names.find(name);
 				if(it != names.end())names.erase(it);
 
-				std::map<IDTYPE,ManagedItem*>::iterator it1 = items.find(id);
+				typename std::map<IDTYPE,ManagedItem*>::iterator it1 = items.find(id);
 				if(it1 != items.end())items.erase(it1);
 			}
 			m_mutex.Unlock();

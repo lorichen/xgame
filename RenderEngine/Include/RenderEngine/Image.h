@@ -108,7 +108,7 @@ namespace xs
 			@remarks 
 				The size of the buffer must be numFaces*PixelUtil::getMemorySize(width, height, depth, format)
          */
-		bool Image::loadDynamicImage( uchar* pData, uint uWidth, uint uHeight, 
+		bool loadDynamicImage( uchar* pData, uint uWidth, uint uHeight,
 							uint depth,
 							 PixelFormat eFormat, bool autoDelete = false, 
 							 uint numFaces = 1, uint numMipMaps = 0);
@@ -215,7 +215,7 @@ namespace xs
         */
         const uchar * getData() const;   
 
-		const uchar * Image::getData() volatile;
+		const uchar * getData() volatile;
 
         /** Returns the size of the data buffer.
         */

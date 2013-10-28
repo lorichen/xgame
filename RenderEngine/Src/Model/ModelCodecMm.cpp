@@ -78,7 +78,7 @@ namespace xs
 
 	template<class T>  void writeMMSequence(Stream *pDataStream,T &t)//谢学辉编写，用于将容器写到stream对象
 	{
-		T::iterator i = t.begin();
+		typename T::iterator i = t.begin();
 		for(; i != t.end(); ++i)
 		{
 			pDataStream->write(&(*i),sizeof(*i));
@@ -124,7 +124,7 @@ namespace xs
 
 	Animation* ModelCodecMm::hasAnimation(const std::string& animation)
 	{
-		stdext::hash_map<std::string,Animation*>::iterator it = m_AniamtionMap.find(animation.c_str());
+		HASH_MAP_NAMESPACE::hash_map<std::string,Animation*>::iterator it = m_AniamtionMap.find(animation.c_str());
 		if(it == m_AniamtionMap.end())return 0;
 
 		return it->second;

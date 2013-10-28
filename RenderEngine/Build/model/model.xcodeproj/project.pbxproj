@@ -86,6 +86,7 @@
 		18F8E1BF181C17CF00E96D41 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = ../../Src/Model/stdafx.cpp; sourceTree = "<group>"; };
 		18F8E1C0181C17CF00E96D41 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = ../../Src/Model/stdafx.h; sourceTree = "<group>"; };
 		18F8E1C1181C17CF00E96D41 /* SubModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SubModel.cpp; path = ../../Src/Model/SubModel.cpp; sourceTree = "<group>"; };
+		CDA690C6181E0A9E00B2FDC7 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../../Base/Base/Include/type.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +115,7 @@
 		18F8E17C181C175B00E96D41 = {
 			isa = PBXGroup;
 			children = (
+				CDA690C6181E0A9E00B2FDC7 /* type.h */,
 				18F8E1AE181C17CF00E96D41 /* BoneAnimationSet.cpp */,
 				18F8E1AF181C17CF00E96D41 /* BoneAnimationSetManager.cpp */,
 				18F8E1B0181C17CF00E96D41 /* CollisionDetection.cpp */,
@@ -407,6 +409,8 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../Base/Base/Include,
+					../../Include,
+					../../Include/Model,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,6 +432,8 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../Base/Base/Include,
+					../../Include,
+					../../Include/Model,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -493,6 +499,7 @@
 				18F8E1AA181C175C00E96D41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18F8E1AB181C175C00E96D41 /* Build configuration list for PBXNativeTarget "modelTests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +508,7 @@
 				18F8E1AD181C175C00E96D41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
