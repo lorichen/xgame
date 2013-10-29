@@ -253,7 +253,8 @@ namespace xs{
 		if(!pPath)return 0;
 
 		IFileSystem* streamSystem = 0;
-		CPathA path(pPath);
+		CPathA path;
+		path = pPath;
 		toggleFullPath(path);
 
 		if (isFile(path.c_str()))

@@ -3173,13 +3173,6 @@
 			<File
 				RelativePath="..\Src\RenderEngine\Font\Src\GDITextureFont.cpp"
 				>
-				<FileConfiguration
-					Name="ReleaseDebug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\Include\RenderEngine\IFontManager.h"
@@ -3838,7 +3831,7 @@
 			Name="MpwLoader"
 			>
 			<File
-				RelativePath="..\Src\RenderEngine\MpwLoader\Entity2DAniPack.cpp"
+				RelativePath="..\Src\RenderEngine\Entity2DAniPack.cpp"
 				>
 			</File>
 			<File
@@ -3850,7 +3843,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Src\RenderEngine\MpwLoader\MpwDecoder.cpp"
+				RelativePath="..\Src\RenderEngine\MpwDecoder.cpp"
 				>
 			</File>
 			<File
@@ -3858,7 +3851,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Src\RenderEngine\MpwLoader\MpwFormat.cpp"
+				RelativePath="..\Src\RenderEngine\MpwFormat.cpp"
 				>
 			</File>
 			<File
@@ -3936,14 +3929,6 @@
 		</Filter>
 		<File
 			RelativePath="..\Include\Re.h"
-			>
-		</File>
-		<File
-			RelativePath=".\RenderEngine.rc"
-			>
-		</File>
-		<File
-			RelativePath=".\resource2.h"
 			>
 		</File>
 	</Files>

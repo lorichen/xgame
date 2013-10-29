@@ -9,8 +9,9 @@
 #else
 #include <dirent.h>
 #include <sys/types.h>
-#include <sys/stat.h>
 #endif
+
+#include <sys/stat.h>
 
 #define new RKT_NEW
 
@@ -52,7 +53,7 @@ bool Stream::setPath(const char* path)
 //////////////////////////////////////////////////////////////////////////
 inline static bool _isDirectoryExist(CPathA& absolutePath)
 {
-#if (TAGET_PLATFORM == PLATFORM_WIN32)
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	_finddata_t fd;
 	intptr_t r = _findfirst(absolutePath.c_str(), &fd); // "c:\"“≤ª·∑µªÿ£≠1£¨µ±ƒø¬º≤ª¥Ê‘⁄£¨“ÚŒ™«˝∂Ø∆˜≤ª «ƒø¬º
 	_findclose(r);
