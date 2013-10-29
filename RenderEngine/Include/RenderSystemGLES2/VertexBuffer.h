@@ -73,10 +73,14 @@ namespace xs
 		uint m_ui32NumVertices;
 		uint m_ui32VertexSize;
 	private:
-		uint m_ui32BufferID;
-		BufferUsage	m_Usage;
-		bool	m_bLocked;
-		IBufferManager*	m_pBufferManager;
+		uint			m_ui32BufferID;
+		BufferUsage		m_Usage;
+		bool			m_bLocked;
+		IBufferManager*	m_pBufferManager
+			;
+		char*			m_pbuffer;	 //lock¡Ÿ ±buffer
+		unsigned int	m_bufferSize;//lock¡Ÿ ±buffer size
+		unsigned int	m_offset;	 //lock∆´“∆
 	public:
 		VertexBuffer(IBufferManager *pBufferManager,uint vertexSize,uint numVertices,BufferUsage usage);
 		~VertexBuffer();

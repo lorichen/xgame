@@ -76,6 +76,10 @@ namespace xs
 		uint m_ui32BufferID;
 		BufferUsage	m_Usage;
 		bool	m_bLocked;
+
+		char*			m_pbuffer;	 //lock¡Ÿ ±buffer
+		unsigned int	m_bufferSize;//lock¡Ÿ ±buffer size
+		unsigned int	m_offset;	 //lock∆´“∆
 	public:
 		IndexBuffer(IndexType idxType, uint numIndexes,BufferUsage usage);
 		~IndexBuffer();

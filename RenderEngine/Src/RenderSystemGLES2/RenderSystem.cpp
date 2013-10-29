@@ -127,9 +127,6 @@ namespace xs
 		//这里的释放值得商榷
 		if(m_vRenderSystems.empty())
 		{
-			//旧的实现方式
-			//IShaderManager *pManager = getShaderManager();
-			//if(pManager)pManager->releaseAllShader();
 			ShaderProgramManagerOGL::Instance()->getLowLevelShaderManager()->releaseAllShader();
 			ShaderProgramManagerOGL::Instance()->getHighLevelShaderManager()->releaseAllShader();
 			
@@ -729,6 +726,7 @@ namespace xs
 		if(m_hRC)
 		{
 			wglShareLists(m_hRC,hRC);
+			
 		}
 
 		RenderTarget *pRenderTarget = new RenderTarget(m_hDC,hRC,m_hWnd);

@@ -7,6 +7,7 @@ namespace xs
 	VertexBuffer::VertexBuffer(IBufferManager *pBufferManager,uint vertexSize,uint numVertices,BufferUsage usage) : m_ui32VertexSize(vertexSize),m_ui32NumVertices(numVertices),m_Usage(usage),m_bLocked(false)
 	{
 		m_pBufferManager = pBufferManager;
+		m_pbuffer = 0;
 
 		glGenBuffers(1,&m_ui32BufferID);
 
@@ -26,6 +27,11 @@ namespace xs
 	VertexBuffer::~VertexBuffer()
 	{
 		glDeleteBuffers(1,&m_ui32BufferID);
+
+		if(m_pbuffer)
+		{
+			delete[] m_pbuffer;
+		}
 	}
 
 	
@@ -73,13 +79,29 @@ namespace xs
 			access = GL_READ_WRITE;
 		}
 
-		void* pBuffer = glMapBuffer( GL_ARRAY_BUFFER,access);
-
+		void* pBuffer = 0;
+#if 0		
+		//do not use glMapbuffer!
+		pBuffer = glMapBuffer( GL_ARRAY_BUFFER,access);
+#else
+		if(m_pbuffer)
+		{
+			delete[] m_pbuffer;
+			m_pbuffer = 0;
+		}
+		if(length == 0)
+		{
+			length = m_ui32VertexSize * m_ui32NumVertices;
+		}
+		m_pbuffer = new char[length];
+		m_offset = offset;
+		m_bufferSize = length;
+		pBuffer = m_pbuffer;
+#endif
 		if(pBuffer == 0)
 		{
 			return 0;
 		}
-
 		m_bLocked = true;
 		glBindBuffer(GL_ARRAY_BUFFER,0);
 		return static_cast<void*>(static_cast<unsigned char*>(pBuffer) + offset);
@@ -89,10 +111,19 @@ namespace xs
 	{
 		glBindBuffer(GL_ARRAY_BUFFER,m_ui32BufferID);
 
+#if 0
 		if(!glUnmapBuffer(GL_ARRAY_BUFFER))
 		{
 			Error("Vertex Buffer Data Crupted!");
 		}
+#else
+		glBufferSubData(GL_ARRAY_BUFFER,m_offset,m_bufferSize,m_pbuffer);
+		if(m_pbuffer)
+		{
+			delete[] m_pbuffer;
+			m_pbuffer = 0;
+		}
+#endif
 		m_bLocked = false;
 		glBindBuffer(GL_ARRAY_BUFFER,0);
 	}

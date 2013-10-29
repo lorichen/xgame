@@ -9,6 +9,8 @@ namespace xs
 		m_IndexType(idxType),
 		m_ui32NumIndexes(numIndexes),m_bLocked(false)
 	{
+		m_pbuffer = 0;
+
 		switch (idxType)
 		{
 		case IT_16BIT:
@@ -40,6 +42,11 @@ namespace xs
 	IndexBuffer::~IndexBuffer()
 	{
 		glDeleteBuffers(1,&m_ui32BufferID);
+
+		if(m_pbuffer)
+		{
+			delete[] m_pbuffer;
+		}
 	}
 
 	void* IndexBuffer::lock(uint offset,uint length,LockOptions options)
@@ -81,8 +88,24 @@ namespace xs
 			access = GL_READ_WRITE;
 		}
 
-		void* pBuffer = glMapBuffer(GL_ELEMENT_ARRAY_BUFFER,access);
-
+		void* pBuffer = 0;
+#if 0
+	    pBuffer =glMapBuffer(GL_ELEMENT_ARRAY_BUFFER,access);
+#else
+		if(m_pbuffer)
+		{
+			delete[] m_pbuffer;
+			m_pbuffer = 0;
+		}
+		if(length == 0)
+		{
+			length = m_ui32NumIndexes * ((m_IndexType == IT_16BIT)?sizeof(short):sizeof(int));
+		}
+		m_pbuffer = new char[length];
+		m_offset = offset;
+		m_bufferSize = length;
+		pBuffer = m_pbuffer;
+#endif
 		if(pBuffer == 0)
 		{
 			Error("can't lock buffer");
@@ -96,11 +119,19 @@ namespace xs
 	void IndexBuffer::unlock()
 	{
 		glBindBuffer( GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
-
+#if 0
 		if(!glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER))
 		{
 			Error("Can't UnmapBuffer\n");
 		}
+#else
+		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER,m_offset,m_bufferSize,m_pbuffer);
+		if(m_pbuffer)
+		{
+			delete[] m_pbuffer;
+			m_pbuffer = 0;
+		}
+#endif
 		m_bLocked = false;
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 	}

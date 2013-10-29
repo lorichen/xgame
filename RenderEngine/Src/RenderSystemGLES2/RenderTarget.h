@@ -1,6 +1,8 @@
 #ifndef __RenderTarget_H__
 #define __RenderTarget_H__
 
+
+
 class RenderTarget
 {
 public:

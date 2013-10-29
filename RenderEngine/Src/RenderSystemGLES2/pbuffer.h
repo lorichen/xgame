@@ -34,7 +34,7 @@ public:
 	virtual void 		onDetach();
 	virtual void 		onAttach();
 	virtual const ITexture*	getTexture();
-	virtual void  release();
+	virtual void		release();
 	virtual void 		onEndFrame();
 	virtual bool		getTextureData(void  *pData);
 	virtual void		getRect(RECT *rc);
