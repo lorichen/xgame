@@ -32,11 +32,11 @@ namespace xs
 		HighLevelShader(const std::string& name) : ManagedItem(name){}
 
 		bool create(ShaderType st,const uchar *pBuffer,uint len);
-		GLhandleARB getHandle();
+		GLuint getHandle();
 	private:
 		ShaderType	m_type;
 		GLenum		m_GLType;
-		GLhandleARB	m_handle;
+		GLuint	m_handle;
 	};
 }
 

@@ -527,10 +527,6 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\Model.rc"
-			>
-		</File>
-		<File
 			RelativePath=".\resource1.h"
 			>
 		</File>

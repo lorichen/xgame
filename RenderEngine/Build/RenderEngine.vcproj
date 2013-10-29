@@ -3173,6 +3173,13 @@
 			<File
 				RelativePath="..\Src\RenderEngine\Font\Src\GDITextureFont.cpp"
 				>
+				<FileConfiguration
+					Name="ReleaseDebug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\Include\RenderEngine\IFontManager.h"

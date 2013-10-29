@@ -9,7 +9,7 @@ namespace xs
 	//--------------------------------------------------------------------
 	GLint getAddressingMode(TextureAddressingMode tam)
 	{
-		GLint type = GL_CLAMP;
+		GLint type = GL_CLAMP_TO_EDGE;
 		switch(tam)
 		{
 		case TAM_WRAP:
@@ -20,9 +20,6 @@ namespace xs
 			break;
 		case TAM_CLAMP_TO_EDGE:
 			type = GL_CLAMP_TO_EDGE;
-			break;
-		case TAM_CLAMP:
-			type = GL_CLAMP;
 			break;
 		}
 
@@ -43,11 +40,7 @@ namespace xs
 		case GL_CLAMP_TO_EDGE:
 			type = TAM_CLAMP_TO_EDGE;
 			break;
-		case GL_CLAMP:
-			type = TAM_CLAMP;
-			break;
 		}
-
 		return type;
 	}
 
@@ -273,8 +266,9 @@ namespace xs
 
 		GLuint id;
 		glGenTextures(1,&id);
-		GLenum err = glGetError();
-		const uchar *pTRACE0_ERRORS = gluErrorString(err);
+		
+		TestGLError("TextureManager::createEmptyTexture");
+
 		glBindTexture(GL_TEXTURE_2D,id);
 
 		pTexture->setGLTextureID(id);

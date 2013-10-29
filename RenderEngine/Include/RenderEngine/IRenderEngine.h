@@ -26,9 +26,9 @@ namespace xs
 	{
 		/// OpenGL
 		RS_OPENGL,
-
-		/// D3D(尚未实现)
+		/// D3D(尚未实现????)
 		RS_D3D9,
+		RS_OPENGLES2,
 		RS_COUNT
 	};
 

@@ -8,24 +8,24 @@ namespace xs
 	{
 		m_pBufferManager = pBufferManager;
 
-		glGenBuffersARB(1,&m_ui32BufferID);
+		glGenBuffers(1,&m_ui32BufferID);
 
 		if (!m_ui32BufferID)
 		{
 			Error("Can't Create VertexBuffer\n");
 		}
 
-		glBindBufferARB(GL_ARRAY_BUFFER,m_ui32BufferID);
+		glBindBuffer(GL_ARRAY_BUFFER,m_ui32BufferID);
 
 		// Initialise mapped buffer and set usage
-		glBufferDataARB(GL_ARRAY_BUFFER,vertexSize * numVertices,NULL,BufferManager::getGLUsage(usage));
+		glBufferData(GL_ARRAY_BUFFER,vertexSize * numVertices,NULL,BufferManager::getGLUsage(usage));
 
-		glBindBufferARB(GL_ARRAY_BUFFER,0);
+		glBindBuffer(GL_ARRAY_BUFFER,0);
 	}
 
 	VertexBuffer::~VertexBuffer()
 	{
-		glDeleteBuffersARB(1,&m_ui32BufferID);
+		glDeleteBuffers(1,&m_ui32BufferID);
 	}
 
 	
@@ -35,7 +35,7 @@ namespace xs
 
 		GLenum access = 0;
 
-		glBindBufferARB(GL_ARRAY_BUFFER,m_ui32BufferID);
+		glBindBuffer(GL_ARRAY_BUFFER,m_ui32BufferID);
 
 		if(options == BL_DISCARD)
 		{
@@ -73,7 +73,7 @@ namespace xs
 			access = GL_READ_WRITE;
 		}
 
-		void* pBuffer = glMapBufferARB( GL_ARRAY_BUFFER,access);
+		void* pBuffer = glMapBuffer( GL_ARRAY_BUFFER,access);
 
 		if(pBuffer == 0)
 		{
@@ -81,20 +81,20 @@ namespace xs
 		}
 
 		m_bLocked = true;
-		glBindBufferARB(GL_ARRAY_BUFFER,0);
+		glBindBuffer(GL_ARRAY_BUFFER,0);
 		return static_cast<void*>(static_cast<unsigned char*>(pBuffer) + offset);
 	}
 
 	void VertexBuffer::unlock()
 	{
-		glBindBufferARB(GL_ARRAY_BUFFER,m_ui32BufferID);
+		glBindBuffer(GL_ARRAY_BUFFER,m_ui32BufferID);
 
-		if(!glUnmapBufferARB(GL_ARRAY_BUFFER))
+		if(!glUnmapBuffer(GL_ARRAY_BUFFER))
 		{
 			Error("Vertex Buffer Data Crupted!");
 		}
 		m_bLocked = false;
-		glBindBufferARB(GL_ARRAY_BUFFER,0);
+		glBindBuffer(GL_ARRAY_BUFFER,0);
 	}
 
 	bool	VertexBuffer::isLocked()
@@ -114,23 +114,26 @@ namespace xs
 
 	void	VertexBuffer::readData(uint offset,uint length,void* pDest)
 	{
-		glBindBufferARB(GL_ARRAY_BUFFER,m_ui32BufferID);
-		glGetBufferSubDataARB(GL_ARRAY_BUFFER,offset,length,pDest);
-		glBindBufferARB(GL_ARRAY_BUFFER,0);
+		assert(0);
+		/*
+		glBindBuffer(GL_ARRAY_BUFFER,m_ui32BufferID);
+		glGetBufferSubData(GL_ARRAY_BUFFER,offset,length,pDest);
+		glBindBuffer(GL_ARRAY_BUFFER,0);
+		*/
 	}
 
 	void	VertexBuffer::writeData(uint offset,uint length,const void* pSource,bool discardWholeBuffer)
 	{
-        glBindBufferARB(GL_ARRAY_BUFFER,m_ui32BufferID);
+        glBindBuffer(GL_ARRAY_BUFFER,m_ui32BufferID);
 
 		if(discardWholeBuffer)
 		{
-			glBufferDataARB(GL_ARRAY_BUFFER,m_ui32VertexSize * m_ui32NumVertices,0,BufferManager::getGLUsage(m_Usage));
+			glBufferData(GL_ARRAY_BUFFER,m_ui32VertexSize * m_ui32NumVertices,0,BufferManager::getGLUsage(m_Usage));
 		}
 
 		// Now update the real buffer
-		glBufferSubDataARB(GL_ARRAY_BUFFER,offset,length,pSource);
-		glBindBufferARB(GL_ARRAY_BUFFER,0);
+		glBufferSubData(GL_ARRAY_BUFFER,offset,length,pSource);
+		glBindBuffer(GL_ARRAY_BUFFER,0);
 	}
 
 	IVertexBuffer*	VertexBuffer::clone()

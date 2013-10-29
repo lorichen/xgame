@@ -7,7 +7,12 @@
 ** ÈÕ  ÆÚ: 
 ** Ãè  Êö: 
 ********************************************************************/
-#include "../StdAfx.h"
+//#ifdef WIN32
+	#include "Stdafx.h"
+//#else
+//	#include "../StdAfx.h"
+//#endif
+
 #include "MpwFormat.h"
 
 

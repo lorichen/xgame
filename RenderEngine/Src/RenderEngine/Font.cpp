@@ -124,6 +124,7 @@ namespace xs
 		{
 		case FontType_GDI:
 			{
+				/*
 				GDITextureFont* pGDIFont = new GDITextureFont();
 				if( !pGDIFont->create(pRenderSystem, wszFontPath.c_wstr(), size) )
 				{
@@ -134,6 +135,8 @@ namespace xs
 				{
 					m_pFTFont = pGDIFont;
 				}
+				*/
+				return 0;
 			}
 			break;
 		case FontType_PIX:

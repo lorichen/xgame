@@ -27,10 +27,26 @@
 
 using namespace xs;
 
-#include <GL/glew.h>
-#ifdef _WIN32
-	#include <GL/wglew.h>
-#endif
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+#include <EGL/egl.h>
+#include <EGL/eglplatform.h>
+
+
+#define GL_WRITE_ONLY   GL_WRITE_ONLY_OES
+#define GL_READ_ONLY	GL_BUFFER_ACCESS_OES
+#define GL_READ_WRITE	GL_BUFFER_MAPPED_OES
+
+inline bool TestGLError(const char* pszLocation)
+{
+	GLint iErr = glGetError();
+	if (iErr != GL_NO_ERROR)
+	{
+		printf("%s failed (%d).\n", pszLocation, iErr);
+		return false;
+	}
+	return true;
+}	
 
 #include "IPerfProf.h"
 

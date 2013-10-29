@@ -563,11 +563,11 @@
 				RelativePath="..\Include\Math\ReVector4.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\Base\Base\Include\type.h"
+				>
+			</File>
 		</Filter>
-		<File
-			RelativePath=".\Math.rc"
-			>
-		</File>
 		<File
 			RelativePath="..\Include\ReMath.h"
 			>

@@ -320,6 +320,13 @@ public:
 		HANDLE	mThreadHandle;
 
 	public:
+		enum Priority
+		{
+			Low,
+			Normal,
+			High,
+		};
+
 		Thread() : mThreadId(0), mThreadHandle(NULL)
 		{
 		}

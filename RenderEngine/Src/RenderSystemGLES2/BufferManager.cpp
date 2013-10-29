@@ -54,11 +54,11 @@ namespace xs
 			return GL_STATIC_DRAW;
 		case BU_DYNAMIC:
 		case BU_DYNAMIC_WRITE_ONLY:
-			return GL_DYNAMIC_DRAW_ARB;
+			return GL_DYNAMIC_DRAW;
 		case BU_DYNAMIC_WRITE_ONLY_DISCARDABLE:
-			return GL_STREAM_DRAW_ARB;
+			return GL_STREAM_DRAW;
 		default:
-			return GL_DYNAMIC_DRAW_ARB;
+			return GL_DYNAMIC_DRAW;
 		};
 	}
 

@@ -109,6 +109,9 @@ namespace xs
 		{
 			if( isCompressed() )
 			{
+				assert(0);   //暂时不支持压缩
+
+				/*
 				//对压缩纹理，只是更新参数，但不上传数据
 				GLenum format = GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
 				PixelFormat pf = getPixelFormat();
@@ -155,6 +158,7 @@ namespace xs
 					InterlockedExchangePointer(&m_pImageBuffer, pTempImg);
 					pTempImg = 0;	
 				}
+				*/
 			}
 			else
 			{
@@ -199,6 +203,9 @@ namespace xs
 		{
 			if( isCompressed() )
 			{
+				assert(0);
+
+				/*
 				GLenum format = GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
 				PixelFormat pf = getPixelFormat();
 				switch(pf)
@@ -257,7 +264,7 @@ namespace xs
 
 				//设置加载标志
 				InterlockedExchange(&m_lUploadFlag, (LONG)1);
-
+				*/
 			}
 			else
 			{
@@ -270,10 +277,11 @@ namespace xs
 					FilterOptions foMin,foMip;
 					getCombinedMinMipFilter(minFilter,foMin,foMip);
 					glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,getCombinedMinMipFilter(foMin,FO_NONE));
-					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_LOD,0);
-					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LOD, 0 );
-					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL,0);
-					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL,0);
+					
+					//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_LOD,0);
+					//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LOD, 0 );
+					//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL,0);
+					//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL,0);
 				}
 
 				PixelFormat pf = getPixelFormat();
@@ -854,6 +862,9 @@ namespace xs
 		{
 			if( isCompressed() )
 			{
+				assert(0);
+
+				/*
 				glBindTexture(GL_TEXTURE_2D,m_gluiTextureID);
 
 				if(m_ui32NumMipmaps <= 1)
@@ -863,6 +874,7 @@ namespace xs
 					FilterOptions foMin,foMip;
 					getCombinedMinMipFilter(minFilter,foMin,foMip);
 					glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,getCombinedMinMipFilter(foMin,FO_NONE));
+					
 					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_LOD,0);
 					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LOD, 0 );
 					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL,0);
@@ -907,7 +919,9 @@ namespace xs
 				InterlockedExchange(&m_lUploadFlag, (LONG)1);
 				delete m_pImageBuffer;
 				m_pImageBuffer = 0;
-				return true;		
+				return true;
+				*/
+				return false;
 			}
 			else//非压缩的纹理已经在load的时候上传了
 			{
@@ -921,10 +935,13 @@ namespace xs
 					FilterOptions foMin,foMip;
 					getCombinedMinMipFilter(minFilter,foMin,foMip);
 					glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,getCombinedMinMipFilter(foMin,FO_NONE));
+					
+					/*
 					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_LOD,0);
 					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LOD, 0 );
 					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL,0);
 					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL,0);
+					*/
 				}
 
 				PixelFormat pf = getPixelFormat();

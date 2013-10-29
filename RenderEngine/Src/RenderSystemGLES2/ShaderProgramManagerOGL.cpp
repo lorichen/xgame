@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "ShaderProgramManagerOGL.h"
-#include "ShaderProgram.h"
-#include "ShaderManager.h"
+//#include "ShaderProgram.h"
+//#include "ShaderManager.h"
 #include "HighLevelShaderManager.h"
 #include "HighLevelShaderProgram.h"
 
@@ -14,7 +14,9 @@ namespace xs
 		{
 		case SPT_LOWLEVEL:
 			{
-				return new ShaderProgram(this,ShaderManager::Instance() );
+				//return new ShaderProgram(this,ShaderManager::Instance() );
+				assert(0);
+				return 0;
 			}
 			break;
 		case SPT_HIGHLEVEL:
@@ -44,7 +46,7 @@ namespace xs
 
 	void ShaderProgramManagerOGL::release()
 	{
-		ShaderManager::Instance()->release();
+		//ShaderManager::Instance()->release();
 		HighLevelShaderManager::Instance()->release();
 		m_pCurrentShaderProgram = 0;
 
@@ -63,7 +65,9 @@ namespace xs
 
 	ShaderManager* ShaderProgramManagerOGL::getLowLevelShaderManager()
 	{
-		return ShaderManager::Instance();
+		//return ShaderManager::Instance();
+		assert(0);
+		return 0;
 	}
 
 	HighLevelShaderManager*	ShaderProgramManagerOGL::getHighLevelShaderManager()

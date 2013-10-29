@@ -1,6 +1,11 @@
 #ifndef __TYPE__H__
 #define __TYPE__H__
 
+typedef unsigned int			uint;
+typedef unsigned char			uchar;
+typedef unsigned short			ushort;
+typedef unsigned long			ulong;
+
 #if (TARGET_PLATFORM != PLATFORM_WIN32)
 
 typedef unsigned long size_t;
@@ -16,11 +21,6 @@ typedef char*         LPCSTR;
 typedef unsigned char BYTE;
 typedef long          LONG;
 
-
-typedef unsigned char			uchar;
-typedef unsigned short			ushort;
-typedef unsigned int			uint;
-typedef unsigned long			ulong;
 typedef unsigned int            uint32;
 typedef unsigned short          uint16;
 typedef float                   Real;
@@ -169,7 +169,7 @@ void ZeroMemory(void* p,unsigned int size)
 #include <direct.h>
 #include <hash_map>
 #include <io.h>
-#include <direct
+#include <direct.h>
 using namespace stdext;
 #define HASH_MAP_NAMESPACE stdext
 

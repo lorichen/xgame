@@ -6,6 +6,8 @@
 //支持描边,双重描边,阴影和颜色渐变等效果
 // yhc
 
+#if 0  //add by kevin.chen
+
 #include "PngOutlineText.h"
 namespace xs
 {
@@ -125,6 +127,9 @@ namespace xs
 		virtual void  RenderByScale(const wchar_t* c,float fScale);
 	};
 }
+
+#endif
+
 #endif // __FTTextureFont__
 
 

@@ -21,7 +21,7 @@ namespace xs
 
 		uint ui32SizeInBytes = m_ui32IndexSize * m_ui32NumIndexes;
 
-		glGenBuffersARB(1,&m_ui32BufferID);
+		glGenBuffers(1,&m_ui32BufferID);
 
 		if (!m_ui32BufferID)
 		{
@@ -29,24 +29,24 @@ namespace xs
 			return;
 		}
 
-		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
 
 		// Initialise buffer and set usage
-		glBufferDataARB(GL_ELEMENT_ARRAY_BUFFER,ui32SizeInBytes,NULL,BufferManager::getGLUsage(usage));
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER,ui32SizeInBytes,NULL,BufferManager::getGLUsage(usage));
 
-		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 	}
 
 	IndexBuffer::~IndexBuffer()
 	{
-		glDeleteBuffersARB(1,&m_ui32BufferID);
+		glDeleteBuffers(1,&m_ui32BufferID);
 	}
 
 	void* IndexBuffer::lock(uint offset,uint length,LockOptions options)
 	{
 		GLenum access = 0;
 
-		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
 
 		if(options == BL_DISCARD)
 		{
@@ -81,7 +81,7 @@ namespace xs
 			access = GL_READ_WRITE;
 		}
 
-		void* pBuffer = glMapBufferARB(GL_ELEMENT_ARRAY_BUFFER,access);
+		void* pBuffer = glMapBuffer(GL_ELEMENT_ARRAY_BUFFER,access);
 
 		if(pBuffer == 0)
 		{
@@ -89,20 +89,20 @@ namespace xs
 		}
 
 		m_bLocked = true;
-		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 		return static_cast<void*>(static_cast<unsigned char*>(pBuffer) + offset);
 	}
 
 	void IndexBuffer::unlock()
 	{
-		glBindBufferARB( GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
+		glBindBuffer( GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
 
-		if(!glUnmapBufferARB(GL_ELEMENT_ARRAY_BUFFER))
+		if(!glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER))
 		{
 			Error("Can't UnmapBuffer\n");
 		}
 		m_bLocked = false;
-		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 	}
 
 	bool	IndexBuffer::isLocked()
@@ -123,23 +123,26 @@ namespace xs
 	//---------------------------------------------------------------------
 	void IndexBuffer::readData(uint offset,uint length,void* pDest)
 	{
-		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
-		glGetBufferSubDataARB(GL_ELEMENT_ARRAY_BUFFER, offset, length, pDest);
-		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,0);
+		assert(0);
+		/*
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
+		glGetBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset, length, pDest);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+		*/
 	}
 	//---------------------------------------------------------------------
 	void IndexBuffer::writeData(uint offset,uint length,const void* pSource,bool discardWholeBuffer)
 	{
-		glBindBufferARB( GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
+		glBindBuffer( GL_ELEMENT_ARRAY_BUFFER,m_ui32BufferID);
 
 		if(discardWholeBuffer)
 		{
-			glBufferDataARB(GL_ELEMENT_ARRAY_BUFFER,m_ui32IndexSize * m_ui32NumIndexes,0,BufferManager::getGLUsage(m_Usage));
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER,m_ui32IndexSize * m_ui32NumIndexes,0,BufferManager::getGLUsage(m_Usage));
 		}
 
 		// Now update the real buffer
-		glBufferSubDataARB(GL_ELEMENT_ARRAY_BUFFER,offset,length,pSource);
-		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,0);
+		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER,offset,length,pSource);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 	}
 	GLint		IndexBuffer::getGLBufferId()
 	{

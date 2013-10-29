@@ -6,7 +6,12 @@
 ** ÈÕ  ÆÚ: 
 ** Ãè  Êö: 
 ********************************************************************/
-#include "../stdafx.h"
+//#ifdef WIN32
+	#include "Stdafx.h"
+//#else
+//	#include "../StdAfx.h"
+//#endif
+
 #include "MpwFormat.h"
 #include "Mpwdecoder.h"
 #include "Entity2DAniPack.h"

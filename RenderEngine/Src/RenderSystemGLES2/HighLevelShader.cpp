@@ -8,25 +8,23 @@ namespace xs
 		switch(st)
 		{
 		case ST_VERTEX_PROGRAM:
-			return GL_VERTEX_SHADER_ARB;
+			return GL_VERTEX_SHADER;
 		case ST_FRAGMENT_PROGRAM:
-			return GL_FRAGMENT_SHADER_ARB;
+			return GL_FRAGMENT_SHADER;
 		}
-
-		return GL_VERTEX_SHADER_ARB;
+		return GL_VERTEX_SHADER;
 	}
 
 	bool HighLevelShader::create(ShaderType st,const uchar *pBuffer,uint len)
 	{
 		m_type = st;
 
-		m_handle = glCreateShaderObjectARB(getGLHighLevelShaderType(st));
+		m_handle = glCreateShader(getGLHighLevelShaderType(st));
 		if(m_handle)
 		{
-			glShaderSourceARB(m_handle,1,(const GLcharARB**)&pBuffer,NULL);
-			glCompileShaderARB(m_handle);
+			glShaderSource(m_handle,1,(const char**)&pBuffer,NULL);
+			glCompileShader(m_handle);
 		}
-
 		return m_handle != 0;
 	}
 
@@ -49,7 +47,7 @@ namespace xs
 		return m_type;
 	}
 
-	GLhandleARB HighLevelShader::getHandle()
+	GLuint HighLevelShader::getHandle()
 	{
 		return m_handle;
 	}

@@ -6,15 +6,15 @@
 #include "BufferManager.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-#include "DefaultBufferManager.h"
+//#include "DefaultBufferManager.h"
 #include "TextureManager.h"
 #include "Texture.h"
-#include "ShaderManager.h"
+//#include "ShaderManager.h"
 #include "HighLevelShaderManager.h"
 #include "ShaderProgramManagerOGL.h"
 #include "RenderTarget.h"
 #include "pbuffer.h"
-#include "AVIVideoObject.h"
+//#include "AVIVideoObject.h"
 #include "HardwareCursorManagerOGL.h"
 
 namespace xs
@@ -145,7 +145,7 @@ namespace xs
 		if(cx == 0 || cy == 0)return;
 
 		glViewport(0,0,cx,cy);
-		GLdouble fAspectRatio = (GLdouble)cx / (GLdouble)cy;
+		GLfloat fAspectRatio = (GLfloat)cx / (GLfloat)cy;
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -875,7 +875,7 @@ namespace xs
 
 	bool	RenderSystem::create(RenderEngineCreationParameters *param)
 	{
-		if(param->rst != RS_OPENGL)return false;
+		if(param->rst != RS_OPENGLES2)return false;
 
 		HWND hWnd = (HWND)param->hwnd;
 		if(!hWnd)
@@ -883,7 +883,6 @@ namespace xs
 			Trace("Trace:RenderSystem::create	m_hWnd == 0\n");
 			return false;
 		}
-
 		m_stencilBuffer = param->stencilBuffer ? 8 : 0;
 		if(!addRenderTarget((uint)hWnd))return false;
 		setCurrentRenderTarget((uint)hWnd);
@@ -1556,7 +1555,7 @@ namespace xs
 
 			if(bHasVBO)
 			{
-				glBindBufferARB(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
+				glBindBuffer(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
 				pBufferData = VBO_BUFFER_OFFSET(ui32Offset);
 			}
 			else
@@ -1636,7 +1635,7 @@ namespace xs
 		{
 			if(bHasVBO)
 			{
-				glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,
 					static_cast<IndexBuffer*>(op.indexData->indexBuffer)->getGLBufferId());
 
 				pBufferData = VBO_BUFFER_OFFSET(
@@ -1658,8 +1657,8 @@ namespace xs
 
 		if(bHasVBO)
 		{
-			glBindBufferARB(GL_ARRAY_BUFFER,0);
-			if(op.bUseIndices)glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,0);
+			glBindBuffer(GL_ARRAY_BUFFER,0);
+			if(op.bUseIndices)glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 		}
 
 		glDisableClientState(GL_VERTEX_ARRAY);
@@ -1799,7 +1798,7 @@ namespace xs
 
 			if(bHasVBO)
 			{
-				glBindBufferARB(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
+				glBindBuffer(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
 				pBufferData = VBO_BUFFER_OFFSET(start);
 			}
 			else
@@ -1811,7 +1810,7 @@ namespace xs
 
 			glTexCoordPointer(2,GL_FLOAT,ui32VertexBufferSize,pBufferData);
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-			if(bHasVBO)glBindBufferARB(GL_ARRAY_BUFFER,0);
+			if(bHasVBO)glBindBuffer(GL_ARRAY_BUFFER,0);
 
 			if(unit)glClientActiveTexture(GL_TEXTURE0);
 		}
@@ -1831,7 +1830,7 @@ namespace xs
 
 			if(bHasVBO)
 			{
-				glBindBufferARB(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
+				glBindBuffer(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
 				pBufferData = VBO_BUFFER_OFFSET(start);
 			}
 			else
@@ -1841,7 +1840,7 @@ namespace xs
 
 			glVertexPointer(3,GL_FLOAT,ui32VertexBufferSize,pBufferData);
 			glEnableClientState(GL_VERTEX_ARRAY);
-			if(bHasVBO)glBindBufferARB(GL_ARRAY_BUFFER,0);
+			if(bHasVBO)glBindBuffer(GL_ARRAY_BUFFER,0);
 		}
 	}
 
@@ -1859,7 +1858,7 @@ namespace xs
 
 			if(bHasVBO)
 			{
-				glBindBufferARB(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
+				glBindBuffer(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
 				pBufferData = VBO_BUFFER_OFFSET(start);
 			}
 			else
@@ -1869,7 +1868,7 @@ namespace xs
 
 			glColorPointer(4,GL_UNSIGNED_BYTE,ui32VertexBufferSize,pBufferData);
 			glEnableClientState(GL_COLOR_ARRAY);
-			if(bHasVBO)glBindBufferARB(GL_ARRAY_BUFFER,0);
+			if(bHasVBO)glBindBuffer(GL_ARRAY_BUFFER,0);
 		}
 	}
 
@@ -1887,7 +1886,7 @@ namespace xs
 
 			if(bHasVBO)
 			{
-				glBindBufferARB(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
+				glBindBuffer(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
 				pBufferData = VBO_BUFFER_OFFSET(start);
 			}
 			else
@@ -1897,7 +1896,7 @@ namespace xs
 
 			glSecondaryColorPointerEXT(4,GL_UNSIGNED_BYTE,ui32VertexBufferSize,pBufferData);
 			glEnableClientState(GL_SECONDARY_COLOR_ARRAY);
-			if(bHasVBO)glBindBufferARB(GL_ARRAY_BUFFER,0);
+			if(bHasVBO)glBindBuffer(GL_ARRAY_BUFFER,0);
 		}
 	}
 
@@ -1925,7 +1924,7 @@ namespace xs
 
 			if(bHasVBO)
 			{
-				glBindBufferARB(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
+				glBindBuffer(GL_ARRAY_BUFFER,static_cast<VertexBuffer*>(vertexBuffer)->getGLBufferId());
 				pBufferData = VBO_BUFFER_OFFSET(start);
 			}
 			else
@@ -1935,7 +1934,7 @@ namespace xs
 
 			glNormalPointer(GL_FLOAT,ui32VertexBufferSize,pBufferData);
 			glEnableClientState(GL_NORMAL_ARRAY);
-			if(bHasVBO)glBindBufferARB(GL_ARRAY_BUFFER,0);
+			if(bHasVBO)glBindBuffer(GL_ARRAY_BUFFER,0);
 		}
 	}
 
@@ -1946,7 +1945,7 @@ namespace xs
 			bool	bHasVBO = m_rsc.hasCapability(RSC_VBO);
 			if(bHasVBO)
 			{
-				glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,static_cast<IndexBuffer*>(indexBuffer)->getGLBufferId());
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,static_cast<IndexBuffer*>(indexBuffer)->getGLBufferId());
 			}
 			else
 			{
@@ -1955,7 +1954,7 @@ namespace xs
 		}
 		else
 		{
-			glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER,0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 		}
 	}
 
@@ -2241,7 +2240,7 @@ namespace xs
 			return;
 		}
 
-		GLdouble clipPlane[4];
+		GLfloat clipPlane[4];
 		clipPlane[0] = pPlane->normal.x;
         clipPlane[1] = pPlane->normal.y;
 		clipPlane[2] = pPlane->normal.z;
@@ -2251,7 +2250,7 @@ namespace xs
 		glEnable(ePlane);
 	}
 
-	extern "C"{extern void glutSolidTeapot(GLdouble scale);}
+	extern "C"{extern void glutSolidTeapot(GLfloat scale);}
 	/*
 	.SH DESCRIPTION
 	glutSolidTeapot and glutWireTeapot render a solid or wireframe
@@ -2414,8 +2413,8 @@ namespace xs
 
 	Vector3		RenderSystem::unproject(const Vector3& v)
 	{
-		GLdouble mm[16];
-		GLdouble pm[16];
+		GLfloat mm[16];
+		GLfloat pm[16];
 
 		Matrix4 mtxProj = m_pCurrentRenderTarget->m_RenderState.m_mtxProjection;
 		mtxProj = mtxProj.transpose();
@@ -2442,7 +2441,7 @@ namespace xs
 		vp[2] = m_pCurrentRenderTarget->m_vpWidth;
 		vp[3] = m_pCurrentRenderTarget->m_vpHeight;
 
-		GLdouble x,y,z;
+		GLfloat x,y,z;
 		gluUnProject(v.x,rc.bottom - rc.top - v.y,v.z,mm,pm,vp,&x,&y,&z);
 
 		return Vector3(x,y,z);
@@ -2450,8 +2449,8 @@ namespace xs
 
 	Vector3		RenderSystem::project(const Vector3& v)
 	{
-		GLdouble mm[16];
-		GLdouble pm[16];
+		GLfloat mm[16];
+		GLfloat pm[16];
 
 		Matrix4 mtxProj = m_pCurrentRenderTarget->m_RenderState.m_mtxProjection;
 		mtxProj = mtxProj.transpose();
@@ -2482,7 +2481,7 @@ namespace xs
 		RECT rc;
 		m_pCurrentRenderTarget->getRect(&rc);
 
-		GLdouble x,y,z;
+		GLfloat x,y,z;
 		gluProject(v.x,v.y,v.z,mm,pm,vp,&x,&y,&z);
 
 		return Vector3(x,rc.bottom - rc.top - y,z);
@@ -2598,7 +2597,7 @@ namespace xs
 		*/
 		gluPickMatrix(x - variance, (view[3] - view[1]) - y - variance, 1 + 2 * variance, 1 + 2 * variance, view);
 
-		GLdouble pm[16];
+		GLfloat pm[16];
 		glGetDoublev(GL_PROJECTION_MATRIX,pm);
 		Matrix4 mtx(
 			pm[0],pm[4],pm[8],pm[12],

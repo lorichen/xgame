@@ -142,7 +142,7 @@ namespace xs
 		typedef std::vector<IShader *>	ShaderContainer;
 		typedef ShaderContainer::iterator ShaderContainerIterator;
 		ShaderContainer					m_vShaders;
-		GLhandleARB	m_handle;
+		GLuint	m_handle;
 		HighLevelShaderManager *		m_pShaderManger;
 		ShaderProgramManagerOGL*		m_pShaderProgramManager;
 	};

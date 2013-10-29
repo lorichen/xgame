@@ -106,7 +106,7 @@ namespace xs
 	{
 		if(pShader)
 		{
-			glDeleteObjectARB(static_cast<HighLevelShader*>(pShader)->getHandle());
+			glDeleteShader(static_cast<HighLevelShader*>(pShader)->getHandle());
 			delete static_cast<HighLevelShader*>(pShader);
 		}
 	}

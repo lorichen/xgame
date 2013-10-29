@@ -293,14 +293,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\resource5.h"
-			>
-		</File>
-		<File
-			RelativePath=".\RktGuiRenderer.rc"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
