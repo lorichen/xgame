@@ -6,30 +6,26 @@
 class pbuffer : public RenderTarget
 {
 public:
+
 	bool initialize(int width,int height,int colorBits,int depthBits,
-		int stencilBits,HDC hdc,HGLRC hglrc,IRenderSystem* pRenderSystem,
+		int stencilBits,HDC hdc,EGLContext hglrc,IRenderSystem* pRenderSystem,
 		FilterOptions min, FilterOptions mag, FilterOptions mip,TextureAddressingMode s,TextureAddressingMode t);
 	void  finalize();
 private:
-	// Define a PBuffer object.
-	typedef struct _pbuffer
-	{
-		HPBUFFERARB  hpbuffer;      // void* to a pbuffer.
-		HDC          hdc;           // void* to a device context.
-		HGLRC        hglrc;         // void* to a GL rendering context.
-		int          width;         // Width of the pbuffer
-		int          height;        // Height of the pbuffer
-	} nv_pbuffer;
+	
 private:
-	nv_pbuffer		m_pbuffer;
-	IRenderSystem*	m_pRenderSystem;
-	ITexture*		m_pTexture;
-	HDC				m_previousDC;
-	HGLRC			m_previousRC;
+	RenderTargetDesc m_desc;
+	
+	ITexture*		 m_pTexture;
+	HDC				 m_previousDC;
+	EGLContext		 m_previousRC;
+
+	GLuint			 m_pDepthBuffer;
+	GLuint			 m_pStencilBuffer;
 public:
-	uint		m_id;
+	uint			 m_id;
 public:
-	pbuffer() : m_id(0),m_pTexture(0),m_pRenderSystem(0),m_previousDC(0),m_previousRC(0){}
+	pbuffer(RenderSystem* pRenderSystem) : RenderTarget(pRenderSystem),m_id(0),m_pTexture(0),m_previousDC(0),m_previousRC(0){}
 public:
 	virtual void 		onDetach();
 	virtual void 		onAttach();

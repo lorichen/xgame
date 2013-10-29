@@ -1,7 +1,37 @@
 #ifndef __RenderTarget_H__
 #define __RenderTarget_H__
 
+namespace xs
+{
+	class RenderSystem;
+}
 
+class RenderTargetDesc
+{
+public:
+	unsigned int width;
+	unsigned int height;
+	unsigned int colorBits;
+	unsigned int depthBits;
+	unsigned int stencilBits;
+	FilterOptions min;
+	FilterOptions mag;
+	FilterOptions mip;
+	TextureAddressingMode s;
+	TextureAddressingMode t;
+
+	RenderTargetDesc()
+		:width(0),height(0)
+		,colorBits(32)
+		,depthBits(16)
+		,stencilBits(8)
+		,min(FO_LINEAR)
+		,mag(FO_LINEAR)
+		,mip(FO_LINEAR)
+		,s(TAM_CLAMP_TO_EDGE)
+		,t(TAM_CLAMP_TO_EDGE)
+	{}
+};
 
 class RenderTarget
 {
@@ -53,23 +83,30 @@ public:
 			m_DepthBufferFunction = CMPF_LESS;
 		}
 	};
+
+	
 public:
-	HGLRC	rc;
-	HDC		dc;
-	HWND	m_hWnd;
+	EGLContext			rc;		//render context
+	HDC				dc;	
+	bool			m_b2D;
+	HWND			m_hWnd;
+		
+	EGLSurface		m_eglSurface;
+	RenderSystem*	m_pRenderSystem;
+	EGLDisplay		m_eglDisplay;
+
 	RenderState		m_RenderState2D,m_RenderState3D;
 	RenderState		m_RenderState;
-	bool			m_b2D;
+	
 
-	RenderTarget() : rc(0),dc(0),m_b2D(false),m_hWnd(0){}
-	RenderTarget(HDC dc,HGLRC rc,HWND hWnd) : dc(dc),rc(rc),m_b2D(false),m_hWnd(hWnd)
-	{
-		m_vpLeft = m_vpTop = 0;
-		m_vpWidth = m_vpHeight = 0;
-	}
+	RenderTarget(RenderSystem* pRenderSystem);
+	RenderTarget(HDC dc,HWND hWnd,RenderSystem* pRenderSystem,EGLContext shareContext = NULL);
 
 	//视口参数不会在切换2D / 3D时候重置，保存下来是方便使用
 	int m_vpLeft,m_vpTop,m_vpWidth,m_vpHeight;
+
+	GLuint  m_FrameBufferObj;
+	GLuint  GetFrameBufferObj(){return m_FrameBufferObj;}
 };
 
 #endif

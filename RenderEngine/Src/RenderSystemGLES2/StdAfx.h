@@ -4,6 +4,7 @@
 #if defined(__WIN32__) || defined(_WIN32)
 #include "windows.h"
 #endif
+
 #include "Base.h"
 #define new RKT_NEW
 #include "ReMath.h"
@@ -31,6 +32,7 @@ using namespace xs;
 #include <GLES2/gl2ext.h>
 #include <EGL/egl.h>
 #include <EGL/eglplatform.h>
+
 
 
 #define GL_WRITE_ONLY   GL_WRITE_ONLY_OES

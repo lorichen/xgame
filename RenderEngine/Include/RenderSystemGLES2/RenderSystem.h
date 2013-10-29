@@ -772,14 +772,21 @@ private:
 	bool	m_scissorEnabled;
 
 	ushort	m_textureUnit;
-private:
-	HDC		m_hDC;
-	HWND	m_hWnd;
-	HGLRC	m_hRC;
+
+public:
+	HDC			m_hDC;
+	HWND		m_hWnd;
+	EGLContext	m_hRC;
+	
+	EGLDisplay	m_eglDisplay;
+	EGLConfig	m_eglConfig;
+	EGLSurface	m_eglSurface;
+
 	ColorValue	m_surfaceDiffuse;
 private:
 	// Selection
 	GLuint m_SelectionBuffer[64];
+
 private:
 	// MultiRenderTarget
 	typedef stdext::hash_map<uint,RenderTarget*> RenderTargetType;
@@ -794,6 +801,8 @@ private:
 	static std::list<IRenderSystem*>		m_vRenderSystems;
 
 	RenderMode		m_RenderMode;
+
+
 };
 
 }

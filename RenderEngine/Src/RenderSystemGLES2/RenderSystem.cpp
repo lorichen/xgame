@@ -49,13 +49,17 @@ namespace xs
 		case PT_TRIANGLE_FAN:
 			return GL_TRIANGLE_FAN;
 
-		case PT_QUADS:
-			return GL_QUADS;
+		//case PT_QUADS:
+			//return GL_QUADS;
 
-		case PT_QUAD_STRIP:
-			return GL_QUAD_STRIP;
+		//case PT_QUAD_STRIP:
+		//	return GL_QUAD_STRIP;
 
 		case PT_POINTS:
+			return GL_POINTS;
+
+		default:
+			assert(0);
 			return GL_POINTS;
 		}
 
@@ -107,8 +111,8 @@ namespace xs
 			{
 				uint currentRenderTarget = m_currentRenderTarget;
 				setCurrentRenderTarget(it->first);
-				wglDeleteContext(it->second->rc);
-				ReleaseDC((HWND)it->first,it->second->dc);
+				//wglDeleteContext(it->second->rc);
+				//ReleaseDC((HWND)it->first,it->second->dc);
 				setCurrentRenderTarget(currentRenderTarget);
 				it->second->release();
 			}
@@ -116,8 +120,8 @@ namespace xs
 		RenderTargetType::iterator it = m_vRenderTarget.find(m_currentRenderTarget);
 		if(it != m_vRenderTarget.end())
 		{
-			wglDeleteContext(it->second->rc);
-			ReleaseDC((HWND)it->first,it->second->dc);
+			//wglDeleteContext(it->second->rc);
+			//ReleaseDC((HWND)it->first,it->second->dc);
 			it->second->release();
 		}
 		m_vRenderTarget.clear();
@@ -127,14 +131,17 @@ namespace xs
 		//这里的释放值得商榷
 		if(m_vRenderSystems.empty())
 		{
-			ShaderProgramManagerOGL::Instance()->getLowLevelShaderManager()->releaseAllShader();
+			//ShaderProgramManagerOGL::Instance()->getLowLevelShaderManager()->releaseAllShader();
 			ShaderProgramManagerOGL::Instance()->getHighLevelShaderManager()->releaseAllShader();
 			
 			ITextureManager *pTextureManager = getTextureManager();
 			pTextureManager->releaseAll();
 		}
 
-		wglMakeCurrent(0,0);
+		//wglMakeCurrent(0,0);
+		eglDestroySurface(m_eglDisplay, m_eglSurface);
+		eglTerminate(m_eglDisplay);
+		if (m_hDC) ReleaseDC(m_hWnd, m_hDC);
 	}
 
 	void	RenderSystem::setDefaultMatrix(uint cx,uint cy)
@@ -143,17 +150,18 @@ namespace xs
 
 		glViewport(0,0,cx,cy);
 		GLfloat fAspectRatio = (GLfloat)cx / (GLfloat)cy;
-
+		
+		/*
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		gluPerspective(60.0f,fAspectRatio,1.0f,1000.0f);
-
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		gluLookAt(0,0,1,0,0,0,0,1,0);
+		*/
 
 		glClearColor(0.223f,0.427f,0.647f,1);
-		glClearDepth(1.0f);
+		glClearDepthf(1.0f);
 	}
 
 	bool RenderSystem::checkMinGLVersion(const std::string& v) const
@@ -229,99 +237,34 @@ namespace xs
 		}
 		Trace("\n");
 
-		// Check for hardware mipmapping support.
-		if((checkMinGLVersion("1.4.0") || glewIsExtensionSupported("GL_SGIS_generate_mipmap")))
-		{
-			m_rsc.setCapability(RSC_AUTOMIPMAP);
-			Trace("OK! AutoMipmap\n");
-		}
-		else
-		{
-			Trace("FAIL! AutoMipmap\n");
-		}
 
 		// Check for blending support
-		if(checkMinGLVersion("1.3.0") || 
-			glewIsExtensionSupported("GL_ARB_texture_env_combine") || 
-			glewIsExtensionSupported("GL_EXT_texture_env_combine"))
-		{
-			m_rsc.setCapability(RSC_BLENDING);
-			Trace("OK! Blending\n");
-		}
-		else
-		{
-			Trace("FAIL! Blending\n");
-		}
+		m_rsc.setCapability(RSC_BLENDING);
+		Trace("OK! Blending\n");
+		
 
 		// Check for Multitexturing support and set number of texture units
-		if(checkMinGLVersion("1.3.0") || 
-			glewIsExtensionSupported("GL_ARB_multitexture"))
-		{
-			GLint units;
-			glGetIntegerv( GL_MAX_TEXTURE_UNITS, &units );
+		GLint units = 8;
+		//glGetIntegerv( GL_MAX_TEXTURE_UNITS, &units );
 
-			if (glewIsExtensionSupported("GL_ARB_fragment_program"))
-			{
-				// Also check GL_MAX_TEXTURE_IMAGE_UNITS_ARB since NV at least
-				// only increased this on the FX/6x00 series
-				GLint arbUnits;
-				glGetIntegerv( GL_MAX_TEXTURE_IMAGE_UNITS_ARB, &arbUnits );
-				if (arbUnits > units)
-					units = arbUnits;
-			}
+		m_rsc.setNumTextureUnits(units);
+		Trace("TextureUnits: "<<units<<endl);
 
-			m_rsc.setNumTextureUnits(units);
-			Trace("TextureUnits: "<<units<<endl);
-
-		}
-		else
-		{
-			// If no multitexture support then set one texture unit
-			m_rsc.setNumTextureUnits(1);
-			Trace("TextureUnits: "<<1<<endl);
-		}
-
-		// Check for Anisotropy support
-		if(glewIsExtensionSupported("GL_EXT_texture_filter_anisotropic"))
-		{
-			m_rsc.setCapability(RSC_ANISOTROPY);
-			Trace("OK! Anisotropy Filter\n");
-		}
-		else
-		{
-			Trace("FAIL! Anisotropy Filter\n");
-		}
+		m_rsc.setCapability(RSC_ANISOTROPY);
+		Trace("OK! Anisotropy Filter\n");
+	
 
 		// Check for DOT3 support
-		if(checkMinGLVersion("1.3.0") ||
-			glewIsExtensionSupported("GL_ARB_texture_env_dot3") ||
-			glewIsExtensionSupported("GL_EXT_texture_env_dot3"))
-		{
-			m_rsc.setCapability(RSC_DOT3);
-			Trace("OK! Dot3\n");
-		}
-		else
-		{
-			Trace("FAIL! Dot3\n");
-		}
-
+		m_rsc.setCapability(RSC_DOT3);
+		Trace("OK! Dot3\n");
+		
 		// Check for cube mapping
-		if(checkMinGLVersion("1.3.0") || 
-			glewIsExtensionSupported("GL_ARB_texture_cube_map") || 
-			glewIsExtensionSupported("GL_EXT_texture_cube_map"))
-		{
-			m_rsc.setCapability(RSC_CUBEMAPPING);
-			Trace("OK! CubeMapping\n");
-		}
-		else
-		{
-			Trace("FAIL! CubeMapping\n");
-		}
+		m_rsc.setCapability(RSC_CUBEMAPPING);
+		Trace("OK! CubeMapping\n");
 
 		// Check for hardware stencil support and set bit depth
 		GLint stencil;
 		glGetIntegerv(GL_STENCIL_BITS,&stencil);
-
 		if(stencil)
 		{
 			m_rsc.setCapability(RSC_HWSTENCIL);
@@ -334,17 +277,10 @@ namespace xs
 		}
 
 		// Check for VBO support
-		if(glewIsExtensionSupported("GL_ARB_vertex_buffer_object"))
-		{
-			m_rsc.setCapability(RSC_VBO);
-			Trace("OK! Vertex Buffer Object\n");
-		}
-		else
-		{
-			Trace("FAIL! Vertex Buffer Object\n");
-		}
+		m_rsc.setCapability(RSC_VBO);
+		Trace("OK! Vertex Buffer Object\n");
+		
 
-		if(glewIsExtensionSupported("GL_ARB_vertex_program"))
 		{
 			m_rsc.setCapability(RSC_VERTEX_PROGRAM);
 			Trace("OK! Vertex Program\n");
@@ -353,33 +289,31 @@ namespace xs
 			m_rsc.setMaxVertexProgramVersion("arbvp1");
 			m_rsc.setVertexProgramConstantBoolCount(0);
 			m_rsc.setVertexProgramConstantIntCount(0);
-			m_rsc.setVertexProgramConstantFloatCount(
-				GL_MAX_PROGRAM_LOCAL_PARAMETERS_ARB);
+			
+			//m_rsc.setVertexProgramConstantFloatCount(GL_MAX_PROGRAM_LOCAL_PARAMETERS_ARB);
 
-			if (glewIsExtensionSupported("GL_NV_vertex_program2_option"))
+			//if (glewIsExtensionSupported("GL_NV_vertex_program2_option"))
 			{
 				m_rsc.setMaxVertexProgramVersion("vp30");
 			}
 
-			if (glewIsExtensionSupported("GL_NV_vertex_program3"))
+			//if (glewIsExtensionSupported("GL_NV_vertex_program3"))
 			{
 				m_rsc.setMaxVertexProgramVersion("vp40");
 			}
 		}
-		else
-		{
-			Trace("FAIL! Vertex Program\n");
-		}
+		
 
-		if (glewIsExtensionSupported("GL_NV_register_combiners2") &&
-			glewIsExtensionSupported("GL_NV_texture_shader"))
+		//if (glewIsExtensionSupported("GL_NV_register_combiners2") &&
+		//	glewIsExtensionSupported("GL_NV_texture_shader"))
 		{
 			m_rsc.setCapability(RSC_FRAGMENT_PROGRAM);
 			m_rsc.setMaxFragmentProgramVersion("fp20");
 		}
 
+		/*
 		// check for ATI fragment shader support
-		if (glewIsExtensionSupported("GL_ATI_fragment_shader"))
+		//if (glewIsExtensionSupported("GL_ATI_fragment_shader"))
 		{
 			m_rsc.setCapability(RSC_FRAGMENT_PROGRAM);
 			m_rsc.setMaxFragmentProgramVersion("ps_1_4");
@@ -418,6 +352,7 @@ namespace xs
 		{
 			Trace("FAIL! Fragment Program\n");
 		}
+		
 
 		// Check for texture compression
 		if(checkMinGLVersion("1.3.0") ||
@@ -441,6 +376,7 @@ namespace xs
 		{
 			Trace("FAIL! Texture Compression\n");
 		}
+		*/
 
 		// Scissor test is standard in GL 1.2 (is it emulated on some cards though?)
 		m_rsc.setCapability(RSC_SCISSOR_TEST);
@@ -450,37 +386,28 @@ namespace xs
 		Trace("OK! User Clip Planes\n");
 
 		// 2-sided stencil?
-		if (glewIsExtensionSupported("GL_EXT_stencil_two_side"))
+		//if (glewIsExtensionSupported("GL_EXT_stencil_two_side"))
 		{
 			m_rsc.setCapability(RSC_TWO_SIDED_STENCIL);
 			Trace("OK! Two Side Stencil\n");
 		}
-		else
-		{
-			Trace("FAIL! Two Side Stencil\n");
-		}
+		
 
 		// stencil wrapping?
-		if (glewIsExtensionSupported("GL_EXT_stencil_wrap"))
+		//if (glewIsExtensionSupported("GL_EXT_stencil_wrap"))
 		{
 			m_rsc.setCapability(RSC_STENCIL_WRAP);
 			Trace("OK! Stencil Wrap\n");
 		}
-		else
-		{
-			Trace("FAIL! Stencil Wrap\n");
-		}
+		
 
 		// Check for hardware occlusion support
-		if(glewIsExtensionSupported("GL_NV_occlusion_query"))
+		//if(glewIsExtensionSupported("GL_NV_occlusion_query"))
 		{
 			m_rsc.setCapability(RSC_HWOCCLUSION);
 			Trace("OK! Hardware Occlusion Query\n");
 		}
-		else
-		{
-			Trace("FAIL! Hardware Occlusion Query\n");
-		}
+		
 
 		// UBYTE4 always supported
 		m_rsc.setCapability(RSC_VERTEX_FORMAT_UBYTE4);
@@ -490,48 +417,39 @@ namespace xs
 		Trace("OK! Infinite Far Plane\n");
 
 		// Check for non-power-of-2 texture support
-		if(glewIsExtensionSupported("GL_ARB_texture_non_power_of_two"))
+		//if(glewIsExtensionSupported("GL_ARB_texture_non_power_of_two"))
 		{
 			m_rsc.setCapability(RSC_NON_POWER_OF_2_TEXTURES);
 			Trace("OK! Non Power of 2 Textures\n");
 		}
-		else
-		{
-			Trace("FAIL! Non Power of 2 Textures\n");
-		}
+		
 
 		// Check for float textures
-		if(glewIsExtensionSupported("GL_ATI_texture_float") ||
-			//           glewIsExtensionSupported("GL_NV_float_buffer") ||
-			glewIsExtensionSupported("GL_ARB_texture_float"))
+		//if(glewIsExtensionSupported("GL_ATI_texture_float") ||
+		//	glewIsExtensionSupported("GL_ARB_texture_float"))
 		{
 			m_rsc.setCapability(RSC_TEXTURE_FLOAT);
 			Trace("OK! float Texture\n");
 		}
-		else
-		{
-			Trace("FAIL! float Texture\n");
-		}
+		
 
 		// 3D textures should be supported by GL 1.2, which is our minimum version
 		m_rsc.setCapability(RSC_TEXTURE_3D);
 		Trace("OK! 3D Texture\n");
 
 		// Check for GLSL support
-		if(glewIsExtensionSupported("GL_ARB_fragment_shader") && glewIsExtensionSupported("GL_ARB_vertex_shader"))
+		//if(glewIsExtensionSupported("GL_ARB_fragment_shader") && glewIsExtensionSupported("GL_ARB_vertex_shader"))
 		{
-			//m_rsc.setCapability(RSC_HIGHLEVEL_SHADER);
+			m_rsc.setCapability(RSC_HIGHLEVEL_SHADER);
 			Trace("OK! GLSL\n");
 		}
-		else
-		{
-			Trace("FAIL! GLSL\n");
-		}
+		
 
 		GLint maxTextureSize;
 		glGetIntegerv(GL_MAX_TEXTURE_SIZE,&maxTextureSize); 
 		m_rsc.setMaxTextureSize(maxTextureSize);
 
+		/*
 		GLint maxVertexAttribs;
 		glGetIntegerv(GL_MAX_VERTEX_ATTRIBS_ARB,&maxVertexAttribs);
 		m_rsc.setMaxVertexAttribs(maxVertexAttribs);
@@ -553,11 +471,12 @@ namespace xs
 		GLint maxFragmentUniformComponents;
 		glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB,&maxFragmentUniformComponents);
 		m_rsc.setMaxFragmentUniformComponents(maxFragmentUniformComponents);
+		*/
 	}
 
 	const char* RenderSystem::getName()
 	{
-		static char szName[256] = "OpenGL";
+		static char szName[256] = "OpenGLES2";
 		return szName;
 	}
 
@@ -572,7 +491,6 @@ namespace xs
 
 		if(!hwnd)
 		{
-			wglMakeCurrent(0,0);
 			m_currentRenderTarget = 0;
 			if(m_pCurrentRenderTarget)
 			{
@@ -585,10 +503,10 @@ namespace xs
 		RenderTargetType::iterator it = m_vRenderTarget.find(hwnd);
 		if(it == m_vRenderTarget.end())return false;
 
-		it->second->onAttach();
-		wglMakeCurrent(it->second->dc,it->second->rc);
 		if(m_pCurrentRenderTarget)m_pCurrentRenderTarget->onDetach();
-
+		//wglMakeCurrent(it->second->dc,it->second->rc);
+		it->second->onAttach();
+		
 		m_currentRenderTarget = hwnd;
 		m_pCurrentRenderTarget = it->second;
 
@@ -626,36 +544,14 @@ namespace xs
 
 	IVideoObject * RenderSystem::createVideoObject(const char * pszFilename, uint type , uint imgWidth, uint imgHeight)
 	{
-#if defined RKT_WIN32 
-		switch( type)
-		{
-		case EVOT_AVI:
-			{
-				AVIVideoObject_Win32 * pobj = new AVIVideoObject_Win32();
-				if( !pobj) 
-					return 0;
-				if( !pobj->create(this, pszFilename, imgWidth, imgHeight) ) 
-				{
-					pobj->release();
-					return 0;
-				}
-				return pobj;
-			}
-			break;
-		default:
-			return 0;
-			break;			
-		}
+		assert(0);
 		return 0;
-#else
-		return 0;
-#endif
 	}
 
 	uint RenderSystem::addRTT(int width,int height, bool alpha,	FilterOptions min,FilterOptions mag,
 		FilterOptions mip, TextureAddressingMode s , TextureAddressingMode t)
 	{
-		pbuffer *ppbuffer = new pbuffer;
+		pbuffer *ppbuffer = new pbuffer(this);
 		if(ppbuffer)
 		{
 			bool initret = false;
@@ -675,7 +571,7 @@ namespace xs
 		if(ppbuffer)
 		{
 			m_vRenderTarget[ppbuffer->m_id] = ppbuffer;
-			if(m_pCurrentRenderTarget && m_pCurrentRenderTarget->rc)wglShareLists(m_pCurrentRenderTarget->rc,ppbuffer->rc);
+			//if(m_pCurrentRenderTarget && m_pCurrentRenderTarget->rc)wglShareLists(m_pCurrentRenderTarget->rc,ppbuffer->rc);
 		}
 
 		return ppbuffer ? ppbuffer->m_id : 0;
@@ -689,7 +585,6 @@ namespace xs
 		if(pRenderTarget)
 		{
 			m_vRenderTarget[(uint)hwnd] = pRenderTarget;
-
 			return true;
 		}
 
@@ -705,8 +600,7 @@ namespace xs
 
 		uint currentRenderTarget = m_currentRenderTarget;
 		setCurrentRenderTarget(hwnd);
-		wglDeleteContext(it->second->rc);
-		ReleaseDC((HWND)it->first,it->second->dc);
+		//ReleaseDC((HWND)it->first,it->second->dc);
 		setCurrentRenderTarget(currentRenderTarget);
 		it->second->release();
 
@@ -716,28 +610,12 @@ namespace xs
 
 	uint RenderSystem::MTaddRenderTarget(int layer)
 	{
-		HGLRC hRC = ::wglCreateLayerContext(m_hDC,layer);
-		if(!hRC)
-		{
-			Trace("RenderSystem::create	wglCreateContext == 0\n");
-			return 0;
-		}
-
-		if(m_hRC)
-		{
-			wglShareLists(m_hRC,hRC);
-			
-		}
-
-		RenderTarget *pRenderTarget = new RenderTarget(m_hDC,hRC,m_hWnd);
+		RenderTarget *pRenderTarget = new RenderTarget(m_hDC,m_hWnd,this,m_hRC);
 		if(pRenderTarget)
 		{
-			wglMakeCurrent(m_hDC,hRC);
-			m_vRenderTargetMT[(uint)hRC] = pRenderTarget;
-
-			return (uint)pRenderTarget->rc;
+			m_vRenderTargetMT[(uint)pRenderTarget->GetFrameBufferObj()] = pRenderTarget;
+			return (uint)pRenderTarget->GetFrameBufferObj();
 		}
-
 		return 0;
 	}
 
@@ -746,8 +624,7 @@ namespace xs
 		RenderTargetType::iterator it = m_vRenderTargetMT.find(key);
 		if(it == m_vRenderTargetMT.end())return false;
 
-
-		wglDeleteContext(it->second->rc);
+		//wglDeleteContext(it->second->rc);
 		it->second->release();
 
 		m_vRenderTargetMT.erase(it);
@@ -756,8 +633,11 @@ namespace xs
 
 	bool RenderSystem::addOverlayRenderTarget()
 	{
-		m_pOverlayRenderTarget = initializeRenderTarget(m_hWnd,1);
-		return m_pOverlayRenderTarget != 0;
+		//m_pOverlayRenderTarget = initializeRenderTarget(m_hWnd,1);
+		//return m_pOverlayRenderTarget != 0;
+		
+		assert(0);
+		return false;
 	}
 
 	void RenderSystem::removeOverlayRenderTarget()
@@ -767,14 +647,14 @@ namespace xs
 		if(m_pCurrentRenderTarget != m_pOverlayRenderTarget)
 		{
 			setOverlayRenderTarget();
-			wglDeleteContext(m_pOverlayRenderTarget->rc);
-			ReleaseDC(m_hWnd,m_pOverlayRenderTarget->dc);
+			//wglDeleteContext(m_pOverlayRenderTarget->rc);
+			//ReleaseDC(m_hWnd,m_pOverlayRenderTarget->dc);
 			setCurrentRenderTarget((uint)m_hWnd);
 		}
 		else
 		{
-			wglDeleteContext(m_pOverlayRenderTarget->rc);
-			ReleaseDC(m_hWnd,m_pOverlayRenderTarget->dc);
+			//wglDeleteContext(m_pOverlayRenderTarget->rc);
+			//ReleaseDC(m_hWnd,m_pOverlayRenderTarget->dc);
 		}
 		m_pOverlayRenderTarget->release();
 		m_pOverlayRenderTarget = 0;
@@ -785,9 +665,9 @@ namespace xs
 		if(!m_pOverlayRenderTarget)return false;
 		if(m_pCurrentRenderTarget == m_pOverlayRenderTarget)return true;
 
-		m_pOverlayRenderTarget->onAttach();
-		wglMakeCurrent(m_pOverlayRenderTarget->dc,m_pOverlayRenderTarget->rc);
 		if(m_pCurrentRenderTarget)m_pCurrentRenderTarget->onDetach();
+		//wglMakeCurrent(m_pOverlayRenderTarget->dc,m_pOverlayRenderTarget->rc);
+		m_pOverlayRenderTarget->onAttach();
 
 		m_currentRenderTarget = 0;
 		m_pCurrentRenderTarget = m_pOverlayRenderTarget;
@@ -814,60 +694,11 @@ namespace xs
 
 		HDC hDC = GetDC(hWnd);
 
-		PIXELFORMATDESCRIPTOR pfd = 
-		{
-			sizeof(PIXELFORMATDESCRIPTOR),		// size of this pfd
-			1,                              // version number
-			PFD_DRAW_TO_WINDOW |            // support window
-			PFD_SUPPORT_OPENGL |			// support OpenGL
-			PFD_DOUBLEBUFFER,				// double buffered
-			PFD_TYPE_RGBA,                  // RGBA type
-			24,                             // 24-bit color depth
-			0, 0, 0, 0, 0, 0,               // color bits ignored
-			0,                              // no alpha buffer
-			0,                              // shift bit ignored
-			0,                              // no accumulation buffer
-			0, 0, 0, 0,                     // accum bits ignored
-			16,                             // 16-bit z-buffer
-			m_stencilBuffer,                // stencil buffer
-			0,                              // no auxiliary buffer
-			PFD_MAIN_PLANE,                 // main layer
-			0,                              // reserved
-			0, 0, 0                         // layer masks ignored
-		};
-
-		int nPixelFormat;
-		if(0 == (nPixelFormat = ::ChoosePixelFormat(hDC,&pfd)))
-		{
-			ReleaseDC(hWnd,hDC);
-			Trace("Trace:RenderSystem::create	ChoosePixelFormat == 0\n");
-			return 0;
-		}
-
-		if(false == ::SetPixelFormat(hDC,nPixelFormat,&pfd))
-		{
-			ReleaseDC(hWnd,hDC);
-			Trace("Trace:RenderSystem::create	SetPixelFormat == 0\n");
-			return 0;
-		}
-
-		HGLRC hRC;
-		if(0 == (hRC = ::wglCreateLayerContext(hDC,layer)))
-		{
-			ReleaseDC(hWnd,hDC);
-			Trace("Trace:RenderSystem::create	wglCreateContext == 0\n");
-			return 0;
-		}
-
 		if(m_pCurrentRenderTarget)
 		{
-			//wglMakeCurrent(0,0);
-			wglShareLists(m_pCurrentRenderTarget->rc,hRC);
-			//wglMakeCurrent(m_pCurrentRenderTarget->dc,m_pCurrentRenderTarget->rc);
+			//wglShareLists(m_pCurrentRenderTarget->rc,hRC);
 		}
-
-		RenderTarget *pRenderTarget = new RenderTarget(hDC,hRC,hWnd);
-
+		RenderTarget *pRenderTarget = new RenderTarget(hDC,hWnd,this);
 		return pRenderTarget;
 	}
 
@@ -881,6 +712,55 @@ namespace xs
 			Trace("Trace:RenderSystem::create	m_hWnd == 0\n");
 			return false;
 		}
+
+		//初始化display
+		//win32 下实现
+		//---------------------
+		EGLNativeWindowType eglWindow = hWnd;
+		m_hDC = GetDC(m_hWnd);
+
+		if (!m_hDC) 
+			return false;
+
+		m_eglDisplay = eglGetDisplay(m_hDC);
+		if(m_eglDisplay == EGL_NO_DISPLAY)
+			m_eglDisplay = eglGetDisplay((EGLNativeDisplayType) EGL_DEFAULT_DISPLAY);
+
+		EGLint iMajorVersion, iMinorVersion;
+		if (!eglInitialize(m_eglDisplay, &iMajorVersion, &iMinorVersion))
+			return false;
+
+		eglBindAPI(EGL_OPENGL_ES_API);
+		const EGLint pi32ConfigAttribs[] =
+		{
+			EGL_LEVEL,				0,
+			EGL_SURFACE_TYPE,		EGL_WINDOW_BIT,
+			EGL_RENDERABLE_TYPE,	EGL_OPENGL_ES2_BIT,
+			EGL_NATIVE_RENDERABLE,	EGL_FALSE,
+			//EGL_DEPTH_SIZE,			EGL_DONT_CARE,
+			EGL_ALPHA_SIZE,         8,
+			EGL_BLUE_SIZE,          8,
+			EGL_GREEN_SIZE,         8,
+			EGL_RED_SIZE,           8,
+			EGL_DEPTH_SIZE,			16,
+			EGL_STENCIL_SIZE,       8,
+			EGL_NONE
+		};
+		EGLint iConfigs;
+		if (!eglChooseConfig(m_eglDisplay, pi32ConfigAttribs, &m_eglConfig, 1, &iConfigs) || (iConfigs != 1))
+		{
+			return false;
+		}
+		m_eglSurface = eglCreateWindowSurface(m_eglDisplay, m_eglConfig, eglWindow, NULL);
+		if(m_eglSurface == EGL_NO_SURFACE)
+		{
+			eglGetError(); // Clear error
+			m_eglSurface = eglCreateWindowSurface(m_eglDisplay, m_eglConfig, NULL, NULL);
+		}
+		if(m_eglSurface == EGL_NO_SURFACE)
+			return false;
+		//-----------------------------------------
+
 		m_stencilBuffer = param->stencilBuffer ? 8 : 0;
 		if(!addRenderTarget((uint)hWnd))return false;
 		setCurrentRenderTarget((uint)hWnd);
@@ -889,9 +769,6 @@ namespace xs
 		m_hDC = m_pCurrentRenderTarget->dc;
 		m_hRC = m_pCurrentRenderTarget->rc;
 
-		/*GLint vp[4];
-		glGetIntegerv(GL_VIEWPORT,vp);*/
-
 		RECT rc;
 		GetClientRect(hWnd,&rc);
 		setDefaultMatrix(rc.right - rc.left,rc.bottom - rc.top);
@@ -899,17 +776,6 @@ namespace xs
 		if(param->fullscreen)
 		{
 			Adapter::Instance()->toggleMode(hWnd,param->fullscreen,param->w,param->h,param->colorDepth,param->refreshRate);
-		}
-
-		/* ---------------------------------------------------------------------- */
-		/* initialize GLEW */
-		GLenum glewResult = glewInit();
-
-		if (GLEW_OK != glewResult)
-		{
-			close();
-			Trace("Trace:RenderSystem::create	GLEW_OK != glewResult\n");
-			return false;
 		}
 
 		initCapabilities();
@@ -998,7 +864,7 @@ namespace xs
 
 	void RenderSystem::setClearDepth(float depth)
 	{
-		glClearDepth(depth);
+		glClearDepthf(depth);
 	}
 
 	void 		RenderSystem::setClearStencil(int stencil)
@@ -1099,18 +965,21 @@ namespace xs
 	void		RenderSystem::setProjectionMatrix(const Matrix4& mtx)
 	{
 		m_pCurrentRenderTarget->m_RenderState.m_mtxProjection = mtx;
+		/*
 		glMatrixMode(GL_PROJECTION);
 		Matrix4 m = mtx.transpose();
 		glLoadMatrixf(&m[0][0]);
 		glMatrixMode(GL_MODELVIEW);
+		*/
 	}
 
 	void		RenderSystem::setViewMatrix(const Matrix4& mtx)
 	{
 		m_pCurrentRenderTarget->m_RenderState.m_mtxView = mtx;
 		m_pCurrentRenderTarget->m_RenderState.m_mtxModelView = m_pCurrentRenderTarget->m_RenderState.m_mtxView * m_pCurrentRenderTarget->m_RenderState.m_mtxWorld;
-		Matrix4 m = m_pCurrentRenderTarget->m_RenderState.m_mtxModelView.transpose();
-		glLoadMatrixf(&m[0][0]);
+		
+		//Matrix4 m = m_pCurrentRenderTarget->m_RenderState.m_mtxModelView.transpose();
+		//glLoadMatrixf(&m[0][0]);
 	}
 
 	const Matrix4&	RenderSystem::getProjectionMatrix()
@@ -1137,8 +1006,9 @@ namespace xs
 	{
 		m_pCurrentRenderTarget->m_RenderState.m_mtxWorld = mtx;
 		m_pCurrentRenderTarget->m_RenderState.m_mtxModelView = m_pCurrentRenderTarget->m_RenderState.m_mtxView * m_pCurrentRenderTarget->m_RenderState.m_mtxWorld;
-		Matrix4 m = m_pCurrentRenderTarget->m_RenderState.m_mtxModelView.transpose();
-		glLoadMatrixf(&m[0][0]);
+		
+		//Matrix4 m = m_pCurrentRenderTarget->m_RenderState.m_mtxModelView.transpose();
+		//glLoadMatrixf(&m[0][0]);
 	}
 
 	void		RenderSystem::setDepthBufferWriteEnabled(bool enabled)
@@ -1160,6 +1030,7 @@ namespace xs
 	{
 		if(m_pCurrentRenderTarget->m_RenderState.m_bLightingEnabled != enabled)
 		{
+			/*
 			if (enabled) 
 			{      
 				glEnable(GL_LIGHTING);
@@ -1168,7 +1039,7 @@ namespace xs
 			{
 				glDisable(GL_LIGHTING);
 			}
-
+			*/
 			m_pCurrentRenderTarget->m_RenderState.m_bLightingEnabled = enabled;
 		}
 	}
@@ -1188,7 +1059,9 @@ namespace xs
 		if(m_pCurrentRenderTarget->m_RenderState.m_fillMode == sdl)return;
 
 		m_pCurrentRenderTarget->m_RenderState.m_fillMode = sdl;
-
+		
+		assert(0);
+		/*
 		GLenum glmode;
 		switch(sdl)
 		{
@@ -1203,6 +1076,7 @@ namespace xs
 			break;
 		}
 		glPolygonMode(GL_FRONT_AND_BACK,glmode);
+		*/
 	}
 
 	void RenderSystem::setLineWidth(float width)
@@ -1227,7 +1101,7 @@ namespace xs
 		{
 			if (enabled)
 			{
-				glClearDepth(1.0f);
+				glClearDepthf(1.0f);
 				glEnable(GL_DEPTH_TEST);
 			}
 			else
@@ -1267,7 +1141,9 @@ namespace xs
 	{
 		m_pCurrentRenderTarget->m_RenderState.m_AlphaCompareFunction = cf;
 		m_pCurrentRenderTarget->m_RenderState.m_AlphaCompareValue = value;
-		glAlphaFunc(convertCompareFunction(cf),value);
+		
+		assert(0);
+		//glAlphaFunc(convertCompareFunction(cf),value);
 	}
 
 	void RenderSystem::setAlphaFunction(const CompareFunction& cf,uchar value)
@@ -1292,7 +1168,9 @@ namespace xs
 		if(m_pCurrentRenderTarget->m_RenderState.m_bAlphaCheckEnabled != bEnabled)
 		{
 			m_pCurrentRenderTarget->m_RenderState.m_bAlphaCheckEnabled = bEnabled;
-			bEnabled ? glEnable(GL_ALPHA_TEST) : glDisable(GL_ALPHA_TEST);
+			
+			assert(0);
+			//bEnabled ? glEnable(GL_ALPHA_TEST) : glDisable(GL_ALPHA_TEST);
 		}
 	}
 
@@ -1317,7 +1195,8 @@ namespace xs
 	
 	void RenderSystem::setEdgeFlag(bool bEdgeFlag)
 	{
-		glEdgeFlag(bEdgeFlag);
+		assert(0);
+		//glEdgeFlag(bEdgeFlag);
 	}
 
 	void RenderSystem::setCullingMode(const CullingMode& cm)
@@ -1403,7 +1282,8 @@ namespace xs
 
 	IBufferManager*		RenderSystem::getBufferManager()
 	{
-		return m_rsc.hasCapability(RSC_VBO) ? BufferManager::Instance() : DefaultBufferManager::Instance();
+		//return m_rsc.hasCapability(RSC_VBO) ? BufferManager::Instance() : DefaultBufferManager::Instance();
+		return BufferManager::Instance();
 	}
 
 	ITextureManager*		RenderSystem::getTextureManager()
@@ -1447,6 +1327,8 @@ namespace xs
 
 	void RenderSystem::setTextureCoordCalculation(ushort unit,TexCoordCalcMethod m)
 	{
+		assert(0);
+		/*
 		if(unit)glActiveTexture(GL_TEXTURE0 + unit);
 		switch(m)
 		{
@@ -1462,6 +1344,7 @@ namespace xs
 			break;
 		}
 		if(unit)glActiveTexture(GL_TEXTURE0);
+		*/
 	}
 
 	void RenderSystem::setTextureWrap(ushort unit,const TextureAddressingMode& tamS,const TextureAddressingMode& tamT)
@@ -1530,6 +1413,9 @@ namespace xs
 
 	void		RenderSystem::render(const RenderOperation& op)
 	{
+		assert(0);
+
+		/*
 		void*	pBufferData = 0;
 		bool	bHasVBO = m_rsc.hasCapability(RSC_VBO);
 
@@ -1675,8 +1561,10 @@ namespace xs
 			glDisableVertexAttribArray(7); // disable indices
 			glDisableVertexAttribArray(1); // disable weights
 		}
+		*/
 	}
 	
+	/*
 	GLenum getGLVertexFormat(VertexFormat format)
 	{
 		switch(format)
@@ -1713,9 +1601,13 @@ namespace xs
 		//should never get here
 		return VF_V2F;
 	}
+	*/
 
 	void		RenderSystem::render(const RenderDirect& rd)
 	{
+		assert(0);
+
+		/*
 		glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
 
 		glInterleavedArrays(getGLVertexFormat(rd.vertexData.vertexFormat),0,rd.vertexData.pVertexData);
@@ -1730,10 +1622,14 @@ namespace xs
 		}
 
 		glPopClientAttrib();
+		*/
 	}
 
 	void RenderSystem::setTexture(ushort unit,ITexture* pTexture)
 	{
+		assert(0);
+
+		/*
 		//modified by xxh 由于压缩纹理的同步加载
 		if(m_textureUnit != unit)glActiveTexture(GL_TEXTURE0 + unit);
 
@@ -1749,23 +1645,10 @@ namespace xs
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 			glDisable(GL_TEXTURE_2D);
 		}
-
-		m_textureUnit = unit;
-
-		/* //commented by xxh 20091029
-		if(m_textureUnit != unit)glActiveTexture(GL_TEXTURE0 + unit);	
-
-		if(pTexture)
-		{
-			glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D,static_cast<Texture*>(pTexture)->getGLTextureID());
-		}
-		else
-		{
-			glDisable(GL_TEXTURE_2D);
-		}
-		m_textureUnit = unit;
 		*/
+
+		m_textureUnit = unit;
+		
 	}
 
 	const ColorValue& RenderSystem::getAmbientLight()
@@ -1777,11 +1660,14 @@ namespace xs
 	{
 		m_pCurrentRenderTarget->m_RenderState.m_ambientColor = color;
 		Vector4 ambient(color.r,color.g,color.b,color.a);
-		glLightModelfv(GL_LIGHT_MODEL_AMBIENT,&ambient[0]);
+		
+		//glLightModelfv(GL_LIGHT_MODEL_AMBIENT,&ambient[0]);
 	}
 
 	void		RenderSystem::setTexcoordVertexBuffer(ushort unit,IVertexBuffer* vertexBuffer,uint start)
 	{
+		assert(0);
+		/*
 		if(!vertexBuffer)
 		{
 			if(unit)glClientActiveTexture(GL_TEXTURE0 + unit);
@@ -1812,10 +1698,13 @@ namespace xs
 
 			if(unit)glClientActiveTexture(GL_TEXTURE0);
 		}
+		*/
 	}
 
 	void		RenderSystem::setVertexVertexBuffer(IVertexBuffer* vertexBuffer,uint start)
 	{
+		assert(0);
+		/*
 		if(!vertexBuffer)
 		{
 			glDisableClientState(GL_VERTEX_ARRAY);
@@ -1840,10 +1729,13 @@ namespace xs
 			glEnableClientState(GL_VERTEX_ARRAY);
 			if(bHasVBO)glBindBuffer(GL_ARRAY_BUFFER,0);
 		}
+		*/
 	}
 
 	void		RenderSystem::setDiffuseVertexBuffer(IVertexBuffer* vertexBuffer,uint start)
 	{
+		assert(0);
+		/*
 		if(!vertexBuffer)
 		{
 			glDisableClientState(GL_COLOR_ARRAY);
@@ -1868,10 +1760,13 @@ namespace xs
 			glEnableClientState(GL_COLOR_ARRAY);
 			if(bHasVBO)glBindBuffer(GL_ARRAY_BUFFER,0);
 		}
+		*/
 	}
 
 	void		RenderSystem::setSpecularVertexBuffer(IVertexBuffer* vertexBuffer,uint start)
 	{
+		assert(0);
+		/*
 		if(!vertexBuffer)
 		{
 			glDisableClientState(GL_SECONDARY_COLOR_ARRAY);
@@ -1896,6 +1791,7 @@ namespace xs
 			glEnableClientState(GL_SECONDARY_COLOR_ARRAY);
 			if(bHasVBO)glBindBuffer(GL_ARRAY_BUFFER,0);
 		}
+		*/
 	}
 
 	void		RenderSystem::setBlendWeightVertexBuffer(IVertexBuffer* pVB, uint start)
@@ -1910,6 +1806,8 @@ namespace xs
 
 	void		RenderSystem::setNormalVertexBuffer(IVertexBuffer* vertexBuffer,uint start)
 	{
+		assert(0);
+		/*
 		if(!vertexBuffer)
 		{
 			glDisableClientState(GL_NORMAL_ARRAY);
@@ -1934,6 +1832,7 @@ namespace xs
 			glEnableClientState(GL_NORMAL_ARRAY);
 			if(bHasVBO)glBindBuffer(GL_ARRAY_BUFFER,0);
 		}
+		*/
 	}
 
 	void		RenderSystem::setIndexBuffer(IIndexBuffer* indexBuffer)
@@ -1958,6 +1857,9 @@ namespace xs
 
 	void RenderSystem::drawRangeIndexedPrimitive(PrimitiveType pt,IndexType indexType,uint ui32IndexStart,uint ui32IndexCount,uint ui32VertexStart,uint ui32VertexEnd)
 	{
+		assert(0);//gles2 无类似接口，废除
+
+		/*
 		GLenum it = (indexType == IT_16BIT) ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT;
 		uint ui32IndexSize = (indexType == IT_16BIT) ? 2 : 4;
 
@@ -1973,36 +1875,16 @@ namespace xs
 				glDrawRangeElements(getPrimitiveType(pt),ui32VertexStart,ui32VertexEnd,ui32IndexCount,it,(uchar*)static_cast<DefaultIndexBuffer*>(m_pIndexBuffer)->getDataPtr(0) + ui32IndexStart * ui32IndexSize);
 			}
 		}
-
-		/*try
-		{
-			glDrawRangeElements(getPrimitiveType(pt),ui32VertexStart,ui32VertexEnd,ui32IndexCount,it,VBO_BUFFER_OFFSET(ui32IndexStart * ui32IndexSize));
-		}
-		catch(...)
-		{
-			GLenum err = glGetTRACE0_ERROR();
-			Trace("glDrawRangeElements:%s\n",gluTRACE0_ERRORstd::string(err));
-			Trace("VertexStart = %d,VertexEnd = %d,IndexCount = %d,IndexStart = %d\n",ui32VertexStart,ui32VertexEnd,ui32IndexCount,ui32IndexStart);
-		}*/
+		*/
 	}
 
 	void RenderSystem::drawIndexedPrimitive(PrimitiveType primitiveType,uint ui32IndexCount,IndexType indexType)
 	{
 		GLenum it = (indexType == IT_16BIT) ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT;
 
-		bool	bHasVBO = m_rsc.hasCapability(RSC_VBO);
-		if(bHasVBO)
-		{
-			glDrawElements(getPrimitiveType(primitiveType),ui32IndexCount,it,0);
-		}
-		else
-		{
-			if(m_pIndexBuffer)
-			{
-
-				glDrawElements(getPrimitiveType(primitiveType),ui32IndexCount,it,static_cast<DefaultIndexBuffer*>(m_pIndexBuffer)->getDataPtr(0));
-			}
-		}
+		
+		glDrawElements(getPrimitiveType(primitiveType),ui32IndexCount,it,0);
+		
 
 	}
 
@@ -2013,6 +1895,8 @@ namespace xs
 
 	void RenderSystem::setFog(FogMode mode,const ColorValue& color,float expDensity,float linearStart,float linearEnd)
 	{
+		assert(0);
+		/*
 		GLint fogMode;
 		switch(mode)
 		{
@@ -2038,26 +1922,33 @@ namespace xs
 		glFogf(GL_FOG_DENSITY,expDensity);
 		glFogf(GL_FOG_START,linearStart);
 		glFogf(GL_FOG_END,linearEnd);
+		*/
 	}
 
 	void	RenderSystem::enableFog(bool enable)
 	{
-		enable ? glEnable(GL_FOG) : glDisable(GL_FOG);
+		assert(0);
+		//enable ? glEnable(GL_FOG) : glDisable(GL_FOG);
 	}
 
 	bool	RenderSystem::isFogEnabled()
 	{
+		assert(0);
+		return false;
+		/*
 		PP_BY_NAME("isFogEnabled");
 		GLint fog;
 		glGetIntegerv(GL_FOG,&fog);
-
 		return fog != 0;
+		*/
 	}
 
 	void		RenderSystem::setLight(ushort unit,Light* pLight)
 	{
-		GLenum light = GL_LIGHT0 + unit;
+		assert(0);
 
+		/*
+		GLenum light = GL_LIGHT0 + unit;
 		if (!pLight || !pLight->isEnabled())
 		{
 			glDisable(light);
@@ -2134,15 +2025,19 @@ namespace xs
 			// Enable in the scene
 			glEnable(light);
 		}
+		*/
 	}
 
 	void		RenderSystem::setPointSize(float size)
 	{
-		glPointSize(size);
+		assert(0);
+		//glPointSize(size);
 	}
 
 	void RenderSystem::setTrackingColorEnum(TrackVertexColorEnum tracking)
 	{
+		assert(0);
+		/*
 		// Track vertex colour
 		if(tracking != TVC_NONE) 
 		{
@@ -2179,6 +2074,7 @@ namespace xs
 		{
 			glDisable(GL_COLOR_MATERIAL);          
 		}
+		*/
 	}
 
 	const ColorValue&	RenderSystem::getSurfaceDiffuse()
@@ -2190,7 +2086,7 @@ namespace xs
 	{
 		m_surfaceDiffuse = diffuse;
 		GLfloat f4val[4] = {diffuse.r,diffuse.g,diffuse.b,diffuse.a};
-		glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,f4val);
+		//glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,f4val);
 	}
 
 	//-----------------------------------------------------------------------------
@@ -2202,6 +2098,8 @@ namespace xs
 		float shininess)
 	{
 		m_surfaceDiffuse = diffuse;
+		assert(0);
+		/*
 		GLfloat f4val[4] = {diffuse.r,diffuse.g,diffuse.b,diffuse.a};
 		glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,f4val);
 		f4val[0] = ambient.r;
@@ -2220,9 +2118,13 @@ namespace xs
 		f4val[3] = emissive.a;
 		glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION,f4val);
 		glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,shininess);
+		*/
 	}
 	void RenderSystem::setClipPlane(uint index,const Plane*pPlane)
 	{
+		assert(0);
+
+		/*
 		GLenum ePlane = static_cast<GLenum>(GL_CLIP_PLANE0 + index);
 		if(!pPlane)
 		{
@@ -2246,6 +2148,7 @@ namespace xs
 
 		glClipPlane(ePlane,clipPlane);
 		glEnable(ePlane);
+		*/
 	}
 
 	extern "C"{extern void glutSolidTeapot(GLfloat scale);}
@@ -2280,6 +2183,7 @@ namespace xs
 	 */
 	void RenderSystem::teapot(float size,const ColorValue& color)
 	{
+		/*
 		ColorValue c = m_pCurrentRenderTarget->m_RenderState.m_color;
 		CullingMode cm = m_pCurrentRenderTarget->m_RenderState.m_cullingMode;
 		setColor(color);
@@ -2287,6 +2191,7 @@ namespace xs
 		glutSolidTeapot(size);
 		setCullingMode(cm);
 		setColor(c);
+		*/
 	}
 
 	void RenderSystem::line(const Point& ptFirst,const Point& ptSecond,const ColorValue& color)
@@ -2439,8 +2344,9 @@ namespace xs
 		vp[2] = m_pCurrentRenderTarget->m_vpWidth;
 		vp[3] = m_pCurrentRenderTarget->m_vpHeight;
 
+		assert(0);
 		GLfloat x,y,z;
-		gluUnProject(v.x,rc.bottom - rc.top - v.y,v.z,mm,pm,vp,&x,&y,&z);
+		//gluUnProject(v.x,rc.bottom - rc.top - v.y,v.z,mm,pm,vp,&x,&y,&z);
 
 		return Vector3(x,y,z);
 	}
@@ -2479,8 +2385,9 @@ namespace xs
 		RECT rc;
 		m_pCurrentRenderTarget->getRect(&rc);
 
+		assert(0);
 		GLfloat x,y,z;
-		gluProject(v.x,v.y,v.z,mm,pm,vp,&x,&y,&z);
+		//gluProject(v.x,v.y,v.z,mm,pm,vp,&x,&y,&z);
 
 		return Vector3(x,rc.bottom - rc.top - y,z);
 	}
@@ -2488,7 +2395,7 @@ namespace xs
 	void 		RenderSystem::setVerticalSync(bool vsync)
 	{
 #ifdef _WIN32
-		if(__wglewSwapIntervalEXT)__wglewSwapIntervalEXT(vsync);
+		//if(__wglewSwapIntervalEXT)__wglewSwapIntervalEXT(vsync);
 #endif
 	}
 
@@ -2521,9 +2428,13 @@ namespace xs
 		case SOP_DECREMENT:
 			return GL_DECR;
 		case SOP_INCREMENT_WRAP:
-			return GL_INCR_WRAP_EXT;
+			//return GL_INCR_WRAP_EXT;
+			assert(0);
+			return SOP_KEEP;
 		case SOP_DECREMENT_WRAP:
-			return GL_DECR_WRAP_EXT;
+			//return GL_DECR_WRAP_EXT;
+			assert(0);
+			return SOP_KEEP;
 		case SOP_INVERT:
 			return GL_INVERT;
 		};
@@ -2555,6 +2466,9 @@ namespace xs
 		if(m_RenderMode == RENDER_MODE_SELECTION)return;
 		m_RenderMode = RENDER_MODE_SELECTION;
 
+		assert(0);
+		
+#if 0
 		GLint view[4];
 
 		/*
@@ -2610,6 +2524,7 @@ namespace xs
 		Draw the objects onto the screen
 		*/
 		glMatrixMode(GL_MODELVIEW);
+#endif
 	}
 
 	void RenderSystem::endSelection(int& num,int* pBuffer)
@@ -2617,6 +2532,9 @@ namespace xs
 		if(m_RenderMode != RENDER_MODE_SELECTION)return;
 		m_RenderMode = RENDER_MODE_NORMAL;
 
+		assert(0);
+
+#if 0
 		GLint hits;
 		/*
 		Do you remeber? We do pushMatrix in PROJECTION mode
@@ -2640,13 +2558,13 @@ namespace xs
 		{
 			pBuffer[i] = (GLubyte)m_SelectionBuffer[i * 4 + 3];
 		}
+#endif
 	}
 
 	void RenderSystem::setSelectionIndex(int index)
 	{
-		//glPushName(0);
-		glLoadName(index);
-		//glPushName(0);
+		//glLoadName(index);
+		assert(0);
 	}
 
 	const RenderMode&	RenderSystem::getRenderMode()
