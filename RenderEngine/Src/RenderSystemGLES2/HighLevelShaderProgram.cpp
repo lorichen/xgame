@@ -3,8 +3,101 @@
 #include "HighLevelShader.h"
 #include "HighLevelShaderManager.h"
 #include "ShaderProgramManagerOGL.h"
+
 namespace xs
 {
+
+//----------------------写死attrb绑定----------------------------
+	
+	
+	static const AttrInfo g_binding_attrs[EVA_MAX] = 
+	{
+		{VES_POSITION,0,"position",VET_FLOAT3},
+		{VES_COLOR,0,"color0",VET_COLOR},
+		{VES_TEXTURE_COORDINATES,0,"texcoord0",VET_FLOAT2},
+		{VES_TEXTURE_COORDINATES,1,"texcoord1",VET_FLOAT2},
+		{VES_NORMAL,0,"normal",VET_FLOAT3},
+
+		//and so on...
+	};
+
+	const AttrInfo* getAttrInfo(VetextAttr attr)
+	{
+		return &g_binding_attrs[attr];
+	}
+
+	static GLuint						  s_nLastAttrIndex;
+	static std::map<unsigned int, GLuint> s_AttrIndexMap;
+
+	GLuint getAttrLocation(unsigned int usage,unsigned int index)
+	{
+		unsigned int nKey = (unsigned int)(((usage & 0xFF) << 8) | (index & 0xFF));
+		std::map<unsigned int, GLuint>::const_iterator itr = s_AttrIndexMap.find(nKey);
+		if (itr == s_AttrIndexMap.end())
+		{
+			s_AttrIndexMap[nKey] = s_nLastAttrIndex;
+			return s_nLastAttrIndex++;
+		}
+		else
+		{
+			return itr->second;
+		}
+	}
+
+	bool getAttrGLInfo(VertexElementType type,GLenum&  glType,GLint& components,GLboolean& normalized)
+	{
+		glType = GL_FLOAT;
+		normalized = GL_FALSE;
+		switch (type)
+		{
+		case VET_FLOAT1:
+			components = 1;
+			break;
+		case VET_FLOAT2:
+			components = 2;
+			break;
+		case VET_FLOAT3:
+			components = 3;
+			break;
+		case VET_FLOAT4:
+			components = 4;
+			break;
+		case VET_COLOR :
+			components = 4;
+			glType = GL_UNSIGNED_BYTE;
+			normalized = GL_TRUE;
+			break;
+		case VET_UBYTE4:
+			components = 4;
+			glType = GL_UNSIGNED_BYTE;
+			break;
+		case VET_SHORT2:
+			components = 2;
+			glType = GL_SHORT;
+			break;
+		case VET_SHORT4:
+			components = 4;
+			glType = GL_SHORT;
+			break;
+
+		case VET_SHORT1:
+			components = 1;
+			glType = GL_SHORT;
+			break;
+
+		case VET_SHORT3:
+			components = 3;
+			glType = GL_SHORT;
+			break;
+		default:
+			assert(0);
+			return false;
+			break;
+		}
+		return true;
+	}
+//--------------------------------------------------------
+
 	void	HighLevelShaderProgram::release()
 	{
 		ShaderContainerIterator it = m_vShaders.begin();
@@ -51,10 +144,30 @@ namespace xs
 
 	bool	HighLevelShaderProgram::link()
 	{
+		//默认绑定attribute
+		for(int i = 0;i < EVA_MAX ;++i)
+		{
+			glBindAttribLocation(m_handle
+				, getAttrLocation(g_binding_attrs[i].usage, g_binding_attrs[i].index)  
+				, g_binding_attrs[i].name);
+
+		}
+
 		glLinkProgram(m_handle);
 		GLint bLinked;
 		glGetProgramiv(m_handle,GL_LINK_STATUS,&bLinked);
-		return bLinked != 0;
+		if (!bLinked)
+		{
+			int i32InfoLogLength, i32CharsWritten;
+			glGetProgramiv(m_handle, GL_INFO_LOG_LENGTH, &i32InfoLogLength);
+			char* pszInfoLog = new char[i32InfoLogLength];
+			glGetProgramInfoLog(m_handle, i32InfoLogLength, &i32CharsWritten, pszInfoLog);
+			printf("Failed to link program!\n");
+			delete[] pszInfoLog;
+			glDeleteProgram(m_handle);
+			return false;
+		}
+		return true;
 	}
 
 	/** 获取着色器程序类型
@@ -237,6 +350,7 @@ namespace xs
 	{
 		const static char * s_pSamplerName [8] = 
 		{
+			//写死
 			"texture0",
 			"texture1",
 			"texture2",
@@ -260,6 +374,6 @@ namespace xs
 	*/
 	void HighLevelShaderProgram::bindTransformMatrix( uint flag )
 	{
-		//内部已经绑定了
+		//内部已经绑定了?????
 	}
 }

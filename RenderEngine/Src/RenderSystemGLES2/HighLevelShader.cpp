@@ -24,8 +24,23 @@ namespace xs
 		{
 			glShaderSource(m_handle,1,(const char**)&pBuffer,NULL);
 			glCompileShader(m_handle);
+
+			GLint bShaderCompiled;
+			glGetShaderiv(m_handle, GL_COMPILE_STATUS, &bShaderCompiled);
+			if (!bShaderCompiled)
+			{
+				int i32InfoLogLength, i32CharsWritten;
+				glGetShaderiv(m_handle, GL_INFO_LOG_LENGTH, &i32InfoLogLength);
+				char* pszInfoLog = new char[i32InfoLogLength];
+				glGetShaderInfoLog(m_handle, i32InfoLogLength, &i32CharsWritten, pszInfoLog);
+				printf("Failed to compile fragment shader! : %s\n",pszInfoLog);
+				delete[] pszInfoLog;
+				glDeleteShader(m_handle);
+				return false;
+			}
+			return true;
 		}
-		return m_handle != 0;
+		return false;
 	}
 
 	bool			HighLevelShader::compile()

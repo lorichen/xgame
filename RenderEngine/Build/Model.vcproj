@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../Base/Base/Include;../../Dependence/Include;../Include/RenderEngine;../Include;../Include/Model;../../Base/PerfProf/Include"
+				AdditionalIncludeDirectories="../../Base/Base/Include;../../Dependence/Include;../Include/RenderEngine;../Include;../Include/Model;../../Base/PerfProf/Include;../../Dependence/freetype;../../Dependence"
 				PreprocessorDefinitions="RELEASEDEBUG;WIN32;NDEBUG;_WINDOWS;_USRDLL;MODEL_EXPORTS;_CRT_SECURE_NO_DEPRECATE;_EXCLUDE_UNL_NEW"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"

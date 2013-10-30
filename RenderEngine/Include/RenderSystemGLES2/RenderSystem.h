@@ -403,7 +403,7 @@ public:
 	@param it 索引类型
 	@see IndexType
 	*/
-	virtual void 		drawIndexedPrimitive(PrimitiveType pt,uint ui32IndexCount,IndexType it);
+	virtual void 		drawIndexedPrimitive(PrimitiveType pt,uint ui32IndexCount,IndexType it,void* pdata=0);
 
 	/** 绘制带索引的带范围的几何形状
 	@param pt 几何形状的类型
@@ -803,6 +803,57 @@ private:
 	RenderMode		m_RenderMode;
 
 
+//add by kevin.chen
+	ITexture*	    m_pWhiteTex;  //
+	void			_setTempTexture();
+
+//-----为适配setVetext，setTexCoord之类的原接口，进行的各个buff batch cache
+#define VERTEX_CACHE_MAX 80 //待测试,must be 4 的倍数!
+	struct BatchStatus
+	{
+		PrimitiveType pt;				//当前pt
+		bool		  isPrimitiveing;	//是否正在提交状态
+
+		union
+		{
+			unsigned int vertexflag;	//记录各顶点数据是否开启
+
+			struct  
+			{
+				bool vertex		: 1;	
+				bool normal		: 1;
+				bool texCoord0  : 1;
+				bool texCoord1	: 1;
+			}
+			flagBits;
+
+		};
+
+		Vector3*		vertexs;
+		Vector3*		normals;
+		Vector2*		texCoord0s;
+		Vector2*		texCoord1s;
+		unsigned int*   colors;	//一定有颜色
+
+		unsigned short* indexs;  //只用来适配四边形
+
+		unsigned int	vertexCount;
+		unsigned int	normalCount;
+		unsigned int	texCoord0Count;
+		unsigned int	texCoord1Count;
+		unsigned int	colorCount;
+
+		BatchStatus();
+		~BatchStatus();
+
+		bool isOverCache(unsigned int count);
+		void clear();
+	};
+
+	BatchStatus m_batchStatus;
+	void _checkCacheAndFlush(unsigned int count);
+	void _flush();
+	
 };
 
 }

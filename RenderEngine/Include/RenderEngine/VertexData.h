@@ -29,8 +29,16 @@ namespace xs
 		/// Binormal (Y axis if normal is Z)
 		VES_BINORMAL = 8,
 		/// Tangent (X axis if normal is Z)
-		VES_TANGENT = 9
+		VES_TANGENT = 9,
+		
+		VES_COLOR,
+		VES_FOG,
+		VES_DEPTH,         
+		VES_SAMPLE, 
+		VES_PSIZE,
+		VES_TESSFACTOR,
 
+		VES_MAX,
 	};
 
 	/// Vertex element type, used to identify the base types of the vertex contents
@@ -46,6 +54,28 @@ namespace xs
 		VET_SHORT3,
 		VET_SHORT4, 
 		VET_UBYTE4
+	};
+
+
+	//vertex attr enum
+	enum VetextAttr
+	{
+		EVA_POSITION = 0,
+		EVA_COLOR,
+		EVA_TEX_COORDS_0,
+		EVA_TEX_COORDS_1,
+		EVA_NORMAL,
+
+		EVA_MAX,
+	};
+
+	//shader vertex attr info
+	struct AttrInfo
+	{
+		VertexElementSemantic usage;
+		unsigned int index;
+		const char*  name;
+		VertexElementType type;
 	};
 
 	/** This class declares the usage of a single vertex buffer as a component
@@ -452,6 +482,7 @@ namespace xs
 	};
 	/** @} */
 
+	
 }
 #endif
 

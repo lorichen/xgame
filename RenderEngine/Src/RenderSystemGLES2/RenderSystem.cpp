@@ -23,6 +23,10 @@ namespace xs
 	std::list<IRenderSystem*>	RenderSystem::m_vRenderSystems;
 	extern GLint getAddressingMode(TextureAddressingMode tam);
 	extern TextureAddressingMode getAddressingMode(GLint);
+	
+	extern const AttrInfo* getAttrInfo(VetextAttr attr);
+	extern bool   getAttrGLInfo(VertexElementType type,GLenum&  glType,GLint& components,GLboolean& normalized);
+	extern GLuint getAttrLocation(unsigned int usage,unsigned int index);
 
 	// Convenience macro from ARB_vertex_buffer_object spec
 	#define VBO_BUFFER_OFFSET(i) ((uchar *)NULL + (i))
@@ -1362,18 +1366,45 @@ namespace xs
 
 	void 		RenderSystem::setMultiTexcoord(ushort unit,const Vector2& texcoord)
 	{
-		glMultiTexCoord2f(GL_TEXTURE0 + unit,texcoord.x,texcoord.y);
+		if(unit == 0)
+		{
+			_checkCacheAndFlush(m_batchStatus.texCoord0Count);
+			m_batchStatus.flagBits.texCoord0 = true;
+			m_batchStatus.texCoord0s[m_batchStatus.texCoord0Count++] = texcoord;
+		}
+		else if(unit == 1)
+		{
+			_checkCacheAndFlush(m_batchStatus.texCoord1Count);
+			m_batchStatus.flagBits.texCoord1 = true;
+			m_batchStatus.texCoord1s[m_batchStatus.texCoord1Count++] = texcoord;
+		}
+		else
+		{
+			printf("\n暂时支持2层纹理!!");
+		}
+		//glMultiTexCoord2f(GL_TEXTURE0 + unit,texcoord.x,texcoord.y);
 	}
 
 	void		RenderSystem::setTexcoord(const Vector2& texcoord)
 	{
-		glTexCoord2f(texcoord.x,texcoord.y);
+		_checkCacheAndFlush(m_batchStatus.texCoord0Count);
+		m_batchStatus.flagBits.texCoord0 = true;
+		m_batchStatus.texCoord0s[m_batchStatus.texCoord0Count++] = texcoord;
+		
+		//glTexCoord2f(texcoord.x,texcoord.y);
 	}
 
 	void		RenderSystem::setColor(const ColorValue& color)
 	{
 		m_pCurrentRenderTarget->m_RenderState.m_color = color;
-		glColor4f(color.r,color.g,color.b,color.a);
+		
+		//glColor4f(color.r,color.g,color.b,color.a);
+
+		if(m_batchStatus.isPrimitiveing)
+		{
+			_checkCacheAndFlush(m_batchStatus.colorCount);
+			m_batchStatus.colors[m_batchStatus.colorCount++] = color.getAsABGR();
+		}
 	}
 
 	const ColorValue&		RenderSystem::getColor()
@@ -1383,32 +1414,71 @@ namespace xs
 
 	void		RenderSystem::setNormal(const Vector3& normal)
 	{
-		glNormal3fv(&normal.x);
+		//glNormal3fv(&normal.x);
+
+		_checkCacheAndFlush(m_batchStatus.normalCount);
+		m_batchStatus.flagBits.normal = true;
+		m_batchStatus.normals[m_batchStatus.normalCount++] = normal;
 	}
 
 	void		RenderSystem::sendVertex(const Vector2& vertex)
 	{
-		glVertex2fv(&vertex.x);
+		//glVertex2fv(&vertex.x);
+
+		_checkCacheAndFlush(m_batchStatus.vertexCount);
+		m_batchStatus.flagBits.vertex = true;
+		m_batchStatus.vertexs[m_batchStatus.vertexCount].x = vertex.x;
+		m_batchStatus.vertexs[m_batchStatus.vertexCount].y = vertex.y;
+		m_batchStatus.vertexs[m_batchStatus.vertexCount].z = 0;
+		++m_batchStatus.vertexCount;
 	}
 
 	void		RenderSystem::sendVertex(const Vector3& vertex)
 	{
-		glVertex3fv(&vertex.x);
+		//glVertex3fv(&vertex.x);
+
+		_checkCacheAndFlush(m_batchStatus.vertexCount);
+		m_batchStatus.flagBits.vertex = true;
+		m_batchStatus.vertexs[m_batchStatus.vertexCount++] = vertex;
 	}
 
 	void		RenderSystem::sendVertex(const Vector4& vertex)
 	{
-		glVertex4fv(&vertex.x);
+		assert(0);
+		//glVertex4fv(&vertex.x);
 	}
 
 	void		RenderSystem::beginPrimitive(PrimitiveType pt)
 	{
-		glBegin(getPrimitiveType(pt));
+		//glBegin(getPrimitiveType(pt));
+
+		m_batchStatus.pt = pt;
+		m_batchStatus.isPrimitiveing = true;
+		m_batchStatus.clear();
+
+		setIndexBuffer(0);
+		//setVertexVertexBuffer(0);
+		setNormalVertexBuffer(0);
+		setTexcoordVertexBuffer(0,0);
+		setTexcoordVertexBuffer(1,0);
+
+		//vertex pos and color always
 	}
 
 	void		RenderSystem::endPrimitive()
 	{
-		glEnd();
+		//glEnd();
+
+		_flush();
+
+		m_batchStatus.isPrimitiveing = false;
+
+		//disable all except vetext pos
+		//setVertexVertexBuffer(0);
+		setDiffuseVertexBuffer(0);
+		setNormalVertexBuffer(0);
+		setTexcoordVertexBuffer(0,0);
+		setTexcoordVertexBuffer(1,0);
 	}
 
 	void		RenderSystem::render(const RenderOperation& op)
@@ -1878,14 +1948,10 @@ namespace xs
 		*/
 	}
 
-	void RenderSystem::drawIndexedPrimitive(PrimitiveType primitiveType,uint ui32IndexCount,IndexType indexType)
+	void RenderSystem::drawIndexedPrimitive(PrimitiveType primitiveType,uint ui32IndexCount,IndexType indexType,void* pdata)
 	{
 		GLenum it = (indexType == IT_16BIT) ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT;
-
-		
-		glDrawElements(getPrimitiveType(primitiveType),ui32IndexCount,it,0);
-		
-
+		glDrawElements(getPrimitiveType(primitiveType),ui32IndexCount,it,pdata);
 	}
 
 	void RenderSystem::drawPrimitive(PrimitiveType primitiveType,uint ui32VertexStart,uint ui32VertexCount)
@@ -2574,7 +2640,7 @@ namespace xs
 
 	RenderSystemType RenderSystem::getRenderSystemType()
 	{
-		return RS_OPENGL;
+		return RS_OPENGLES2;
 	}
 
 	bool RenderSystem::setTextureStageStatus(	
@@ -2590,7 +2656,8 @@ namespace xs
 		//代码经过测试和预想的一样。但是用在客户端绘制小地图时，却出现了小地图全白。晕！
 		//多线程的原因，。。。。，让人纠结，所以直接return了。
 		return false;
-
+		
+		/*
 		GLint textureLimit0;
 		glGetIntegerv(GL_MAX_TEXTURE_COORDS,&textureLimit0);
 		GLint textureLimit1;
@@ -2622,6 +2689,7 @@ namespace xs
 
 		glActiveTexture(activeTexture);
 		return true;
+		*/
 	}
 
 	void RenderSystem::getTextureStageStatus(	
@@ -2633,6 +2701,8 @@ namespace xs
 		TextureStageArgument & alphaArg0,
 		TextureStageArgument & alphaArg1)
 	{
+		assert(0);
+		/*
 		GLint textureLimit0;
 		glGetIntegerv(GL_MAX_TEXTURE_COORDS,&textureLimit0);
 		GLint textureLimit1;
@@ -2645,7 +2715,6 @@ namespace xs
 		glActiveTexture( stage );
 
 		GLint value;
-
 		glGetTexEnviv(GL_TEXTURE_ENV, GL_COMBINE_RGB, &value);
 		colorOP = getTextureStageOp( value);
 		glGetTexEnviv(GL_TEXTURE_ENV, GL_SRC0_RGB, &value);
@@ -2662,12 +2731,14 @@ namespace xs
 
 		glActiveTexture(activeTexture);
 		return;
+		*/
 	}
 
 	TextureStageOperator RenderSystem::getTextureStageOp(GLint op)
 	{
 		switch( op)
 		{
+		/*
 		case GL_REPLACE:
 			return TSO_REPLACE;
 		case GL_MODULATE:
@@ -2678,16 +2749,21 @@ namespace xs
 			return TSO_ADD_SIGNED;
 		case GL_SUBTRACT:
 			return TSO_SUBTRACT;
+		*/
 		default://绝不会到这里
+			assert(0);
 			return TSO_MODULATE;
 		}
-	
 	}
 
 	GLint RenderSystem::getTextureStageOp( TextureStageOperator op)
 	{
+		assert(0);
+		return 0;
+		/*
 		switch( op)
 		{
+			
 		case TSO_REPLACE:
 			return GL_REPLACE;
 		case TSO_MODULATE:
@@ -2698,9 +2774,12 @@ namespace xs
 			return GL_ADD_SIGNED;
 		case TSO_SUBTRACT:
 			return GL_SUBTRACT;
+			
 		default://绝不会到这里
+			
 			return GL_MODULATE;
 		}
+		*/
 	}
 
 	TextureStageArgument RenderSystem::getTextureStageArg(GLint arg)
@@ -2709,9 +2788,10 @@ namespace xs
 		{
 		case GL_TEXTURE:
 			return TSA_TEXTURE;
-		case GL_PREVIOUS:
-			return TSA_PREVIOUS;
+		//case GL_PREVIOUS:
+		//	return TSA_PREVIOUS;
 		default://never goes to here
+			assert(0);
 			return TSA_TEXTURE;
 		}
 	
@@ -2723,9 +2803,10 @@ namespace xs
 		{
 		case TSA_TEXTURE:
 			return GL_TEXTURE;
-		case TSA_PREVIOUS:
-			return GL_PREVIOUS;
+		//case TSA_PREVIOUS:
+		//	return GL_PREVIOUS;
 		default://never goes to here
+			assert(0);
 			return GL_TEXTURE;
 		}
 	}
@@ -2733,5 +2814,192 @@ namespace xs
 	IHardwareCursorManager * RenderSystem::getHardwareCursorManager()
 	{
 		return HardwareCursorManagerOGL::instance();
+	}
+
+	void RenderSystem::_checkCacheAndFlush(unsigned int count)
+	{
+		if(m_batchStatus.isOverCache(count))
+			_flush();
+	}
+
+	void RenderSystem::_flush()
+	{
+		if(m_batchStatus.vertexCount > 0)
+		{
+			int copyColorNum = m_batchStatus.vertexCount - m_batchStatus.colorCount;
+			if(copyColorNum > 0)
+			{
+				unsigned int c =  m_pCurrentRenderTarget->m_RenderState.m_color.getAsABGR();//getAsRGBA()	;
+				for(int i = 0;i < copyColorNum;++i)
+				{
+					m_batchStatus.colors[i + m_batchStatus.colorCount] = c;
+				}
+			}
+			{
+				const AttrInfo* pInfo = getAttrInfo(EVA_COLOR);
+				GLint location = getAttrLocation(pInfo->usage,pInfo->index);
+
+				GLenum glType;
+				GLint components;
+				GLboolean normalized;
+				getAttrGLInfo(pInfo->type,glType,components,normalized);
+
+				glEnableVertexAttribArray(location);
+				glVertexAttribPointer(location
+					, components
+					, glType
+					, normalized
+					, 0
+					, (const void*)(m_batchStatus.colors)
+					);
+			}
+
+
+			if(m_batchStatus.flagBits.vertex)
+			{
+				const AttrInfo* pInfo =  getAttrInfo(EVA_POSITION);
+				GLint location = getAttrLocation(pInfo->usage,pInfo->index);
+
+				GLenum glType;
+				GLint components;
+				GLboolean normalized;
+				getAttrGLInfo(pInfo->type,glType,components,normalized);
+
+				glEnableVertexAttribArray(location);
+				glVertexAttribPointer(location
+					, components
+					, glType
+					, normalized
+					, 0
+					, (const void*)(m_batchStatus.vertexs)
+					);
+			}
+
+			if(m_batchStatus.flagBits.normal)
+			{
+				const AttrInfo* pInfo =  getAttrInfo(EVA_NORMAL);
+				GLint location = getAttrLocation(pInfo->usage,pInfo->index);
+
+				GLenum glType;
+				GLint components;
+				GLboolean normalized;
+				getAttrGLInfo(pInfo->type,glType,components,normalized);
+
+				glEnableVertexAttribArray(location);
+				glVertexAttribPointer(location
+					, components
+					, glType
+					, normalized
+					, 0
+					, (const void*)(m_batchStatus.normals)
+					);
+			}
+
+			if(m_batchStatus.flagBits.texCoord0)
+			{
+				const AttrInfo* pInfo =  getAttrInfo(EVA_TEX_COORDS_0);
+				GLint location = getAttrLocation(pInfo->usage,pInfo->index);
+
+				GLenum glType;
+				GLint components;
+				GLboolean normalized;
+				getAttrGLInfo(pInfo->type,glType,components,normalized);
+
+				glEnableVertexAttribArray(location);
+				glVertexAttribPointer(location
+					, components
+					, glType
+					, normalized
+					, 0
+					, (const void*)(m_batchStatus.texCoord0s)
+					);
+			}
+
+			if(m_batchStatus.flagBits.texCoord1)
+			{
+				const AttrInfo* pInfo =  getAttrInfo(EVA_TEX_COORDS_1);
+				GLint location = getAttrLocation(pInfo->usage,pInfo->index);
+
+				GLenum glType;
+				GLint components;
+				GLboolean normalized;
+				getAttrGLInfo(pInfo->type,glType,components,normalized);
+
+				glEnableVertexAttribArray(location);
+				glVertexAttribPointer(location
+					, components
+					, glType
+					, normalized
+					, 0
+					, (const void*)(m_batchStatus.texCoord1s)
+					);
+			}
+
+			if(PT_QUADS == m_batchStatus.pt)
+			{
+				unsigned int indexunm = (m_batchStatus.vertexCount>>2)*6;
+				drawIndexedPrimitive(PT_TRIANGLES,indexunm,IT_16BIT,m_batchStatus.indexs);
+			}
+			else
+			{
+				drawPrimitive(m_batchStatus.pt,0,m_batchStatus.vertexCount);
+			}
+		}
+		m_batchStatus.clear();
+	}
+
+	///----------------------------------------------------------------
+	RenderSystem::BatchStatus::BatchStatus()
+	{
+		pt = PT_POINTS;
+		isPrimitiveing = false;
+
+		vertexs = new Vector3[VERTEX_CACHE_MAX];
+		normals = new Vector3[VERTEX_CACHE_MAX];
+		texCoord0s = new Vector2[VERTEX_CACHE_MAX];
+		texCoord1s = new Vector2[VERTEX_CACHE_MAX];
+		colors = new unsigned int[VERTEX_CACHE_MAX];
+
+		unsigned int indexnum = VERTEX_CACHE_MAX/4*6;
+		indexs = new unsigned short[indexnum];
+		unsigned int vb = 0;
+		for(unsigned int i = 0;i < indexnum; i+=6 ,vb+=4)
+		{
+			indexs[i] = vb;
+			indexs[i+1] = vb+1;
+			indexs[i+2] = vb+3;
+
+			indexs[i+3] = vb+1;
+			indexs[i+4] = vb+2;
+			indexs[i+5] = vb+3;
+		}
+		clear();
+	}
+
+	RenderSystem::BatchStatus::~BatchStatus()
+	{
+		if(vertexs) delete[] vertexs;
+		if(normals) delete[] normals;
+		if(texCoord0s) delete[] texCoord0s;
+		if(texCoord1s) delete[] texCoord1s;
+		if(colors) delete[] colors;
+		if(indexs) delete[] indexs;
+	}
+
+	bool RenderSystem::BatchStatus::isOverCache(unsigned int count)
+	{
+		if(count >= VERTEX_CACHE_MAX)
+			return true;
+		return false;
+	}
+
+	void RenderSystem::BatchStatus::clear()
+	{
+		vertexflag = 0;
+		vertexCount = 0;
+		normalCount = 0;
+		texCoord0Count = 0;
+		texCoord1Count = 0;
+		colorCount = 0;
 	}
 }

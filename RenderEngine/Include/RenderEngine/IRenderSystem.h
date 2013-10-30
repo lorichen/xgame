@@ -425,7 +425,7 @@ namespace xs
 		@param it 索引类型
 		@see IndexType
 		*/
-		virtual void 		drawIndexedPrimitive(PrimitiveType pt,uint ui32IndexCount,IndexType it) = 0;
+		virtual void 		drawIndexedPrimitive(PrimitiveType pt,uint ui32IndexCount,IndexType it,void* pdata=0) = 0;
 
 		/** 绘制带索引的带范围的几何形状
 		@param pt 几何形状的类型

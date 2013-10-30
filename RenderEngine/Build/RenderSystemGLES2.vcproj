@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Opengl32.lib Glu32.lib xs_com_rd.lib glew32s.lib Vfw32.Lib"
+				AdditionalDependencies="Opengl32.lib Glu32.lib xs_com_rd.lib Vfw32.Lib"
 				OutputFile="$(OutDir)/$(ProjectName)_rd.dll"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="../../Dependence/Lib;../../Lib;../../Dependence/PowerVR_SDK/Lib"

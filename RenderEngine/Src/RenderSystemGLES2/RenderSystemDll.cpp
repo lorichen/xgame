@@ -1,6 +1,13 @@
 #include "StdAfx.h"
 #include "RenderSystem.h"
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+#pragma comment(lib, "libEGL.lib")
+#pragma comment(lib, "libGLESv2.lib")
+#else
+
+#endif
+
 namespace xs
 {
 
