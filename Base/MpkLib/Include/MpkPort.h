@@ -28,7 +28,7 @@
     #include <Carbon.h> // Mac OS 9 Using Carbon Lib
   #endif
   
-  typedef void          * LPCSTR;
+  //typedef void          * LPCSTR;
   typedef unsigned long * LPDWORD;
   typedef long          * PLONG;
   typedef void          * LPVOID;

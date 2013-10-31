@@ -36,7 +36,7 @@ public:
 		: _isFile(true)
 	{
 	}
-#if (TARGET_PLATFORM == PLATFORM_WIN32)
+//#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	basic_path(const _Elem* p, bool isFilePath = true)
 		: _isFile(isFilePath), _String(p)
 	{
@@ -48,7 +48,7 @@ public:
 	{
 		normalize();
 	}
-#else
+//#else
     basic_path(const _Elem* p)
     : _isFile(true), _String(p)
 	{
@@ -59,7 +59,7 @@ public:
 	{
 		normalize();
 	}
-#endif
+//#endif
 	basic_path(const _Elem* p, size_type roff, size_type count, bool isFilePath = true)
 		: _isFile(isFilePath), _String(p,roff,count)
 	{

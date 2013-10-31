@@ -27,7 +27,9 @@ typedef float                   Real;
 
 typedef long long               __int64;
 
-#define min			std::min
+//#define min			std::min
+
+typedef void* HINSTANCE;
 
 #define IN
 #define OUT

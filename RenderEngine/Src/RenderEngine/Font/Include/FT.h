@@ -1,7 +1,7 @@
 #ifndef     __FT__
 #define     __FT__
 
-#include "..\..\StdAfx.h"
+#include "StdAfx.h"
 
 namespace xs{
 

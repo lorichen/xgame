@@ -10,6 +10,7 @@ http://www.codeproject.com/info/cpol10.aspx
 #ifndef _TEXTGLOWSTRATEGY_H_
 #define _TEXTGLOWSTRATEGY_H_
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #include <Gdiplus.h>
 #include "ITextStrategy.h"
 
@@ -248,6 +249,10 @@ protected:
 
 };
 
+
 } // namespace TextDesigner
+
+
+#endif
 
 #endif // _TEXTGLOWSTRATEGY_H_

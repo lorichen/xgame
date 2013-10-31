@@ -3,7 +3,7 @@
 
 #include "IRenderEngine.h"
 #include "RenderSystemHelper.h"
-#include "Model\ModelManagerHelper.h"
+#include "Model/ModelManagerHelper.h"
 
 namespace xs
 {

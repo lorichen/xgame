@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		181BC01E181CB08500786855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181BC01D181CB08500786855 /* Foundation.framework */; };
-		181BC023181CB08500786855 /* RenderEngine.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 181BC022181CB08500786855 /* RenderEngine.h */; };
-		181BC025181CB08500786855 /* RenderEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 181BC024181CB08500786855 /* RenderEngine.m */; };
 		181BC02C181CB08500786855 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181BC02B181CB08500786855 /* XCTest.framework */; };
 		181BC02D181CB08500786855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181BC01D181CB08500786855 /* Foundation.framework */; };
 		181BC02F181CB08500786855 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181BC02E181CB08500786855 /* UIKit.framework */; };
@@ -57,9 +55,6 @@
 		18D0B3E8181E92CB005AEEF8 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3D8181E92CB005AEEF8 /* trees.c */; };
 		18D0B3E9181E92CB005AEEF8 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3DA181E92CB005AEEF8 /* uncompr.c */; };
 		18D0B3EA181E92CB005AEEF8 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3DE181E92CB005AEEF8 /* zutil.c */; };
-		18D0B3EF181E935A005AEEF8 /* Entity2DAniPack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3EC181E935A005AEEF8 /* Entity2DAniPack.cpp */; };
-		18D0B3F0181E935A005AEEF8 /* MpwDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3ED181E935A005AEEF8 /* MpwDecoder.cpp */; };
-		18D0B3F1181E935A005AEEF8 /* MpwFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3EE181E935A005AEEF8 /* MpwFormat.cpp */; };
 		18D0B3FB181E9671005AEEF8 /* _Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3F2181E9671005AEEF8 /* _Particle.cpp */; };
 		18D0B3FC181E9671005AEEF8 /* _ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3F3181E9671005AEEF8 /* _ParticleSystem.cpp */; };
 		18D0B3FD181E9671005AEEF8 /* _ParticleSystemEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3F4181E9671005AEEF8 /* _ParticleSystemEmitter.cpp */; };
@@ -93,13 +88,28 @@
 		18D0B45F181E9C89005AEEF8 /* ModelNodeCreater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B457181E9C89005AEEF8 /* ModelNodeCreater.cpp */; };
 		18D0B467181E9CDB005AEEF8 /* RenderOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B460181E9CDB005AEEF8 /* RenderOperation.cpp */; };
 		18D0B468181E9CDB005AEEF8 /* RenderQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B461181E9CDB005AEEF8 /* RenderQueue.cpp */; };
-		18D0B469181E9CDB005AEEF8 /* RibbonSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B462181E9CDB005AEEF8 /* RibbonSystem.cpp */; };
 		18D0B46A181E9CDB005AEEF8 /* Skeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B463181E9CDB005AEEF8 /* Skeleton.cpp */; };
 		18D0B46B181E9CDB005AEEF8 /* SubModelInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B464181E9CDB005AEEF8 /* SubModelInstance.cpp */; };
 		18D0B46C181E9CDB005AEEF8 /* VertexData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B465181E9CDB005AEEF8 /* VertexData.cpp */; };
 		18D0B46D181E9CDB005AEEF8 /* Viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B466181E9CDB005AEEF8 /* Viewport.cpp */; };
 		18D0B471181E9E39005AEEF8 /* IndexData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B46E181E9E39005AEEF8 /* IndexData.cpp */; };
 		18D0B475181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B474181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp */; };
+		18D0B48A18214DAD005AEEF8 /* Entity2DAniPack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B48918214DAD005AEEF8 /* Entity2DAniPack.cpp */; };
+		18D0B48D18214DD5005AEEF8 /* MpwDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B48B18214DD5005AEEF8 /* MpwDecoder.cpp */; };
+		18D0B48E18214DD5005AEEF8 /* MpwFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B48C18214DD5005AEEF8 /* MpwFormat.cpp */; };
+		18D0B4C818214E39005AEEF8 /* FTCharmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4A318214E39005AEEF8 /* FTCharmap.cpp */; };
+		18D0B4C918214E39005AEEF8 /* FTFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4A418214E39005AEEF8 /* FTFace.cpp */; };
+		18D0B4CA18214E39005AEEF8 /* FTFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4A518214E39005AEEF8 /* FTFont.cpp */; };
+		18D0B4CB18214E39005AEEF8 /* FTGlyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4A618214E39005AEEF8 /* FTGlyph.cpp */; };
+		18D0B4CC18214E39005AEEF8 /* FTGlyphContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4A718214E39005AEEF8 /* FTGlyphContainer.cpp */; };
+		18D0B4CD18214E39005AEEF8 /* FTLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4A818214E39005AEEF8 /* FTLibrary.cpp */; };
+		18D0B4CE18214E39005AEEF8 /* FTPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4A918214E39005AEEF8 /* FTPoint.cpp */; };
+		18D0B4CF18214E39005AEEF8 /* FTSize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4AA18214E39005AEEF8 /* FTSize.cpp */; };
+		18D0B4D018214E39005AEEF8 /* FTTextureFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4AB18214E39005AEEF8 /* FTTextureFont.cpp */; };
+		18D0B4D118214E39005AEEF8 /* FTTextureGlyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4AC18214E39005AEEF8 /* FTTextureGlyph.cpp */; };
+		18D0B4DE18214E39005AEEF8 /* PixelFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */; };
+		18D0B4E018214E39005AEEF8 /* RenderEngineDll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C618214E39005AEEF8 /* RenderEngineDll.cpp */; };
+		18D0B4E118214E39005AEEF8 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C718214E39005AEEF8 /* stdafx.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,7 +129,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				181BC023181CB08500786855 /* RenderEngine.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +138,6 @@
 		181BC01A181CB08500786855 /* libRenderEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRenderEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		181BC01D181CB08500786855 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		181BC021181CB08500786855 /* RenderEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RenderEngine-Prefix.pch"; sourceTree = "<group>"; };
-		181BC022181CB08500786855 /* RenderEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderEngine.h; sourceTree = "<group>"; };
-		181BC024181CB08500786855 /* RenderEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenderEngine.m; sourceTree = "<group>"; };
 		181BC02A181CB08500786855 /* RenderEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RenderEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		181BC02B181CB08500786855 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		181BC02E181CB08500786855 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -202,9 +209,6 @@
 		18D0B3DC181E92CB005AEEF8 /* zlib.3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = zlib.3; path = ../../Src/RenderEngine/png/zlib/zlib.3; sourceTree = "<group>"; };
 		18D0B3DD181E92CB005AEEF8 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zlib.h; path = ../../Src/RenderEngine/png/zlib/zlib.h; sourceTree = "<group>"; };
 		18D0B3DE181E92CB005AEEF8 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zutil.c; path = ../../Src/RenderEngine/png/zlib/zutil.c; sourceTree = "<group>"; };
-		18D0B3EC181E935A005AEEF8 /* Entity2DAniPack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity2DAniPack.cpp; path = ../../Src/RenderEngine/MpwLoader/Entity2DAniPack.cpp; sourceTree = "<group>"; };
-		18D0B3ED181E935A005AEEF8 /* MpwDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpwDecoder.cpp; path = ../../Src/RenderEngine/MpwLoader/MpwDecoder.cpp; sourceTree = "<group>"; };
-		18D0B3EE181E935A005AEEF8 /* MpwFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpwFormat.cpp; path = ../../Src/RenderEngine/MpwLoader/MpwFormat.cpp; sourceTree = "<group>"; };
 		18D0B3F2181E9671005AEEF8 /* _Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _Particle.cpp; path = ../../Src/RenderEngine/_Particle.cpp; sourceTree = "<group>"; };
 		18D0B3F3181E9671005AEEF8 /* _ParticleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _ParticleSystem.cpp; path = ../../Src/RenderEngine/_ParticleSystem.cpp; sourceTree = "<group>"; };
 		18D0B3F4181E9671005AEEF8 /* _ParticleSystemEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _ParticleSystemEmitter.cpp; path = ../../Src/RenderEngine/_ParticleSystemEmitter.cpp; sourceTree = "<group>"; };
@@ -251,13 +255,45 @@
 		18D0B457181E9C89005AEEF8 /* ModelNodeCreater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelNodeCreater.cpp; path = ../../Src/RenderEngine/ModelNodeCreater.cpp; sourceTree = "<group>"; };
 		18D0B460181E9CDB005AEEF8 /* RenderOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderOperation.cpp; path = ../../Src/RenderEngine/RenderOperation.cpp; sourceTree = "<group>"; };
 		18D0B461181E9CDB005AEEF8 /* RenderQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderQueue.cpp; path = ../../Src/RenderEngine/RenderQueue.cpp; sourceTree = "<group>"; };
-		18D0B462181E9CDB005AEEF8 /* RibbonSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RibbonSystem.cpp; path = ../../Src/RenderEngine/RibbonSystem.cpp; sourceTree = "<group>"; };
 		18D0B463181E9CDB005AEEF8 /* Skeleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Skeleton.cpp; path = ../../Src/RenderEngine/Skeleton.cpp; sourceTree = "<group>"; };
 		18D0B464181E9CDB005AEEF8 /* SubModelInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SubModelInstance.cpp; path = ../../Src/RenderEngine/SubModelInstance.cpp; sourceTree = "<group>"; };
 		18D0B465181E9CDB005AEEF8 /* VertexData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexData.cpp; path = ../../Src/RenderEngine/VertexData.cpp; sourceTree = "<group>"; };
 		18D0B466181E9CDB005AEEF8 /* Viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Viewport.cpp; path = ../../Src/RenderEngine/Viewport.cpp; sourceTree = "<group>"; };
 		18D0B46E181E9E39005AEEF8 /* IndexData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IndexData.cpp; path = ../../Src/RenderEngine/IndexData.cpp; sourceTree = "<group>"; };
 		18D0B474181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderSystemCapabilities.cpp; path = ../../Src/RenderEngine/RenderSystemCapabilities.cpp; sourceTree = "<group>"; };
+		18D0B48918214DAD005AEEF8 /* Entity2DAniPack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity2DAniPack.cpp; path = ../../Src/RenderEngine/Entity2DAniPack.cpp; sourceTree = "<group>"; };
+		18D0B48B18214DD5005AEEF8 /* MpwDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpwDecoder.cpp; path = ../../Src/RenderEngine/MpwDecoder.cpp; sourceTree = "<group>"; };
+		18D0B48C18214DD5005AEEF8 /* MpwFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MpwFormat.cpp; path = ../../Src/RenderEngine/MpwFormat.cpp; sourceTree = "<group>"; };
+		18D0B49118214E39005AEEF8 /* FT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FT.h; sourceTree = "<group>"; };
+		18D0B49218214E39005AEEF8 /* FTBBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTBBox.h; sourceTree = "<group>"; };
+		18D0B49318214E39005AEEF8 /* FTCharmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCharmap.h; sourceTree = "<group>"; };
+		18D0B49418214E39005AEEF8 /* FTCharToGlyphIndexMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCharToGlyphIndexMap.h; sourceTree = "<group>"; };
+		18D0B49518214E39005AEEF8 /* FTFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTFace.h; sourceTree = "<group>"; };
+		18D0B49618214E39005AEEF8 /* FTFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTFont.h; sourceTree = "<group>"; };
+		18D0B49718214E39005AEEF8 /* FTGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTGlyph.h; sourceTree = "<group>"; };
+		18D0B49818214E39005AEEF8 /* FTGlyphContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTGlyphContainer.h; sourceTree = "<group>"; };
+		18D0B49918214E39005AEEF8 /* FTLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTLibrary.h; sourceTree = "<group>"; };
+		18D0B49A18214E39005AEEF8 /* FTList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTList.h; sourceTree = "<group>"; };
+		18D0B49B18214E39005AEEF8 /* FTPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPoint.h; sourceTree = "<group>"; };
+		18D0B49C18214E39005AEEF8 /* FTSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTSize.h; sourceTree = "<group>"; };
+		18D0B49D18214E39005AEEF8 /* FTTextureFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTextureFont.h; sourceTree = "<group>"; };
+		18D0B49E18214E39005AEEF8 /* FTTextureGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTextureGlyph.h; sourceTree = "<group>"; };
+		18D0B49F18214E39005AEEF8 /* FTVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVector.h; sourceTree = "<group>"; };
+		18D0B4A018214E39005AEEF8 /* GDITextureFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDITextureFont.h; sourceTree = "<group>"; };
+		18D0B4A118214E39005AEEF8 /* PixTextureFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixTextureFont.h; sourceTree = "<group>"; };
+		18D0B4A318214E39005AEEF8 /* FTCharmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTCharmap.cpp; sourceTree = "<group>"; };
+		18D0B4A418214E39005AEEF8 /* FTFace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTFace.cpp; sourceTree = "<group>"; };
+		18D0B4A518214E39005AEEF8 /* FTFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTFont.cpp; sourceTree = "<group>"; };
+		18D0B4A618214E39005AEEF8 /* FTGlyph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTGlyph.cpp; sourceTree = "<group>"; };
+		18D0B4A718214E39005AEEF8 /* FTGlyphContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTGlyphContainer.cpp; sourceTree = "<group>"; };
+		18D0B4A818214E39005AEEF8 /* FTLibrary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTLibrary.cpp; sourceTree = "<group>"; };
+		18D0B4A918214E39005AEEF8 /* FTPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTPoint.cpp; sourceTree = "<group>"; };
+		18D0B4AA18214E39005AEEF8 /* FTSize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTSize.cpp; sourceTree = "<group>"; };
+		18D0B4AB18214E39005AEEF8 /* FTTextureFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTTextureFont.cpp; sourceTree = "<group>"; };
+		18D0B4AC18214E39005AEEF8 /* FTTextureGlyph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FTTextureGlyph.cpp; sourceTree = "<group>"; };
+		18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PixelFormat.cpp; path = ../../Src/RenderEngine/PixelFormat.cpp; sourceTree = "<group>"; };
+		18D0B4C618214E39005AEEF8 /* RenderEngineDll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderEngineDll.cpp; path = ../../Src/RenderEngine/RenderEngineDll.cpp; sourceTree = "<group>"; };
+		18D0B4C718214E39005AEEF8 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = ../../Src/RenderEngine/stdafx.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,11 +322,14 @@
 		181BC011181CB08500786855 = {
 			isa = PBXGroup;
 			children = (
+				18D0B48F18214E39005AEEF8 /* Font */,
+				18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */,
+				18D0B4C618214E39005AEEF8 /* RenderEngineDll.cpp */,
+				18D0B4C718214E39005AEEF8 /* stdafx.cpp */,
 				18D0B474181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp */,
 				18D0B46E181E9E39005AEEF8 /* IndexData.cpp */,
 				18D0B460181E9CDB005AEEF8 /* RenderOperation.cpp */,
 				18D0B461181E9CDB005AEEF8 /* RenderQueue.cpp */,
-				18D0B462181E9CDB005AEEF8 /* RibbonSystem.cpp */,
 				18D0B463181E9CDB005AEEF8 /* Skeleton.cpp */,
 				18D0B464181E9CDB005AEEF8 /* SubModelInstance.cpp */,
 				18D0B465181E9CDB005AEEF8 /* VertexData.cpp */,
@@ -358,8 +397,6 @@
 		181BC01F181CB08500786855 /* RenderEngine */ = {
 			isa = PBXGroup;
 			children = (
-				181BC022181CB08500786855 /* RenderEngine.h */,
-				181BC024181CB08500786855 /* RenderEngine.m */,
 				181BC020181CB08500786855 /* Supporting Files */,
 			);
 			path = RenderEngine;
@@ -480,9 +517,9 @@
 		18D0B3EB181E9344005AEEF8 /* MPWLoader */ = {
 			isa = PBXGroup;
 			children = (
-				18D0B3EC181E935A005AEEF8 /* Entity2DAniPack.cpp */,
-				18D0B3ED181E935A005AEEF8 /* MpwDecoder.cpp */,
-				18D0B3EE181E935A005AEEF8 /* MpwFormat.cpp */,
+				18D0B48B18214DD5005AEEF8 /* MpwDecoder.cpp */,
+				18D0B48C18214DD5005AEEF8 /* MpwFormat.cpp */,
+				18D0B48918214DAD005AEEF8 /* Entity2DAniPack.cpp */,
 			);
 			name = MPWLoader;
 			sourceTree = "<group>";
@@ -515,6 +552,57 @@
 				18D0B424181E980F005AEEF8 /* ImageCodecPng.h */,
 			);
 			name = imagedecode;
+			sourceTree = "<group>";
+		};
+		18D0B48F18214E39005AEEF8 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B49018214E39005AEEF8 /* Include */,
+				18D0B4A218214E39005AEEF8 /* Src */,
+			);
+			name = Font;
+			path = ../../Src/RenderEngine/Font;
+			sourceTree = "<group>";
+		};
+		18D0B49018214E39005AEEF8 /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B49118214E39005AEEF8 /* FT.h */,
+				18D0B49218214E39005AEEF8 /* FTBBox.h */,
+				18D0B49318214E39005AEEF8 /* FTCharmap.h */,
+				18D0B49418214E39005AEEF8 /* FTCharToGlyphIndexMap.h */,
+				18D0B49518214E39005AEEF8 /* FTFace.h */,
+				18D0B49618214E39005AEEF8 /* FTFont.h */,
+				18D0B49718214E39005AEEF8 /* FTGlyph.h */,
+				18D0B49818214E39005AEEF8 /* FTGlyphContainer.h */,
+				18D0B49918214E39005AEEF8 /* FTLibrary.h */,
+				18D0B49A18214E39005AEEF8 /* FTList.h */,
+				18D0B49B18214E39005AEEF8 /* FTPoint.h */,
+				18D0B49C18214E39005AEEF8 /* FTSize.h */,
+				18D0B49D18214E39005AEEF8 /* FTTextureFont.h */,
+				18D0B49E18214E39005AEEF8 /* FTTextureGlyph.h */,
+				18D0B49F18214E39005AEEF8 /* FTVector.h */,
+				18D0B4A018214E39005AEEF8 /* GDITextureFont.h */,
+				18D0B4A118214E39005AEEF8 /* PixTextureFont.h */,
+			);
+			path = Include;
+			sourceTree = "<group>";
+		};
+		18D0B4A218214E39005AEEF8 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B4A318214E39005AEEF8 /* FTCharmap.cpp */,
+				18D0B4A418214E39005AEEF8 /* FTFace.cpp */,
+				18D0B4A518214E39005AEEF8 /* FTFont.cpp */,
+				18D0B4A618214E39005AEEF8 /* FTGlyph.cpp */,
+				18D0B4A718214E39005AEEF8 /* FTGlyphContainer.cpp */,
+				18D0B4A818214E39005AEEF8 /* FTLibrary.cpp */,
+				18D0B4A918214E39005AEEF8 /* FTPoint.cpp */,
+				18D0B4AA18214E39005AEEF8 /* FTSize.cpp */,
+				18D0B4AB18214E39005AEEF8 /* FTTextureFont.cpp */,
+				18D0B4AC18214E39005AEEF8 /* FTTextureGlyph.cpp */,
+			);
+			path = Src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -598,45 +686,55 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D0B3EF181E935A005AEEF8 /* Entity2DAniPack.cpp in Sources */,
 				18D0B393181E9284005AEEF8 /* jccolor.c in Sources */,
 				18D0B394181E9284005AEEF8 /* jcdctmgr.c in Sources */,
 				18D0B3B9181E92A0005AEEF8 /* pngset.c in Sources */,
 				18D0B415181E9789005AEEF8 /* CoreSkeleton.cpp in Sources */,
 				18D0B3FF181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.cpp in Sources */,
 				18D0B3E8181E92CB005AEEF8 /* trees.c in Sources */,
+				18D0B4D118214E39005AEEF8 /* FTTextureGlyph.cpp in Sources */,
 				18D0B468181E9CDB005AEEF8 /* RenderQueue.cpp in Sources */,
 				18D0B45B181E9C89005AEEF8 /* Manager.cpp in Sources */,
 				18D0B3FE181E9671005AEEF8 /* _ParticleSystemEmitterPlane.cpp in Sources */,
 				18D0B3BD181E92A0005AEEF8 /* pngwrite.c in Sources */,
 				18D0B3B6181E92A0005AEEF8 /* pngrio.c in Sources */,
 				18D0B46B181E9CDB005AEEF8 /* SubModelInstance.cpp in Sources */,
-				18D0B469181E9CDB005AEEF8 /* RibbonSystem.cpp in Sources */,
+				18D0B4CE18214E39005AEEF8 /* FTPoint.cpp in Sources */,
 				18D0B3E6181E92CB005AEEF8 /* inftrees.c in Sources */,
+				18D0B4E118214E39005AEEF8 /* stdafx.cpp in Sources */,
+				18D0B48A18214DAD005AEEF8 /* Entity2DAniPack.cpp in Sources */,
+				18D0B4CF18214E39005AEEF8 /* FTSize.cpp in Sources */,
 				18D0B396181E9284005AEEF8 /* jcinit.c in Sources */,
 				18D0B3E1181E92CB005AEEF8 /* crc32.c in Sources */,
 				18D0B3B1181E92A0005AEEF8 /* pnggccrd.c in Sources */,
+				18D0B4CB18214E39005AEEF8 /* FTGlyph.cpp in Sources */,
+				18D0B4CC18214E39005AEEF8 /* FTGlyphContainer.cpp in Sources */,
+				18D0B4C818214E39005AEEF8 /* FTCharmap.cpp in Sources */,
 				18D0B446181E9AE9005AEEF8 /* ImageCodec.cpp in Sources */,
 				18D0B411181E9789005AEEF8 /* Camera.cpp in Sources */,
+				18D0B4D018214E39005AEEF8 /* FTTextureFont.cpp in Sources */,
 				18D0B3E0181E92CB005AEEF8 /* compress.c in Sources */,
-				18D0B3F1181E935A005AEEF8 /* MpwFormat.cpp in Sources */,
 				18D0B449181E9AE9005AEEF8 /* ImageCodecDds.cpp in Sources */,
 				18D0B3B0181E92A0005AEEF8 /* pngerror.c in Sources */,
-				18D0B3F0181E935A005AEEF8 /* MpwDecoder.cpp in Sources */,
 				18D0B397181E9284005AEEF8 /* jcmainct.c in Sources */,
 				18D0B44E181E9AE9005AEEF8 /* ImageCodecTga.cpp in Sources */,
 				18D0B45A181E9C89005AEEF8 /* Light.cpp in Sources */,
+				18D0B4CA18214E39005AEEF8 /* FTFont.cpp in Sources */,
 				18D0B3E2181E92CB005AEEF8 /* deflate.c in Sources */,
+				18D0B4CD18214E39005AEEF8 /* FTLibrary.cpp in Sources */,
+				18D0B4DE18214E39005AEEF8 /* PixelFormat.cpp in Sources */,
 				18D0B3FB181E9671005AEEF8 /* _Particle.cpp in Sources */,
 				18D0B3B7181E92A0005AEEF8 /* pngrtran.c in Sources */,
 				18D0B398181E9284005AEEF8 /* jcmarker.c in Sources */,
 				18D0B3B4181E92A0005AEEF8 /* pngpread.c in Sources */,
 				18D0B3E3181E92CB005AEEF8 /* gzio.c in Sources */,
 				18D0B404181E9697005AEEF8 /* MpwFrame.cpp in Sources */,
+				18D0B4C918214E39005AEEF8 /* FTFace.cpp in Sources */,
 				18D0B467181E9CDB005AEEF8 /* RenderOperation.cpp in Sources */,
 				18D0B458181E9C89005AEEF8 /* Image.cpp in Sources */,
 				18D0B3B8181E92A0005AEEF8 /* pngrutil.c in Sources */,
 				18D0B45F181E9C89005AEEF8 /* ModelNodeCreater.cpp in Sources */,
+				18D0B48E18214DD5005AEEF8 /* MpwFormat.cpp in Sources */,
 				18D0B447181E9AE9005AEEF8 /* ImageCodecBlp.cpp in Sources */,
 				18D0B3E4181E92CB005AEEF8 /* inffast.c in Sources */,
 				18D0B45E181E9C89005AEEF8 /* ModelNode.cpp in Sources */,
@@ -653,11 +751,13 @@
 				18D0B3B5181E92A0005AEEF8 /* pngread.c in Sources */,
 				18D0B3E9181E92CB005AEEF8 /* uncompr.c in Sources */,
 				18D0B414181E9789005AEEF8 /* CoreBone.cpp in Sources */,
+				18D0B48D18214DD5005AEEF8 /* MpwDecoder.cpp in Sources */,
 				18D0B3AF181E92A0005AEEF8 /* png.c in Sources */,
 				18D0B395181E9284005AEEF8 /* jchuff.c in Sources */,
 				18D0B3BA181E92A0005AEEF8 /* pngtrans.c in Sources */,
 				18D0B3EA181E92CB005AEEF8 /* zutil.c in Sources */,
 				18D0B39B181E9284005AEEF8 /* jcparam.c in Sources */,
+				18D0B4E018214E39005AEEF8 /* RenderEngineDll.cpp in Sources */,
 				18D0B471181E9E39005AEEF8 /* IndexData.cpp in Sources */,
 				18D0B475181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp in Sources */,
 				18D0B3E5181E92CB005AEEF8 /* inflate.c in Sources */,
@@ -670,7 +770,6 @@
 				18D0B3B2181E92A0005AEEF8 /* pngget.c in Sources */,
 				18D0B406181E9697005AEEF8 /* ParticleSystem.cpp in Sources */,
 				18D0B46A181E9CDB005AEEF8 /* Skeleton.cpp in Sources */,
-				181BC025181CB08500786855 /* RenderEngine.m in Sources */,
 				18D0B3BB181E92A0005AEEF8 /* pngvcrd.c in Sources */,
 				18D0B3BC181E92A0005AEEF8 /* pngwio.c in Sources */,
 				18D0B405181E9697005AEEF8 /* Particle.cpp in Sources */,
@@ -801,6 +900,9 @@
 					../../../Base/Base/Include,
 					../../Include,
 					../../Include/RenderEngine,
+					../../../Dependence/freetype,
+					../../../Dependence,
+					../../src/RenderEngine,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -824,6 +926,9 @@
 					../../../Base/Base/Include,
 					../../Include,
 					../../Include/RenderEngine,
+					../../../Dependence/freetype,
+					../../../Dependence,
+					../../src/RenderEngine,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

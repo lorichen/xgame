@@ -77,7 +77,7 @@ inline static bool _isAbsolutePath(CPathA& path)
 	return !::PathIsRelativeA(path.c_str());
     
 #else
-    return (path.length() >= 3 && path[0] == '\\' || path[0] == '/' || path[1] == ':' );
+    return (path.length() >= 3 && path[0] == '\\') || path[0] == '/' || path[1] == ':' ;
 #endif
 }
 
@@ -91,7 +91,8 @@ RKT_API void toggleFullPath(CPathA& path)
 
 	if (!_isAbsolutePath(path))
 	{
-		CPathA workPath(getWorkDir());
+		CPathA workPath;
+        workPath = getWorkDir();
 		workPath.addTailSlash();
 		path.insert(0, workPath);
 	}
@@ -99,7 +100,8 @@ RKT_API void toggleFullPath(CPathA& path)
 
 RKT_API bool checkPath(const char* path, bool& isAbsolutePath, uint& attrib)
 {
-	CPathA mypath(path);
+	CPathA mypath ;
+    mypath = path;
 	toggleFullPath(mypath);
 
 #if (TARGET_PLATFORM == PLATFORM_WIN32)
@@ -124,7 +126,8 @@ RKT_API bool checkPath(const char* path, bool& isAbsolutePath, uint& attrib)
 
 RKT_API bool isAbsolutePath(const char* path)
 {
-    CPathA p(path);
+    CPathA p ;
+    p = path;
 	return _isAbsolutePath(p);
 }
 

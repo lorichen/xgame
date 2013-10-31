@@ -116,6 +116,7 @@
 /* Begin PBXFileReference section */
 		18D0B364181E6F68005AEEF8 /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base.h; path = ../../Include/Base.h; sourceTree = "<group>"; };
 		18D0B365181E6F88005AEEF8 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Common.h; path = ../../Include/Common.h; sourceTree = "<group>"; };
+		18D0B48818214B3B005AEEF8 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../Include/type.h; sourceTree = "<group>"; };
 		18F8E09E181C11B900E96D41 /* libbase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F8E0A1181C11B900E96D41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		18F8E0A5181C11B900E96D41 /* base-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "base-Prefix.pch"; sourceTree = "<group>"; };
@@ -258,6 +259,7 @@
 		18F8E095181C11B800E96D41 = {
 			isa = PBXGroup;
 			children = (
+				18D0B48818214B3B005AEEF8 /* type.h */,
 				18D0B365181E6F88005AEEF8 /* Common.h */,
 				18D0B364181E6F68005AEEF8 /* Base.h */,
 				18F8E15B181C12FB00E96D41 /* filesystem */,

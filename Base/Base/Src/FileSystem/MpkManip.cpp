@@ -116,9 +116,11 @@ namespace xs{
 	bool MpkManip::extractFile(const char* source,const char* targetFilename,bool replaceExist)
 	{
 		bool bOk = false;
-		CPathA sourceFilename(source);
-		CPathA path(targetFilename);
-		CPathA parent(path.getParentDir().c_str());
+		CPathA sourceFilename;
+        sourceFilename = source;
+		CPathA path;
+        path = targetFilename;
+		CPathA parent(path.getParentDir());
 		if (!parent.empty())
 			createDirectoryRecursive(parent.c_str());
 

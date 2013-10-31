@@ -28,10 +28,16 @@
 
 using namespace xs;
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
 #include <EGL/egl.h>
 #include <EGL/eglplatform.h>
+#else
+#include <OpenGLES/EAGL.h>
+#include <OpenGLES/ES2/gl.h>
+#include <OpenGLES/ES2/glext.h>
+#endif
 
 
 

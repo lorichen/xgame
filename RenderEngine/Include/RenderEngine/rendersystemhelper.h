@@ -27,7 +27,11 @@ namespace xs{
 		{
 			if(m_hDll)
 			{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 				FreeLibrary(m_hDll);
+#else
+                dlclose(m_hDll);
+#endif
 				m_hDll = 0;
 			}
 		}
@@ -54,7 +58,11 @@ namespace xs{
 			m_pModule = 0;
 
 			createRenderSystem proc;
-			proc = (createRenderSystem)GetProcAddress(m_hDll, "createRenderSystem");	
+#if (TARGET_PLATFORM  == PLATFORM_WIN32)
+			proc = (createRenderSystem)GetProcAddress(m_hDll, "createRenderSystem");
+#else
+            proc = (createRenderSystem)getProcAddress(m_hDll, "createRenderSystem");
+#endif
 			if(proc)
 			{
 				m_pModule = proc(param);
@@ -67,7 +75,11 @@ namespace xs{
 		{
 			if(m_hDll == 0)
 			{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 				m_hDll = LoadLibrary(renderSystemDllName);
+#else
+                m_hDll = dlopen(renderSystemDllName, RTLD_NOW);
+#endif
 			}
 		}
 	};

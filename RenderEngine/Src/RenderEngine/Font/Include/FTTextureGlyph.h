@@ -53,7 +53,7 @@ class FTTextureGlyph : public FTGlyph
          * Reset the currently active texture to zero to get into a known state before
          * drawing a string. This is to get round possible threading issues.
          */
-        static void  FTTextureGlyph::ResetActiveTexture(){ activeTexture = 0;}
+        static void  ResetActiveTexture(){ activeTexture = 0;}
         
     private:
         /**

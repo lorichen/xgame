@@ -1,6 +1,9 @@
-#ifndef __ModelManagerHelper_H__
-#define __ModelManagerHelper_H__
 
+
+#ifndef __ModelManagerHelper_H__ext_
+#define __ModelManagerHelper_H__ext_
+
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #ifdef _DEBUG
 	#define	ModelManagerDllName	"xs_mod_d.dll"
 #elif RELEASEDEBUG
@@ -8,6 +11,7 @@
 #else
 	#define ModelManagerDllName	"xs_mod.dll"
 #endif
+
 
 namespace xs
 {
@@ -31,12 +35,28 @@ namespace xs
 		~ModelManagerHelper()
 		{
 		}
+        
+        void loadDLL()
+		{
+			if(m_hDll == 0)
+			{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+				m_hDll = LoadLibrary(ModelManagerDllName);
+#else
+                m_hDll = dlopen(ModelManagerDllName, RTLD_NOW);
+#endif
+			}
+		}
 
 		void close()
 		{
 			if (m_hDll)
 			{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 				FreeLibrary(m_hDll);
+#else 
+                dlclose(m_hDll);
+#endif
 				m_hDll = 0;
 			}
 		}
@@ -54,7 +74,11 @@ namespace xs
 			IModelManager *pModule = 0;
 
 			createModelManager proc;
-			proc = (createModelManager)GetProcAddress(m_hDll,"LoadModelManager");	
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+			proc = (createModelManager)GetProcAddress(m_hDll,"LoadModelManager");
+#else
+            proc = (createModelManager)getProcAddress(m_hDll,"LoadModelManager");
+#endif
 			if(proc)
 			{
 				pModule = proc(pRenderSystem);
@@ -76,7 +100,11 @@ namespace xs
 			IModelInstanceManager *pModule = 0;
 
 			createModelInstanceManager proc;
-			proc = (createModelInstanceManager)GetProcAddress(m_hDll,"createModelInstanceManager");	
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+			proc = (createModelInstanceManager)GetProcAddress(m_hDll,"createModelInstanceManager");
+#else
+            proc = (createModelInstanceManager)getProcAddress(m_hDll,"createModelInstanceManager")
+#endif
 			if(proc)
 			{
 				pModule = proc(pRenderSystem);
@@ -85,15 +113,11 @@ namespace xs
 			return pModule;
 		}
 
-		void loadDLL()
-		{
-			if(m_hDll == 0)
-			{
-				m_hDll = LoadLibrary(ModelManagerDllName);
-			}
-		}
 	};
 
 }
+
+
+#endif
 
 #endif

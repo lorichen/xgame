@@ -10,6 +10,7 @@ http://www.codeproject.com/info/cpol10.aspx
 #ifndef _GDIPATH_H_
 #define _GDIPATH_H_
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #include <Gdiplus.h>
 
 namespace TextDesigner
@@ -132,5 +133,8 @@ protected:
 };
 
 } // namespace TextDesigner
+
+
+#endif
 
 #endif // _GDIPATH_H_

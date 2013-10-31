@@ -10,6 +10,8 @@ http://www.codeproject.com/info/cpol10.aspx
 #ifndef _TEXTDBLOUTLINESTRATEGY_H_
 #define _TEXTDBLOUTLINESTRATEGY_H_
 
+
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #include <Gdiplus.h>
 #include "ITextStrategy.h"
 
@@ -259,6 +261,7 @@ protected:
 	bool m_bClrText;
 
 };
+#endif
 
 } // namespace TextDesigner
 
