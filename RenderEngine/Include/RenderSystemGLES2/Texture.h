@@ -145,7 +145,7 @@ namespace xs
 		ITextureManager *m_pTextureManager;
 		size_t		m_memorySize;
 
-		typedef stdext::hash_map<std::string, std::string> CustomInfoMap;
+		typedef HASH_MAP_NAMESPACE::hash_map<std::string, std::string> CustomInfoMap;
 		CustomInfoMap m_customInfo;
 
 	public:

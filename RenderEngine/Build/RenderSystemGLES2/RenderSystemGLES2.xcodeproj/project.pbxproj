@@ -16,7 +16,22 @@
 		181BC06C181CB0E300786855 /* RenderSystemGLES2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 181BC06B181CB0E300786855 /* RenderSystemGLES2Tests.m */; };
 		18D0B48118214712005AEEF8 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B48018214712005AEEF8 /* OpenGLES.framework */; };
 		18D0B485182149A0005AEEF8 /* IndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B483182149A0005AEEF8 /* IndexBuffer.cpp */; };
-		18D0B486182149A0005AEEF8 /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B484182149A0005AEEF8 /* VertexBuffer.cpp */; };
+		CDDC56EC1821F34C00622541 /* Adapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56DA1821F34C00622541 /* Adapter.cpp */; };
+		CDDC56ED1821F34C00622541 /* BufferManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56DB1821F34C00622541 /* BufferManager.cpp */; };
+		CDDC56EE1821F34C00622541 /* GLPixelFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56DC1821F34C00622541 /* GLPixelFormat.cpp */; };
+		CDDC56EF1821F34C00622541 /* HardwareCursorManagerOGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56DD1821F34C00622541 /* HardwareCursorManagerOGL.cpp */; };
+		CDDC56F01821F34C00622541 /* HighLevelShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56DE1821F34C00622541 /* HighLevelShader.cpp */; };
+		CDDC56F11821F34C00622541 /* HighLevelShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56DF1821F34C00622541 /* HighLevelShaderManager.cpp */; };
+		CDDC56F21821F34C00622541 /* HighLevelShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56E01821F34C00622541 /* HighLevelShaderProgram.cpp */; };
+		CDDC56F31821F34C00622541 /* pbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56E11821F34C00622541 /* pbuffer.cpp */; };
+		CDDC56F51821F34C00622541 /* RenderSystemDll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56E41821F34C00622541 /* RenderSystemDll.cpp */; };
+		CDDC56F71821F34C00622541 /* ShaderProgramManagerOGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56E71821F34C00622541 /* ShaderProgramManagerOGL.cpp */; };
+		CDDC56F81821F34C00622541 /* StdAfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56E81821F34C00622541 /* StdAfx.cpp */; };
+		CDDC56F91821F34C00622541 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56E91821F34C00622541 /* Texture.cpp */; };
+		CDDC56FA1821F34C00622541 /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56EA1821F34C00622541 /* TextureManager.cpp */; };
+		CDDC56FB1821F34C00622541 /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56EB1821F34C00622541 /* VertexBuffer.cpp */; };
+		CDDC570418226B0C00622541 /* RenderSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC570218226B0C00622541 /* RenderSystem.cpp */; };
+		CDDC570518226B0C00622541 /* RenderTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC570318226B0C00622541 /* RenderTarget.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +69,25 @@
 		18D0B48018214712005AEEF8 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		18D0B48218214827005AEEF8 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../../Base/Base/Include/type.h; sourceTree = "<group>"; };
 		18D0B483182149A0005AEEF8 /* IndexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IndexBuffer.cpp; path = ../../Src/RenderSystemGLES2/IndexBuffer.cpp; sourceTree = "<group>"; };
-		18D0B484182149A0005AEEF8 /* VertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexBuffer.cpp; path = ../../Src/RenderSystemGLES2/VertexBuffer.cpp; sourceTree = "<group>"; };
 		18D0B48718214A53005AEEF8 /* StdAfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StdAfx.h; path = ../../Src/RenderSystemGLES2/StdAfx.h; sourceTree = "<group>"; };
+		CDDC56DA1821F34C00622541 /* Adapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Adapter.cpp; path = ../../Src/RenderSystemGLES2/Adapter.cpp; sourceTree = "<group>"; };
+		CDDC56DB1821F34C00622541 /* BufferManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BufferManager.cpp; path = ../../Src/RenderSystemGLES2/BufferManager.cpp; sourceTree = "<group>"; };
+		CDDC56DC1821F34C00622541 /* GLPixelFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLPixelFormat.cpp; path = ../../Src/RenderSystemGLES2/GLPixelFormat.cpp; sourceTree = "<group>"; };
+		CDDC56DD1821F34C00622541 /* HardwareCursorManagerOGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HardwareCursorManagerOGL.cpp; path = ../../Src/RenderSystemGLES2/HardwareCursorManagerOGL.cpp; sourceTree = "<group>"; };
+		CDDC56DE1821F34C00622541 /* HighLevelShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HighLevelShader.cpp; path = ../../Src/RenderSystemGLES2/HighLevelShader.cpp; sourceTree = "<group>"; };
+		CDDC56DF1821F34C00622541 /* HighLevelShaderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HighLevelShaderManager.cpp; path = ../../Src/RenderSystemGLES2/HighLevelShaderManager.cpp; sourceTree = "<group>"; };
+		CDDC56E01821F34C00622541 /* HighLevelShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HighLevelShaderProgram.cpp; path = ../../Src/RenderSystemGLES2/HighLevelShaderProgram.cpp; sourceTree = "<group>"; };
+		CDDC56E11821F34C00622541 /* pbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pbuffer.cpp; path = ../../Src/RenderSystemGLES2/pbuffer.cpp; sourceTree = "<group>"; };
+		CDDC56E21821F34C00622541 /* pbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pbuffer.h; path = ../../Src/RenderSystemGLES2/pbuffer.h; sourceTree = "<group>"; };
+		CDDC56E41821F34C00622541 /* RenderSystemDll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderSystemDll.cpp; path = ../../Src/RenderSystemGLES2/RenderSystemDll.cpp; sourceTree = "<group>"; };
+		CDDC56E61821F34C00622541 /* RenderTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderTarget.h; path = ../../Src/RenderSystemGLES2/RenderTarget.h; sourceTree = "<group>"; };
+		CDDC56E71821F34C00622541 /* ShaderProgramManagerOGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgramManagerOGL.cpp; path = ../../Src/RenderSystemGLES2/ShaderProgramManagerOGL.cpp; sourceTree = "<group>"; };
+		CDDC56E81821F34C00622541 /* StdAfx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StdAfx.cpp; path = ../../Src/RenderSystemGLES2/StdAfx.cpp; sourceTree = "<group>"; };
+		CDDC56E91821F34C00622541 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = ../../Src/RenderSystemGLES2/Texture.cpp; sourceTree = "<group>"; };
+		CDDC56EA1821F34C00622541 /* TextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureManager.cpp; path = ../../Src/RenderSystemGLES2/TextureManager.cpp; sourceTree = "<group>"; };
+		CDDC56EB1821F34C00622541 /* VertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexBuffer.cpp; path = ../../Src/RenderSystemGLES2/VertexBuffer.cpp; sourceTree = "<group>"; };
+		CDDC570218226B0C00622541 /* RenderSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderSystem.cpp; path = ../../Src/RenderSystemGLES2/RenderSystem.cpp; sourceTree = "<group>"; };
+		CDDC570318226B0C00622541 /* RenderTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTarget.cpp; path = ../../Src/RenderSystemGLES2/RenderTarget.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +117,26 @@
 		181BC043181CB0E200786855 = {
 			isa = PBXGroup;
 			children = (
+				CDDC570218226B0C00622541 /* RenderSystem.cpp */,
+				CDDC570318226B0C00622541 /* RenderTarget.cpp */,
+				CDDC56DA1821F34C00622541 /* Adapter.cpp */,
+				CDDC56DB1821F34C00622541 /* BufferManager.cpp */,
+				CDDC56DC1821F34C00622541 /* GLPixelFormat.cpp */,
+				CDDC56DD1821F34C00622541 /* HardwareCursorManagerOGL.cpp */,
+				CDDC56DE1821F34C00622541 /* HighLevelShader.cpp */,
+				CDDC56DF1821F34C00622541 /* HighLevelShaderManager.cpp */,
+				CDDC56E01821F34C00622541 /* HighLevelShaderProgram.cpp */,
+				CDDC56E11821F34C00622541 /* pbuffer.cpp */,
+				CDDC56E21821F34C00622541 /* pbuffer.h */,
+				CDDC56E41821F34C00622541 /* RenderSystemDll.cpp */,
+				CDDC56E61821F34C00622541 /* RenderTarget.h */,
+				CDDC56E71821F34C00622541 /* ShaderProgramManagerOGL.cpp */,
+				CDDC56E81821F34C00622541 /* StdAfx.cpp */,
+				CDDC56E91821F34C00622541 /* Texture.cpp */,
+				CDDC56EA1821F34C00622541 /* TextureManager.cpp */,
+				CDDC56EB1821F34C00622541 /* VertexBuffer.cpp */,
 				18D0B48718214A53005AEEF8 /* StdAfx.h */,
 				18D0B483182149A0005AEEF8 /* IndexBuffer.cpp */,
-				18D0B484182149A0005AEEF8 /* VertexBuffer.cpp */,
 				18D0B48218214827005AEEF8 /* type.h */,
 				181BC051181CB0E200786855 /* RenderSystemGLES2 */,
 				181BC065181CB0E300786855 /* RenderSystemGLES2Tests */,
@@ -231,8 +280,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D0B486182149A0005AEEF8 /* VertexBuffer.cpp in Sources */,
+				CDDC56F91821F34C00622541 /* Texture.cpp in Sources */,
+				CDDC56EE1821F34C00622541 /* GLPixelFormat.cpp in Sources */,
+				CDDC56FB1821F34C00622541 /* VertexBuffer.cpp in Sources */,
+				CDDC56F11821F34C00622541 /* HighLevelShaderManager.cpp in Sources */,
+				CDDC56F21821F34C00622541 /* HighLevelShaderProgram.cpp in Sources */,
+				CDDC56F81821F34C00622541 /* StdAfx.cpp in Sources */,
+				CDDC570418226B0C00622541 /* RenderSystem.cpp in Sources */,
+				CDDC570518226B0C00622541 /* RenderTarget.cpp in Sources */,
+				CDDC56ED1821F34C00622541 /* BufferManager.cpp in Sources */,
 				18D0B485182149A0005AEEF8 /* IndexBuffer.cpp in Sources */,
+				CDDC56F51821F34C00622541 /* RenderSystemDll.cpp in Sources */,
+				CDDC56F01821F34C00622541 /* HighLevelShader.cpp in Sources */,
+				CDDC56EC1821F34C00622541 /* Adapter.cpp in Sources */,
+				CDDC56F31821F34C00622541 /* pbuffer.cpp in Sources */,
+				CDDC56F71821F34C00622541 /* ShaderProgramManagerOGL.cpp in Sources */,
+				CDDC56EF1821F34C00622541 /* HardwareCursorManagerOGL.cpp in Sources */,
+				CDDC56FA1821F34C00622541 /* TextureManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +414,8 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../Base/Base/Include,
 					../../Include,
+					../../Include/RenderSystemGLES2,
+					../../Include/RenderEngine,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -372,6 +438,8 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../Base/Base/Include,
 					../../Include,
+					../../Include/RenderSystemGLES2,
+					../../Include/RenderEngine,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

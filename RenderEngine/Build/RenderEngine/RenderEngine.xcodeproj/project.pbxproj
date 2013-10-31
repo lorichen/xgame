@@ -110,6 +110,8 @@
 		18D0B4DE18214E39005AEEF8 /* PixelFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */; };
 		18D0B4E018214E39005AEEF8 /* RenderEngineDll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C618214E39005AEEF8 /* RenderEngineDll.cpp */; };
 		18D0B4E118214E39005AEEF8 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C718214E39005AEEF8 /* stdafx.cpp */; };
+		CDDC56FE1822048400622541 /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56FC1822048400622541 /* RenderEngine.cpp */; };
+		CDDC56FF1822048400622541 /* RibbonSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56FD1822048400622541 /* RibbonSystem.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,6 +296,8 @@
 		18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PixelFormat.cpp; path = ../../Src/RenderEngine/PixelFormat.cpp; sourceTree = "<group>"; };
 		18D0B4C618214E39005AEEF8 /* RenderEngineDll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderEngineDll.cpp; path = ../../Src/RenderEngine/RenderEngineDll.cpp; sourceTree = "<group>"; };
 		18D0B4C718214E39005AEEF8 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = ../../Src/RenderEngine/stdafx.cpp; sourceTree = "<group>"; };
+		CDDC56FC1822048400622541 /* RenderEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderEngine.cpp; path = ../../Src/RenderEngine/RenderEngine.cpp; sourceTree = "<group>"; };
+		CDDC56FD1822048400622541 /* RibbonSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RibbonSystem.cpp; path = ../../Src/RenderEngine/RibbonSystem.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +326,8 @@
 		181BC011181CB08500786855 = {
 			isa = PBXGroup;
 			children = (
+				CDDC56FC1822048400622541 /* RenderEngine.cpp */,
+				CDDC56FD1822048400622541 /* RibbonSystem.cpp */,
 				18D0B48F18214E39005AEEF8 /* Font */,
 				18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */,
 				18D0B4C618214E39005AEEF8 /* RenderEngineDll.cpp */,
@@ -708,6 +714,7 @@
 				18D0B3E1181E92CB005AEEF8 /* crc32.c in Sources */,
 				18D0B3B1181E92A0005AEEF8 /* pnggccrd.c in Sources */,
 				18D0B4CB18214E39005AEEF8 /* FTGlyph.cpp in Sources */,
+				CDDC56FE1822048400622541 /* RenderEngine.cpp in Sources */,
 				18D0B4CC18214E39005AEEF8 /* FTGlyphContainer.cpp in Sources */,
 				18D0B4C818214E39005AEEF8 /* FTCharmap.cpp in Sources */,
 				18D0B446181E9AE9005AEEF8 /* ImageCodec.cpp in Sources */,
@@ -747,6 +754,7 @@
 				18D0B46D181E9CDB005AEEF8 /* Viewport.cpp in Sources */,
 				18D0B3FD181E9671005AEEF8 /* _ParticleSystemEmitter.cpp in Sources */,
 				18D0B3B3181E92A0005AEEF8 /* pngmem.c in Sources */,
+				CDDC56FF1822048400622541 /* RibbonSystem.cpp in Sources */,
 				18D0B431181E980F005AEEF8 /* ImageCodecPng.cpp in Sources */,
 				18D0B3B5181E92A0005AEEF8 /* pngread.c in Sources */,
 				18D0B3E9181E92CB005AEEF8 /* uncompr.c in Sources */,

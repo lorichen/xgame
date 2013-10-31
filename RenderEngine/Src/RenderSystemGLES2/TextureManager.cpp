@@ -397,7 +397,7 @@ namespace xs
 			str.format("ReTextureManagerUnique%d",m_ui32Num++);
 		}while(names.find(str) != names.end());*/
 
-		sprintf_s(szName,"ReTextureManagerUnique%d",m_ui32Num++);
+		sprintf(szName,"ReTextureManagerUnique%d",m_ui32Num++);
 		m_mutex.Unlock();
 
 		return szName;

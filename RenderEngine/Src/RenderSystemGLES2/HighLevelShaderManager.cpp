@@ -73,7 +73,7 @@ namespace xs
 		}
 		while(names.find(str) != names.end());*/
 		
-		sprintf_s(szName,"ReHighLevelShaderManagerUnique%d",m_ui32Num++);
+		sprintf(szName,"ReHighLevelShaderManagerUnique%d",m_ui32Num++);
 
 		return szName;
 	}

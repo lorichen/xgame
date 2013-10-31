@@ -3,7 +3,7 @@
 #ifndef __ModelManagerHelper_H__ext_
 #define __ModelManagerHelper_H__ext_
 
-#if (TARGET_PLATFORM == PLATFORM_WIN32)
+//#if (TARGET_PLATFORM == PLATFORM_WIN32)
 #ifdef _DEBUG
 	#define	ModelManagerDllName	"xs_mod_d.dll"
 #elif RELEASEDEBUG
@@ -11,6 +11,8 @@
 #else
 	#define ModelManagerDllName	"xs_mod.dll"
 #endif
+
+//#endif
 
 
 namespace xs
@@ -103,7 +105,7 @@ namespace xs
 #if (TARGET_PLATFORM == PLATFORM_WIN32)
 			proc = (createModelInstanceManager)GetProcAddress(m_hDll,"createModelInstanceManager");
 #else
-            proc = (createModelInstanceManager)getProcAddress(m_hDll,"createModelInstanceManager")
+            proc = (createModelInstanceManager)getProcAddress(m_hDll,"createModelInstanceManager");
 #endif
 			if(proc)
 			{
@@ -118,6 +120,6 @@ namespace xs
 }
 
 
-#endif
+
 
 #endif

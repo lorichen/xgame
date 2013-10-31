@@ -2,6 +2,8 @@
 #include "Texture.h"
 #include "GLPixelFormat.h"
 
+
+
 namespace xs
 {
 	extern GLuint getCombinedMinMipFilter(FilterOptions mMinFilter,FilterOptions mMipFilter);
@@ -190,12 +192,27 @@ namespace xs
 					//这种方法会影响效率
 					Image * pTempImg = new Image(image);
 					if( 0 == pTempImg) return false;
+
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 					InterlockedExchangePointer(&m_pImageBuffer, pTempImg);
-					pTempImg = 0;	
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+                    OSAtomicCompareAndSwapPtr((void*)m_pImageBuffer,(void*)pTempImg,(void * volatile *)&m_pImageBuffer);
+#else
+                    assert(0); //todo
+#endif
+                    
+					pTempImg = 0;
 				}
 				else
 				{
+				
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 					InterlockedExchangePointer(&m_pImageBuffer, pImage);
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+                    OSAtomicCompareAndSwapPtr((void*)m_pImageBuffer,(void*)pImage,(void * volatile *)&m_pImageBuffer);
+#else
+                    assert(0); //todo
+#endif
 				}
 			}
 		}
@@ -322,7 +339,15 @@ namespace xs
 				if(pImage) delete pImage;
 				pImage = 0;
 				//设置纹理上传标志位
-				InterlockedExchange(&m_lUploadFlag, (LONG)1);
+				
+                long ltemp = 1;
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+                InterlockedExchange(&m_lUploadFlag, (LONG)1);
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+                OSAtomicCompareAndSwapPtr((void*)m_lUploadFlag,(void*)ltemp,(void * volatile *)&m_lUploadFlag);
+#else
+                assert(0); //todo
+#endif
 			}
 		}
 		return true;
@@ -711,7 +736,15 @@ namespace xs
 
 			//modified by xxh 20091029, 考虑到压缩纹理的同步上传
 			//设置标志位
-			InterlockedExchange(&m_lUploadFlag,(LONG)1);
+			
+            long ltemp = 1;
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+            InterlockedExchange(&m_lUploadFlag,(LONG)1);
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+            OSAtomicCompareAndSwapPtr((void*)m_lUploadFlag,(void*)ltemp,(void * volatile *)&m_lUploadFlag);
+#else
+            assert(0); //todo
+#endif
 
 		}
 
@@ -977,7 +1010,17 @@ namespace xs
 				}
 
 				//设置标志位，并且删除图像缓存
-				InterlockedExchange(&m_lUploadFlag, (LONG)1);
+                
+                long ltemp = 1;
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+                InterlockedExchange(&m_lUploadFlag,(LONG)1);
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+                OSAtomicCompareAndSwapPtr((void*)m_lUploadFlag,(void*)ltemp,(void * volatile *)&m_lUploadFlag);
+#else
+                assert(0); //todo
+#endif
+                
+                
 				delete m_pImageBuffer;
 				m_pImageBuffer = 0;
 				return true;

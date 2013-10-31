@@ -231,6 +231,8 @@
 		18F8E16C181C131E00E96D41 /* StdFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StdFileSystem.h; path = ../../Src/FileSystem/StdFileSystem.h; sourceTree = "<group>"; };
 		18F8E16D181C131E00E96D41 /* Stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Stream.cpp; path = ../../Src/FileSystem/Stream.cpp; sourceTree = "<group>"; };
 		18F8E16E181C131E00E96D41 /* VirtualFileSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileSystem.cpp; path = ../../Src/FileSystem/VirtualFileSystem.cpp; sourceTree = "<group>"; };
+		CDDC5700182237D000622541 /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = ../../Include/Thread.h; sourceTree = "<group>"; };
+		CDDC5701182237E000622541 /* LockFree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LockFree.h; path = ../../Include/LockFree.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,8 @@
 		18F8E095181C11B800E96D41 = {
 			isa = PBXGroup;
 			children = (
+				CDDC5701182237E000622541 /* LockFree.h */,
+				CDDC5700182237D000622541 /* Thread.h */,
 				18D0B48818214B3B005AEEF8 /* type.h */,
 				18D0B365181E6F88005AEEF8 /* Common.h */,
 				18D0B364181E6F68005AEEF8 /* Base.h */,

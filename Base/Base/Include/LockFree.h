@@ -85,9 +85,8 @@ bool CAS_assembly(node<T> * volatile * _ptr, node<T> * oldVal, node<T> * newVal)
 {
     register bool f;
 #if (TARGET_PLATFORM == PLATFORM_IOS)
-    assert(0);
-    //todo...
-    
+    //assert(0);
+    return OSAtomicCompareAndSwapPtr (oldVal, newVal, _ptr) == oldVal;
 #else
     
 #ifdef __GNUC__
@@ -172,8 +171,11 @@ bool CAS2_assembly(node<T> * volatile * _ptr, node<T> * old1, uint32_t old2, nod
     register bool f;
     
 #if (TARGET_PLATFORM == PLATFORM_IOS)
-    assert(0);
-    //todo...
+    //assert(0);
+    long long Comperand = reinterpret_cast<long long>(old1) | (static_cast<long long>(old2) << 32);
+    long long Exchange  = reinterpret_cast<long long>(new1) | (static_cast<long long>(new2) << 32);
+    
+    return OSAtomicCompareAndSwapPtr(Comperand,Exchange,_ptr) == Comperand;
 #else
     
 #ifdef __GNUC__

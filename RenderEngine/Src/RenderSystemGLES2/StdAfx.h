@@ -34,7 +34,7 @@ using namespace xs;
 #include <EGL/egl.h>
 #include <EGL/eglplatform.h>
 #else
-#include <OpenGLES/EAGL.h>
+//#include <OpenGLES/EAGL.h>  //.mm file use it!!!
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
 #endif

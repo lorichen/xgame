@@ -58,8 +58,8 @@ namespace xs
 			return &bm;
 		}
 	public:
-		static GLenum BufferManager::getGLUsage(uint usage);
-		static GLenum BufferManager::getGLType(VertexElementType type);
+		static GLenum getGLUsage(uint usage);
+		static GLenum getGLType(VertexElementType type);
 	private:
 		xs::Mutex m_mutex;
 	};

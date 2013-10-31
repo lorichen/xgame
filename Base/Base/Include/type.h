@@ -166,6 +166,20 @@ void ZeroMemory(void* p,unsigned int size)
     memset(p,0x00,size);
 }
 
+struct RECT
+{
+    long left;
+    long top;
+    long right;
+    long bottom;
+};
+
+typedef void* HDC;
+typedef void* EGLContext;
+typedef void* EGLSurface;
+typedef void* EGLDisplay;
+typedef void* EGLConfig;
+
 
 #else   //win32
 

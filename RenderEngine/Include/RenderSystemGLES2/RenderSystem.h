@@ -789,7 +789,7 @@ private:
 
 private:
 	// MultiRenderTarget
-	typedef stdext::hash_map<uint,RenderTarget*> RenderTargetType;
+	typedef HASH_MAP_NAMESPACE::hash_map<uint,RenderTarget*> RenderTargetType;
 	RenderTargetType	m_vRenderTarget;
 	RenderTargetType	m_vRenderTargetMT;
 	RenderTarget* initializeRenderTarget(HWND hWnd,int layer);
