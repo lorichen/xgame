@@ -22,7 +22,8 @@ RKT_API const char* getWorkDir()
 #ifdef WIN32
 	if (GetModuleFileName(NULL, g_workDir, MAX_PATH - 1))
 	{
-		CPath filename(g_workDir);
+		CPath filename ;
+		filename = g_workDir;
 		lstrcpyn(g_workDir, filename.getParentDir().c_str(), MAX_PATH - 1);
 	}
 #else

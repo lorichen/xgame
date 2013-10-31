@@ -7,7 +7,7 @@ The Code Project Open License (CPOL)
 http://www.codeproject.com/info/cpol10.aspx
 */
 
-#include "../../StdAfx.h"
+#include "StdAfx.h"
 #include "ExtrudeStrategy.h"
 #include "GDIPath.h"
 
