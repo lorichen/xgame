@@ -6,6 +6,9 @@ namespace xs
 	class RenderSystem;
 }
 
+
+struct OGLES2Context;
+
 class RenderTargetDesc
 {
 public:
@@ -86,21 +89,33 @@ public:
 
 	
 public:
-	EGLContext			rc;		//render context
+    
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+	EGLContext		rc;		//render context
 	HDC				dc;	
 	bool			m_b2D;
 	HWND			m_hWnd;
 		
 	EGLSurface		m_eglSurface;
-	RenderSystem*	m_pRenderSystem;
 	EGLDisplay		m_eglDisplay;
-
+    
+    RenderTarget(HDC dc,HWND hWnd,RenderSystem* pRenderSystem,EGLContext shareContext = NULL);
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+    OGLES2Context*      m_pContext;
+    
+#else
+    
+#endif
+    
+    RenderSystem*	m_pRenderSystem;
+    
 	RenderState		m_RenderState2D,m_RenderState3D;
 	RenderState		m_RenderState;
+    
 	
 
 	RenderTarget(RenderSystem* pRenderSystem);
-	RenderTarget(HDC dc,HWND hWnd,RenderSystem* pRenderSystem,EGLContext shareContext = NULL);
+	
 
 	//视口参数不会在切换2D / 3D时候重置，保存下来是方便使用
 	int m_vpLeft,m_vpTop,m_vpWidth,m_vpHeight;

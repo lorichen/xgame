@@ -1,0 +1,5 @@
+#include "StdAfx.h"
+#include "TextureManager.h"
+#include "Texture.h"
+#include "RenderTarget.h"
+#include "RenderSystem.h"

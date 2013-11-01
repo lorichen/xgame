@@ -174,11 +174,12 @@ struct RECT
     long bottom;
 };
 
-typedef void* HDC;
-typedef void* EGLContext;
-typedef void* EGLSurface;
-typedef void* EGLDisplay;
-typedef void* EGLConfig;
+
+//typedef void* HDC;
+//typedef void* EGLContext;
+//typedef void* EGLSurface;
+//typedef void* EGLDisplay;
+//typedef void* EGLConfig;
 
 
 #else   //win32

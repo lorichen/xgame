@@ -3,6 +3,8 @@
 
 #include "RenderTarget.h"
 
+
+
 namespace xs{
 
 class RenderSystem : public IRenderSystem
@@ -774,6 +776,8 @@ private:
 	ushort	m_textureUnit;
 
 public:
+    
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	HDC			m_hDC;
 	HWND		m_hWnd;
 	EGLContext	m_hRC;
@@ -781,6 +785,12 @@ public:
 	EGLDisplay	m_eglDisplay;
 	EGLConfig	m_eglConfig;
 	EGLSurface	m_eglSurface;
+#elif (TARGET_PLATFORM == PLATFORM_IOS)
+    void*       m_pView;
+    void*       m_pContext;
+#else
+   
+#endif
 
 	ColorValue	m_surfaceDiffuse;
 private:

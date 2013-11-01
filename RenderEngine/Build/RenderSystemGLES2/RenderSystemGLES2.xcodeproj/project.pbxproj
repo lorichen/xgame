@@ -32,6 +32,8 @@
 		CDDC56FB1821F34C00622541 /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56EB1821F34C00622541 /* VertexBuffer.cpp */; };
 		CDDC570418226B0C00622541 /* RenderSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC570218226B0C00622541 /* RenderSystem.cpp */; };
 		CDDC570518226B0C00622541 /* RenderTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC570318226B0C00622541 /* RenderTarget.cpp */; };
+		CDDC571018235D4C00622541 /* rendersystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = CDDC570E18235D4C00622541 /* rendersystem.mm */; };
+		CDDC571118235D4C00622541 /* RenderTarget.mm in Sources */ = {isa = PBXBuildFile; fileRef = CDDC570F18235D4C00622541 /* RenderTarget.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		CDDC56EB1821F34C00622541 /* VertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexBuffer.cpp; path = ../../Src/RenderSystemGLES2/VertexBuffer.cpp; sourceTree = "<group>"; };
 		CDDC570218226B0C00622541 /* RenderSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderSystem.cpp; path = ../../Src/RenderSystemGLES2/RenderSystem.cpp; sourceTree = "<group>"; };
 		CDDC570318226B0C00622541 /* RenderTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTarget.cpp; path = ../../Src/RenderSystemGLES2/RenderTarget.cpp; sourceTree = "<group>"; };
+		CDDC570E18235D4C00622541 /* rendersystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = rendersystem.mm; path = ../../Src/RenderSystemGLES2/rendersystem.mm; sourceTree = "<group>"; };
+		CDDC570F18235D4C00622541 /* RenderTarget.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RenderTarget.mm; path = ../../Src/RenderSystemGLES2/RenderTarget.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,8 @@
 		181BC043181CB0E200786855 = {
 			isa = PBXGroup;
 			children = (
+				CDDC570E18235D4C00622541 /* rendersystem.mm */,
+				CDDC570F18235D4C00622541 /* RenderTarget.mm */,
 				CDDC570218226B0C00622541 /* RenderSystem.cpp */,
 				CDDC570318226B0C00622541 /* RenderTarget.cpp */,
 				CDDC56DA1821F34C00622541 /* Adapter.cpp */,
@@ -287,7 +293,9 @@
 				CDDC56F21821F34C00622541 /* HighLevelShaderProgram.cpp in Sources */,
 				CDDC56F81821F34C00622541 /* StdAfx.cpp in Sources */,
 				CDDC570418226B0C00622541 /* RenderSystem.cpp in Sources */,
+				CDDC571118235D4C00622541 /* RenderTarget.mm in Sources */,
 				CDDC570518226B0C00622541 /* RenderTarget.cpp in Sources */,
+				CDDC571018235D4C00622541 /* rendersystem.mm in Sources */,
 				CDDC56ED1821F34C00622541 /* BufferManager.cpp in Sources */,
 				18D0B485182149A0005AEEF8 /* IndexBuffer.cpp in Sources */,
 				CDDC56F51821F34C00622541 /* RenderSystemDll.cpp in Sources */,
