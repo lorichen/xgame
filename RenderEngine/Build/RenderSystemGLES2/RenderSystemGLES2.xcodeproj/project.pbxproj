@@ -68,6 +68,7 @@
 		181BC067181CB0E300786855 /* RenderSystemGLES2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RenderSystemGLES2Tests-Info.plist"; sourceTree = "<group>"; };
 		181BC069181CB0E300786855 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		181BC06B181CB0E300786855 /* RenderSystemGLES2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenderSystemGLES2Tests.m; sourceTree = "<group>"; };
+		1881017A1824B2D0002AF8D8 /* RenderSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderSystem.h; path = ../../Include/RenderSystemGLES2/RenderSystem.h; sourceTree = "<group>"; };
 		18D0B48018214712005AEEF8 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		18D0B48218214827005AEEF8 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../../Base/Base/Include/type.h; sourceTree = "<group>"; };
 		18D0B483182149A0005AEEF8 /* IndexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IndexBuffer.cpp; path = ../../Src/RenderSystemGLES2/IndexBuffer.cpp; sourceTree = "<group>"; };
@@ -122,9 +123,11 @@
 			isa = PBXGroup;
 			children = (
 				CDDC570E18235D4C00622541 /* rendersystem.mm */,
-				CDDC570F18235D4C00622541 /* RenderTarget.mm */,
 				CDDC570218226B0C00622541 /* RenderSystem.cpp */,
+				1881017A1824B2D0002AF8D8 /* RenderSystem.h */,
+				CDDC570F18235D4C00622541 /* RenderTarget.mm */,
 				CDDC570318226B0C00622541 /* RenderTarget.cpp */,
+				CDDC56E61821F34C00622541 /* RenderTarget.h */,
 				CDDC56DA1821F34C00622541 /* Adapter.cpp */,
 				CDDC56DB1821F34C00622541 /* BufferManager.cpp */,
 				CDDC56DC1821F34C00622541 /* GLPixelFormat.cpp */,
@@ -135,7 +138,6 @@
 				CDDC56E11821F34C00622541 /* pbuffer.cpp */,
 				CDDC56E21821F34C00622541 /* pbuffer.h */,
 				CDDC56E41821F34C00622541 /* RenderSystemDll.cpp */,
-				CDDC56E61821F34C00622541 /* RenderTarget.h */,
 				CDDC56E71821F34C00622541 /* ShaderProgramManagerOGL.cpp */,
 				CDDC56E81821F34C00622541 /* StdAfx.cpp */,
 				CDDC56E91821F34C00622541 /* Texture.cpp */,
@@ -414,6 +416,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/RenderSystemGLES2.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RenderSystemGLES2/RenderSystemGLES2-Prefix.pch";
@@ -438,6 +441,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/RenderSystemGLES2.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RenderSystemGLES2/RenderSystemGLES2-Prefix.pch";

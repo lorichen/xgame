@@ -7,9 +7,17 @@
 #define MAX_PFORMATS    256
 #define TEX_SIZE        256
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+pbuffer::pbuffer(RenderSystem* pRenderSystem)
+: RenderTarget(pRenderSystem),m_id(0),m_pTexture(0),m_previousDC(0),m_previousRC(0)
+{
+}
+#else
+
+#endif
 
 bool pbuffer::initialize(int width,int height,int colorBits,int depthBits,
-		int stencilBits,HDC hdc,EGLContext hglrc,IRenderSystem* pRenderSystem,
+		int stencilBits,IRenderSystem* pRenderSystem,
 		FilterOptions min, FilterOptions mag, FilterOptions mip,TextureAddressingMode s,TextureAddressingMode t)
 {
 	m_desc.width = width;
@@ -117,6 +125,7 @@ bool pbuffer::initialize(int width,int height,int colorBits,int depthBits,
 
 	return true;
 }
+
 
 void  pbuffer::finalize()
 {

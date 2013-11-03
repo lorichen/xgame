@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		181BC010181CAEE000786855 /* ReAngle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181BC00F181CAEE000786855 /* ReAngle.cpp */; };
+		188101871825FBD1002AF8D8 /* Nvidia_fastmath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 188101861825FBD1002AF8D8 /* Nvidia_fastmath.cpp */; };
 		18F8E1DC181CA52B00E96D41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8E1DB181CA52B00E96D41 /* Foundation.framework */; };
 		18F8E1E1181CA52B00E96D41 /* math.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18F8E1E0181CA52B00E96D41 /* math.h */; };
 		18F8E1E3181CA52B00E96D41 /* math.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E1E2181CA52B00E96D41 /* math.m */; };
@@ -85,6 +86,7 @@
 		181BC00D181CAC5D00786855 /* ReVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReVector3.h; path = ../../Include/Math/ReVector3.h; sourceTree = "<group>"; };
 		181BC00E181CAC5D00786855 /* ReVector4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReVector4.h; path = ../../Include/Math/ReVector4.h; sourceTree = "<group>"; };
 		181BC00F181CAEE000786855 /* ReAngle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReAngle.cpp; path = ../../Src/Math/ReAngle.cpp; sourceTree = "<group>"; };
+		188101861825FBD1002AF8D8 /* Nvidia_fastmath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Nvidia_fastmath.cpp; path = ../../Src/Math/Nvidia_fastmath.cpp; sourceTree = "<group>"; };
 		18F8E1D8181CA52B00E96D41 /* libmath.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmath.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F8E1DB181CA52B00E96D41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		18F8E1DF181CA52B00E96D41 /* math-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "math-Prefix.pch"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		18F8E1CF181CA52B00E96D41 = {
 			isa = PBXGroup;
 			children = (
+				188101861825FBD1002AF8D8 /* Nvidia_fastmath.cpp */,
 				CDA690C4181DFCF400B2FDC7 /* type.h */,
 				181BC00F181CAEE000786855 /* ReAngle.cpp */,
 				181BBFF6181CAC5D00786855 /* Capsule.h */,
@@ -344,6 +347,7 @@
 				18F8E21E181CA58A00E96D41 /* ReMatrix3.cpp in Sources */,
 				18F8E220181CA58A00E96D41 /* RePlane.cpp in Sources */,
 				18F8E215181CA58A00E96D41 /* CPUMathInfo.cpp in Sources */,
+				188101871825FBD1002AF8D8 /* Nvidia_fastmath.cpp in Sources */,
 				18F8E216181CA58A00E96D41 /* Cylinder.cpp in Sources */,
 				18F8E223181CA58A00E96D41 /* ReSimpleSpline.cpp in Sources */,
 				18F8E225181CA58A00E96D41 /* ReVector3.cpp in Sources */,

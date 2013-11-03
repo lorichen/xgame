@@ -89,11 +89,11 @@ public:
 
 	
 public:
+    bool			m_b2D;
     
 #if (TARGET_PLATFORM == PLATFORM_WIN32)
 	EGLContext		rc;		//render context
-	HDC				dc;	
-	bool			m_b2D;
+	HDC				dc;
 	HWND			m_hWnd;
 		
 	EGLSurface		m_eglSurface;
@@ -103,6 +103,15 @@ public:
 #elif (TARGET_PLATFORM == PLATFORM_IOS)
     OGLES2Context*      m_pContext;
     
+    void Present();
+    bool _CreateIOS(void* view,void* shareContext = NULL);
+    void _DestoryIOS();
+    bool Reset();
+    
+    void GetClientRect(RECT* rc);
+    void* getView();
+    void* getRenderContext();
+    RenderTarget(void* uiView,RenderSystem* pRenderSystem,void* shareContext = NULL);
 #else
     
 #endif
@@ -121,7 +130,7 @@ public:
 	int m_vpLeft,m_vpTop,m_vpWidth,m_vpHeight;
 
 	GLuint  m_FrameBufferObj;
-	GLuint  GetFrameBufferObj(){return m_FrameBufferObj;}
+	GLuint  GetFrameBufferObj();
 };
 
 #endif

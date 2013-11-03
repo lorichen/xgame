@@ -74,7 +74,7 @@ namespace xs
 	void RenderSystem::release()
 	{
 		close();
-		delete this;
+		
 		//类静态变量是魔鬼!!
 		m_sCapabilitiesInit = false;
 
@@ -84,7 +84,9 @@ namespace xs
 			(*citer)->release();
 		}
 		m_vRenderSystems.clear();
-	}
+	
+        delete this;
+    }
 
 	RenderSystem::RenderSystem()
 	{
@@ -95,10 +97,16 @@ namespace xs
 		m_stencilBuffer = 0;
 		m_lineWidth = 1.0f;
 		m_scissorEnabled = false;
-
+        
+#if (TARGET_PLATFOMR == PLATFORM_WIN32)
 		m_hDC = 0;
 		m_hWnd = 0;
 		m_hRC = 0;
+#else
+        m_hWnd = 0;
+        m_pContext = 0;
+        m_pShaderContext = 0;
+#endif
 
 		m_surfaceDiffuse = ColorValue(0.8f,0.8f,0.8f,1.0f);
 		m_textureUnit = 0;
@@ -142,10 +150,14 @@ namespace xs
 			pTextureManager->releaseAll();
 		}
 
+#if (TARGET_PLATFOMR == PLATFORM_WIN32)
 		//wglMakeCurrent(0,0);
 		eglDestroySurface(m_eglDisplay, m_eglSurface);
 		eglTerminate(m_eglDisplay);
 		if (m_hDC) ReleaseDC(m_hWnd, m_hDC);
+#else
+        
+#endif
 	}
 
 	void	RenderSystem::setDefaultMatrix(uint cx,uint cy)
@@ -560,11 +572,9 @@ namespace xs
 		{
 			bool initret = false;
 			if( alpha)
-				initret = ppbuffer->initialize(width,height,32,16,8,
-				m_pCurrentRenderTarget->dc,m_pCurrentRenderTarget->rc,this,min, mag, mip,s,t);
+				initret = ppbuffer->initialize(width,height,32,16,8,this,min, mag, mip,s,t);
 			else
-				initret = ppbuffer->initialize(width,height,24,16,8,
-				m_pCurrentRenderTarget->dc,m_pCurrentRenderTarget->rc,this,min,mag,mip,s,t);
+				initret = ppbuffer->initialize(width,height,24,16,8,this,min,mag,mip,s,t);
 			if( !initret)
 			{
 				delete ppbuffer;
@@ -614,7 +624,11 @@ namespace xs
 
 	uint RenderSystem::MTaddRenderTarget(int layer)
 	{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		RenderTarget *pRenderTarget = new RenderTarget(m_hDC,m_hWnd,this,m_hRC);
+#else
+        RenderTarget* pRenderTarget = new RenderTarget(m_hWnd,this,m_pShaderContext);
+#endif
 		if(pRenderTarget)
 		{
 			m_vRenderTargetMT[(uint)pRenderTarget->GetFrameBufferObj()] = pRenderTarget;
@@ -696,15 +710,19 @@ namespace xs
 	{
 		Assert((layer == 0 || layer == 1));
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		HDC hDC = GetDC(hWnd);
-
 		if(m_pCurrentRenderTarget)
 		{
 			//wglShareLists(m_pCurrentRenderTarget->rc,hRC);
 		}
 		RenderTarget *pRenderTarget = new RenderTarget(hDC,hWnd,this);
+#else
+        RenderTarget* pRenderTarget = new RenderTarget(hWnd,this,m_pShaderContext);
+#endif
 		return pRenderTarget;
 	}
+
 
 	bool	RenderSystem::create(RenderEngineCreationParameters *param)
 	{
@@ -717,6 +735,7 @@ namespace xs
 			return false;
 		}
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		//初始化display
 		//win32 下实现
 		//---------------------
@@ -764,23 +783,32 @@ namespace xs
 		if(m_eglSurface == EGL_NO_SURFACE)
 			return false;
 		//-----------------------------------------
-
+#else
+        
+#endif
 		m_stencilBuffer = param->stencilBuffer ? 8 : 0;
 		if(!addRenderTarget((uint)hWnd))return false;
 		setCurrentRenderTarget((uint)hWnd);
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		m_hWnd = m_pCurrentRenderTarget->m_hWnd;
 		m_hDC = m_pCurrentRenderTarget->dc;
 		m_hRC = m_pCurrentRenderTarget->rc;
+#else
+        m_hWnd = m_pCurrentRenderTarget->getView();
+        m_pContext = m_pCurrentRenderTarget->getRenderContext();
+#endif
 
 		RECT rc;
-		GetClientRect(hWnd,&rc);
+		m_pCurrentRenderTarget->GetClientRect(&rc);
 		setDefaultMatrix(rc.right - rc.left,rc.bottom - rc.top);
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		if(param->fullscreen)
 		{
 			Adapter::Instance()->toggleMode(hWnd,param->fullscreen,param->w,param->h,param->colorDepth,param->refreshRate);
 		}
+#endif
 
 		initCapabilities();
 
@@ -812,8 +840,11 @@ namespace xs
 	{
 		RenderTargetType::iterator it = m_vRenderTarget.find(m_currentRenderTarget);
 		if(it == m_vRenderTarget.end())return false;
-
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		return Adapter::Instance()->toggleMode((void *)(it->first),param->fullscreen,param->w,param->h,param->colorDepth,param->refreshRate);
+#else
+        return true;
+#endif
 	}
 
 	void RenderSystem::getViewport(int &left,int &top,int &width,int &height)
@@ -879,12 +910,23 @@ namespace xs
 
 	bool RenderSystem::getDisplayMode(RenderEngineCreationParameters & createParam)
 	{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		return Adapter::Instance()->getCurrentMode( createParam.hwnd, 
 			createParam.fullscreen, 
 			createParam.w, 
 			createParam.h,
 			createParam.colorDepth,
 			createParam.refreshRate);
+#else
+        createParam.fullscreen = true;
+        RECT rc;
+        m_pCurrentRenderTarget->GetClientRect(&rc);
+        createParam.w = rc.right - rc.left;
+        createParam.h = rc.bottom - rc.top;
+        createParam.colorDepth = 1;
+        createParam.refreshRate = 60;
+        return true;
+#endif
 	}
 
 	void RenderSystem::clearFrameBuffer(bool clearColorBuffer,bool clearDepthBuffer,bool clearStencilBuffer)

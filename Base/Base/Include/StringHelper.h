@@ -52,7 +52,7 @@ namespace xs {
             size_t _Oldlen = _Old.length();
             if (_Oldlen == 0)
             {
-                ASSERT(false);
+                assert(false);
                 return;
             }
 

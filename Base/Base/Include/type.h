@@ -161,7 +161,7 @@ extern unsigned int GetCurrentThreadId();
 #define FLT_MAX 3.40282347e+38F
 
 
-void ZeroMemory(void* p,unsigned int size)
+inline void ZeroMemory(void* p,unsigned int size)
 {
     memset(p,0x00,size);
 }

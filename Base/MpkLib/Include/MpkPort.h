@@ -81,7 +81,7 @@
   
   typedef struct _FILETIME
   { 
-      DWORD dwLowDateTime; 
+      DWORD dwLowDateTime;
       DWORD dwHighDateTime; 
   }
   FILETIME, *PFILETIME; 

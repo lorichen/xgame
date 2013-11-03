@@ -7,9 +7,7 @@ class pbuffer : public RenderTarget
 {
 public:
 
-	bool initialize(int width,int height,int colorBits,int depthBits,
-		int stencilBits,HDC hdc,EGLContext hglrc,IRenderSystem* pRenderSystem,
-		FilterOptions min, FilterOptions mag, FilterOptions mip,TextureAddressingMode s,TextureAddressingMode t);
+	
 	void  finalize();
 private:
 	
@@ -17,15 +15,27 @@ private:
 	RenderTargetDesc m_desc;
 	
 	ITexture*		 m_pTexture;
+    
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	HDC				 m_previousDC;
 	EGLContext		 m_previousRC;
-
+#else
+    
+#endif
+    
 	GLuint			 m_pDepthBuffer;
 	GLuint			 m_pStencilBuffer;
 public:
 	uint			 m_id;
 public:
-	pbuffer(RenderSystem* pRenderSystem) : RenderTarget(pRenderSystem),m_id(0),m_pTexture(0),m_previousDC(0),m_previousRC(0){}
+
+	pbuffer(RenderSystem* pRenderSystem);
+    
+    bool initialize(int width,int height,int colorBits,int depthBits,
+                    int stencilBits,IRenderSystem* pRenderSystem,
+                    FilterOptions min, FilterOptions mag, FilterOptions mip,TextureAddressingMode s,TextureAddressingMode t);
+
+    
 public:
 	virtual void 		onDetach();
 	virtual void 		onAttach();

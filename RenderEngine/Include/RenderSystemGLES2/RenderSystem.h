@@ -752,6 +752,7 @@ public:
 	RenderSystem();
 
 	bool	create(RenderEngineCreationParameters *);
+
 	void	close();
 private:
 	void	setDefaultMatrix(uint cx,uint cy);
@@ -786,8 +787,9 @@ public:
 	EGLConfig	m_eglConfig;
 	EGLSurface	m_eglSurface;
 #elif (TARGET_PLATFORM == PLATFORM_IOS)
-    void*       m_pView;
+    void*       m_hWnd;           //ios uiview
     void*       m_pContext;
+    void*       m_pShaderContext; //todo...
 #else
    
 #endif
