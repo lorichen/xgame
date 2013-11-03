@@ -210,7 +210,7 @@ int BZ_API(BZ2_bzCompressInit)
    if (strm->bzalloc == NULL) strm->bzalloc = default_bzalloc;
    if (strm->bzfree == NULL) strm->bzfree = default_bzfree;
 
-   s = BZALLOC( sizeof(EState) );
+   s = (EState* )BZALLOC( sizeof(EState) );
    if (s == NULL) return BZ_MEM_ERROR;
    s->strm = strm;
 
@@ -219,9 +219,9 @@ int BZ_API(BZ2_bzCompressInit)
    s->ftab = NULL;
 
    n       = 100000 * blockSize100k;
-   s->arr1 = BZALLOC( n                  * sizeof(UInt32) );
-   s->arr2 = BZALLOC( (n+BZ_N_OVERSHOOT) * sizeof(UInt32) );
-   s->ftab = BZALLOC( 65537              * sizeof(UInt32) );
+   s->arr1 = (UInt32*)BZALLOC( n                  * sizeof(UInt32) );
+   s->arr2 = (UInt32*)BZALLOC( (n+BZ_N_OVERSHOOT) * sizeof(UInt32) );
+   s->ftab = (UInt32*)BZALLOC( 65537              * sizeof(UInt32) );
 
    if (s->arr1 == NULL || s->arr2 == NULL || s->ftab == NULL) {
       if (s->arr1 != NULL) BZFREE(s->arr1);

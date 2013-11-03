@@ -1,6 +1,8 @@
 #define __MPKLIB_SELF__
 #include "MpkLib.h"
 #include "SCommon.h"
+#include <ctype.h>
+#include <stdarg.h>
 
 //-----------------------------------------------------------------------------
 // The buffer for decryption engine.
@@ -708,9 +710,9 @@ int AddFileToArchive(TMPKArchive * ha, HANDLE hFile, const char * szArchivedName
         pdwBlockPos[0] = dwBytes;
         
         // Write the block positions
-        CONVERTBUFFERTOLITTLEENDIAN32BITS((DWORD *)pdwBlockPos, nBlocks);
+        CONVERTBUFFERTOLITTLEENDIAN32BITS((unsigned long *)pdwBlockPos, nBlocks);
         WriteFile(ha->hFile, pdwBlockPos, dwBytes, &dwTransferred, NULL);
-        CONVERTBUFFERTOLITTLEENDIAN32BITS((DWORD *)pdwBlockPos, nBlocks);
+        CONVERTBUFFERTOLITTLEENDIAN32BITS((unsigned long *)pdwBlockPos, nBlocks);
         ha->dwFilePos += dwTransferred;
         if(dwTransferred == dwBytes)
             pBlock->dwCSize += dwBytes;
@@ -766,9 +768,9 @@ int AddFileToArchive(TMPKArchive * ha, HANDLE hFile, const char * szArchivedName
             // Encrypt the block, if necessary
             if(pBlock->dwFlags & MPK_FILE_ENCRYPTED)
             {
-                CONVERTBUFFERTOLITTLEENDIAN32BITS((DWORD *)pbToWrite, dwOutLength / sizeof(DWORD));
+                CONVERTBUFFERTOLITTLEENDIAN32BITS((unsigned long *)pbToWrite, dwOutLength / sizeof(DWORD));
                 EncryptMPKBlock((DWORD *)pbToWrite, dwOutLength, dwSeed1 + nBlock);
-                CONVERTBUFFERTOLITTLEENDIAN32BITS((DWORD *)pbToWrite, dwOutLength / sizeof(DWORD));
+                CONVERTBUFFERTOLITTLEENDIAN32BITS((unsigned long *)pbToWrite, dwOutLength / sizeof(DWORD));
             }
             
             // Write the block
@@ -794,7 +796,7 @@ int AddFileToArchive(TMPKArchive * ha, HANDLE hFile, const char * szArchivedName
         FilePos.QuadPart = pBlock->dwFilePos;
         SetFilePointer(ha->hFile, FilePos.LowPart, &FilePos.HighPart, FILE_BEGIN);
         
-        CONVERTBUFFERTOLITTLEENDIAN32BITS((DWORD *)pdwBlockPos, nBlocks);
+        CONVERTBUFFERTOLITTLEENDIAN32BITS((unsigned long *)pdwBlockPos, nBlocks);
         WriteFile(ha->hFile, pdwBlockPos, dwBytes, &dwTransferred, NULL);
         if(dwTransferred != dwBytes)
             nError = ERROR_CAN_NOT_COMPLETE;
@@ -893,7 +895,7 @@ int SaveMPKTables(TMPKArchive * ha)
         SetFilePointer(ha->hFile, FilePos.LowPart, &FilePos.HighPart, FILE_BEGIN);
 
         // Convert to littleendian for file save
-        CONVERTBUFFERTOLITTLEENDIAN32BITS((DWORD *)pbBuffer, dwBytes / sizeof(DWORD));
+        CONVERTBUFFERTOLITTLEENDIAN32BITS((unsigned long *)pbBuffer, dwBytes / sizeof(unsigned long));
         WriteFile(ha->hFile, pbBuffer, dwBytes, &dwWritten, NULL);
         if(dwWritten != dwBytes)
             nError = ERROR_DISK_FULL;

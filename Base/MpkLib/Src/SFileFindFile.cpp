@@ -1,6 +1,8 @@
 #define __MPKLIB_SELF__
 #include "MpkLib.h"
 #include "SCommon.h"
+#include <ctype.h>
+#include <stdarg.h>
 
 //-----------------------------------------------------------------------------
 // Defines
@@ -99,7 +101,7 @@ BOOL CheckWildCard(const char * szString, const char * szWildCard)
                 nResult = -1;
                 while(nMustNotMatch > 0 && *szString != 0)
                 {
-                    if((nResult = _strnicmp(szString, szWildCard, nMustMatch)) == 0)
+                    if((nResult = strncmp(szString, szWildCard, nMustMatch)) == 0)
                         break;
                     
                     szString++;
@@ -108,7 +110,7 @@ BOOL CheckWildCard(const char * szString, const char * szWildCard)
 
                 // Make one more comparison
                 if(nMustNotMatch == 0)
-                    nResult = _strnicmp(szString, szWildCard, nMustMatch);
+                    nResult = strncmp(szString, szWildCard, nMustMatch);
 
                 // If a match has been found, continue the search
                 if(nResult == 0)

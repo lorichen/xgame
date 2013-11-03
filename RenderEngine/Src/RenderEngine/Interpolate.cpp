@@ -3,6 +3,7 @@
 
 namespace xs
 {
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	Quaternion QuaternionSquad ( float r, const Quaternion& c1, const Quaternion& c2, const Quaternion& c3, const Quaternion& c4 )
 	{
 		Quaternion result;
@@ -31,28 +32,14 @@ namespace xs
 
 		return result;
 	}
-}
-
-#if 0
-
-#include <d3dx9.h>
-#pragma comment(lib,"d3dx9.lib")
-
-namespace xs
-{
-	Quaternion QuaternionSquad ( float r, const Quaternion &pQ0, const Quaternion &pQ1, const Quaternion &pQ2, const Quaternion &pQ3 )
+#else
+    Quaternion QuaternionSquad ( float r, const Quaternion& c1, const Quaternion& c2, const Quaternion& c3, const Quaternion& c4 )
 	{
-		D3DXQUATERNION q1 = D3DXQUATERNION(pQ0.x,pQ0.y,pQ0.z,pQ0.w);
-		D3DXQUATERNION q2 = D3DXQUATERNION(pQ1.x,pQ1.y,pQ1.z,pQ1.w);
-		D3DXQUATERNION q3 = D3DXQUATERNION(pQ2.x,pQ2.y,pQ2.z,pQ2.w);
-		D3DXQUATERNION q4 = D3DXQUATERNION(pQ3.x,pQ3.y,pQ3.z,pQ3.w);
-
-		D3DXQUATERNION a,b,c;
-		D3DXQuaternionSquadSetup(&a,&b,&c,&q1,&q2,&q3,&q4);
-		D3DXQUATERNION q;
-		D3DXQuaternionSquad(&q,&q1,&a,&b,&c,r);
-
-		return Quaternion(q.x,q.y,q.z,q.w);
+		Quaternion result;
+        assert(0);  //have not implement!
+        
+		return result;
 	}
-}
 #endif
+}
+

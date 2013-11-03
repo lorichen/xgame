@@ -1,6 +1,11 @@
 #ifndef __MPKPORT_H__
 #define __MPKPORT_H__
 
+
+
+#include "platform.h"
+
+
 // Defines for Windows
 #if !defined(__PLATFORM__) && defined(WIN32)
 
@@ -65,14 +70,20 @@
 
 #ifndef WIN32
 
+  #include <stdbool.h>
+
+
+
   // Typedefs for ANSI C
   typedef unsigned char  BYTE;
   typedef short          SHORT;
   typedef unsigned short WORD;
   typedef long           LONG;
   //typedef unsigned long  DWORD;
+#define DWORD unsigned long
+
 #ifndef __OBJC__
-  #define BOOL           bool
+  #define BOOL bool
 #endif
   typedef void         * HANDLE;
   typedef void         * LPOVERLAPPED; // Unsupported on Linux
@@ -84,7 +95,21 @@
       DWORD dwLowDateTime;
       DWORD dwHighDateTime; 
   }
-  FILETIME, *PFILETIME; 
+  FILETIME, *PFILETIME;
+
+
+  typedef union _LARGE_INTEGER
+  {
+      struct {
+          DWORD LowPart;
+          LONG  HighPart;
+      };
+      struct {
+          DWORD LowPart;
+          LONG  HighPart;
+      }u;
+      long long QuadPart;
+  }LARGE_INTEGER;
 
   // Some Windows-specific defines
   #ifndef MAX_PATH
@@ -134,7 +159,9 @@
   #define ERROR_CAN_NOT_COMPLETE     1003
   #define ERROR_FILE_CORRUPT         1392
   #define ERROR_INSUFFICIENT_BUFFER  4999
-  
+
+  #define ERROR_NOT_SUPPORTED        4998 //by kevin.chen
+
   #define INVALID_HANDLE_VALUE ((HANDLE) -1)
   
   #ifndef min

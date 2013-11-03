@@ -86,7 +86,7 @@ BOOL SFileOpenArchiveEx(const char * szMpkName, DWORD dwPriority, DWORD /* dwFla
     // Open the MPK archive file
     if(nError == ERROR_SUCCESS)
     {
-        hFile = CreateFile(szMpkName, dwAccessMode, /*FILE_SHARE_READ*/FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
+        hFile = CreateFile(szMpkName, dwAccessMode, /*FILE_SHARE_READ*/FILE_SHARE_READ | /*FILE_SHARE_WRITE*/GENERIC_WRITE, NULL, OPEN_EXISTING, 0, NULL);
         if(hFile == INVALID_HANDLE_VALUE)
             nError = GetLastError();
     }

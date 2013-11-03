@@ -260,7 +260,7 @@ BOOL WINAPI SFileAddFileEx(HANDLE hMPK, const char * szFileName, const char * sz
     // deny the operation, but return success.
     if(nError == ERROR_SUCCESS)
     {
-        if(ha->pListFile != NULL && !_stricmp(szFileName, LISTFILE_NAME))
+        if(ha->pListFile != NULL && !strcmp(szFileName, LISTFILE_NAME))
             return ERROR_SUCCESS;
     }
 
@@ -276,7 +276,8 @@ BOOL WINAPI SFileAddFileEx(HANDLE hMPK, const char * szFileName, const char * sz
 			nError = GetLastError();
 		}
 
-		GetFileTime(hFile, &ftCreateFileTime, NULL, & ftLastLastWriteFileTime);
+        //hide by kevin.chen
+		//GetFileTime(hFile, &ftCreateFileTime, NULL, & ftLastLastWriteFileTime);
 
     }
 
@@ -338,7 +339,7 @@ BOOL WINAPI SFileRemoveFile(HANDLE hMPK, const char * szFileName)
     // Do not allow to remove listfile
     if(nError == ERROR_SUCCESS)
     {
-        if((DWORD)szFileName > 0x00010000 && !_stricmp(szFileName, LISTFILE_NAME))
+        if((DWORD)szFileName > 0x00010000 && !strcmp(szFileName, LISTFILE_NAME))
             nError = ERROR_ACCESS_DENIED;
     }
 
@@ -410,7 +411,7 @@ BOOL WINAPI SFileRenameFile(HANDLE hMPK, const char * szFileName, const char * s
     // Do not allow to rename listfile
     if(nError == ERROR_SUCCESS)
     {
-        if((DWORD)szFileName > 0x00010000 && !_stricmp(szFileName, LISTFILE_NAME))
+        if((DWORD)szFileName > 0x00010000 && !strcmp(szFileName, LISTFILE_NAME))
             nError = ERROR_ACCESS_DENIED;
     }
 

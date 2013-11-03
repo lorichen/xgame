@@ -2,9 +2,14 @@
    Internal memory alloc and memory free functions
  */
 
+#if WIN32
 #include <malloc.h>
+#else
+#include <malloc/malloc.h>
+#endif
 
 #include "zlib.h"
+#include <stdlib.h>
 
 const char *z_errmsg[10];               // Needed by zlib
 

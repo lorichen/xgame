@@ -2,7 +2,9 @@
 #define __MPKLIB_H_
 
 #include "MpkPort.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 //-----------------------------------------------------------------------------
 // Use the apropriate library
 

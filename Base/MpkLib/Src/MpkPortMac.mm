@@ -1,6 +1,14 @@
 #ifndef _WIN32
 #include "MpkPort.h"
 #include "MpkLib.h"
+#include <MacTypes.h>
+#include <CoreFoundation/CoreFoundation.h>
+#include <unistd.h>
+#import <Foundation/Foundation.h>
+//#import <CoreServices/CoreServices.h>
+//#import <Carbon/Carbon.h> // kAlertStopAlert
+//#import <Cocoa/Cocoa.h>
+
 
 // FUNCTIONS EXTRACTED FROM MOREFILE PACKAGE!!!
 // FEEL FREE TO REMOVE THEM AND TO ADD THE ORIGINAL ONES!

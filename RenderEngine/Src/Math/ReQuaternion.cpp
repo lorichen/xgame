@@ -584,12 +584,4 @@ namespace xs {
         return result;
     }
     
-#if (TARGET_PLATFORM != PLATFORM_WIN32)
-    void QuaternionSquad(float, Quaternion const&, Quaternion const&, Quaternion const&, Quaternion const&)
-    {
-        
-    }
-#endif
-    
-    
 }

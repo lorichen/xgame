@@ -14,6 +14,7 @@
 		181BC032181CB08500786855 /* libRenderEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 181BC01A181CB08500786855 /* libRenderEngine.a */; };
 		181BC038181CB08500786855 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 181BC036181CB08500786855 /* InfoPlist.strings */; };
 		181BC03A181CB08500786855 /* RenderEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 181BC039181CB08500786855 /* RenderEngineTests.m */; };
+		188102F61826992A002AF8D8 /* Interpolate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 188102F51826992A002AF8D8 /* Interpolate.cpp */; };
 		18D0B390181E9284005AEEF8 /* jcapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B382181E9284005AEEF8 /* jcapimin.c */; };
 		18D0B391181E9284005AEEF8 /* jcapistd.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B383181E9284005AEEF8 /* jcapistd.c */; };
 		18D0B392181E9284005AEEF8 /* jccoefct.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B384181E9284005AEEF8 /* jccoefct.c */; };
@@ -146,6 +147,7 @@
 		181BC035181CB08500786855 /* RenderEngineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RenderEngineTests-Info.plist"; sourceTree = "<group>"; };
 		181BC037181CB08500786855 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		181BC039181CB08500786855 /* RenderEngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenderEngineTests.m; sourceTree = "<group>"; };
+		188102F51826992A002AF8D8 /* Interpolate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Interpolate.cpp; path = ../../Src/RenderEngine/Interpolate.cpp; sourceTree = "<group>"; };
 		18D0B380181E9284005AEEF8 /* cderror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cderror.h; path = ../../Src/RenderEngine/IJG/cderror.h; sourceTree = "<group>"; };
 		18D0B381181E9284005AEEF8 /* cdjpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cdjpeg.h; path = ../../Src/RenderEngine/IJG/cdjpeg.h; sourceTree = "<group>"; };
 		18D0B382181E9284005AEEF8 /* jcapimin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcapimin.c; path = ../../Src/RenderEngine/IJG/jcapimin.c; sourceTree = "<group>"; };
@@ -326,50 +328,25 @@
 		181BC011181CB08500786855 = {
 			isa = PBXGroup;
 			children = (
-				CDDC56FC1822048400622541 /* RenderEngine.cpp */,
-				CDDC56FD1822048400622541 /* RibbonSystem.cpp */,
+				1881030118269BAA002AF8D8 /* texturemanager */,
+				1881030018269B9E002AF8D8 /* viewport */,
+				188102FF18269B55002AF8D8 /* ribbonsystem */,
+				188102FE18269B30002AF8D8 /* rendersystem */,
+				188102FD18269B1C002AF8D8 /* renderqueue */,
+				188102FC18269AFF002AF8D8 /* particlesystem */,
+				188102FB18269ABB002AF8D8 /* model */,
+				188102FA18269A98002AF8D8 /* mmParticleSystem */,
+				188102F918269A84002AF8D8 /* light */,
+				188102F8182699E0002AF8D8 /* image */,
+				188102F7182699AC002AF8D8 /* camera */,
+				188102F4182698D6002AF8D8 /* animation */,
+				188102F3182698C2002AF8D8 /* 2d */,
 				18D0B48F18214E39005AEEF8 /* Font */,
-				18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */,
 				18D0B4C618214E39005AEEF8 /* RenderEngineDll.cpp */,
+				CDDC56FC1822048400622541 /* RenderEngine.cpp */,
 				18D0B4C718214E39005AEEF8 /* stdafx.cpp */,
-				18D0B474181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp */,
-				18D0B46E181E9E39005AEEF8 /* IndexData.cpp */,
-				18D0B460181E9CDB005AEEF8 /* RenderOperation.cpp */,
-				18D0B461181E9CDB005AEEF8 /* RenderQueue.cpp */,
-				18D0B463181E9CDB005AEEF8 /* Skeleton.cpp */,
-				18D0B464181E9CDB005AEEF8 /* SubModelInstance.cpp */,
-				18D0B465181E9CDB005AEEF8 /* VertexData.cpp */,
-				18D0B466181E9CDB005AEEF8 /* Viewport.cpp */,
-				18D0B44F181E9C89005AEEF8 /* Image.cpp */,
-				18D0B450181E9C89005AEEF8 /* ImageCodecSfp.h */,
-				18D0B451181E9C89005AEEF8 /* ImageRect.cpp */,
-				18D0B452181E9C89005AEEF8 /* Light.cpp */,
-				18D0B453181E9C89005AEEF8 /* Manager.cpp */,
-				18D0B454181E9C89005AEEF8 /* Material.cpp */,
-				18D0B455181E9C89005AEEF8 /* ModelInstance.cpp */,
-				18D0B456181E9C89005AEEF8 /* ModelNode.cpp */,
-				18D0B457181E9C89005AEEF8 /* ModelNodeCreater.cpp */,
-				18D0B417181E97FA005AEEF8 /* imagedecode */,
-				18D0B416181E97E1005AEEF8 /* font */,
-				18D0B408181E9789005AEEF8 /* Animation.cpp */,
-				18D0B409181E9789005AEEF8 /* Bone.cpp */,
-				18D0B40A181E9789005AEEF8 /* Camera.cpp */,
-				18D0B40C181E9789005AEEF8 /* CoordinateFrame.cpp */,
-				18D0B40D181E9789005AEEF8 /* CoreBone.cpp */,
-				18D0B40E181E9789005AEEF8 /* CoreSkeleton.cpp */,
 				18D0B407181E96D6005AEEF8 /* type.h */,
 				18D0B401181E9697005AEEF8 /* MpwFrame.cpp */,
-				18D0B402181E9697005AEEF8 /* Particle.cpp */,
-				18D0B403181E9697005AEEF8 /* ParticleSystem.cpp */,
-				18D0B3F2181E9671005AEEF8 /* _Particle.cpp */,
-				18D0B3F3181E9671005AEEF8 /* _ParticleSystem.cpp */,
-				18D0B3F4181E9671005AEEF8 /* _ParticleSystemEmitter.cpp */,
-				18D0B3F5181E9671005AEEF8 /* _ParticleSystemEmitterPlane.cpp */,
-				18D0B3F6181E9671005AEEF8 /* _ParticleSystemEmitterPlane.h */,
-				18D0B3F7181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.cpp */,
-				18D0B3F8181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.h */,
-				18D0B3F9181E9671005AEEF8 /* _ParticleSystemEmitterSphere.cpp */,
-				18D0B3FA181E9671005AEEF8 /* _ParticleSystemEmitterSphere.h */,
 				18D0B3EB181E9344005AEEF8 /* MPWLoader */,
 				18D0B3C0181E92A9005AEEF8 /* zip */,
 				18D0B37F181E9262005AEEF8 /* png */,
@@ -432,6 +409,135 @@
 				181BC036181CB08500786855 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		188102F3182698C2002AF8D8 /* 2d */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B451181E9C89005AEEF8 /* ImageRect.cpp */,
+			);
+			name = 2d;
+			sourceTree = "<group>";
+		};
+		188102F4182698D6002AF8D8 /* animation */ = {
+			isa = PBXGroup;
+			children = (
+				188102F51826992A002AF8D8 /* Interpolate.cpp */,
+				18D0B463181E9CDB005AEEF8 /* Skeleton.cpp */,
+				18D0B408181E9789005AEEF8 /* Animation.cpp */,
+				18D0B409181E9789005AEEF8 /* Bone.cpp */,
+				18D0B40D181E9789005AEEF8 /* CoreBone.cpp */,
+				18D0B40E181E9789005AEEF8 /* CoreSkeleton.cpp */,
+			);
+			name = animation;
+			sourceTree = "<group>";
+		};
+		188102F7182699AC002AF8D8 /* camera */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B40C181E9789005AEEF8 /* CoordinateFrame.cpp */,
+				18D0B40A181E9789005AEEF8 /* Camera.cpp */,
+			);
+			name = camera;
+			sourceTree = "<group>";
+		};
+		188102F8182699E0002AF8D8 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B435181E9AE9005AEEF8 /* ImageCodec.cpp */,
+				18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */,
+				18D0B44F181E9C89005AEEF8 /* Image.cpp */,
+				18D0B417181E97FA005AEEF8 /* imagedecode */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
+		188102F918269A84002AF8D8 /* light */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B452181E9C89005AEEF8 /* Light.cpp */,
+			);
+			name = light;
+			sourceTree = "<group>";
+		};
+		188102FA18269A98002AF8D8 /* mmParticleSystem */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B3F2181E9671005AEEF8 /* _Particle.cpp */,
+				18D0B3F3181E9671005AEEF8 /* _ParticleSystem.cpp */,
+				18D0B3F4181E9671005AEEF8 /* _ParticleSystemEmitter.cpp */,
+				18D0B3F5181E9671005AEEF8 /* _ParticleSystemEmitterPlane.cpp */,
+				18D0B3F6181E9671005AEEF8 /* _ParticleSystemEmitterPlane.h */,
+				18D0B3F7181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.cpp */,
+				18D0B3F8181E9671005AEEF8 /* _ParticleSystemEmitterRealSphere.h */,
+				18D0B3F9181E9671005AEEF8 /* _ParticleSystemEmitterSphere.cpp */,
+				18D0B3FA181E9671005AEEF8 /* _ParticleSystemEmitterSphere.h */,
+			);
+			name = mmParticleSystem;
+			sourceTree = "<group>";
+		};
+		188102FB18269ABB002AF8D8 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B464181E9CDB005AEEF8 /* SubModelInstance.cpp */,
+				18D0B454181E9C89005AEEF8 /* Material.cpp */,
+				18D0B455181E9C89005AEEF8 /* ModelInstance.cpp */,
+				18D0B456181E9C89005AEEF8 /* ModelNode.cpp */,
+				18D0B457181E9C89005AEEF8 /* ModelNodeCreater.cpp */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		188102FC18269AFF002AF8D8 /* particlesystem */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B402181E9697005AEEF8 /* Particle.cpp */,
+				18D0B403181E9697005AEEF8 /* ParticleSystem.cpp */,
+			);
+			name = particlesystem;
+			sourceTree = "<group>";
+		};
+		188102FD18269B1C002AF8D8 /* renderqueue */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B461181E9CDB005AEEF8 /* RenderQueue.cpp */,
+			);
+			name = renderqueue;
+			sourceTree = "<group>";
+		};
+		188102FE18269B30002AF8D8 /* rendersystem */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B46E181E9E39005AEEF8 /* IndexData.cpp */,
+				18D0B465181E9CDB005AEEF8 /* VertexData.cpp */,
+				18D0B474181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp */,
+				18D0B460181E9CDB005AEEF8 /* RenderOperation.cpp */,
+			);
+			name = rendersystem;
+			sourceTree = "<group>";
+		};
+		188102FF18269B55002AF8D8 /* ribbonsystem */ = {
+			isa = PBXGroup;
+			children = (
+				CDDC56FD1822048400622541 /* RibbonSystem.cpp */,
+			);
+			name = ribbonsystem;
+			sourceTree = "<group>";
+		};
+		1881030018269B9E002AF8D8 /* viewport */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B466181E9CDB005AEEF8 /* Viewport.cpp */,
+			);
+			name = viewport;
+			sourceTree = "<group>";
+		};
+		1881030118269BAA002AF8D8 /* texturemanager */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B453181E9C89005AEEF8 /* Manager.cpp */,
+			);
+			name = texturemanager;
 			sourceTree = "<group>";
 		};
 		18D0B37E181E9253005AEEF8 /* IJG */ = {
@@ -530,17 +636,10 @@
 			name = MPWLoader;
 			sourceTree = "<group>";
 		};
-		18D0B416181E97E1005AEEF8 /* font */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = font;
-			sourceTree = "<group>";
-		};
 		18D0B417181E97FA005AEEF8 /* imagedecode */ = {
 			isa = PBXGroup;
 			children = (
-				18D0B435181E9AE9005AEEF8 /* ImageCodec.cpp */,
+				18D0B450181E9C89005AEEF8 /* ImageCodecSfp.h */,
 				18D0B436181E9AE9005AEEF8 /* ImageCodecBlp.cpp */,
 				18D0B437181E9AE9005AEEF8 /* ImageCodecBlp.h */,
 				18D0B439181E9AE9005AEEF8 /* ImageCodecBmp.h */,
@@ -770,6 +869,7 @@
 				18D0B475181E9EDB005AEEF8 /* RenderSystemCapabilities.cpp in Sources */,
 				18D0B3E5181E92CB005AEEF8 /* inflate.c in Sources */,
 				18D0B459181E9C89005AEEF8 /* ImageRect.cpp in Sources */,
+				188102F61826992A002AF8D8 /* Interpolate.cpp in Sources */,
 				18D0B45D181E9C89005AEEF8 /* ModelInstance.cpp in Sources */,
 				18D0B44A181E9AE9005AEEF8 /* ImageCodecJpg.cpp in Sources */,
 				18D0B413181E9789005AEEF8 /* CoordinateFrame.cpp in Sources */,
