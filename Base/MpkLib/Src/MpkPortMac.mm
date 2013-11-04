@@ -10,6 +10,7 @@
 //#import <Cocoa/Cocoa.h>
 
 
+
 // FUNCTIONS EXTRACTED FROM MOREFILE PACKAGE!!!
 // FEEL FREE TO REMOVE THEM AND TO ADD THE ORIGINAL ONES!
 
@@ -27,8 +28,8 @@ static OSErr FSGetFullPath(const FSRef *ref, UInt8 *fullPath, UInt32 fullPathLen
 {
 #ifdef __MACH__
     OSErr       result;
-
-    result = FSRefMakePath(ref, fullPath, fullPathLength);
+    assert(0);
+    //result = FSRefMakePath(ref, fullPath, fullPathLength);
     
     return result;
 #else
@@ -105,8 +106,8 @@ static OSErr FSLocationFromFullPath(const void *fullPath, FSRef *ref)
 {
 #ifdef __MACH__
     OSErr       result;
-    
-    result = FSPathMakeRef((UInt8 *)fullPath, ref, NULL); // Create an FSRef from the path
+    assert(0);
+    //result = FSPathMakeRef((UInt8 *)fullPath, ref, NULL); // Create an FSRef from the path
     return result;
 #else
     // More code I can't test
@@ -130,8 +131,11 @@ static OSErr FSLocationFromFullPath(const void *fullPath, FSRef *ref)
 static OSErr FSCreateCompat(const FSRef *parentRef, OSType creator, OSType fileType, const UniChar *fileName, 
                             UniCharCount nameLength, FSRef *ref)
 {
-    FSCatalogInfo theCatInfo;
     OSErr theErr;
+     assert(0);
+    
+    /*
+    FSCatalogInfo theCatInfo;
     ((FileInfo *)&theCatInfo.finderInfo)->fileCreator = creator;
     ((FileInfo *)&theCatInfo.finderInfo)->fileType = fileType;
     ((FileInfo *)&theCatInfo.finderInfo)->finderFlags = 0;
@@ -139,6 +143,7 @@ static OSErr FSCreateCompat(const FSRef *parentRef, OSType creator, OSType fileT
     ((FileInfo *)&theCatInfo.finderInfo)->reservedField = 0;
         
     theErr = FSCreateFileUnicode(parentRef, nameLength, fileName, kFSCatInfoFinderInfo, &theCatInfo, ref, NULL);
+     */
     return theErr;
 }
 
@@ -147,8 +152,11 @@ static OSErr FSCreateCompat(const FSRef *parentRef, OSType creator, OSType fileT
 
 static OSErr FSOpenDFCompat(FSRef *ref, char permission, short *refNum)
 {
-    HFSUniStr255 forkName;
+    assert(0);
     OSErr theErr;
+    
+    /*
+    HFSUniStr255 forkName;
     Boolean isFolder, wasChanged;
     
     theErr = FSResolveAliasFile(ref, TRUE, &isFolder, &wasChanged);
@@ -156,7 +164,9 @@ static OSErr FSOpenDFCompat(FSRef *ref, char permission, short *refNum)
         return theErr;
     
     FSGetDataForkName(&forkName);
+     
     theErr = FSOpenFork(ref, forkName.length, forkName.unicode, permission, refNum);
+     */
     return theErr;
 }
 
@@ -220,6 +230,8 @@ void ConvertUnsignedShortBuffer(unsigned short *buffer, unsigned long nbShorts)
 ********************************************************************/
 void ConvertTMPQHeader(void *header)
 {
+    assert(0);
+    /*
     TMPQHeader  *theHeader = (TMPQHeader *)header;
     
     theHeader->dwID = SwapLong(theHeader->dwID);
@@ -231,6 +243,7 @@ void ConvertTMPQHeader(void *header)
     theHeader->dwBlockTablePos = SwapLong(theHeader->dwBlockTablePos);
     theHeader->dwHashTableSize = SwapLong(theHeader->dwHashTableSize);
     theHeader->dwBlockTableSize = SwapLong(theHeader->dwBlockTableSize);
+     */
 }
 
 #pragma mark -
@@ -298,6 +311,8 @@ char *ErrString(int err)
 ********************************************************************/
 void GetTempPath(DWORD szTempLength, char * szTemp)  // I think I'll change this to use FSRefs.
 {
+    assert(0);
+    /*
     FSRef   theFSRef;
     OSErr theErr = FSFindFolder(kOnAppropriateDisk, kTemporaryFolderType, kCreateFolder, &theFSRef);
     if (theErr == noErr)
@@ -313,6 +328,7 @@ void GetTempPath(DWORD szTempLength, char * szTemp)  // I think I'll change this
     #else
     strcat(szTemp, ":");
     #endif
+     */
 }
 
 /********************************************************************
@@ -349,6 +365,8 @@ void GetTempFileName(const char * lpTempFolderPath, const char * lpFileName, DWO
 ********************************************************************/
 BOOL DeleteFile(const char * lpFileName)
 {
+    assert(0);
+    /*
     OSErr   theErr;
     FSRef   theFileRef;
     
@@ -358,6 +376,8 @@ BOOL DeleteFile(const char * lpFileName)
     
     theErr = FSDeleteObject(&theFileRef);
     return theErr == noErr;
+     */
+    return FALSE;
 }
 
 /********************************************************************
@@ -367,6 +387,9 @@ BOOL DeleteFile(const char * lpFileName)
 ********************************************************************/
 BOOL MoveFile(const char * lpFromFileName, const char * lpToFileName)
 {
+    assert(0);
+    return FALSE;
+    /*
     OSErr theErr;
     FSRef fromFileRef;
     FSRef toFileRef;
@@ -423,6 +446,7 @@ BOOL MoveFile(const char * lpFromFileName, const char * lpToFileName)
     CFRelease(newFileNameCFString);
     
     return true;
+     */
 }
 
 /********************************************************************
@@ -442,8 +466,12 @@ HANDLE CreateFile(  const char *sFileName,          /* file name */
                     DWORD ulFlags,                  /* file attributes */
                     HANDLE hFile    )               /* handle to template file */
 {
-#pragma unused (ulSharing, pSecAttrib, ulFlags, hFile)
 
+
+    assert(0);
+    return INVALID_HANDLE_VALUE;
+    /*
+     #pragma unused (ulSharing, pSecAttrib, ulFlags, hFile)
     OSErr   theErr;
     FSRef   theFileRef;
     FSRef   theParentRef;
@@ -477,7 +505,7 @@ HANDLE CreateFile(  const char *sFileName,          /* file name */
     }
     
     if (ulCreation != OPEN_EXISTING)
-    {   /* We create the file */
+    {
         UniChar unicodeFileName[256];
         CFStringRef filePathCFString = CFStringCreateWithCString(NULL, sFileName, kCFStringEncodingUTF8);
         #ifdef __MACH__
@@ -512,6 +540,7 @@ HANDLE CreateFile(  const char *sFileName,          /* file name */
         return (HANDLE)(int)fileRef;
     else
         return INVALID_HANDLE_VALUE;
+    */
 }
 
 /********************************************************************
@@ -521,8 +550,8 @@ BOOL CloseHandle(   HANDLE hFile    )    /* handle to object */
 {
     if ((hFile == NULL) || (hFile == INVALID_HANDLE_VALUE))
         return 0;
-
-    FSCloseFork((short)(int)hFile);
+    assert(0);
+    //FSCloseFork((short)(int)hFile);
     
     return 1;
 }
@@ -533,6 +562,9 @@ BOOL CloseHandle(   HANDLE hFile    )    /* handle to object */
 DWORD GetFileSize(  HANDLE hFile,           /* handle to file */
                     DWORD *ulOffSetHigh )   /* high-order word of file size */
 {
+    assert(0);
+    return 0;
+    /*
     SInt64  fileLength;
     OSErr   theErr;
 
@@ -547,6 +579,7 @@ DWORD GetFileSize(  HANDLE hFile,           /* handle to file */
         *ulOffSetHigh = fileLength >> 32;
 
     return fileLength;
+     */
 }
 
 /********************************************************************
@@ -559,6 +592,9 @@ DWORD SetFilePointer(   HANDLE hFile,           /* handle to file */
                         LONG *pOffSetHigh,      /* bytes to move pointer */
                         DWORD ulMethod  )       /* starting point */
 {
+    assert(0);
+    return 0;
+    /*
     OSErr theErr;
 
     if (ulMethod == FILE_CURRENT)
@@ -615,6 +651,7 @@ DWORD SetFilePointer(   HANDLE hFile,           /* handle to file */
         
         return lOffSetLow;
     }
+     */
 }
 
 /********************************************************************
@@ -622,6 +659,9 @@ DWORD SetFilePointer(   HANDLE hFile,           /* handle to file */
 ********************************************************************/
 BOOL SetEndOfFile(  HANDLE hFile    )   /* handle to file */
 {
+    assert(0);
+    return FALSE;
+    /*
     OSErr theErr;
     
     theErr = FSSetForkSize((short)(int)hFile, fsAtMark, 0);
@@ -629,6 +669,7 @@ BOOL SetEndOfFile(  HANDLE hFile    )   /* handle to file */
         return FALSE;
     
     return TRUE;
+     */
 }
 
 /********************************************************************
@@ -641,7 +682,10 @@ BOOL ReadFile(  HANDLE hFile,           /* handle to file */
                 DWORD *ulRead,          /* number of bytes read */
                 void *pOverLapped   )   /* overlapped buffer */
 {
-#pragma unused (pOverLapped)
+    assert(0);
+    return FALSE;
+    /*
+    #pragma unused (pOverLapped)
 
     ByteCount   nbCharsRead;
     OSErr       theErr;
@@ -651,6 +695,7 @@ BOOL ReadFile(  HANDLE hFile,           /* handle to file */
     *ulRead = nbCharsRead;
     
     return theErr == noErr;
+     */
 }
 
 /********************************************************************
@@ -663,7 +708,10 @@ BOOL WriteFile( HANDLE hFile,           /* handle to file */
                 DWORD *ulWritten,       /* number of bytes written */
                 void *pOverLapped   )   /* overlapped buffer */
 {
-#pragma unused (pOverLapped)
+    assert(0);
+    return FALSE;
+    /*
+     #pragma unused (pOverLapped)
 
     ByteCount   nbCharsToWrite;
     OSErr       theErr;
@@ -673,6 +721,7 @@ BOOL WriteFile( HANDLE hFile,           /* handle to file */
     *ulWritten = nbCharsToWrite;
     
     return theErr == noErr;
+     */
 }
 
 // Check if a memory block is accessible for reading

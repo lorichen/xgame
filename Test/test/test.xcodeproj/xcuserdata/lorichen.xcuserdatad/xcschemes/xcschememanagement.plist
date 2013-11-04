@@ -4,20 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>math.xcscheme</key>
+		<key>test.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>18F8E1D7181CA52B00E96D41</key>
+		<key>188101381824A892002AF8D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>18F8E1E7181CA52B00E96D41</key>
+		<key>188101531824A892002AF8D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

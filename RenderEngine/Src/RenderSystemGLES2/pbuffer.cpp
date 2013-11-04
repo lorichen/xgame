@@ -13,7 +13,10 @@ pbuffer::pbuffer(RenderSystem* pRenderSystem)
 {
 }
 #else
-
+pbuffer::pbuffer(RenderSystem* pRenderSystem)
+: RenderTarget(pRenderSystem),m_id(0),m_pTexture(0)
+{
+}
 #endif
 
 bool pbuffer::initialize(int width,int height,int colorBits,int depthBits,

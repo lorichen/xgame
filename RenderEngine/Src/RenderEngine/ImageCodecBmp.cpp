@@ -143,13 +143,13 @@ namespace xs
 		uint aBitCount = 0;
 		switch(ih.biCompression)
 		{
-		case BI_RGB:
+            case 0://BI_RGB:
 			{
 				data.format = PF_A1R5G5B5;
 				mask = 0x8000;
 			}
 			break;
-		case BI_BITFIELDS:
+            case 3://BI_BITFIELDS:
 			{
 				uint rMask = *(uint*)pBits;
 				uint gMask = *((uint*)pBits + 1);
