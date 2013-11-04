@@ -105,6 +105,7 @@ extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineC
      */
     
     //uninit;
+    g_pRenderSystem->release();
     
     [super dealloc];
 }
@@ -118,6 +119,9 @@ extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineC
         testCase->Update();
     }
     */
+    
+    //to do render
+    
 //    [EAGLContext setCurrentContext:context];
 //    
 //    glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);

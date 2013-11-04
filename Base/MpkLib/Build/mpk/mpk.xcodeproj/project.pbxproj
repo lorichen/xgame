@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1880D8B918271D2D001FD16C /* MpkPortMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1880D8B818271D2D001FD16C /* MpkPortMac.mm */; };
 		188101A8182623DB002AF8D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188101A7182623DB002AF8D8 /* Foundation.framework */; };
 		188101AD182623DB002AF8D8 /* mpk.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 188101AC182623DB002AF8D8 /* mpk.h */; };
 		188101AF182623DB002AF8D8 /* mpk.m in Sources */ = {isa = PBXBuildFile; fileRef = 188101AE182623DB002AF8D8 /* mpk.m */; };
@@ -56,7 +57,6 @@
 		188102F018268BFB002AF8D8 /* SFileOpenFileEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 188102E618268BFB002AF8D8 /* SFileOpenFileEx.cpp */; };
 		188102F118268BFB002AF8D8 /* SFileReadFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 188102E718268BFB002AF8D8 /* SFileReadFile.cpp */; };
 		188102F218268BFB002AF8D8 /* SListFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 188102E818268BFB002AF8D8 /* SListFile.cpp */; };
-		188103031826A00E002AF8D8 /* MpkPortMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 188103021826A00E002AF8D8 /* MpkPortMac.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1880D8B818271D2D001FD16C /* MpkPortMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MpkPortMac.mm; path = ../../Src/MpkPortMac.mm; sourceTree = "<group>"; };
 		188101A4182623DB002AF8D8 /* libmpk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmpk.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		188101A7182623DB002AF8D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		188101AB182623DB002AF8D8 /* mpk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mpk-Prefix.pch"; sourceTree = "<group>"; };
@@ -138,7 +139,6 @@
 		188102E618268BFB002AF8D8 /* SFileOpenFileEx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFileOpenFileEx.cpp; path = ../../Src/SFileOpenFileEx.cpp; sourceTree = "<group>"; };
 		188102E718268BFB002AF8D8 /* SFileReadFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFileReadFile.cpp; path = ../../Src/SFileReadFile.cpp; sourceTree = "<group>"; };
 		188102E818268BFB002AF8D8 /* SListFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SListFile.cpp; path = ../../Src/SListFile.cpp; sourceTree = "<group>"; };
-		188103021826A00E002AF8D8 /* MpkPortMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MpkPortMac.mm; path = ../../Src/MpkPortMac.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +167,7 @@
 		1881019B182623DB002AF8D8 = {
 			isa = PBXGroup;
 			children = (
-				188103021826A00E002AF8D8 /* MpkPortMac.mm */,
+				1880D8B818271D2D001FD16C /* MpkPortMac.mm */,
 				188102E018268BFA002AF8D8 /* SCommon.cpp */,
 				188102E118268BFA002AF8D8 /* SCompression.cpp */,
 				188102E218268BFA002AF8D8 /* SFileCreateArchiveEx.cpp */,
@@ -412,7 +412,7 @@
 				188102181826864E002AF8D8 /* explode.c in Sources */,
 				188102DB18268A1D002AF8D8 /* trees.c in Sources */,
 				188102191826864E002AF8D8 /* implode.c in Sources */,
-				188103031826A00E002AF8D8 /* MpkPortMac.mm in Sources */,
+				1880D8B918271D2D001FD16C /* MpkPortMac.mm in Sources */,
 				188102F218268BFB002AF8D8 /* SListFile.cpp in Sources */,
 				188102D618268A1D002AF8D8 /* inflate.c in Sources */,
 				1881020C1826852B002AF8D8 /* randtable.c in Sources */,

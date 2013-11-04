@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1880D62B18271A9A001FD16C /* libbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18810198182623AA002AF8D8 /* libbase.a */; };
+		1880D7F218271B01001FD16C /* libmpk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D7EF18271AFB001FD16C /* libmpk.a */; };
+		1880D7FC18271B67001FD16C /* libRenderEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D7F918271B5D001FD16C /* libRenderEngine.a */; };
 		1881013D1824A892002AF8D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1881013C1824A892002AF8D8 /* Foundation.framework */; };
 		1881013F1824A892002AF8D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1881013E1824A892002AF8D8 /* CoreGraphics.framework */; };
 		188101411824A892002AF8D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188101401824A892002AF8D8 /* UIKit.framework */; };
@@ -26,6 +29,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1880D7EE18271AFB001FD16C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1880D7E918271AFB001FD16C /* mpk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 188101A4182623DB002AF8D8;
+			remoteInfo = mpk;
+		};
+		1880D7F018271AFB001FD16C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1880D7E918271AFB001FD16C /* mpk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 188101B4182623DB002AF8D8;
+			remoteInfo = mpkTests;
+		};
+		1880D7F818271B5D001FD16C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1880D7F318271B5D001FD16C /* RenderEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 181BC01A181CB08500786855;
+			remoteInfo = RenderEngine;
+		};
+		1880D7FA18271B5D001FD16C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1880D7F318271B5D001FD16C /* RenderEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 181BC02A181CB08500786855;
+			remoteInfo = RenderEngineTests;
+		};
 		188101591824A892002AF8D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 188101311824A892002AF8D8 /* Project object */;
@@ -78,6 +109,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1880D7E918271AFB001FD16C /* mpk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mpk.xcodeproj; path = ../../Base/MpkLib/Build/mpk/mpk.xcodeproj; sourceTree = "<group>"; };
+		1880D7F318271B5D001FD16C /* RenderEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RenderEngine.xcodeproj; path = ../../RenderEngine/Build/RenderEngine/RenderEngine.xcodeproj; sourceTree = "<group>"; };
 		188101391824A892002AF8D8 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1881013C1824A892002AF8D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1881013E1824A892002AF8D8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,6 +141,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1880D7FC18271B67001FD16C /* libRenderEngine.a in Frameworks */,
+				1880D7F218271B01001FD16C /* libmpk.a in Frameworks */,
+				1880D62B18271A9A001FD16C /* libbase.a in Frameworks */,
 				188101851825FB8E002AF8D8 /* libmath.a in Frameworks */,
 				1881017B1825F5CE002AF8D8 /* libRenderSystemGLES2.a in Frameworks */,
 				1881013F1824A892002AF8D8 /* CoreGraphics.framework in Frameworks */,
@@ -129,9 +165,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1880D7EA18271AFB001FD16C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1880D7EF18271AFB001FD16C /* libmpk.a */,
+				1880D7F118271AFB001FD16C /* mpkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1880D7F418271B5D001FD16C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1880D7F918271B5D001FD16C /* libRenderEngine.a */,
+				1880D7FB18271B5D001FD16C /* RenderEngineTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		188101301824A892002AF8D8 = {
 			isa = PBXGroup;
 			children = (
+				1880D7F318271B5D001FD16C /* RenderEngine.xcodeproj */,
+				1880D7E918271AFB001FD16C /* mpk.xcodeproj */,
 				18810192182623AA002AF8D8 /* base.xcodeproj */,
 				1881017C1825FB87002AF8D8 /* math.xcodeproj */,
 				188101711824B19B002AF8D8 /* RenderSystemGLES2.xcodeproj */,
@@ -306,6 +362,14 @@
 					ProjectRef = 1881017C1825FB87002AF8D8 /* math.xcodeproj */;
 				},
 				{
+					ProductGroup = 1880D7EA18271AFB001FD16C /* Products */;
+					ProjectRef = 1880D7E918271AFB001FD16C /* mpk.xcodeproj */;
+				},
+				{
+					ProductGroup = 1880D7F418271B5D001FD16C /* Products */;
+					ProjectRef = 1880D7F318271B5D001FD16C /* RenderEngine.xcodeproj */;
+				},
+				{
 					ProductGroup = 188101721824B19B002AF8D8 /* Products */;
 					ProjectRef = 188101711824B19B002AF8D8 /* RenderSystemGLES2.xcodeproj */;
 				},
@@ -319,6 +383,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		1880D7EF18271AFB001FD16C /* libmpk.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libmpk.a;
+			remoteRef = 1880D7EE18271AFB001FD16C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1880D7F118271AFB001FD16C /* mpkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = mpkTests.xctest;
+			remoteRef = 1880D7F018271AFB001FD16C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1880D7F918271B5D001FD16C /* libRenderEngine.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRenderEngine.a;
+			remoteRef = 1880D7F818271B5D001FD16C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1880D7FB18271B5D001FD16C /* RenderEngineTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RenderEngineTests.xctest;
+			remoteRef = 1880D7FA18271B5D001FD16C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		188101771824B19B002AF8D8 /* libRenderSystemGLES2.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
