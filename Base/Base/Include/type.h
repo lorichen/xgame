@@ -20,6 +20,9 @@ typedef void*         HANDLE;
 typedef char*         LPCSTR;
 typedef unsigned char BYTE;
 typedef long          LONG;
+typedef unsigned int  UINT;
+typedef unsigned int* WPARAM;
+typedef unsigned long* LPARAM;
 
 typedef unsigned int            uint32;
 typedef unsigned short          uint16;

@@ -94,8 +94,8 @@ void RenderTarget::GetClientRect(RECT* rc)
     
     rc->left = 0;
     rc->top = 0;
-    rc->right = newSize.width;
-    rc->bottom = newSize.height;
+    rc->right = 2 * newSize.width;
+    rc->bottom = 2 * newSize.height;
 }
 
 void* RenderTarget::getView()
@@ -121,10 +121,11 @@ bool RenderTarget::Reset()
 {
     if (m_pContext) {
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)(m_pContext->view.layer);
-        CGSize					newSize;
-        newSize = [eaglLayer bounds].size;
-        newSize.width = roundf(newSize.width);
-        newSize.height = roundf(newSize.height);
+        
+        //CGSize					newSize;
+        //newSize = [eaglLayer bounds].size;
+        //newSize.width = roundf(newSize.width);
+        //newSize.height = roundf(newSize.height);
         
         [EAGLContext setCurrentContext:m_pContext->context];
         glDeleteFramebuffers(1, &(m_pContext->viewFramebuffer));

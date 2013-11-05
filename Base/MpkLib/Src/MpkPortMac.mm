@@ -246,6 +246,11 @@ void ConvertTMPQHeader(void *header)
      */
 }
 
+void ConvertTMPKHeader(void* header)
+{
+    assert(0);
+}
+
 #pragma mark -
 
 /********************************************************************

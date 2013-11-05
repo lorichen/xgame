@@ -132,25 +132,9 @@ namespace xs
 		{
 			return CProfileManager::GetRoot();
 		}
-		virtual void	Profile()
-		{
-			TreeView_DeleteAllItems(m_hTree);
-			IProfileNode *pNode = GetRoot();
-			if(pNode)
-			{
-				BuildTree(m_hTree,pNode,0);
-			}
-			TreeView_Expand(m_hTree,TreeView_GetRoot(m_hTree),TVE_EXPAND);
-		}
-		virtual void	ShowUI()
-		{
-			ShowWindow(m_hDlg,SW_SHOW);
-			InvalidateRect(m_hDlg,0,TRUE);
-		}
-		virtual void	HideUI()
-		{
-			ShowWindow(m_hDlg,SW_HIDE);
-		}
+		virtual void	Profile();
+		virtual void	ShowUI();
+		virtual void	HideUI();
 		virtual void	WriteLog2File(char szFileName[]);
 	public:
 		HWND m_hDlg;

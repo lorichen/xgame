@@ -3,14 +3,58 @@
 #include "profile.h"
 #include "Limits.h"
 #include "Resource.h"
+#include <assert.h>
 
 #define new RKT_NEW
 
+#if (TARGET_PLATFORM != PLATFORM_WIN32)
+#define LRESULT int
+#define CALLBACK
+#endif
+
+
+#define _I64_MAX 3.40282347e+38F
 namespace xs
 {
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+    void CProfiler::Profile()
+    {
+        TreeView_DeleteAllItems(m_hTree);
+        IProfileNode *pNode = GetRoot();
+        if(pNode)
+        {
+            BuildTree(m_hTree,pNode,0);
+        }
+        TreeView_Expand(m_hTree,TreeView_GetRoot(m_hTree),TVE_EXPAND);
+    }
+     void	CProfiler::ShowUI()
+    {
+        ShowWindow(m_hDlg,SW_SHOW);
+        InvalidateRect(m_hDlg,0,TRUE);
+    }
+     void	CProfiler::HideUI()
+    {
+        ShowWindow(m_hDlg,SW_HIDE);
+    }
+#else
+    void CProfiler::Profile()
+    {
+       
+    }
+    void CProfiler::ShowUI()
+    {
+        
+    }
+    void CProfiler::HideUI()
+    {
+        
+    }
+#endif
+    
 #ifndef _NO_PERF_PROF
 	inline void Profile_Get_Ticks(int64 * ticks)
 	{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		LARGE_INTEGER *p = (LARGE_INTEGER *)ticks;
 		QueryPerformanceCounter(p);
 		/*
@@ -27,18 +71,26 @@ namespace xs
 			pop edx;
 		}
 		*/
+#else
+        //assert(0);
+        printf("\n Profile_Get_Ticks have not implement!");
+#endif
 	}
 
 	inline float Profile_Get_Tick_Rate(void)
 	{
-		static float _CPUFrequency = -1.0f;
-		
+        static float _CPUFrequency = -1.0f;
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		if (_CPUFrequency == -1.0f) {
 			__int64 curr_rate = 0;
 			::QueryPerformanceFrequency ((LARGE_INTEGER *)&curr_rate);
 			_CPUFrequency = (float)curr_rate;
 		} 
-		
+#else
+        //assert(0);
+        printf("\n Profile_Get_Tick_Rate have not implement!");
+
+#endif
 		return _CPUFrequency;
 	}
 
@@ -196,6 +248,7 @@ namespace xs
 		return (float)time / Profile_Get_Tick_Rate();
 	}
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	LRESULT CALLBACK DlgProc(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam)
 	{
 		switch(message)
@@ -249,6 +302,8 @@ namespace xs
 	{
 		if(m_hDlg)DestroyWindow(m_hDlg);
 	}
+        
+
 	HTREEITEM CProfiler::InsertItem(HWND m_hTree,HTREEITEM hItem,char *szMsg)
 	{
 		TVITEM ti;
@@ -261,13 +316,7 @@ namespace xs
 		return (HTREEITEM)SendMessage(m_hTree,TVM_INSERTITEM,0,(LPARAM)&tis);
 	}
 
-	void CProfiler::GetDesc(char szMsg[512],IProfileNode *pNode)
-	{
-		if(stricmp(pNode->GetName(),_ROOT_) == 0)
-			sprintf(szMsg,"总时间 = %f秒",GetTimeSinceReset());
-		else
-			sprintf(szMsg,"调用次数 = %8d 总时间 = %6.4f秒 平均 = %6.4f秒 最小 = %6.4f秒 最大 = %6.4f秒 fps = %6.4f",pNode->GetTotalCalls(),pNode->GetTotalTime(),pNode->GetAverageTime(),pNode->GetMinTime(),pNode->GetMaxTime(),1.0f / pNode->GetAverageTime());		
-	}
+	
 	void CProfiler::BuildTree(HWND m_hTree,IProfileNode *pNode,HTREEITEM hItem)
 	{
 		if(!pNode)return;
@@ -301,160 +350,171 @@ namespace xs
 			}
 		}
 	}
-
-	void CProfiler::WriteLog(int iTab,IProfileNode *pNode,FILE *fp)
-	{
-		if(!pNode || !fp)return;
-
-		char szMsg[512];
-		GetDesc(szMsg,pNode);
-
-		char *pName = (char*)pNode->GetName();
-		if(!pName)return;
-
-		int iSize = strlen(pName);
-		fprintf(fp,pNode->GetName());
-		for(int k = 0;k < 32 - iSize;k++)
-		{
-			fprintf(fp," ");
-		}
-
-		for(int i = 0;i < iTab;i++)fprintf(fp,"    ");
-		fprintf(fp,szMsg);
-		fprintf(fp,"\r\n");
-
-		//综合统计信息
-		std::string strName(pNode->GetName());
-		IntegratedStatisticsInfoSet::iterator it = m_integratedInfo.find(strName);
-		if( it == m_integratedInfo.end() )
-		{
-			IntegratedStatisticsInfo info;
-			info.m_desc = strName;
-			info.m_totalCalls = pNode->GetTotalCalls();
-			info.m_totalTime = pNode->GetTotalTime();
-			info.m_averageTime = pNode->GetAverageTime();
-			m_integratedInfo[strName] = info;
-		}
-		else
-		{
-			it->second.m_totalCalls += pNode->GetTotalCalls();
-			it->second.m_totalTime += pNode->GetTotalTime();
-			it->second.m_averageTime = it->second.m_totalTime / (float)(it->second.m_totalCalls);
-		}
-
-		IProfileNode *pChild = pNode->GetChild();
-		if(pChild)
-		{
-			while(pChild)
-			{
-				WriteLog(iTab + 1,pChild,fp);
-				pChild = pChild->GetSibling();
-			}
-		}
-	}
-
-	void CProfiler::WriteIntegratedStatisticsInfo(FILE * fp)
-	{
-		if( 0 == fp) return;
-
-		char szMsg[512];
-		uint rankLen = 0;
-		struct StatisticsInfo
-		{
-			std::string m_desc;
-			float		m_info;
-			bool	operator()( StatisticsInfo & p1, StatisticsInfo &p2){ return p1.m_info < p2.m_info;}
-		};
-		typedef std::priority_queue<StatisticsInfo, std::vector<StatisticsInfo>, StatisticsInfo > ProfileRankInfo;
-		ProfileRankInfo totalCallsRank;
-		ProfileRankInfo totalTimeRank;
-		ProfileRankInfo averageTimeRank;
-
-		//整合后的统计数据
-		fprintf(fp,"\r\n");
-		fprintf(fp,"\r\n");
-		sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
-		fprintf(fp, szMsg);
-		sprintf(szMsg, "//////////////////////////合并后的统计数据//////////////////////////////\r\n");
-		fprintf(fp,szMsg);
-		sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
-		fprintf(fp,szMsg);
-		IntegratedStatisticsInfoSet::iterator it = m_integratedInfo.begin();
-		for( ; it != m_integratedInfo.end(); ++it)
-		{
-			StatisticsInfo info;
-			info.m_desc = it->second.m_desc;
-
-			info.m_info = (float)it->second.m_totalCalls;
-			totalCallsRank.push(info);
-
-			info.m_info = it->second.m_totalTime;
-			totalTimeRank.push(info);
-
-			info.m_info = it->second.m_averageTime;
-			averageTimeRank.push(info);
-
-			sprintf(szMsg,"%s\t调用次数=%8d 总时间=%6.4f秒 平均=%6.6f秒\r\n",
-				it->second.m_desc.c_str(),
-				it->second.m_totalCalls, 
-				it->second.m_totalTime, 
-				it->second.m_averageTime);
-			fprintf(fp, szMsg);
-		}
-
-		//最大调用次数
-		fprintf(fp,"\r\n");
-		fprintf(fp,"\r\n");
-		sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
-		fprintf(fp, szMsg);
-		sprintf(szMsg, "//////////////////////////合并后最大调用次数//////////////////////////////\r\n");
-		fprintf(fp,szMsg);
-		sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
-		fprintf(fp,szMsg);
-		rankLen = totalCallsRank.size();
-		for( uint i=0; i< rankLen; ++i)
-		{
-			sprintf(szMsg,"%s\t%.6f\r\n", totalCallsRank.top().m_desc.c_str(), totalCallsRank.top().m_info);
-			fprintf(fp, szMsg);
-			totalCallsRank.pop();
-		}
-
-		//最长调用时间
-		fprintf(fp,"\r\n");
-		fprintf(fp,"\r\n");
-		sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
-		fprintf(fp, szMsg);
-		sprintf(szMsg, "//////////////////////////合并后最长调用时间//////////////////////////////\r\n");
-		fprintf(fp,szMsg);
-		sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
-		fprintf(fp,szMsg);
-		rankLen = totalTimeRank.size();
-		for( uint i =0; i <rankLen; ++i)
-		{
-			sprintf(szMsg,"%s\t%.6f\r\n", totalTimeRank.top().m_desc.c_str(), totalTimeRank.top().m_info);
-			fprintf(fp, szMsg);
-			totalTimeRank.pop();	
-		}
-
-
-		//平均最长调用时间
-		fprintf(fp,"\r\n");
-		fprintf(fp,"\r\n");
-		sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
-		fprintf(fp, szMsg);
-		sprintf(szMsg, "//////////////////////////合并后平均最长调用时间//////////////////////////////\r\n");
-		fprintf(fp,szMsg);
-		sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
-		fprintf(fp,szMsg);
-		rankLen = averageTimeRank.size() ;
-		for( uint i =0; i <rankLen; ++i)
-		{
-			sprintf(szMsg,"%s\t%.6f\r\n", averageTimeRank.top().m_desc.c_str(), averageTimeRank.top().m_info);
-			fprintf(fp, szMsg);
-			averageTimeRank.pop();	
-		}
-	}
-
+        
+#else
+        
+#endif
+        void CProfiler::GetDesc(char szMsg[512],IProfileNode *pNode)
+        {
+            if(strcmp(pNode->GetName(),_ROOT_) == 0)
+                sprintf(szMsg,"总时间 = %f秒",GetTimeSinceReset());
+            else
+                sprintf(szMsg,"调用次数 = %8d 总时间 = %6.4f秒 平均 = %6.4f秒 最小 = %6.4f秒 最大 = %6.4f秒 fps = %6.4f",pNode->GetTotalCalls(),pNode->GetTotalTime(),pNode->GetAverageTime(),pNode->GetMinTime(),pNode->GetMaxTime(),1.0f / pNode->GetAverageTime());
+        }
+        
+        void CProfiler::WriteLog(int iTab,IProfileNode *pNode,FILE *fp)
+        {
+            if(!pNode || !fp)return;
+            
+            char szMsg[512];
+            GetDesc(szMsg,pNode);
+            
+            char *pName = (char*)pNode->GetName();
+            if(!pName)return;
+            
+            int iSize = strlen(pName);
+            fprintf(fp,pNode->GetName());
+            for(int k = 0;k < 32 - iSize;k++)
+            {
+                fprintf(fp," ");
+            }
+            
+            for(int i = 0;i < iTab;i++)fprintf(fp,"    ");
+            fprintf(fp,szMsg);
+            fprintf(fp,"\r\n");
+            
+            //综合统计信息
+            std::string strName(pNode->GetName());
+            IntegratedStatisticsInfoSet::iterator it = m_integratedInfo.find(strName);
+            if( it == m_integratedInfo.end() )
+            {
+                IntegratedStatisticsInfo info;
+                info.m_desc = strName;
+                info.m_totalCalls = pNode->GetTotalCalls();
+                info.m_totalTime = pNode->GetTotalTime();
+                info.m_averageTime = pNode->GetAverageTime();
+                m_integratedInfo[strName] = info;
+            }
+            else
+            {
+                it->second.m_totalCalls += pNode->GetTotalCalls();
+                it->second.m_totalTime += pNode->GetTotalTime();
+                it->second.m_averageTime = it->second.m_totalTime / (float)(it->second.m_totalCalls);
+            }
+            
+            IProfileNode *pChild = pNode->GetChild();
+            if(pChild)
+            {
+                while(pChild)
+                {
+                    WriteLog(iTab + 1,pChild,fp);
+                    pChild = pChild->GetSibling();
+                }
+            }
+        }
+        
+        void CProfiler::WriteIntegratedStatisticsInfo(FILE * fp)
+        {
+            if( 0 == fp) return;
+            
+            char szMsg[512];
+            uint rankLen = 0;
+            struct StatisticsInfo
+            {
+                std::string m_desc;
+                float		m_info;
+                bool	operator()( StatisticsInfo & p1, StatisticsInfo &p2){ return p1.m_info < p2.m_info;}
+            };
+            typedef std::priority_queue<StatisticsInfo, std::vector<StatisticsInfo>, StatisticsInfo > ProfileRankInfo;
+            ProfileRankInfo totalCallsRank;
+            ProfileRankInfo totalTimeRank;
+            ProfileRankInfo averageTimeRank;
+            
+            //整合后的统计数据
+            fprintf(fp,"\r\n");
+            fprintf(fp,"\r\n");
+            sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
+            fprintf(fp, szMsg);
+            sprintf(szMsg, "//////////////////////////合并后的统计数据//////////////////////////////\r\n");
+            fprintf(fp,szMsg);
+            sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
+            fprintf(fp,szMsg);
+            IntegratedStatisticsInfoSet::iterator it = m_integratedInfo.begin();
+            for( ; it != m_integratedInfo.end(); ++it)
+            {
+                StatisticsInfo info;
+                info.m_desc = it->second.m_desc;
+                
+                info.m_info = (float)it->second.m_totalCalls;
+                totalCallsRank.push(info);
+                
+                info.m_info = it->second.m_totalTime;
+                totalTimeRank.push(info);
+                
+                info.m_info = it->second.m_averageTime;
+                averageTimeRank.push(info);
+                
+                sprintf(szMsg,"%s\t调用次数=%8d 总时间=%6.4f秒 平均=%6.6f秒\r\n",
+                        it->second.m_desc.c_str(),
+                        it->second.m_totalCalls,
+                        it->second.m_totalTime,
+                        it->second.m_averageTime);
+                fprintf(fp, szMsg);
+            }
+            
+            //最大调用次数
+            fprintf(fp,"\r\n");
+            fprintf(fp,"\r\n");
+            sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
+            fprintf(fp, szMsg);
+            sprintf(szMsg, "//////////////////////////合并后最大调用次数//////////////////////////////\r\n");
+            fprintf(fp,szMsg);
+            sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
+            fprintf(fp,szMsg);
+            rankLen = totalCallsRank.size();
+            for( uint i=0; i< rankLen; ++i)
+            {
+                sprintf(szMsg,"%s\t%.6f\r\n", totalCallsRank.top().m_desc.c_str(), totalCallsRank.top().m_info);
+                fprintf(fp, szMsg);
+                totalCallsRank.pop();
+            }
+            
+            //最长调用时间
+            fprintf(fp,"\r\n");
+            fprintf(fp,"\r\n");
+            sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
+            fprintf(fp, szMsg);
+            sprintf(szMsg, "//////////////////////////合并后最长调用时间//////////////////////////////\r\n");
+            fprintf(fp,szMsg);
+            sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
+            fprintf(fp,szMsg);
+            rankLen = totalTimeRank.size();
+            for( uint i =0; i <rankLen; ++i)
+            {
+                sprintf(szMsg,"%s\t%.6f\r\n", totalTimeRank.top().m_desc.c_str(), totalTimeRank.top().m_info);
+                fprintf(fp, szMsg);
+                totalTimeRank.pop();	
+            }
+            
+            
+            //平均最长调用时间
+            fprintf(fp,"\r\n");
+            fprintf(fp,"\r\n");
+            sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
+            fprintf(fp, szMsg);
+            sprintf(szMsg, "//////////////////////////合并后平均最长调用时间//////////////////////////////\r\n");
+            fprintf(fp,szMsg);
+            sprintf(szMsg, "////////////////////////////////////////////////////////////////////////\r\n");
+            fprintf(fp,szMsg);
+            rankLen = averageTimeRank.size() ;
+            for( uint i =0; i <rankLen; ++i)
+            {
+                sprintf(szMsg,"%s\t%.6f\r\n", averageTimeRank.top().m_desc.c_str(), averageTimeRank.top().m_info);
+                fprintf(fp, szMsg);
+                averageTimeRank.pop();	
+            }
+        }
+        
 	void CProfiler::WriteLog2File(char szFileName[])
 	{
 		FILE *fp = fopen(szFileName,"wb+");

@@ -88,6 +88,8 @@
 		18F8E179181C131E00E96D41 /* StdFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E16B181C131E00E96D41 /* StdFileSystem.cpp */; };
 		18F8E17A181C131E00E96D41 /* Stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E16D181C131E00E96D41 /* Stream.cpp */; };
 		18F8E17B181C131E00E96D41 /* VirtualFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E16E181C131E00E96D41 /* VirtualFileSystem.cpp */; };
+		CD78241618289F7D00D0E295 /* PerfProf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD78241518289F7D00D0E295 /* PerfProf.cpp */; };
+		CD7824181828A02300D0E295 /* profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD7824171828A02300D0E295 /* profile.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +233,8 @@
 		18F8E16C181C131E00E96D41 /* StdFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StdFileSystem.h; path = ../../Src/FileSystem/StdFileSystem.h; sourceTree = "<group>"; };
 		18F8E16D181C131E00E96D41 /* Stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Stream.cpp; path = ../../Src/FileSystem/Stream.cpp; sourceTree = "<group>"; };
 		18F8E16E181C131E00E96D41 /* VirtualFileSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileSystem.cpp; path = ../../Src/FileSystem/VirtualFileSystem.cpp; sourceTree = "<group>"; };
+		CD78241518289F7D00D0E295 /* PerfProf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PerfProf.cpp; path = ../../Src/PerfProf.cpp; sourceTree = "<group>"; };
+		CD7824171828A02300D0E295 /* profile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = profile.cpp; path = ../../Src/profile.cpp; sourceTree = "<group>"; };
 		CDDC5700182237D000622541 /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = ../../Include/Thread.h; sourceTree = "<group>"; };
 		CDDC5701182237E000622541 /* LockFree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LockFree.h; path = ../../Include/LockFree.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,6 +265,8 @@
 		18F8E095181C11B800E96D41 = {
 			isa = PBXGroup;
 			children = (
+				CD7824171828A02300D0E295 /* profile.cpp */,
+				CD78241518289F7D00D0E295 /* PerfProf.cpp */,
 				CDDC5701182237E000622541 /* LockFree.h */,
 				CDDC5700182237D000622541 /* Thread.h */,
 				18D0B48818214B3B005AEEF8 /* type.h */,
@@ -535,6 +541,7 @@
 				18F8E13E181C12EF00E96D41 /* ldblib.c in Sources */,
 				18F8E143181C12EF00E96D41 /* lgc.c in Sources */,
 				18F8E157181C12EF00E96D41 /* tolua_is.c in Sources */,
+				CD7824181828A02300D0E295 /* profile.cpp in Sources */,
 				18F8E179181C131E00E96D41 /* StdFileSystem.cpp in Sources */,
 				18F8E154181C12EF00E96D41 /* lvm.c in Sources */,
 				18F8E144181C12EF00E96D41 /* liolib.c in Sources */,
@@ -545,6 +552,7 @@
 				18F8E0EC181C12CC00E96D41 /* Command.cpp in Sources */,
 				18F8E177181C131E00E96D41 /* MpkStream.cpp in Sources */,
 				18F8E0F4181C12CC00E96D41 /* MemAlloc.cpp in Sources */,
+				CD78241618289F7D00D0E295 /* PerfProf.cpp in Sources */,
 				18F8E0FC181C12CC00E96D41 /* Timer.cpp in Sources */,
 				18F8E15A181C12EF00E96D41 /* tolua_to.c in Sources */,
 				18F8E149181C12EF00E96D41 /* lobject.c in Sources */,

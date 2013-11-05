@@ -78,6 +78,7 @@ extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineC
         //init
         RenderEngineCreationParameters param;
         param.hwnd = self;
+        param.rst = RS_OPENGLES2;
         g_pRenderSystem = createRenderSystem(&param);
         
         if ([self respondsToSelector:@selector(setContentScaleFactor:)])
@@ -121,6 +122,10 @@ extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineC
     */
     
     //to do render
+    //g_pRenderSystem->point(xs::Point(100,100), ColorValue(1.0,1.0,1.0,1.0));
+    g_pRenderSystem->setClearColor(ColorValue(1.0,1.0,1.0,1.0));
+    g_pRenderSystem->beginFrame();
+    g_pRenderSystem->endFrame();
     
 //    [EAGLContext setCurrentContext:context];
 //    
