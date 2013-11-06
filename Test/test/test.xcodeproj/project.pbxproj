@@ -26,6 +26,7 @@
 		188101701824A91D002AF8D8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881016E1824A91D002AF8D8 /* ViewController.m */; };
 		1881017B1825F5CE002AF8D8 /* libRenderSystemGLES2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188101771824B19B002AF8D8 /* libRenderSystemGLES2.a */; };
 		188101851825FB8E002AF8D8 /* libmath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188101821825FB88002AF8D8 /* libmath.a */; };
+		CDF861F6182A15010028C260 /* libmodel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF861F3182A14E70028C260 /* libmodel.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,20 @@
 			remoteGlobalIDString = 18F8E0AE181C11B900E96D41;
 			remoteInfo = baseTests;
 		};
+		CDF861F2182A14E70028C260 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDF861ED182A14E70028C260 /* model.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18F8E185181C175C00E96D41;
+			remoteInfo = model;
+		};
+		CDF861F4182A14E70028C260 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDF861ED182A14E70028C260 /* model.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18F8E195181C175C00E96D41;
+			remoteInfo = modelTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +149,7 @@
 		188101711824B19B002AF8D8 /* RenderSystemGLES2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RenderSystemGLES2.xcodeproj; path = ../../RenderEngine/Build/RenderSystemGLES2/RenderSystemGLES2.xcodeproj; sourceTree = "<group>"; };
 		1881017C1825FB87002AF8D8 /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = ../../RenderEngine/Build/math/math.xcodeproj; sourceTree = "<group>"; };
 		18810192182623AA002AF8D8 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../Base/Base/Build/base/base.xcodeproj; sourceTree = "<group>"; };
+		CDF861ED182A14E70028C260 /* model.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = model.xcodeproj; path = ../../RenderEngine/Build/model/model.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDF861F6182A15010028C260 /* libmodel.a in Frameworks */,
 				1880D7FC18271B67001FD16C /* libRenderEngine.a in Frameworks */,
 				1880D7F218271B01001FD16C /* libmpk.a in Frameworks */,
 				1880D62B18271A9A001FD16C /* libbase.a in Frameworks */,
@@ -186,6 +203,7 @@
 		188101301824A892002AF8D8 = {
 			isa = PBXGroup;
 			children = (
+				CDF861ED182A14E70028C260 /* model.xcodeproj */,
 				1880D7F318271B5D001FD16C /* RenderEngine.xcodeproj */,
 				1880D7E918271AFB001FD16C /* mpk.xcodeproj */,
 				18810192182623AA002AF8D8 /* base.xcodeproj */,
@@ -289,6 +307,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CDF861EE182A14E70028C260 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDF861F3182A14E70028C260 /* libmodel.a */,
+				CDF861F5182A14E70028C260 /* modelTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -360,6 +387,10 @@
 				{
 					ProductGroup = 1881017D1825FB87002AF8D8 /* Products */;
 					ProjectRef = 1881017C1825FB87002AF8D8 /* math.xcodeproj */;
+				},
+				{
+					ProductGroup = CDF861EE182A14E70028C260 /* Products */;
+					ProjectRef = CDF861ED182A14E70028C260 /* model.xcodeproj */;
 				},
 				{
 					ProductGroup = 1880D7EA18271AFB001FD16C /* Products */;
@@ -451,6 +482,20 @@
 			fileType = wrapper.cfbundle;
 			path = baseTests.xctest;
 			remoteRef = 18810199182623AA002AF8D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDF861F3182A14E70028C260 /* libmodel.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libmodel.a;
+			remoteRef = CDF861F2182A14E70028C260 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDF861F5182A14E70028C260 /* modelTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = modelTests.xctest;
+			remoteRef = CDF861F4182A14E70028C260 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
