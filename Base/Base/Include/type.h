@@ -184,6 +184,7 @@ struct POINT
 {
     long x;
     long y;
+    
 };
 
 
