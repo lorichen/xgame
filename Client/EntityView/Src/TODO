@@ -1,0 +1,5 @@
+2008.2.12
+	1.OnSave
+	2.要实现个笼子对象，好识别是笼子。flagCage标识
+	3.实现一个路点对象，flagWaypoint
+	4.实现一个flagSpile
