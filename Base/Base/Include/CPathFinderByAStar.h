@@ -24,13 +24,7 @@
 #include <iostream> 
 using namespace std;
 
-#ifndef WIN32
-struct POINT    // 如果不是windows环境则定义一下POINT结构
-{ 
-	long x; 
-	long y;
-};
-#endif
+
 
 template
 < 
@@ -44,6 +38,7 @@ class CPathFinderByAStar
 {
 	struct stPathNode;
 public:
+    /*
 	struct stPathNode 		  //结点,也就是每个格子
 	{
 		POINT m_PointPos;
@@ -52,6 +47,7 @@ public:
 		int m_nPointvalue;        // 估算代价值 
 		stPathNode *pParent;	  // 父结点指针
 	} ;	
+     */
 	typedef std::multimap<int, int>  OpenTempList;   //open list 	第二个int是ID号 第一个是估算代价值
 	typedef std::set<int>            OpenList;      // //open list 	    第一个int是ID号 第二个是估算代价值
 	typedef std::set<int>            CloseList;      //close list 
@@ -92,7 +88,7 @@ public:
 	@param isBlock  : 判断地表是否阻挡的函数,如果地图对象判断阻挡的函数是IsBlock则该参数不用传
 	@return         : 
 	*/
-	bool SetMapInfo(unsigned long nMapWidth,unsigned long nMapHeight,_Map * pMap,_BlockTestFunc isBlock=std::mem_fun1(&_Map::IsBlock));
+	bool SetMapInfo(unsigned long nMapWidth,unsigned long nMapHeight,_Map * pMap,_BlockTestFunc isBlock=std::mem_fun(&_Map::IsBlock));
 
 	/**
 	@name			: 搜索路径

@@ -15,6 +15,7 @@
 
 namespace xs {
 
+    
 	/** 资源实现类
 	*/
 	class ResourceNode : public IResourceNode, public PoolNode<LONGLONG>

@@ -29,6 +29,7 @@ typedef unsigned short          uint16;
 typedef float                   Real;
 
 typedef long long               __int64;
+typedef long long       LONGLONG;
 
 //#define min			std::min
 
@@ -177,15 +178,17 @@ struct RECT
     long bottom;
 };
 
+typedef RECT* LPRECT;
 
-//typedef void* HDC;
-//typedef void* EGLContext;
-//typedef void* EGLSurface;
-//typedef void* EGLDisplay;
-//typedef void* EGLConfig;
+struct POINT
+{
+    long x;
+    long y;
+};
 
 
-#else   //win32
+
+#else   //win32  -----------
 
 #include <direct.h>
 #include <hash_map>

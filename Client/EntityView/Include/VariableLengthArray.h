@@ -144,7 +144,7 @@ public:
 		return data[i];
 	}
 	
-	inline void* getBuffer(){return &PreData;}
+	//inline void* getBuffer(){return &PreData;}   //?????????
 	inline DATA* getDataBuffer(){return data;}
 	inline TYPE& getParamData(){return paramData;}
 	inline int getCount()const{return wCount;}
@@ -154,7 +154,7 @@ public:
 protected:
 	WORD wCount;
 	WORD wArraySize;
-	TYPE paramData;
+    TYPE paramData;
 	DATA data[];
 };
 

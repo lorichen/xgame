@@ -9,11 +9,13 @@
 		NIFTY-Serve	PAF01022
 		CompuServe	74050,1022
 **************************************************************/
+
+#include "Common.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "windows.h"
+
 #define N		 4096	/* size of ring buffer */
 #define F		   18	/* upper limit for match_length */
 #define THRESHOLD	2   /* encode string into position and length

@@ -427,7 +427,7 @@ private:
 	{
 		if (0 == m_dwFlag && NULL != m_pLayerList)
 		{
-			__asm{int 3};
+			assert(0);//__asm{int 3};
 		}
 	}
 protected:

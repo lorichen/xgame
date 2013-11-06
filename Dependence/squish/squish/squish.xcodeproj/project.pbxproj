@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1880D9A0182A8B7C001FD16C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D99F182A8B7C001FD16C /* Foundation.framework */; };
+		1880D9A5182A8B7C001FD16C /* squish.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1880D9A4182A8B7C001FD16C /* squish.h */; };
+		1880D9A7182A8B7C001FD16C /* squish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9A6182A8B7C001FD16C /* squish.m */; };
+		1880D9AE182A8B7C001FD16C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D9AD182A8B7C001FD16C /* XCTest.framework */; };
+		1880D9AF182A8B7C001FD16C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D99F182A8B7C001FD16C /* Foundation.framework */; };
+		1880D9B1182A8B7C001FD16C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D9B0182A8B7C001FD16C /* UIKit.framework */; };
+		1880D9B4182A8B7C001FD16C /* libsquish.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D99C182A8B7C001FD16C /* libsquish.a */; };
+		1880D9BA182A8B7C001FD16C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1880D9B8182A8B7C001FD16C /* InfoPlist.strings */; };
+		1880D9BC182A8B7C001FD16C /* squishTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9BB182A8B7C001FD16C /* squishTests.m */; };
+		1880D9DC182A8BC0001FD16C /* alpha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9C5182A8BC0001FD16C /* alpha.cpp */; };
+		1880D9DD182A8BC0001FD16C /* clusterfit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9C7182A8BC0001FD16C /* clusterfit.cpp */; };
+		1880D9DE182A8BC0001FD16C /* colourblock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9C9182A8BC0001FD16C /* colourblock.cpp */; };
+		1880D9DF182A8BC0001FD16C /* colourfit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9CB182A8BC0001FD16C /* colourfit.cpp */; };
+		1880D9E0182A8BC0001FD16C /* colourset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9CD182A8BC0001FD16C /* colourset.cpp */; };
+		1880D9E1182A8BC0001FD16C /* maths.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9D0182A8BC0001FD16C /* maths.cpp */; };
+		1880D9E2182A8BC0001FD16C /* rangefit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9D2182A8BC0001FD16C /* rangefit.cpp */; };
+		1880D9E3182A8BC0001FD16C /* singlecolourfit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9D8182A8BC0001FD16C /* singlecolourfit.cpp */; };
+		1880D9E4182A8BC0001FD16C /* squish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9DA182A8BC0001FD16C /* squish.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1880D9B2182A8B7C001FD16C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1880D994182A8B7C001FD16C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1880D99B182A8B7C001FD16C;
+			remoteInfo = squish;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1880D99A182A8B7C001FD16C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				1880D9A5182A8B7C001FD16C /* squish.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1880D99C182A8B7C001FD16C /* libsquish.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsquish.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1880D99F182A8B7C001FD16C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1880D9A4182A8B7C001FD16C /* squish.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = squish.h; sourceTree = "<group>"; };
+		1880D9A6182A8B7C001FD16C /* squish.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = squish.m; sourceTree = "<group>"; };
+		1880D9AC182A8B7C001FD16C /* squishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = squishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1880D9AD182A8B7C001FD16C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1880D9B0182A8B7C001FD16C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		1880D9B7182A8B7C001FD16C /* squishTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "squishTests-Info.plist"; sourceTree = "<group>"; };
+		1880D9B9182A8B7C001FD16C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1880D9BB182A8B7C001FD16C /* squishTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = squishTests.m; sourceTree = "<group>"; };
+		1880D9C5182A8BC0001FD16C /* alpha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = alpha.cpp; path = ../alpha.cpp; sourceTree = "<group>"; };
+		1880D9C6182A8BC0001FD16C /* alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = alpha.h; path = ../alpha.h; sourceTree = "<group>"; };
+		1880D9C7182A8BC0001FD16C /* clusterfit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = clusterfit.cpp; path = ../clusterfit.cpp; sourceTree = "<group>"; };
+		1880D9C8182A8BC0001FD16C /* clusterfit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = clusterfit.h; path = ../clusterfit.h; sourceTree = "<group>"; };
+		1880D9C9182A8BC0001FD16C /* colourblock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = colourblock.cpp; path = ../colourblock.cpp; sourceTree = "<group>"; };
+		1880D9CA182A8BC0001FD16C /* colourblock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = colourblock.h; path = ../colourblock.h; sourceTree = "<group>"; };
+		1880D9CB182A8BC0001FD16C /* colourfit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = colourfit.cpp; path = ../colourfit.cpp; sourceTree = "<group>"; };
+		1880D9CC182A8BC0001FD16C /* colourfit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = colourfit.h; path = ../colourfit.h; sourceTree = "<group>"; };
+		1880D9CD182A8BC0001FD16C /* colourset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = colourset.cpp; path = ../colourset.cpp; sourceTree = "<group>"; };
+		1880D9CE182A8BC0001FD16C /* colourset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = colourset.h; path = ../colourset.h; sourceTree = "<group>"; };
+		1880D9CF182A8BC0001FD16C /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../config.h; sourceTree = "<group>"; };
+		1880D9D0182A8BC0001FD16C /* maths.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = maths.cpp; path = ../maths.cpp; sourceTree = "<group>"; };
+		1880D9D1182A8BC0001FD16C /* maths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = maths.h; path = ../maths.h; sourceTree = "<group>"; };
+		1880D9D2182A8BC0001FD16C /* rangefit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rangefit.cpp; path = ../rangefit.cpp; sourceTree = "<group>"; };
+		1880D9D3182A8BC0001FD16C /* rangefit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rangefit.h; path = ../rangefit.h; sourceTree = "<group>"; };
+		1880D9D4182A8BC0001FD16C /* simd_float.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simd_float.h; path = ../simd_float.h; sourceTree = "<group>"; };
+		1880D9D5182A8BC0001FD16C /* simd_sse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simd_sse.h; path = ../simd_sse.h; sourceTree = "<group>"; };
+		1880D9D6182A8BC0001FD16C /* simd_ve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simd_ve.h; path = ../simd_ve.h; sourceTree = "<group>"; };
+		1880D9D7182A8BC0001FD16C /* simd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simd.h; path = ../simd.h; sourceTree = "<group>"; };
+		1880D9D8182A8BC0001FD16C /* singlecolourfit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = singlecolourfit.cpp; path = ../singlecolourfit.cpp; sourceTree = "<group>"; };
+		1880D9D9182A8BC0001FD16C /* singlecolourfit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = singlecolourfit.h; path = ../singlecolourfit.h; sourceTree = "<group>"; };
+		1880D9DA182A8BC0001FD16C /* squish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = squish.cpp; path = ../squish.cpp; sourceTree = "<group>"; };
+		1880D9DB182A8BC0001FD16C /* squish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = squish.h; path = ../squish.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1880D999182A8B7C001FD16C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1880D9A0182A8B7C001FD16C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1880D9A9182A8B7C001FD16C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1880D9AE182A8B7C001FD16C /* XCTest.framework in Frameworks */,
+				1880D9B1182A8B7C001FD16C /* UIKit.framework in Frameworks */,
+				1880D9B4182A8B7C001FD16C /* libsquish.a in Frameworks */,
+				1880D9AF182A8B7C001FD16C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1880D993182A8B7C001FD16C = {
+			isa = PBXGroup;
+			children = (
+				1880D9C5182A8BC0001FD16C /* alpha.cpp */,
+				1880D9C6182A8BC0001FD16C /* alpha.h */,
+				1880D9C7182A8BC0001FD16C /* clusterfit.cpp */,
+				1880D9C8182A8BC0001FD16C /* clusterfit.h */,
+				1880D9C9182A8BC0001FD16C /* colourblock.cpp */,
+				1880D9CA182A8BC0001FD16C /* colourblock.h */,
+				1880D9CB182A8BC0001FD16C /* colourfit.cpp */,
+				1880D9CC182A8BC0001FD16C /* colourfit.h */,
+				1880D9CD182A8BC0001FD16C /* colourset.cpp */,
+				1880D9CE182A8BC0001FD16C /* colourset.h */,
+				1880D9CF182A8BC0001FD16C /* config.h */,
+				1880D9D0182A8BC0001FD16C /* maths.cpp */,
+				1880D9D1182A8BC0001FD16C /* maths.h */,
+				1880D9D2182A8BC0001FD16C /* rangefit.cpp */,
+				1880D9D3182A8BC0001FD16C /* rangefit.h */,
+				1880D9D4182A8BC0001FD16C /* simd_float.h */,
+				1880D9D5182A8BC0001FD16C /* simd_sse.h */,
+				1880D9D6182A8BC0001FD16C /* simd_ve.h */,
+				1880D9D7182A8BC0001FD16C /* simd.h */,
+				1880D9D8182A8BC0001FD16C /* singlecolourfit.cpp */,
+				1880D9D9182A8BC0001FD16C /* singlecolourfit.h */,
+				1880D9DA182A8BC0001FD16C /* squish.cpp */,
+				1880D9DB182A8BC0001FD16C /* squish.h */,
+				1880D9A1182A8B7C001FD16C /* squish */,
+				1880D9B5182A8B7C001FD16C /* squishTests */,
+				1880D99E182A8B7C001FD16C /* Frameworks */,
+				1880D99D182A8B7C001FD16C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1880D99D182A8B7C001FD16C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1880D99C182A8B7C001FD16C /* libsquish.a */,
+				1880D9AC182A8B7C001FD16C /* squishTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1880D99E182A8B7C001FD16C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1880D99F182A8B7C001FD16C /* Foundation.framework */,
+				1880D9AD182A8B7C001FD16C /* XCTest.framework */,
+				1880D9B0182A8B7C001FD16C /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1880D9A1182A8B7C001FD16C /* squish */ = {
+			isa = PBXGroup;
+			children = (
+				1880D9A4182A8B7C001FD16C /* squish.h */,
+				1880D9A6182A8B7C001FD16C /* squish.m */,
+				1880D9A2182A8B7C001FD16C /* Supporting Files */,
+			);
+			path = squish;
+			sourceTree = "<group>";
+		};
+		1880D9A2182A8B7C001FD16C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1880D9B5182A8B7C001FD16C /* squishTests */ = {
+			isa = PBXGroup;
+			children = (
+				1880D9BB182A8B7C001FD16C /* squishTests.m */,
+				1880D9B6182A8B7C001FD16C /* Supporting Files */,
+			);
+			path = squishTests;
+			sourceTree = "<group>";
+		};
+		1880D9B6182A8B7C001FD16C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1880D9B7182A8B7C001FD16C /* squishTests-Info.plist */,
+				1880D9B8182A8B7C001FD16C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1880D99B182A8B7C001FD16C /* squish */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1880D9BF182A8B7C001FD16C /* Build configuration list for PBXNativeTarget "squish" */;
+			buildPhases = (
+				1880D998182A8B7C001FD16C /* Sources */,
+				1880D999182A8B7C001FD16C /* Frameworks */,
+				1880D99A182A8B7C001FD16C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = squish;
+			productName = squish;
+			productReference = 1880D99C182A8B7C001FD16C /* libsquish.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1880D9AB182A8B7C001FD16C /* squishTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1880D9C2182A8B7C001FD16C /* Build configuration list for PBXNativeTarget "squishTests" */;
+			buildPhases = (
+				1880D9A8182A8B7C001FD16C /* Sources */,
+				1880D9A9182A8B7C001FD16C /* Frameworks */,
+				1880D9AA182A8B7C001FD16C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1880D9B3182A8B7C001FD16C /* PBXTargetDependency */,
+			);
+			name = squishTests;
+			productName = squishTests;
+			productReference = 1880D9AC182A8B7C001FD16C /* squishTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1880D994182A8B7C001FD16C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "陈 波";
+			};
+			buildConfigurationList = 1880D997182A8B7C001FD16C /* Build configuration list for PBXProject "squish" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1880D993182A8B7C001FD16C;
+			productRefGroup = 1880D99D182A8B7C001FD16C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1880D99B182A8B7C001FD16C /* squish */,
+				1880D9AB182A8B7C001FD16C /* squishTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1880D9AA182A8B7C001FD16C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1880D9BA182A8B7C001FD16C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1880D998182A8B7C001FD16C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1880D9DC182A8BC0001FD16C /* alpha.cpp in Sources */,
+				1880D9A7182A8B7C001FD16C /* squish.m in Sources */,
+				1880D9E4182A8BC0001FD16C /* squish.cpp in Sources */,
+				1880D9E1182A8BC0001FD16C /* maths.cpp in Sources */,
+				1880D9E0182A8BC0001FD16C /* colourset.cpp in Sources */,
+				1880D9DD182A8BC0001FD16C /* clusterfit.cpp in Sources */,
+				1880D9E2182A8BC0001FD16C /* rangefit.cpp in Sources */,
+				1880D9DE182A8BC0001FD16C /* colourblock.cpp in Sources */,
+				1880D9DF182A8BC0001FD16C /* colourfit.cpp in Sources */,
+				1880D9E3182A8BC0001FD16C /* singlecolourfit.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1880D9A8182A8B7C001FD16C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1880D9BC182A8B7C001FD16C /* squishTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1880D9B3182A8B7C001FD16C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1880D99B182A8B7C001FD16C /* squish */;
+			targetProxy = 1880D9B2182A8B7C001FD16C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1880D9B8182A8B7C001FD16C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1880D9B9182A8B7C001FD16C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1880D9BD182A8B7C001FD16C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1880D9BE182A8B7C001FD16C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1880D9C0182A8B7C001FD16C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				DSTROOT = /tmp/squish.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "squish/squish-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1880D9C1182A8B7C001FD16C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				DSTROOT = /tmp/squish.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "squish/squish-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		1880D9C3182A8B7C001FD16C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "squish/squish-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "squishTests/squishTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1880D9C4182A8B7C001FD16C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "squish/squish-Prefix.pch";
+				INFOPLIST_FILE = "squishTests/squishTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1880D997182A8B7C001FD16C /* Build configuration list for PBXProject "squish" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1880D9BD182A8B7C001FD16C /* Debug */,
+				1880D9BE182A8B7C001FD16C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1880D9BF182A8B7C001FD16C /* Build configuration list for PBXNativeTarget "squish" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1880D9C0182A8B7C001FD16C /* Debug */,
+				1880D9C1182A8B7C001FD16C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1880D9C2182A8B7C001FD16C /* Build configuration list for PBXNativeTarget "squishTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1880D9C3182A8B7C001FD16C /* Debug */,
+				1880D9C4182A8B7C001FD16C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1880D994182A8B7C001FD16C /* Project object */;
+}

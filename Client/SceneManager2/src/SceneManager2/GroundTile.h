@@ -142,7 +142,7 @@ public:
 	void setLoaded(bool bLoaded){m_bLoaded = bLoaded;}
 	void loadBasicInfo(xs::Stream *pMapStream,std::vector<std::string>& vTextures);
 	void load(xs::Stream *pMapStream);
-	void save(xs::Stream *pDataStream,stdext::hash_map<std::string,int>& mTextures);
+	void save(xs::Stream *pDataStream,HASH_MAP_NAMESPACE::hash_map<std::string,int>& mTextures);
 };
 
 #endif

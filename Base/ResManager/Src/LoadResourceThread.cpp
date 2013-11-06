@@ -108,7 +108,7 @@ namespace xs
 			//m_threadPool.add(pLoadTask,THREAD_PRIORITY_LOWEST);
 			//加高一点加载线程的优先级别 by yhc
 			//crr 0210-07-09 设置亲缘性，只允许其运行在第一个cpu，这样多cpu时不会和主线程争时间片
-			HANDLE hThread = m_threadPool.add(pLoadTask,THREAD_PRIORITY_BELOW_NORMAL);
+			HANDLE hThread = m_threadPool.add(pLoadTask,Thread::Low);
 			//SetThreadAffinityMask(hThread, 0x00000001);
 			pLoadTask->wait();
 		}

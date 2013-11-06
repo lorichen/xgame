@@ -336,15 +336,18 @@ public:
 		}
 
 	public:
-		HANDLE spawn(IRunnable* task, int priority = THREAD_PRIORITY_NORMAL) 
+		HANDLE spawn(IRunnable* task, int priority = Normal )
 		{
+            int win_priority = HREAD_PRIORITY_NORMAL;
+            if(priority == LOw)
+                win_priority = THREAD_PRIORITY_BELOW_NORMAL
 #if defined(HAVE_BEGINTHREADEX)
 			mThreadHandle = (HANDLE)::_beginthreadex(0, 0, &_dispatch, task, 0, (unsigned int*)&mThreadId);
 #else
 			mThreadHandle = ::CreateThread(0, 0, (LPTHREAD_START_ROUTINE)&_dispatch, task, 0, (DWORD*)&mThreadId);
 			if (NULL != mThreadHandle)
 			{
-				SetThreadPriority(mThreadHandle, priority);
+				SetThreadPriority(mThreadHandle, win_priority);
 			}			
 #endif
 			//printf("Task(%d):%s\n", mThreadId, task->getName());

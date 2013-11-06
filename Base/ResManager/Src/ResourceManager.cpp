@@ -7,6 +7,10 @@
 #include "Thread.h"
 
 xs::ResourceManager *gResourceManager = 0;
+xs::IResourceManager* GetResourceManager()
+{
+    return gResourceManager;
+}
 
 namespace xs
 {

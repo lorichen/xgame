@@ -12,9 +12,9 @@
 using namespace xs;
 
 #include "IEntityFactory.h"
-#include "IFormManager.h"
-#include "IAudioEngine.h"
-#include "DEntityProp.h"
+//#include "IFormManager.h"
+//#include "IAudioEngine.h"
+//#include "DEntityProp.h"
 
 #define Ceil(PixelPos, GridLength)	((PixelPos + GridLength - 1) / GridLength)
 #define Floor(PixelPos, GridLength)	(PixelPos / GridLength)

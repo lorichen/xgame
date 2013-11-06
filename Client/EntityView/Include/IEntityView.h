@@ -60,8 +60,11 @@ public:
 	EntityView() : mHandle(INVALID_HANDLE), mData(0), mFlags(0), mLayer(lvlMidle), mOccVal(0x2000), mAngle(0), mEntityType(typeUnknow), mObserver(0)
 	{
 		m_ptTile.x = m_ptTile.y = 0;
-		SetRectEmpty(&m_rcArea);
-		m_ptWorld.x = m_ptWorld.y = 0;
+        
+		//SetRectEmpty(&m_rcArea);
+        m_rcArea.left = m_rcArea.right = m_rcArea.top = m_rcArea.bottom = 0;
+		
+        m_ptWorld.x = m_ptWorld.y = 0;
 		m_ptLeft.x = m_ptLeft.y = 0;
 		m_ptRight.x = m_ptRight.y = 0;
         m_pointAnchorOffset.x = 0;

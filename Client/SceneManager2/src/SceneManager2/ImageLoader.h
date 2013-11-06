@@ -4,11 +4,11 @@
 class ImageLoader
 {
 public:
-	ImageLoader::ImageLoader()
+	ImageLoader()
 	{
 	}
 
-	ImageLoader::~ImageLoader()
+    ~ImageLoader()
 	{
 		close();
 	}

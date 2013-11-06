@@ -14,7 +14,6 @@
 #include "ResourceNode.h"
 #include "LoadResourceThread.h"
 
-#include <hash_map>
 
 namespace xs
 {
@@ -68,6 +67,7 @@ namespace xs
 
 } // namespace
 
-extern xs::ResourceManager *gResourceManager;
+extern xs::IResourceManager* GetResourceManager();
+extern xs::ResourceManager*  gResourceManager;
 
 #endif // __RESOURCEMANAGER_H__
