@@ -338,9 +338,11 @@ public:
 	public:
 		HANDLE spawn(IRunnable* task, int priority = Normal )
 		{
-            int win_priority = HREAD_PRIORITY_NORMAL;
-            if(priority == LOw)
-                win_priority = THREAD_PRIORITY_BELOW_NORMAL
+            int win_priority = THREAD_PRIORITY_NORMAL;
+            if(priority == Low)
+                win_priority = THREAD_PRIORITY_BELOW_NORMAL;
+			else if (priority == High)
+				win_priority = THREAD_PRIORITY_ABOVE_NORMAL;
 #if defined(HAVE_BEGINTHREADEX)
 			mThreadHandle = (HANDLE)::_beginthreadex(0, 0, &_dispatch, task, 0, (unsigned int*)&mThreadId);
 #else
