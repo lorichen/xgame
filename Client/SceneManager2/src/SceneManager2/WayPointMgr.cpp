@@ -28,12 +28,12 @@ void WayPointMgr::close()
 	m_WayPointMap.clear();
 }
 
-bool WayPointMgr::OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName)
+bool WayPointMgr::OnSchemeLoad(ICSVReader * pCSVReader,const char* szFileName)
 {
 	return false;
 }
 
-bool WayPointMgr::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName)
+bool WayPointMgr::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFileName)
 {
 	const TiXmlElement* root = pTiXmlDocument->RootElement();
 	if(!root)return true;
@@ -54,7 +54,7 @@ bool WayPointMgr::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName)
 		childchild->Attribute("d",&gateway);
 		addWayPoint(index++,x,y,gateway);
 
-		POINT pt = {x,y};
+		POINT pt(x,y);
 		vPt.push_back(pt);
 	}
 
@@ -71,12 +71,12 @@ bool WayPointMgr::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName)
 	return true;
 }
 
-bool WayPointMgr::OnSchemeUpdate(ICSVReader * pCSVReader, LPCSTR szFileName)
+bool WayPointMgr::OnSchemeUpdate(ICSVReader * pCSVReader, const char* szFileName)
 {
 	return false;
 }
 
-bool WayPointMgr::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, LPCSTR szFileName)
+bool WayPointMgr::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, const char* szFileName)
 {
 	return true;
 }
@@ -132,8 +132,8 @@ bool WayPointMgr::isAccessible(int sx,int sy,int dx,int dy)
 		return true;
 	}
 
-	POINT ptFrom = {sx,sy};
-	POINT ptTo = {dx,dy}; 
+	POINT ptFrom (sx,sy);
+	POINT ptTo (dx,dy);
 	POINT * pPath = NULL;
 	int nPathLen = 0;
 
@@ -215,8 +215,8 @@ BOOL WayPointMgr::findPath(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list
 		OpenSet.erase(OpenSet.begin());	
 		if (BestNode.x == ptTo.x && BestNode.y == ptTo.y)
 		{			
-			POINT ptStart = {Src_X, Src_Y};
-			POINT ptGoal = {Dst_X, Dst_Y};
+			POINT ptStart (Src_X, Src_Y);
+			POINT ptGoal (Dst_X, Dst_Y);
 			CloseSet.push_back(BestNode);
 			getSkeletonPath(ptStart, ptGoal, CloseSet, lsPath);
 			
@@ -252,17 +252,17 @@ BOOL WayPointMgr::findPath(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list
 
 BOOL WayPointMgr::findPathInSceneBlock(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list<POINT> *plsPath)
 {
-	POINT ptFrom = {Src_X,Src_Y};	
-	POINT ptTo = {Dst_X,Dst_Y};
-	POINT ptFrom1 = {Src_X,Src_Y};	
-	POINT ptTo1 = {Dst_X,Dst_Y};
+	POINT ptFrom (Src_X,Src_Y);
+	POINT ptTo (Dst_X,Dst_Y);
+	POINT ptFrom1 (Src_X,Src_Y);
+	POINT ptTo1 (Dst_X,Dst_Y);
 	POINT *pBuffer;
 	int nPathLen;
 	if(m_pathFinder.FindPath(ptFrom1,ptTo1,pBuffer,nPathLen))
 	{
 		for(int i = 0;i < nPathLen;i++)
 		{
-			POINT pt = {pBuffer[i].x,pBuffer[i].y};
+			POINT pt (pBuffer[i].x,pBuffer[i].y);
 			plsPath->push_back(pt);
 		}
 		return TRUE;
@@ -381,7 +381,7 @@ BOOL WayPointMgr::beginFind(int Src_X,int Src_Y,std::list<POINT> &lsPath)
 		return FALSE;
 	}
 
-	POINT ptFrom = {Src_X,Src_Y};
+	POINT ptFrom (Src_X,Src_Y);
 	POINT ptTo;
 	
 	std::list<POINT> lsSegmentPath, lsEntirePath;

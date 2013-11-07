@@ -17,10 +17,10 @@ class WayPointMgr : public ISchemeUpdateSink
 {
 public:
 	// ISchemeUpdateSink
-	virtual bool			OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName);
-	virtual bool			OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName);
-	virtual bool			OnSchemeUpdate(ICSVReader * pCSVReader, LPCSTR szFileName);
-	virtual bool			OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, LPCSTR szFileName);
+	virtual bool			OnSchemeLoad(ICSVReader * pCSVReader,const char* szFileName);
+	virtual bool			OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFileName);
+	virtual bool			OnSchemeUpdate(ICSVReader * pCSVReader, const char* szFileName);
+	virtual bool			OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, const char* szFileName);
 private:
 	ISceneManager2*		m_pSceneManager;
 	SceneBlock*	m_pMapBlockBuffer;

@@ -76,7 +76,7 @@ bool CCsvReader::GetBool(DWORD dwRow, DWORD dwCol, bool bDef)
 		return bDef;
 	}
 
-	if(stricmp(szBuffer, "false") == 0 || stricmp(szBuffer, "0") == 0)
+	if(strcmp(szBuffer, "false") == 0 || strcmp(szBuffer, "0") == 0)
 	{
 		return false;
 	}
@@ -270,7 +270,7 @@ int	CCsvReader::GetFieldIndex(const char* pszFieldDesc) const
 
 	for(int i = 0; i < (int)m_vectorFieldDesc.size(); i++)
 	{
-		if(stricmp(m_vectorFieldDesc[i].c_str(), pszFieldDesc) == 0)
+		if(strcmp(m_vectorFieldDesc[i].c_str(), pszFieldDesc) == 0)
 		{
 			return i;
 		}
@@ -709,27 +709,27 @@ void CCsvReader::ParseFieldType(const std::string &stringLine)
 	while(end_pos != std::string::npos) // find
 	{
 		std::string str = stringLine.substr(start_pos + 1, end_pos - start_pos - 1);
-		if(stricmp(str.c_str(), "bool") == 0)
+		if(strcmp(str.c_str(), "bool") == 0)
 		{
 			m_vectorFieldType.push_back((int)emCSVBool);
 		}
-		else if(stricmp(str.c_str(), "int") == 0)
+		else if(strcmp(str.c_str(), "int") == 0)
 		{
 			m_vectorFieldType.push_back((int)emCSVInt);
 		}
-		else if(stricmp(str.c_str(), "int64") == 0)
+		else if(strcmp(str.c_str(), "int64") == 0)
 		{
 			m_vectorFieldType.push_back((int)emCSVInt64);
 		}
-		else if(stricmp(str.c_str(), "float") == 0)
+		else if(strcmp(str.c_str(), "float") == 0)
 		{
 			m_vectorFieldType.push_back((int)emCSVFloat);
 		}
-		else if(stricmp(str.c_str(), "string") == 0)
+		else if(strcmp(str.c_str(), "string") == 0)
 		{
 			m_vectorFieldType.push_back((int)emCSVString);
 		}
-		else if(stricmp(str.c_str(), "intArray") == 0)
+		else if(strcmp(str.c_str(), "intArray") == 0)
 		{
 			m_vectorFieldType.push_back((int)emCsvIntArray);
 		}

@@ -162,61 +162,29 @@
 		1880D910182A887A001FD16C = {
 			isa = PBXGroup;
 			children = (
+				CDF8624B182B7E510028C260 /* scenemanager */,
+				CDF8624A182B7E240028C260 /* pathfinder */,
+				CDF86248182B7DF10028C260 /* minimp */,
+				CDF86246182B7DAC0028C260 /* ground */,
 				1880D9E5182A8C91001FD16C /* type.h */,
-				1880D942182A88C9001FD16C /* CountDistance.cpp */,
 				1880D943182A88C9001FD16C /* CountDistance.h */,
 				1880D944182A88C9001FD16C /* EntityList.h */,
 				1880D945182A88C9001FD16C /* EnumTileEntities.cpp */,
 				1880D946182A88C9001FD16C /* EnumTileEntities.h */,
 				1880D947182A88C9001FD16C /* Eyeshot.cpp */,
 				1880D948182A88C9001FD16C /* Eyeshot.h */,
-				1880D949182A88C9001FD16C /* GroundEyeshot.cpp */,
-				1880D94A182A88C9001FD16C /* GroundEyeshot.h */,
-				1880D94B182A88C9001FD16C /* GroundRenderQueue.cpp */,
-				1880D94C182A88C9001FD16C /* GroundRenderQueue.h */,
-				1880D94D182A88C9001FD16C /* GroundTile.cpp */,
-				1880D94E182A88C9001FD16C /* GroundTile.h */,
-				1880D94F182A88C9001FD16C /* ImageLoader.cpp */,
-				1880D950182A88CA001FD16C /* ImageLoader.h */,
 				1880D951182A88CA001FD16C /* lzss.cpp */,
 				1880D952182A88CA001FD16C /* lzss.h */,
-				1880D953182A88CA001FD16C /* MinimapEyeshot.cpp */,
-				1880D954182A88CA001FD16C /* MinimapEyeshot.h */,
-				1880D955182A88CA001FD16C /* MinimapTile.cpp */,
-				1880D956182A88CA001FD16C /* MinimapTile.h */,
-				1880D957182A88CA001FD16C /* PathFindAStar.cpp */,
-				1880D958182A88CA001FD16C /* PathFindAStar.h */,
-				1880D959182A88CA001FD16C /* ResourceGT.cpp */,
-				1880D95A182A88CA001FD16C /* ResourceGT.h */,
-				1880D95B182A88CA001FD16C /* ResourceLoaderGT.cpp */,
-				1880D95C182A88CA001FD16C /* ResourceLoaderGT.h */,
-				1880D95D182A88CA001FD16C /* ResourceLoaderMinimap.cpp */,
-				1880D95E182A88CA001FD16C /* ResourceLoaderMinimap.h */,
-				1880D95F182A88CA001FD16C /* ResourceMinimap.cpp */,
-				1880D960182A88CA001FD16C /* ResourceMinimap.h */,
-				1880D961182A88CA001FD16C /* SceneBlock.cpp */,
-				1880D962182A88CA001FD16C /* SceneBlock.h */,
 				1880D963182A88CA001FD16C /* SceneCoord.cpp */,
 				1880D964182A88CA001FD16C /* SceneCoord.h */,
 				1880D965182A88CA001FD16C /* SceneEyeshot.cpp */,
 				1880D966182A88CA001FD16C /* SceneEyeshot.h */,
 				1880D967182A88CA001FD16C /* SceneGrid.cpp */,
 				1880D968182A88CA001FD16C /* SceneGrid.h */,
-				1880D969182A88CA001FD16C /* SceneManager.cpp */,
-				1880D96A182A88CA001FD16C /* SceneManager.h */,
 				1880D96B182A88CA001FD16C /* SceneManagerDll.cpp */,
 				1880D96C182A88CA001FD16C /* SceneManagerDll.h */,
-				1880D96D182A88CA001FD16C /* SceneMgr.cpp */,
-				1880D96E182A88CA001FD16C /* SceneMgr.h */,
-				1880D96F182A88CA001FD16C /* SceneMgrLS.cpp */,
 				1880D970182A88CA001FD16C /* StdAfx.cpp */,
 				1880D971182A88CA001FD16C /* StdAfx.h */,
-				1880D972182A88CA001FD16C /* WayPoint.cpp */,
-				1880D973182A88CA001FD16C /* WayPoint.h */,
-				1880D974182A88CA001FD16C /* WayPointFinding.cpp */,
-				1880D975182A88CA001FD16C /* WayPointFinding.h */,
-				1880D976182A88CA001FD16C /* WayPointMgr.cpp */,
-				1880D977182A88CA001FD16C /* WayPointMgr.h */,
 				1880D91E182A887A001FD16C /* scenemanager2 */,
 				1880D932182A887A001FD16C /* scenemanager2Tests */,
 				1880D91B182A887A001FD16C /* Frameworks */,
@@ -276,6 +244,86 @@
 				1880D935182A887A001FD16C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CDF86246182B7DAC0028C260 /* ground */ = {
+			isa = PBXGroup;
+			children = (
+				CDF86247182B7DC90028C260 /* resloader */,
+				1880D949182A88C9001FD16C /* GroundEyeshot.cpp */,
+				1880D94A182A88C9001FD16C /* GroundEyeshot.h */,
+				1880D94B182A88C9001FD16C /* GroundRenderQueue.cpp */,
+				1880D94C182A88C9001FD16C /* GroundRenderQueue.h */,
+				1880D94D182A88C9001FD16C /* GroundTile.cpp */,
+				1880D94E182A88C9001FD16C /* GroundTile.h */,
+				1880D94F182A88C9001FD16C /* ImageLoader.cpp */,
+				1880D950182A88CA001FD16C /* ImageLoader.h */,
+			);
+			name = ground;
+			sourceTree = "<group>";
+		};
+		CDF86247182B7DC90028C260 /* resloader */ = {
+			isa = PBXGroup;
+			children = (
+				1880D959182A88CA001FD16C /* ResourceGT.cpp */,
+				1880D95A182A88CA001FD16C /* ResourceGT.h */,
+				1880D95B182A88CA001FD16C /* ResourceLoaderGT.cpp */,
+				1880D95C182A88CA001FD16C /* ResourceLoaderGT.h */,
+			);
+			name = resloader;
+			sourceTree = "<group>";
+		};
+		CDF86248182B7DF10028C260 /* minimp */ = {
+			isa = PBXGroup;
+			children = (
+				CDF86249182B7E070028C260 /* resloader */,
+				1880D953182A88CA001FD16C /* MinimapEyeshot.cpp */,
+				1880D954182A88CA001FD16C /* MinimapEyeshot.h */,
+				1880D955182A88CA001FD16C /* MinimapTile.cpp */,
+				1880D956182A88CA001FD16C /* MinimapTile.h */,
+			);
+			name = minimp;
+			sourceTree = "<group>";
+		};
+		CDF86249182B7E070028C260 /* resloader */ = {
+			isa = PBXGroup;
+			children = (
+				1880D95D182A88CA001FD16C /* ResourceLoaderMinimap.cpp */,
+				1880D95E182A88CA001FD16C /* ResourceLoaderMinimap.h */,
+				1880D95F182A88CA001FD16C /* ResourceMinimap.cpp */,
+				1880D960182A88CA001FD16C /* ResourceMinimap.h */,
+			);
+			name = resloader;
+			sourceTree = "<group>";
+		};
+		CDF8624A182B7E240028C260 /* pathfinder */ = {
+			isa = PBXGroup;
+			children = (
+				1880D957182A88CA001FD16C /* PathFindAStar.cpp */,
+				1880D958182A88CA001FD16C /* PathFindAStar.h */,
+				1880D961182A88CA001FD16C /* SceneBlock.cpp */,
+				1880D962182A88CA001FD16C /* SceneBlock.h */,
+				1880D972182A88CA001FD16C /* WayPoint.cpp */,
+				1880D973182A88CA001FD16C /* WayPoint.h */,
+				1880D974182A88CA001FD16C /* WayPointFinding.cpp */,
+				1880D975182A88CA001FD16C /* WayPointFinding.h */,
+				1880D976182A88CA001FD16C /* WayPointMgr.cpp */,
+				1880D977182A88CA001FD16C /* WayPointMgr.h */,
+			);
+			name = pathfinder;
+			sourceTree = "<group>";
+		};
+		CDF8624B182B7E510028C260 /* scenemanager */ = {
+			isa = PBXGroup;
+			children = (
+				1880D942182A88C9001FD16C /* CountDistance.cpp */,
+				1880D969182A88CA001FD16C /* SceneManager.cpp */,
+				1880D96A182A88CA001FD16C /* SceneManager.h */,
+				1880D96D182A88CA001FD16C /* SceneMgr.cpp */,
+				1880D96E182A88CA001FD16C /* SceneMgr.h */,
+				1880D96F182A88CA001FD16C /* SceneMgrLS.cpp */,
+			);
+			name = scenemanager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -498,7 +546,7 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				DSTROOT = /tmp/scenemanager2.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "scenemanager2/scenemanager2-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -508,6 +556,7 @@
 					../../../EntityView/Include,
 					../../../../Common,
 					../../Include,
+					../../../../Base/SchemeEngine/Include,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -523,7 +572,7 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				DSTROOT = /tmp/scenemanager2.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "scenemanager2/scenemanager2-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -533,6 +582,7 @@
 					../../../EntityView/Include,
 					../../../../Common,
 					../../Include,
+					../../../../Base/SchemeEngine/Include,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -597,6 +647,7 @@
 				1880D93E182A887A001FD16C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1880D93F182A887A001FD16C /* Build configuration list for PBXNativeTarget "scenemanager2Tests" */ = {
 			isa = XCConfigurationList;
@@ -605,6 +656,7 @@
 				1880D941182A887A001FD16C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

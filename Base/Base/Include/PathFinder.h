@@ -86,7 +86,13 @@ template
 class PathFinder
 {
 public:
-	struct TILE_TAG;
+	struct TILE_TAG
+	{
+		TILE_TAG  *      pParent;		// 上一个Tile指针
+		unsigned short   nFindID;       // 当前搜路记号,每次搜路自动加1,这样可以避免每次都清一遍内存,当搜路频繁时每次都memset一下是非常低效的事情
+		unsigned char    nMoveDir;      // 经过该点时的方向
+		bool             bAround;       // 标识绕转的路线,这段路线后面需要进行优化
+	};
 
 	enum
 	{
@@ -205,16 +211,10 @@ protected:
 	int BuildPath(POINT * pPathBuffer,int nBufSize,bool nReverse);
 
 protected:
-	//////////////////////////////////////////////////////////////////////////
-	/*
-    struct TILE_TAG
-	{
-		TILE_TAG  *      pParent;		// 上一个Tile指针
-		unsigned short   nFindID;       // 当前搜路记号,每次搜路自动加1,这样可以避免每次都清一遍内存,当搜路频繁时每次都memset一下是非常低效的事情
-		unsigned char    nMoveDir;      // 经过该点时的方向
-		bool             bAround;       // 标识绕转的路线,这段路线后面需要进行优化
-	};
-    */
+	////////////////////////////////////////////////////////////////////////
+	
+
+    
 
 	struct AROUND_POINT
 	{

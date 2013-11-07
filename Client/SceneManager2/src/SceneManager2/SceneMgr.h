@@ -173,17 +173,17 @@ public:
 	bool AdjustTileRect(RECT &rc);
 	bool IsTileInMap(int tx,int ty) const
 	{
-		POINT ptOff = {tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y};
+		POINT ptOff (tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y);
 		return (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight);
 	}
 	bool IsTileInMap(const POINT& ptTile) const
 	{
-		POINT ptOff = {ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y};
+		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		return (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight);
 	}
 	bool isValidTile(const POINT& ptTile)
 	{
-		POINT ptOff = {ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y};
+		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x].isValid();
 		else
@@ -191,7 +191,7 @@ public:
 	}
 	bool isValidTile(int tx,int ty)
 	{
-		POINT ptOff = {tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y};
+		POINT ptOff (tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x].isValid();
 		else
@@ -205,7 +205,7 @@ public:
 			return m_EmptyTile;
 		}
 
-		POINT ptOff = {ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y};
+		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];
 		else
@@ -219,7 +219,7 @@ public:
 			return m_EmptyTile;
 		}
 
-		POINT ptOff = {tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y};
+		POINT ptOff (tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];
 		else
@@ -229,7 +229,7 @@ public:
 	// 自动寻路搜索的范围为整图的阻挡信息
 	Tile& getTileArray(int tx, int ty) const
 	{
-		POINT ptOff = {tx, ty};
+		POINT ptOff (tx, ty);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];
 		else
@@ -251,7 +251,7 @@ public:
 
 	Tile* getTilePtr(const POINT& ptTile) const
 	{
-		POINT ptOff = {ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y};
+		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 		{
 			Tile* pTile = &m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];

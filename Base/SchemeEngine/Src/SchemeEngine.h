@@ -20,9 +20,9 @@
 #include <string>
 #include <list>
 #include <vector>
-#include <hash_map>
+//#include <hash_map>
 using namespace std;
-using namespace stdext;
+using namespace HASH_MAP_NAMESPACE;
 
 class CSchemeEngine : public ISchemeEngine
 {

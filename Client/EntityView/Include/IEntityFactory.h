@@ -48,15 +48,17 @@ struct FlowTextContext
 	};
 
 	POINT		pos;		/// 初始位置(根据align而填写)
-	union{
-		POINT		posOffset;	/// 相对初始位置的偏移量
+	
+    //hide by kevin.chen 
+    //union{
+		POINT           posOffset;	/// 相对初始位置的偏移量
 		struct{
 			float		v0_x;		/// x方向上的初始速度
 			float		v0_y;		/// y方向上的初始速度
 			float		a_x;		/// x方向上的加速度
 			float		a_y;		/// y方向上的加速度
 		};
-	};
+	//};
 	std::string	text;		/// 浮动文字
 	ColorValue	color;		/// 文字颜色   
 	float		lastAlpha;	/// 最终的alpha值
@@ -65,7 +67,9 @@ struct FlowTextContext
 	CoordAlign	align;		/// 坐标定位类型
 
 	DWORD		font;		/// 字体
-	EFFECTSCALE scale;	
+	EFFECTSCALE scale;
+    
+   
 };
 
 class MagicView;

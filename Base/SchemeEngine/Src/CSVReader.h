@@ -16,10 +16,10 @@
 
 #include <string>
 #include <vector>
-#include <hash_map>
+//#include <hash_map>
 #include "ISchemeEngine.h"
 using namespace std;
-using namespace stdext;
+using namespace HASH_MAP_NAMESPACE;
 
 /* csv文件格式：
 #version = 1.0.0.2

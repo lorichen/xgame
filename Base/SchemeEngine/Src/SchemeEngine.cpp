@@ -15,6 +15,7 @@
 #include "stdafx.h"
 #include "SchemeEngine.h"
 
+
 CSchemeEngine *	g_pSchemeEngine = NULL;
 /** ¹¹Ôìº¯Êý
 @param   
@@ -279,22 +280,22 @@ bool CSchemeEngine::__Load(const char * szFileName, CCsvReader * pCSVReader, TiX
 	}
 
 	const char * pExternName = szFileName + nLen - 3;
-	if(stricmp(pExternName, "CSV") == 0)	
+	if(strcmp(pExternName, "CSV") == 0)
 	{	
 		bIsCsv = true;
 		return __LoadCSV(szFileName, false, pCSVReader);		
 	}
-	else if(stricmp(pExternName, "CSC") == 0)
+	else if(strcmp(pExternName, "CSC") == 0)
 	{
 		bIsCsv = true;
 		return __LoadCSV(szFileName, true, pCSVReader);		
 	}
-	else if(stricmp(pExternName, "XML") == 0)
+	else if(strcmp(pExternName, "XML") == 0)
 	{
 		bIsCsv = false;
 		return __LoadXML(szFileName, false, pTiXmlDocument);		
 	}
-	else if(stricmp(pExternName, "XMC") == 0)
+	else if(strcmp(pExternName, "XMC") == 0)
 	{
 		bIsCsv = false;
 		return __LoadXML(szFileName, true, pTiXmlDocument);		

@@ -170,6 +170,16 @@ inline void ZeroMemory(void* p,unsigned int size)
     memset(p,0x00,size);
 }
 
+inline char* strlwr( char* str )
+{
+    char* orig = str;
+    // process the string
+    for ( ; *str != '\0'; str++ )
+        *str = tolower(*str);
+    return orig;
+}
+
+
 struct RECT
 {
     long left;
@@ -185,11 +195,105 @@ struct POINT
     long x;
     long y;
     
+    POINT()
+    :x(0),y(0)
+    {
+        
+    }
+    
+    POINT(long _x,long _y)
+    :x(_x),y(_y)
+    {
+    }
+    
+    POINT(int _x,int _y)
+    :x(_x),y(_y)
+    {
+    }
+    
+    POINT& operator=(const POINT& p)
+    {
+        x = p.x;
+        y = p.y;
+        return *this;
+    }
+    
+    POINT& operator+=(const POINT& p2)
+    {
+        x += p2.x;
+        y += p2.y;
+        return *this;
+    }
+    
+    POINT& operator-=(const POINT& p2)
+    {
+        x -= p2.x;
+        y -= p2.y;
+        return *this;
+    }
+    
+    POINT& operator/=(const long& n)
+    {
+        x /= n;
+        y /= n;
+        return *this;
+    }
+  
+    
+    POINT operator + (const POINT& p2) const
+    {
+        POINT pt(x,y);
+        pt.x += p2.x;
+        pt.y += p2.y;
+        return pt;
+    }
+    
+    POINT operator - (const POINT& p2) const
+    {
+        POINT pt(x,y);
+        pt.x -= p2.x;
+        pt.y -= p2.y;
+        return pt;
+    }
+    
+    bool operator != (const POINT& p) const
+    {
+        return !(*this == p);
+    }
+    
+    bool operator == (const POINT& p) const
+    {
+        if(x == p.x && y == p.y)
+            return true;
+        return false;
+    }
+
 };
 
+struct SIZE
+{
+    long cx;
+    long cy;
+};
+
+inline bool PtInRect(const RECT* rc,POINT& pt)
+{
+    return (
+        rc->left <= pt.x &&
+        rc->top <= pt.y  &&
+        rc->right >= pt.x &&
+        rc->bottom >= pt.y
+    );
+}
+
+inline bool IntersectRect(RECT* rcout,const RECT* rc1,const RECT* rc2)
+{
+    
+    return false;
+}
 
 
-#else   //win32  -----------
+#else   //--------------  win32  -----------------
 
 #include <direct.h>
 #include <hash_map>

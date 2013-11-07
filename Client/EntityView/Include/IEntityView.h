@@ -178,7 +178,7 @@ public:
 	// add by zjp；获取受击点
 	virtual POINT getAttackPos()
 	{
-		POINT pt={0};
+		POINT pt(0,0);
 		return pt;
 	}
 

@@ -99,7 +99,7 @@ protected:
 
 	/*╣ьм╪пео╒
 	*/
-	Size		        m_szMap;
+	SIZE		        m_szMap;
 	/* 
 	*/
 	ulong				m_ulMapCount;

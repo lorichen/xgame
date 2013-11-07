@@ -398,7 +398,7 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				DSTROOT = /tmp/squish.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "squish/squish-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -413,7 +413,7 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				DSTROOT = /tmp/squish.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "squish/squish-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -477,6 +477,7 @@
 				1880D9C1182A8B7C001FD16C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1880D9C2182A8B7C001FD16C /* Build configuration list for PBXNativeTarget "squishTests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +486,7 @@
 				1880D9C4182A8B7C001FD16C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

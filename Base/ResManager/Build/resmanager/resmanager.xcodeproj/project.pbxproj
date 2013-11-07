@@ -362,7 +362,7 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				DSTROOT = /tmp/resmanager.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "resmanager/resmanager-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -385,7 +385,7 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				DSTROOT = /tmp/resmanager.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "resmanager/resmanager-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -457,6 +457,7 @@
 				1880D8F7182A760C001FD16C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1880D8F8182A760C001FD16C /* Build configuration list for PBXNativeTarget "resmanagerTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +466,7 @@
 				1880D8FA182A760C001FD16C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
