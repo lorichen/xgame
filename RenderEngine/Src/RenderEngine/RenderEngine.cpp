@@ -60,7 +60,7 @@ namespace xs
 
 		switch(param->rst)
 		{
-		case RS_OPENGL:
+			case RS_OPENGL:
 			{
 				#ifdef _DEBUG
 					strcpy(szRenderSystemDllName,"RenderSystemGL_d.dll");
@@ -75,7 +75,23 @@ namespace xs
 				pRenderSystem = m_RenderSystem.create(szRenderSystemDllName,param);
 			}
 			break;
-		case RS_D3D9:
+	
+			case RS_OPENGLES2:
+			{
+#ifdef _DEBUG
+				strcpy(szRenderSystemDllName,"RenderSystemGLES2_d.dll");
+#else
+#ifdef RELEASEDEBUG
+				strcpy(szRenderSystemDllName,"RenderSystemGLES2_rd.dll");
+#else
+				strcpy(szRenderSystemDllName,"RenderSystemGLES2.dll");
+#endif
+#endif
+				pRenderSystem = m_RenderSystem.create(szRenderSystemDllName,param);
+			}
+			break;
+
+			case RS_D3D9:
 			{
 				#ifdef _DEBUG
 					strcpy(szRenderSystemDllName,"xs_renderd3d_d.dll");

@@ -10,10 +10,9 @@
 #if (TARGET_PLATFORM != PLATFORM_WIN32)
 #define LRESULT int
 #define CALLBACK
+#define _I64_MAX 3.40282347e+38F
 #endif
 
-
-#define _I64_MAX 3.40282347e+38F
 namespace xs
 {
 #if (TARGET_PLATFORM == PLATFORM_WIN32)

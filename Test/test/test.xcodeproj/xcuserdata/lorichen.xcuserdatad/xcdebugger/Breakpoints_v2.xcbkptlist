@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "test/EAGLView.mm"
-            timestampString = "405424993.250884"
+            filePath = "app_wrap.cpp"
+            timestampString = "405482842.761194"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-initWithFrame:"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "AppWrap::uninit()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

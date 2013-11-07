@@ -98,14 +98,13 @@ namespace xs
 		m_lineWidth = 1.0f;
 		m_scissorEnabled = false;
         
-#if (TARGET_PLATFOMR == PLATFORM_WIN32)
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		m_hDC = 0;
 		m_hWnd = 0;
 		m_hRC = 0;
 #else
         m_hWnd = 0;
         m_pContext = 0;
-        m_pShaderContext = 0;
 #endif
 
 		m_surfaceDiffuse = ColorValue(0.8f,0.8f,0.8f,1.0f);
@@ -150,7 +149,7 @@ namespace xs
 			pTextureManager->releaseAll();
 		}
 
-#if (TARGET_PLATFOMR == PLATFORM_WIN32)
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		//wglMakeCurrent(0,0);
 		eglDestroySurface(m_eglDisplay, m_eglSurface);
 		eglTerminate(m_eglDisplay);
@@ -627,7 +626,7 @@ namespace xs
 #if (TARGET_PLATFORM == PLATFORM_WIN32)
 		RenderTarget *pRenderTarget = new RenderTarget(m_hDC,m_hWnd,this,m_hRC);
 #else
-        RenderTarget* pRenderTarget = new RenderTarget(m_hWnd,this,m_pShaderContext);
+        RenderTarget* pRenderTarget = new RenderTarget(m_hWnd,this,m_pContext);
 #endif
 		if(pRenderTarget)
 		{
@@ -718,7 +717,7 @@ namespace xs
 		}
 		RenderTarget *pRenderTarget = new RenderTarget(hDC,hWnd,this);
 #else
-        RenderTarget* pRenderTarget = new RenderTarget(hWnd,this,m_pShaderContext);
+        RenderTarget* pRenderTarget = new RenderTarget(hWnd,this,m_pContext);
 #endif
 		return pRenderTarget;
 	}
@@ -734,13 +733,13 @@ namespace xs
 			Trace("Trace:RenderSystem::create	m_hWnd == 0\n");
 			return false;
 		}
-
+		m_hWnd = hWnd;
 #if (TARGET_PLATFORM == PLATFORM_WIN32)
 		//初始化display
 		//win32 下实现
 		//---------------------
 		EGLNativeWindowType eglWindow = hWnd;
-		m_hDC = GetDC(m_hWnd);
+		m_hDC = GetDC(hWnd);
 
 		if (!m_hDC) 
 			return false;
@@ -748,12 +747,16 @@ namespace xs
 		m_eglDisplay = eglGetDisplay(m_hDC);
 		if(m_eglDisplay == EGL_NO_DISPLAY)
 			m_eglDisplay = eglGetDisplay((EGLNativeDisplayType) EGL_DEFAULT_DISPLAY);
+		TestGLError("eglGetDisplay");
 
 		EGLint iMajorVersion, iMinorVersion;
 		if (!eglInitialize(m_eglDisplay, &iMajorVersion, &iMinorVersion))
 			return false;
+		TestGLError("eglInitialize");
 
 		eglBindAPI(EGL_OPENGL_ES_API);
+		TestGLError("eglBindAPI");
+
 		const EGLint pi32ConfigAttribs[] =
 		{
 			EGL_LEVEL,				0,
@@ -800,7 +803,7 @@ namespace xs
 #endif
 
 		RECT rc;
-		m_pCurrentRenderTarget->GetClientRect(&rc);
+		m_pCurrentRenderTarget->getRect(&rc);
 		setDefaultMatrix(rc.right - rc.left,rc.bottom - rc.top);
 
 #if (TARGET_PLATFORM == PLATFORM_WIN32)

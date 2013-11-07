@@ -35,8 +35,8 @@
 
 using namespace xs;
 
-IRenderSystem* g_pRenderSystem = 0;
-extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineCreationParameters* param);
+#include "../app_wrap.h"
+
 
 // A class extension to declare private methods
 @interface EAGLView () {
@@ -76,10 +76,7 @@ extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineC
         //testCase->OnAppInit((CSimpleTestApp*)self);
         
         //init
-        RenderEngineCreationParameters param;
-        param.hwnd = self;
-        param.rst = RS_OPENGLES2;
-        g_pRenderSystem = createRenderSystem(&param);
+        AppWrap::init(self);
         
         if ([self respondsToSelector:@selector(setContentScaleFactor:)])
 		{
@@ -106,7 +103,7 @@ extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineC
      */
     
     //uninit;
-    g_pRenderSystem->release();
+    AppWrap::uninit();
     
     [super dealloc];
 }
@@ -120,12 +117,8 @@ extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineC
         testCase->Update();
     }
     */
-    
-    //to do render
-    //g_pRenderSystem->point(xs::Point(100,100), ColorValue(1.0,1.0,1.0,1.0));
-    g_pRenderSystem->setClearColor(ColorValue(1.0,1.0,1.0,1.0));
-    g_pRenderSystem->beginFrame();
-    g_pRenderSystem->endFrame();
+    int delta_ms = 1000/60;
+    AppWrap::update(delta_ms);
     
 //    [EAGLContext setCurrentContext:context];
 //    

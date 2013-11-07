@@ -25,7 +25,7 @@ RenderTarget::RenderTarget(HDC dc,HWND hWnd,RenderSystem* pRenderSystem,EGLConte
 	m_eglSurface = m_pRenderSystem->m_eglSurface;
 
 	EGLint ai32ContextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
-	this->rc = eglCreateContext(m_eglDisplay, m_pRenderSystem->m_eglConfig, shareContext, ai32ContextAttribs);
+	rc = eglCreateContext(m_eglDisplay, m_pRenderSystem->m_eglConfig, shareContext, ai32ContextAttribs);
 	eglMakeCurrent(m_eglDisplay,m_eglSurface,m_eglSurface,rc);
 }
 

@@ -789,7 +789,6 @@ public:
 #elif (TARGET_PLATFORM == PLATFORM_IOS)
     void*       m_hWnd;           //ios uiview
     void*       m_pContext;
-    void*       m_pShaderContext; //todo...
 #else
    
 #endif

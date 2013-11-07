@@ -107,7 +107,6 @@ public:
     bool _CreateIOS(void* view,void* shareContext = NULL);
     void _DestoryIOS();
     bool Reset();
-    
     void GetClientRect(RECT* rc);
     void* getView();
     void* getRenderContext();
@@ -116,6 +115,7 @@ public:
     
 #endif
     
+
     RenderSystem*	m_pRenderSystem;
     
 	RenderState		m_RenderState2D,m_RenderState3D;
