@@ -44,6 +44,6 @@ void WayPointFinding::Setpos(const POINT &pt)
 
 POINT WayPointFinding::getPos(void) const 
 {
-	POINT pt = {x, y};
+	POINT pt(x, y);
 	return pt;
 }

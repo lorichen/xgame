@@ -2,6 +2,7 @@
 #include "SceneMgr.h"
 #include "SceneManager.h"
 #include "IGlobalClient.h"
+
 #include "IEntityClient.h"
 #include "IProgressManager.h"
 
@@ -101,7 +102,7 @@ bool SceneMgr::save(xs::DataChunk* pDataChunk,bool writeOccupants)
 	{
 		for (int col = 0; col < nTileWidth; ++col)
 		{
-			POINT ptTile = {col, row};
+			POINT ptTile (col, row);
 			Tile *pTile = &getTile(ptTile);
 			if (!pTile->isValid())
 			{

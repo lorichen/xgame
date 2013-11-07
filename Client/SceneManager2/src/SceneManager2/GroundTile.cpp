@@ -23,7 +23,7 @@ GroundTile::~GroundTile()
 	safeDeleteArray(m_shadowMap);
 }
 
-void GroundTile::save(xs::Stream *pDataStream,stdext::hash_map<std::string,int>& mTextures)
+void GroundTile::save(xs::Stream *pDataStream,HASH_MAP_NAMESPACE::hash_map<std::string,int>& mTextures)
 {
 	uint layerNum = getTextureLayerNum();
 	pDataStream->write(&layerNum,sizeof(layerNum));
@@ -31,7 +31,7 @@ void GroundTile::save(xs::Stream *pDataStream,stdext::hash_map<std::string,int>&
 	{
 
 		std::string textureFileName = getTextureFileName(k);
-		stdext::hash_map<std::string,int>::iterator it = mTextures.find(textureFileName);
+		HASH_MAP_NAMESPACE::hash_map<std::string,int>::iterator it = mTextures.find(textureFileName);
 		//
 		int index = (*it).second;
 		pDataStream->write(&index,sizeof(index));

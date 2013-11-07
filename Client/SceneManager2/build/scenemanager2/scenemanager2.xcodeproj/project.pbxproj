@@ -557,6 +557,7 @@
 					../../../../Common,
 					../../Include,
 					../../../../Base/SchemeEngine/Include,
+					../../../Common,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -583,6 +584,7 @@
 					../../../../Common,
 					../../Include,
 					../../../../Base/SchemeEngine/Include,
+					../../../Common,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

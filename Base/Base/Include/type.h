@@ -61,6 +61,8 @@ typedef void* HINSTANCE;
 
 #define _stricmp strcmp
 
+#define WM_USER       0x0400
+
 
 inline char *_itoa(int num,char *str,int radix)
 {
@@ -288,8 +290,105 @@ inline bool PtInRect(const RECT* rc,POINT& pt)
 
 inline bool IntersectRect(RECT* rcout,const RECT* rc1,const RECT* rc2)
 {
+    if(rc1->bottom > rc2->top &&
+       rc1->top < rc2->bottom &&
+       rc1->right > rc2->left &&
+       rc1->left < rc2->right
+       )
+    {
+        rcout->left = rc1->left;
+        rcout->right = rc1->right;
+        rcout->top = rc1->top;
+        rcout->bottom = rc1->bottom;
+        
+        if(rc2->right < rc1->left)
+            rcout->right = rc2->right;
+        
+        if(rc2->bottom < rc1->bottom)
+            rcout->bottom = rc2->bottom;
+        
+        if(rc2->left > rc1->left)
+            rcout->left = rc2->left;
+        
+        if(rc2->top > rc1->top)
+            rcout->top = rc2->top;
+        
+        if(rcout->top > rcout->bottom)
+            rcout->top = rcout->bottom;
+        
+        if(rcout->left > rcout->right)
+            rcout->left = rcout->right;
+        
+        return true;
+    }
+    else
+    {
+        rcout->left = rcout->top = rcout->right = rcout->bottom = 0;
+        return false;
+    }
     
-    return false;
+}
+
+inline bool OffsetRect( RECT* rc,int dx,int dy)
+{
+    rc->left += dx;
+    rc->right += dx;
+    rc->top += dy;
+    rc->bottom += dy;
+    return true;
+}
+
+inline bool EqualRect(const RECT* rc1,const RECT* rc2)
+{
+    return (
+        rc1->left == rc2->left &&
+        rc1->right == rc2->right &&
+        rc1->top == rc2->top &&
+        rc1->bottom == rc2->bottom
+    );
+}
+
+inline bool UnionRect(RECT* rcout,const RECT *rc1,const RECT *rc2)
+{
+    if(rc1->left < rc2->left)
+        rcout->left = rc1->left;
+    else
+        rcout->left = rc2->left;
+    
+    if(rc1->right > rc2->right)
+        rcout->right = rc1->right;
+    else
+        rcout->right = rc2->right;
+    
+    if(rc1->top < rc2->top)
+        rcout->top = rc1->top;
+    else
+        rcout->top = rc2->top;
+    
+    if(rc1->bottom > rc2->bottom)
+        rcout->bottom = rc1->bottom;
+    else
+        rcout->bottom = rc2->bottom;
+        
+    return true;
+}
+
+inline bool SetRect(RECT* rc,int left,int top,int right,int bottom)
+{
+    rc->left = left;
+    rc->top = top;
+    rc->right = right;
+    rc->bottom = bottom;
+    return true;
+}
+
+inline bool InflateRect( RECT*  rc,int dx,int dy)
+{
+    rc->left    -= dx;
+    rc->right   += dx;
+    rc->top     -= dy;
+    rc->bottom  += dy;
+    return true;
 }
 
 
