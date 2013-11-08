@@ -149,7 +149,7 @@ namespace xs
 
 	#if defined(_LIB) || defined(RESOURCEMANAGER_STATIC_LIB)/// ¾²Ì¬¿â°æ±¾
 	#	pragma comment(lib, MAKE_LIB_NAME(xs_rmm))
-		extern "C" IResourceManager* LoadRMM(uint threads);
+        extern "C" IResourceManager* LoadRMM(uint threads);
 	#	define	CreateResourceManagerProc	LoadRMM
 	#else /// ¶¯Ì¬¿â°æ±¾
 		typedef IResourceManager* (RKT_STDCALL *procCreateResourceManager)(uint threads);

@@ -31,6 +31,7 @@
 		CDF86284182CAFA70028C260 /* libresmanager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF86278182CAF870028C260 /* libresmanager.a */; };
 		CDF86285182CAFA70028C260 /* libscenemanager2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF86281182CAF9E0028C260 /* libscenemanager2.a */; };
 		CDF86287182CAFA70028C260 /* libsquish.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF86286182CAFA70028C260 /* libsquish.a */; };
+		CDF862AB182CC6A30028C260 /* GlobalClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF862A9182CC6A30028C260 /* GlobalClient.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,7 +187,9 @@
 		CDF861FE182B2CB40028C260 /* app_wrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_wrap.h; sourceTree = SOURCE_ROOT; };
 		CDF86272182CAF870028C260 /* resmanager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = resmanager.xcodeproj; path = ../../Base/ResManager/Build/resmanager/resmanager.xcodeproj; sourceTree = "<group>"; };
 		CDF8627B182CAF9E0028C260 /* scenemanager2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = scenemanager2.xcodeproj; path = ../../Client/SceneManager2/build/scenemanager2/scenemanager2.xcodeproj; sourceTree = "<group>"; };
-		CDF86286182CAFA70028C260 /* libsquish.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libsquish.a; path = "../../Dependence/squish/squish/build/Debug-iphoneos/libsquish.a"; sourceTree = "<group>"; };
+		CDF86286182CAFA70028C260 /* libsquish.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsquish.a; path = "../../Dependence/squish/squish/build/Debug-iphoneos/libsquish.a"; sourceTree = "<group>"; };
+		CDF862A9182CC6A30028C260 /* GlobalClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalClient.cpp; sourceTree = SOURCE_ROOT; };
+		CDF862AA182CC6A30028C260 /* GlobalClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalClient.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +289,8 @@
 		188101421824A892002AF8D8 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				CDF862A9182CC6A30028C260 /* GlobalClient.cpp */,
+				CDF862AA182CC6A30028C260 /* GlobalClient.h */,
 				CDF861FD182B2CB40028C260 /* app_wrap.cpp */,
 				CDF861FE182B2CB40028C260 /* app_wrap.h */,
 				1881014B1824A892002AF8D8 /* testAppDelegate.h */,
@@ -632,6 +637,7 @@
 				1881014D1824A892002AF8D8 /* testAppDelegate.m in Sources */,
 				188101701824A91D002AF8D8 /* ViewController.m in Sources */,
 				188101491824A892002AF8D8 /* main.m in Sources */,
+				CDF862AB182CC6A30028C260 /* GlobalClient.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +773,15 @@
 					../../RenderEngine/Include,
 					../../RenderEngine/Include/RenderEngine,
 					../../RenderEngine/Include/RenderSystemGLES2,
+					../../Client/Common,
+					../../Base/LuaEngine/Include,
+					../../Base/SchemeEngine/Include,
+					../../Base/EventEngine/Include,
+					../../Client/EntityView/Include,
+					../../Common,
+					../../Client/AudioEngine/Include,
+					../../Base/ResManager/Include,
+					../../Client/SceneManager2/Include,
 				);
 				INFOPLIST_FILE = "test/test-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -796,6 +811,15 @@
 					../../RenderEngine/Include,
 					../../RenderEngine/Include/RenderEngine,
 					../../RenderEngine/Include/RenderSystemGLES2,
+					../../Client/Common,
+					../../Base/LuaEngine/Include,
+					../../Base/SchemeEngine/Include,
+					../../Base/EventEngine/Include,
+					../../Client/EntityView/Include,
+					../../Common,
+					../../Client/AudioEngine/Include,
+					../../Base/ResManager/Include,
+					../../Client/SceneManager2/Include,
 				);
 				INFOPLIST_FILE = "test/test-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";

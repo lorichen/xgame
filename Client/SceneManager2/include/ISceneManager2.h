@@ -642,10 +642,10 @@ struct ISceneManager2
 
 #if defined(_LIB) || defined(SCENEMANAGER_STATIC_LIB)/// ¾²Ì¬¿â°æ±¾
 #	pragma comment(lib, MAKE_LIB_NAME(xs_csm))
-extern "C" ISceneManager2* LoadCSM();
-#	define	CreateSceneManagerProc	LoadCSM)
-extern "C" ISceneManager2* LoadCSM();
-#	define	CreateSceneManagerProc	LoadCSM
+extern "C" ISceneManager2* LoadCSM2(xs::IResourceManager *pResourceManager);
+#	define	CreateSceneManagerProc	LoadCSM2)
+extern "C" ISceneManager2* LoadCSM2(xs::IResourceManager *pResourceManager);
+#	define	CreateSceneManagerProc	LoadCSM2
 #else /// ¶¯Ì¬¿â°æ±¾
 typedef ISceneManager2* (RKT_CDECL *procCreateSceneManager)(xs::IResourceManager *pResourceManager);
 #	define	CreateSceneManagerProc	DllApi<procCreateSceneManager>::load(MAKE_DLL_NAME(xs_csm), "LoadCSM")

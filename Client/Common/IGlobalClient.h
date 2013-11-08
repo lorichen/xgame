@@ -30,6 +30,9 @@ namespace xs {
 	struct ILuaEngine;
 	struct IResourceManager;
 	struct IConnection;
+    struct IRenderEngine;
+    struct IRenderSystem;
+    struct IFont;
 }
 
 struct ISceneManager2;
@@ -133,7 +136,7 @@ struct IGlobalClient
 	virtual IRenderSystem* getRenderSystem() const = 0;
 
 	/// 获取系统预置字体
-	virtual xs::IFont* getFont(int type = fontDefault) const = 0;
+	virtual IFont* getFont(int type = fontDefault) const = 0;
 
 
 	/// 获取事件服务器
@@ -242,7 +245,7 @@ struct IGlobalClient
 	virtual IHardwareCursorCallBack* getHarewareCursorCallBack() const = 0;
 
 #ifdef MEM_LEAK_TEST
-	virtual void CreateEntityView(EntityView* entityView, EMemCreateType type) const = 0;	
+    virtual void CreateEntityView(EntityView* entityView, EMemCreateType type) const = 0;
 	virtual void ReleaseEntityView(EntityView* entityView) const = 0;	
 #endif
 

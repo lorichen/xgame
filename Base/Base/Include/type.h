@@ -452,6 +452,8 @@ inline  struct timespec clock_gettime(void)
     return t;
 }
 
+#define _LIB  //use static lib
+
 #endif
 
 

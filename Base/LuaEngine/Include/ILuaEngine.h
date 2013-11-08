@@ -62,7 +62,7 @@ public:
 	void operator = (LPCSTR pszValue)
 	{
 		m_nDataType = PARAM_DATATYPE_STRING;
-		lstrcpyn(m_szValue, pszValue, sizeof(m_szValue) - 1);
+		strncpy(m_szValue, pszValue, sizeof(m_szValue) - 1);
 	}
 
 	/** 

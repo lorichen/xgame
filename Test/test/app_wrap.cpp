@@ -8,6 +8,14 @@
 #endif
 #include <assert.h>
 
+using namespace xs;
+#include "Base.h"
+#include "Re.h"
+#include "IRenderSystem.h"
+#include "IRenderEngine.h"
+
+#include "GlobalClient.h"
+
 #include "StringHelper.h"
 #include "Thread.h"
 #include "FileSystem/Stream.h"
@@ -15,20 +23,20 @@
 #include "FileSystem/IFileSystem.h"
 #include "FileSystem/VirtualFileSystem.h"
 
-#include "Re.h"
-#include "IRenderSystem.h"
-#include "IRenderEngine.h"
+
 #include "app_wrap.h"
 
-namespace xs
-{
 
-	extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineCreationParameters* param);
-}
+
+//namespace xs
+//{
+//	extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineCreationParameters* param);
+//}
 
 using namespace xs;
 
 IRenderSystem* g_psRenderSystem = 0;
+static GlobalClient gs_global;
 
 bool AppWrap::init(void* hwnd)
 {
@@ -40,8 +48,14 @@ bool AppWrap::init(void* hwnd)
 	param.colorDepth = 32;
 	param.hwnd = hwnd;
 
-	g_psRenderSystem = xs::createRenderSystem(&param);
-
+	//g_psRenderSystem = xs::createRenderSystem(&param);
+    if(!gs_global.create(hwnd))
+    {
+        return false;
+    }
+    
+    g_psRenderSystem = gs_global.getRenderSystem();
+    
 	if(!g_psRenderSystem) return false;
 
 	return true;
@@ -57,6 +71,7 @@ void AppWrap::update(int delta_ms)
 
 void AppWrap::uninit()
 {
-	g_psRenderSystem->release();
+	//g_psRenderSystem->release();
+    gs_global.close();
 }
 
