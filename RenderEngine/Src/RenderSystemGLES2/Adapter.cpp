@@ -130,8 +130,8 @@ bool Adapter::getCurrentMode(void *hWnd, bool &bFullScreen, uint &nWidth, uint &
 	}
 	else
 	{
-		RECT rc;
-		GetClientRect((HWND)hWnd,&rc);
+		xs::Rect rc;
+		GetClientRect((void*)hWnd,&rc);
 		nWidth = rc.right - rc.left;
 		nHeight = rc.bottom -rc.top;
 

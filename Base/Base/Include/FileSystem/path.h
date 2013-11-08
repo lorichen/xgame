@@ -82,9 +82,10 @@ public:
 		return (*this);
 	}
     
+	
     _MyType& operator=(const _Elem* p)
     {
-        *this = p;
+		_String::assign(p);
         _isFile = true;
         normalize();
         return *this;
@@ -92,11 +93,12 @@ public:
 
     _MyType& operator=(_String& str)
     {
-        *this = str;
+        _String::assign(str);
         _isFile = true;
         normalize();
         return *this;
     }
+	
     
 	/*
 	~basic_path()

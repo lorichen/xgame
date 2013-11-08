@@ -307,7 +307,7 @@ bool GlobalClient::create(void* hwnd)
 		}
 		CREATE_SUCCESS();
 
-
+		/*
 		//声音控制器
         CREATE_BEGIN("CreateAudioEngine..............");
 		if ((mAudioEngine = CreateAudioEngineProc(32,32)) == NULL)
@@ -316,6 +316,7 @@ bool GlobalClient::create(void* hwnd)
 			return false;
 		}
 		CREATE_SUCCESS();
+		*/
 
 		/*
 		// 技能管理器

@@ -802,7 +802,7 @@ namespace xs
         m_pContext = m_pCurrentRenderTarget->getRenderContext();
 #endif
 
-		RECT rc;
+		xs::Rect rc;
 		m_pCurrentRenderTarget->getRect(&rc);
 		setDefaultMatrix(rc.right - rc.left,rc.bottom - rc.top);
 
@@ -866,7 +866,7 @@ namespace xs
 
 	void RenderSystem::setViewport(int left,int top,int width,int height)
 	{
-		RECT rc;
+		xs::Rect rc;
 		m_pCurrentRenderTarget->getRect(&rc);
 
 		int h = rc.bottom - rc.top;
@@ -922,7 +922,7 @@ namespace xs
 			createParam.refreshRate);
 #else
         createParam.fullscreen = true;
-        RECT rc;
+        xs::Rect rc;
         m_pCurrentRenderTarget->GetClientRect(&rc);
         createParam.w = rc.right - rc.left;
         createParam.h = rc.bottom - rc.top;
@@ -979,7 +979,7 @@ namespace xs
 		m_pCurrentRenderTarget->m_b2D = true;
 		m_pCurrentRenderTarget->m_RenderState3D = m_pCurrentRenderTarget->m_RenderState;
 
-		RECT rc;
+		xs::Rect rc;
 		m_pCurrentRenderTarget->getRect(&rc);
 
 		Matrix4 mtxW = Matrix4::IDENTITY;
@@ -2446,7 +2446,7 @@ namespace xs
 		//	pm[i] = m_mtxProjection[i - ((i >> 2) << 2)][i >> 2];
 		//}
 
-		RECT rc;
+		xs::Rect rc;
 		m_pCurrentRenderTarget->getRect(&rc);
 
 		GLint vp[4];
@@ -2493,7 +2493,7 @@ namespace xs
 		vp[2] = m_pCurrentRenderTarget->m_vpWidth;
 		vp[3] = m_pCurrentRenderTarget->m_vpHeight;
 
-		RECT rc;
+		xs::Rect rc;
 		m_pCurrentRenderTarget->getRect(&rc);
 
 		assert(0);

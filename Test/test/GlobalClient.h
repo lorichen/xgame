@@ -100,9 +100,15 @@ public:
 
     virtual ulong getTimeSecond() const
     {
+		assert(0);
         return 0;
     }
     
+	virtual void setTimeSecond(ulong ts)
+	{
+		assert(0);
+	}
+
 	/// »ñÈ¡Ö÷½Ç
 	virtual handle getPlayer() const
 	{ return mPlayer; }

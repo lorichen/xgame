@@ -48,19 +48,19 @@ class GroundEyeshot;
 
 struct EnumItem
 {
-	POINT		ptTile;
+	xs::Point		ptTile;
 	EntityView*	pEntity;
 };
 
 struct EnumTile
 {
-	POINT		ptTile;
+	xs::Point		ptTile;
 	Tile*		pTile;
 };
 
 struct BlockInfo
 {
-	POINT	ptLeftTop;
+	xs::Point	ptLeftTop;
 	int		nIndex;
 };
 
@@ -80,12 +80,12 @@ class SceneMgr :public CPathFinderByAStar<SceneMgr>,public PathFinder<SceneMgr>
 {
 	ISceneManager2*	m_pSceneManager;
 	//每当1024*512的大块变化的时候tile源点都会改变
-	POINT	m_ptTileOrigin;
+	xs::Point	m_ptTileOrigin;
 
 	//下面三个量都是tile相关的
 	int		m_nMatrixWidth;
 	int		m_nMatrixHeight;
-	RECT	m_rcMapTileRect;
+	xs::Rect	m_rcMapTileRect;
 	//tile 对象数组
 	Tile*	m_pTiles;
 
@@ -95,7 +95,7 @@ class SceneMgr :public CPathFinderByAStar<SceneMgr>,public PathFinder<SceneMgr>
 	//世界坐标的地图大小
 	int		m_nMapWidth;
 	int		m_nMapHeight;
-	RECT	m_rcMap;
+	xs::Rect	m_rcMap;
 	
 	//坐标转换器
 	SceneCoord m_SceneCo;
@@ -107,7 +107,7 @@ class SceneMgr :public CPathFinderByAStar<SceneMgr>,public PathFinder<SceneMgr>
 	VariableLengthArrayCache<DWORD,EntityView*> m_LayerListCache;
 	DWORD* m_pMultiValueTable;
 	SceneEntityList m_EntityList;
-	typedef void (SceneMgr::*ProcScrollTilesInfo)(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
+	typedef void (SceneMgr::*ProcScrollTilesInfo)(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
 	static ProcScrollTilesInfo m_fnScrollTileInfo[mdMaxUpdateType];
 
 	GroundEyeshot*		m_pGround;
@@ -124,13 +124,13 @@ class SceneMgr :public CPathFinderByAStar<SceneMgr>,public PathFinder<SceneMgr>
 private:
 	static Tile m_EmptyTile;
 public:
-	bool IsBlock(POINT ptPos)
+	bool IsBlock(xs::Point ptPos)
 	{
 		Tile& tile = getTile(ptPos.x, ptPos.y);
 		return (!tile.isValid() || tile.isBlock());
 	}
 	// 自动寻路搜索的范围为整图的阻挡信息
-	bool  IsAllBlock(POINT ptPos)
+	bool  IsAllBlock(xs::Point ptPos)
 	{
 		Tile& tile = getTileArray(ptPos.x, ptPos.y);
 		return (!tile.isValid() || tile.isBlock());
@@ -141,7 +141,7 @@ public:
 	@param   
 	@return  
 	*/
-	bool IsInValidTile(POINT ptTile)
+	bool IsInValidTile(xs::Point ptTile)
 	{
 		Tile& tile = getTileArray(ptTile.x, ptTile.y);
 		if(!tile.isValid())
@@ -150,40 +150,40 @@ public:
 		}
 		return false;
 	}
-	bool isMovableForMultiOcc(EntityView* pEntity, POINT ptFrom, POINT ptTo);	
+	bool isMovableForMultiOcc(EntityView* pEntity, xs::Point ptFrom, xs::Point ptTo);	
 	int getSceneWidth()const		{return m_nMapWidth;}
 	int getSceneHeight()const		{return m_nMapHeight;}
-	void moveTop(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
-	void moveRightTop(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
-	void moveRight(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
-	void moveRightDown(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
-	void moveDown(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
-	void moveLeftDown(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
-	void moveLeft(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
-	void moveleftTop(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
-	void moveAll(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy);
-	void scrollTilesInfo(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, int nDirection, POINT& ptNewTileOrigin, int dx, int dy);
-	void initBlockInfo(POINT& ptLeftTop, int nTileRow, int nTileCol,int realRow,int realCol);
-	void loadBlockInfo(POINT& ptLeftTop, int nIndex, int nTileRow, int nTileCol);
-	void copyBlockInfo(POINT& ptSrcLeftTop, POINT& ptDstLeftTop, int nTileRow, int nTileCol);
-	void copyBlockInfoForSurface(POINT& ptSrcLeftTop, POINT& ptDstLeftTop, int nTileRow, int nTileCol);
-	void setOriginTile(POINT& ptTileOrigin);
-	POINT GetOriginTile()		{return m_ptTileOrigin;}
+	void moveTop(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void moveRightTop(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void moveRight(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void moveRightDown(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void moveDown(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void moveLeftDown(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void moveLeft(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void moveleftTop(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void moveAll(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void scrollTilesInfo(BlockInfo* pBlockInfo, int nRows, int nCols, int nTileRow, int nTileCol, int nDirection, xs::Point& ptNewTileOrigin, int dx, int dy);
+	void initBlockInfo(xs::Point& ptLeftTop, int nTileRow, int nTileCol,int realRow,int realCol);
+	void loadBlockInfo(xs::Point& ptLeftTop, int nIndex, int nTileRow, int nTileCol);
+	void copyBlockInfo(xs::Point& ptSrcLeftTop, xs::Point& ptDstLeftTop, int nTileRow, int nTileCol);
+	void copyBlockInfoForSurface(xs::Point& ptSrcLeftTop, xs::Point& ptDstLeftTop, int nTileRow, int nTileCol);
+	void setOriginTile(xs::Point& ptTileOrigin);
+	xs::Point GetOriginTile()		{return m_ptTileOrigin;}
 	bool isValid(){	return m_pTiles != 0;}
-	bool AdjustTileRect(RECT &rc);
+	bool AdjustTileRect(xs::Rect &rc);
 	bool IsTileInMap(int tx,int ty) const
 	{
-		POINT ptOff (tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y);
+		xs::Point ptOff (tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y);
 		return (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight);
 	}
-	bool IsTileInMap(const POINT& ptTile) const
+	bool IsTileInMap(const xs::Point& ptTile) const
 	{
-		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
+		xs::Point ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		return (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight);
 	}
-	bool isValidTile(const POINT& ptTile)
+	bool isValidTile(const xs::Point& ptTile)
 	{
-		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
+		xs::Point ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x].isValid();
 		else
@@ -191,21 +191,21 @@ public:
 	}
 	bool isValidTile(int tx,int ty)
 	{
-		POINT ptOff (tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y);
+		xs::Point ptOff (tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x].isValid();
 		else
 			return false;
 	}
 
-	Tile& getTile(const POINT& ptTile) const
+	Tile& getTile(const xs::Point& ptTile) const
 	{
 		if (NULL == m_pTiles || NULL == m_pMultiValueTable)
 		{
 			return m_EmptyTile;
 		}
 
-		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
+		xs::Point ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];
 		else
@@ -219,7 +219,7 @@ public:
 			return m_EmptyTile;
 		}
 
-		POINT ptOff (tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y);
+		xs::Point ptOff (tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];
 		else
@@ -229,29 +229,29 @@ public:
 	// 自动寻路搜索的范围为整图的阻挡信息
 	Tile& getTileArray(int tx, int ty) const
 	{
-		POINT ptOff (tx, ty);
+		xs::Point ptOff (tx, ty);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 			return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];
 		else
 			return m_EmptyTile;
 	}
-	/*inline Tile& _GetTile(const POINT& ptTile) const
+	/*inline Tile& _GetTile(const xs::Point& ptTile) const
 	{
-		POINT ptOff = {ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y};
+		xs::Point ptOff = {ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y};
 		assert(ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight);
 		return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];
 	}
 
 	inline Tile& _GetTile(int tx, int ty) const
 	{
-		POINT ptOff = {tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y};
+		xs::Point ptOff = {tx - m_ptTileOrigin.x, ty - m_ptTileOrigin.y};
 		assert(ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight);
 		return m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];
 	}*/
 
-	Tile* getTilePtr(const POINT& ptTile) const
+	Tile* getTilePtr(const xs::Point& ptTile) const
 	{
-		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
+		xs::Point ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 		{
 			Tile* pTile = &m_pTiles[m_pMultiValueTable[ptOff.y] + ptOff.x];
@@ -268,47 +268,47 @@ public:
 	SceneCoord GetSceneCoordNormal() {return m_SceneCo;}
 	SceneBlock*	getMapBlockBuffer(){return &m_MapBlockBuffer;}
 
-	bool create(GroundEyeshot *pGround,int nMapWidth, int nMapHeight, RECT& rcPreRead,ISceneManager2 *pSceneManager);
+	bool create(GroundEyeshot *pGround,int nMapWidth, int nMapHeight, xs::Rect& rcPreRead,ISceneManager2 *pSceneManager);
 	void close();
 
 	bool save(xs::DataChunk* pDataChunk,bool writeOccupants);
-	bool load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* pEntityFactory, LPRECT pViewport,const POINT* pTileCenter,bool bDynamic,ISceneManager2 *pSceneManager);
+	bool load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* pEntityFactory, xs::Rect* pViewport,const xs::Point* pTileCenter,bool bDynamic,ISceneManager2 *pSceneManager);
 
-	virtual bool addEntity(const POINT& ptTile, EntityView* pEntity);
-	virtual bool moveEntity(const POINT& ptFrom, const POINT& ptTo, EntityView* pEntity);
-	virtual bool removeEntity(const POINT& ptTile, EntityView* pEntity);
+	virtual bool addEntity(const xs::Point& ptTile, EntityView* pEntity);
+	virtual bool moveEntity(const xs::Point& ptFrom, const xs::Point& ptTo, EntityView* pEntity);
+	virtual bool removeEntity(const xs::Point& ptTile, EntityView* pEntity);
 
-	virtual bool addEntityOccupant(const POINT& ptTile, EntityView* pEntity);
-	virtual bool removeEntityOccupant(const POINT& ptTile, EntityView* pEntity);
+	virtual bool addEntityOccupant(const xs::Point& ptTile, EntityView* pEntity);
+	virtual bool removeEntityOccupant(const xs::Point& ptTile, EntityView* pEntity);
 
-	bool addLayerItem(const POINT &pt, EntityView *pEntity);
+	bool addLayerItem(const xs::Point &pt, EntityView *pEntity);
 
-	bool snapshotRectItem(const RECT& rc,/*in out*/int& nListCount,/*out*/EnumItem* pListBuf);
-	bool enumEntityByWorldRect(const RECT &rcWorld, /*in out*/int& nListCount,/*out*/EnumItem* pListBuf);
-	bool enumTileByWorldRect(const RECT &rcWorld, /*in out*/int& nListCount,/*out*/EnumTile* pListBuf);
+	bool snapshotRectItem(const xs::Rect& rc,/*in out*/int& nListCount,/*out*/EnumItem* pListBuf);
+	bool enumEntityByWorldRect(const xs::Rect &rcWorld, /*in out*/int& nListCount,/*out*/EnumItem* pListBuf);
+	bool enumTileByWorldRect(const xs::Rect &rcWorld, /*in out*/int& nListCount,/*out*/EnumTile* pListBuf);
 
 	SceneMgr();
 	virtual ~SceneMgr();
-	void viewRectToPreReadRect(RECT& rcView, RECT& rcPreRead, int nMapWidth, int nMapHeight);
+	void viewRectToPreReadRect(xs::Rect& rcView, xs::Rect& rcPreRead, int nMapWidth, int nMapHeight);
 	
 private:
-	bool _LoadBlock(xs::Stream* pStream, POINT ptTileLeftTop, int nTileRow, int nTileCol, IEntityFactory* pEntityFactory);
-	bool _LoadTileInfo(xs::Stream* pStream, Tile* pTile, POINT& ptTile, IEntityFactory* pEntityFactory);
-	bool _LoadTileInfoOld(xs::Stream* pStream, Tile* pTile, POINT& ptTile, IEntityFactory* pEntityFactory);
-	bool _SaveBlock(xs::Stream* pStream, POINT ptTileLeftTop, int nTileRow, int nTileCol);
+	bool _LoadBlock(xs::Stream* pStream, xs::Point ptTileLeftTop, int nTileRow, int nTileCol, IEntityFactory* pEntityFactory);
+	bool _LoadTileInfo(xs::Stream* pStream, Tile* pTile, xs::Point& ptTile, IEntityFactory* pEntityFactory);
+	bool _LoadTileInfoOld(xs::Stream* pStream, Tile* pTile, xs::Point& ptTile, IEntityFactory* pEntityFactory);
+	bool _SaveBlock(xs::Stream* pStream, xs::Point ptTileLeftTop, int nTileRow, int nTileCol);
 	bool _SaveMultiEmptyTileInfo(xs::Stream* pStream, int nCount);
-	bool _SaveMultiTileInfo(xs::Stream* pStream, POINT* ptTileList, int nCount);
+	bool _SaveMultiTileInfo(xs::Stream* pStream, xs::Point* ptTileList, int nCount);
 	bool _SaveTileInfo(xs::Stream* pStream, Tile* pTile);
-	void addMultiOccupantValue(POINT pt, EntityView *pEntity);
-	void removeMultiOccupantValue(POINT pt, EntityView *pEntity);
-	bool testIntersect(POINT pt, EntityView* pEntity);
+	void addMultiOccupantValue(xs::Point pt, EntityView *pEntity);
+	void removeMultiOccupantValue(xs::Point pt, EntityView *pEntity);
+	bool testIntersect(xs::Point pt, EntityView* pEntity);
 	
 	//add by yhc
 	//获取本地图的特效信息
-	bool GetBlockEf(xs::Stream* pStream, POINT ptTileLeftTop, int nTileRow, int nTileCol);
-	bool GetTileEf(xs::Stream* pStream, Tile* pTile, POINT& ptTile);
+	bool GetBlockEf(xs::Stream* pStream, xs::Point ptTileLeftTop, int nTileRow, int nTileCol);
+	bool GetTileEf(xs::Stream* pStream, Tile* pTile, xs::Point& ptTile);
 protected:
-	bool createMapArray(RECT& rcPreRead);
+	bool createMapArray(xs::Rect& rcPreRead);
 	
 protected:
     //  版本号；
@@ -317,7 +317,7 @@ protected:
 
 #if defined(RELEASEDEBUG) || defined(_DEBUG)
 private:
-	void AddTileInfo(POINT ptTile, string strFileName);
+	void AddTileInfo(xs::Point ptTile, string strFileName);
 
 	typedef list<string> TLIST_NAME;
 	typedef map<DWORD, TLIST_NAME> TMAP_TILEINFO;

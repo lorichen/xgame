@@ -8,7 +8,7 @@
 extern RunType g_runtype;
 #define   MINMAP_VIEW_SIZE 1025       // 小地图的视口
 #define   MINMAP_VIEW_CHANGE_SIZE  257   // 小地图视口改变值
-bool MinimapEyeshot::create(ISceneManager2 *pSceneManager,int mapWidth,int mapHeight,int gridWidth,int gridHeight,const POINT& ptCenter,xs::IResourceManager *pResourceManager,const std::string& mapName)
+bool MinimapEyeshot::create(ISceneManager2 *pSceneManager,int mapWidth,int mapHeight,int gridWidth,int gridHeight,const xs::Point& ptCenter,xs::IResourceManager *pResourceManager,const std::string& mapName)
 {
 	m_pSceneManager = pSceneManager;
 	m_pResourceManager = pResourceManager;
@@ -40,7 +40,7 @@ bool MinimapEyeshot::create(ISceneManager2 *pSceneManager,int mapWidth,int mapHe
 		m_pTile[i].m_ptCoord.y = i / m_nTotalGridX;
 	}
 
-	RECT rc;
+	xs::Rect rc;
 	// 需要判断是否超过地图最大边界；如果超过；需要重设中心点的位子；
 	rc.left = ptCenter.x - MINMAP_VIEW_SIZE;
 	if (rc.left < 0)
@@ -148,7 +148,7 @@ bool MinimapEyeshot::scrollViewport(int dx, int dy)
 	return m_Eyeshot.scrollViewport(dx,dy);
 }
 
-RECT MinimapEyeshot::getViewport()
+xs::Rect MinimapEyeshot::getViewport()
 {
 	return m_Eyeshot.getViewportRect();
 }
@@ -163,7 +163,7 @@ bool MinimapEyeshot::ViewportSizeChanged(int nMultiple)
 	nViewHeight += MINMAP_VIEW_CHANGE_SIZE * nMultiple;
 	return onViewportSizeChanged(nViewWidth,nViewHeight);
 }
-void MinimapEyeshot::drawWorldMap(IRenderSystem *pRenderSystem,const RECT& rcDraw)
+void MinimapEyeshot::drawWorldMap(IRenderSystem *pRenderSystem,const xs::Rect& rcDraw)
 {
 	if(!m_pWorldMap)
 	{
@@ -185,7 +185,7 @@ void MinimapEyeshot::drawWorldMap(IRenderSystem *pRenderSystem,const RECT& rcDra
 	}
 }
 
-void MinimapEyeshot::draw(IRenderSystem *pRenderSystem,const RECT& rcDraw)
+void MinimapEyeshot::draw(IRenderSystem *pRenderSystem,const xs::Rect& rcDraw)
 {
 	if(!m_pSceneManager)
 		return;
@@ -197,7 +197,7 @@ void MinimapEyeshot::draw(IRenderSystem *pRenderSystem,const RECT& rcDraw)
 	if(col == 0 || row == 0)
 		return;
 
-	RECT rc = m_Eyeshot.getViewportRect();
+	xs::Rect rc = m_Eyeshot.getViewportRect();
 
 	int nGridTopX = nViewTopX / m_nGridWidth;
 	int nGridTopY = nViewTopY / m_nGridHeight;
@@ -252,12 +252,12 @@ void MinimapEyeshot::draw(IRenderSystem *pRenderSystem,const RECT& rcDraw)
 				ITexture *pTexture = pTile->getTexture();
 				if(pTexture)
 				{
-					RECT rcTile;
+					xs::Rect rcTile;
 					rcTile.left = i * m_nTileWidth;
 					rcTile.top = j * m_nTileHeight;
 					rcTile.right = (i + 1) * m_nTileWidth;
 					rcTile.bottom = (j + 1) * m_nTileHeight;
-					RECT rcDest;
+					xs::Rect rcDest;
 					if(IntersectRect(&rcDest,&rcTile,&rc))
 					{
 						float minx,miny,maxx,maxy;
@@ -331,7 +331,7 @@ bool  MinimapEyeshot::moveViewportTo(int x, int y,int dx, int dy)
 {
 	int nTopX = x - m_nViewWidth/2;
 	int nTopY = y - m_nViewHeight/2;
-	RECT rc = m_Eyeshot.getViewportRect();
+	xs::Rect rc = m_Eyeshot.getViewportRect();
 	if (((nTopX + dx ) == rc.left) && ((nTopY + dy ) == rc.top))
 	{
 		return false;

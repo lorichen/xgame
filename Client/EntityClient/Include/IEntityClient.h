@@ -1,21 +1,21 @@
 /*******************************************************************
- ** æ–‡ä»¶å:	e:\Rocket\Client\EntityClient\Include\IEntityClient.h
- ** ç‰ˆ  æƒ:	(C)
+ ** ÎÄ¼şÃû:	e:\Rocket\Client\EntityClient\Include\IEntityClient.h
+ ** °æ  È¨:	(C)
  **
- ** æ—¥  æœŸ:	2008/1/22  14:46
- ** ç‰ˆ  æœ¬:	1.0
- ** æ  è¿°:	å®ä½“å®¢æˆ·ç«¯
- ** åº”  ç”¨:
+ ** ÈÕ  ÆÚ:	2008/1/22  14:46
+ ** °æ  ±¾:	1.0
+ ** Ãè  Êö:	ÊµÌå¿Í»§¶Ë
+ ** Ó¦  ÓÃ:
  
- **************************** ä¿®æ”¹è®°å½• ******************************
- ** ä¿®æ”¹äºº:
- ** æ—¥  æœŸ:
- ** æ  è¿°:
+ **************************** ĞŞ¸Ä¼ÇÂ¼ ******************************
+ ** ĞŞ¸ÄÈË:
+ ** ÈÕ  ÆÚ:
+ ** Ãè  Êö:
  ********************************************************************/
 #pragma once
 
 
-// ç”³æ˜
+// ÉêÃ÷
 struct IMessageVoteSink;
 struct IMessageExecuteSink;
 struct IEntityClass;
@@ -38,96 +38,96 @@ struct IEffect;
 struct ISkepGoods;
 struct IPet;
 struct IPetPart;
-/////////////////////////////æ¶ˆæ¯æŠ•ç¥¨sink///////////////////////////////
+/////////////////////////////ÏûÏ¢Í¶Æ±sink///////////////////////////////
 struct IMessageVoteSink
 {
 	/**
-     @param   dwMsgID ï¼šæ¶ˆæ¯ID
-     @param   pszMsg ï¼šæ¶ˆæ¯ç»“æ„
-     @param   nLen ï¼šæ¶ˆæ¯é•¿åº¦
-     @return  è¿”å›falseï¼Œè¡¨ç¤ºæˆªæ–­
+     @param   dwMsgID £ºÏûÏ¢ID
+     @param   pszMsg £ºÏûÏ¢½á¹¹
+     @param   nLen £ºÏûÏ¢³¤¶È
+     @return  ·µ»Øfalse£¬±íÊ¾½Ø¶Ï
      */
 	virtual bool				OnVote(DWORD dwMsgID, SGameMsgHead * pGameMsgHead, LPCSTR pszMsg, int nLen) = 0;
 };
 
-/////////////////////////////æ¶ˆæ¯æ‰§è¡Œsink///////////////////////////////
+/////////////////////////////ÏûÏ¢Ö´ĞĞsink///////////////////////////////
 struct IMessageExecuteSink
 {
 	/**
-     @param   dwMsgID ï¼šæ¶ˆæ¯ID
-     @param   pszMsg ï¼šæ¶ˆæ¯ç»“æ„
-     @param   nLen ï¼šæ¶ˆæ¯é•¿åº¦
+     @param   dwMsgID £ºÏûÏ¢ID
+     @param   pszMsg £ºÏûÏ¢½á¹¹
+     @param   nLen £ºÏûÏ¢³¤¶È
      @return
      */
 	virtual void				OnExecute(DWORD dwMsgID, SGameMsgHead * pGameMsgHead, LPCSTR pszMsg, int nLen) = 0;
 };
 
-/////////////////////////////å®ä½“ç±»å‹///////////////////////////////
+/////////////////////////////ÊµÌåÀàĞÍ///////////////////////////////
 struct IEntityClass
 {
-	/** æ˜¯å¦ä¸ºäººç‰©
+	/** ÊÇ·ñÎªÈËÎï
      @param
      @param
      @return
      */
 	virtual bool				IsPerson(void) = 0;
     
-	/** æ˜¯å¦ä¸ºæ€ªç‰©
+	/** ÊÇ·ñÎª¹ÖÎï
      @param
      @param
      @return
      */
 	virtual bool				IsMonster(void) = 0;
-	/** æ˜¯å¦ä¸ºå® ç‰©
+	/** ÊÇ·ñÎª³èÎï
      @param
      @param
      @return
      */
 	virtual bool               IsPet(void) = 0;
     
-	/** æ˜¯å¦ä¸ºè£…å¤‡
+	/** ÊÇ·ñÎª×°±¸
      @param
      @param
      @return
      */
 	virtual bool				IsEquipment(void) = 0;
     
-	/** æ˜¯å¦ä¸ºéè£…å¤‡ç±»ç‰©å“
+	/** ÊÇ·ñÎª·Ç×°±¸ÀàÎïÆ·
      @param
      @param
      @return
      */
 	virtual bool				IsNonequipableGoods(void) = 0;
     
-	/** æ˜¯å¦ä¸ºå®ç®±
+	/** ÊÇ·ñÎª±¦Ïä
      @param
      @param
      @return
      */
 	virtual bool				IsBox(void) = 0;
     
-	/** æ˜¯å¦ä¸ºæ——æ†ï¼ˆæ‘Šä½ã€ä¼ é€é—¨... ...ï¼‰
+	/** ÊÇ·ñÎªÆì¸Ë£¨Ì¯Î»¡¢´«ËÍÃÅ... ...£©
      @param
      @param
      @return
      */
 	virtual bool				IsMast(void) = 0;
     
-	/** æ˜¯å¦ä¸ºç”Ÿç‰©
+	/** ÊÇ·ñÎªÉúÎï
      @param
      @param
      @return
      */
 	virtual bool				IsCreature(void) = 0;
     
-	/** æ˜¯å¦ä¸ºç‰©å“
+	/** ÊÇ·ñÎªÎïÆ·
      @param
      @param
      @return
      */
 	virtual bool				IsGoods(void) = 0;
     
-	/** å–å¾—æ¸¸æˆç±»å‹ï¼ˆtEntity_Class_Personï¼Œ tEntity_Class_Monsterï¼ŒtEntity_Class_Equipmentï¼ŒtEntity_Class_NonequipableGoodsï¼‰
+	/** È¡µÃÓÎÏ·ÀàĞÍ£¨tEntity_Class_Person£¬ tEntity_Class_Monster£¬tEntity_Class_Equipment£¬tEntity_Class_NonequipableGoods£©
      @param
      @param
      @return
@@ -135,108 +135,108 @@ struct IEntityClass
 	virtual DWORD				Class(void) = 0;
 };
 
-//////////////////////////////å®ä½“//////////////////////////////////
+//////////////////////////////ÊµÌå//////////////////////////////////
 struct IEntity
 {
-	/** é‡Šæ”¾
+	/** ÊÍ·Å
      @param
      @param
      @return
      */
 	virtual void				Release(void) = 0;
     
-	/** å–å¾—å®ä½“ç±»å‹
+	/** È¡µÃÊµÌåÀàĞÍ
      @param
      @param
      @return
      */
 	virtual IEntityClass *		GetEntityClass(void) = 0;
     
-	/** å–å¾—UID
+	/** È¡µÃUID
      @param
      @param
      @return
      */
 	virtual LONGLONG			GetUID(void) = 0;
     
-	/** å–å¾—æ‰€åœ¨çš„åœ°å›¾ä½ç½®
+	/** È¡µÃËùÔÚµÄµØÍ¼Î»ÖÃ
      @param
      @param
      @return
      */
-	virtual POINT				GetMapLoc(void) = 0;
+	virtual xs::Point				GetMapLoc(void) = 0;
     
-	/** è®¾ç½®æ•°å€¼å±æ€§
-     @param   nValue ï¼šå±æ€§å€¼
+	/** ÉèÖÃÊıÖµÊôĞÔ
+     @param   nValue £ºÊôĞÔÖµ
      @param
      @return
      */
 	virtual bool				SetNumProp(DWORD dwPropID, int nValue) = 0;
     
-	/** å–å¾—æ•°å€¼å±æ€§
+	/** È¡µÃÊıÖµÊôĞÔ
      @param
      @param
      @return
      */
 	virtual int					GetNumProp(DWORD dwPropID) = 0;
     
-	/** è®¾ç½®å­—ç¬¦å±æ€§
-     @param   pszValue ï¼šå±æ€§å€¼
+	/** ÉèÖÃ×Ö·ûÊôĞÔ
+     @param   pszValue £ºÊôĞÔÖµ
      @param
      @return
      */
 	virtual bool				SetStrProp(DWORD dwPropID, LPCSTR pszValue, int nLen) = 0;
     
-	/** æ‰¹é‡æ›´æ–°å±æ€§
+	/** ÅúÁ¿¸üĞÂÊôĞÔ
      @param
      @param
      @return
      */
 	virtual bool				BatchUpdateProp(LPCSTR pszProp, int nLen) = 0;
     
-	/** æ¶ˆæ¯
+	/** ÏûÏ¢
      @param
      @param
      @return
      */
 	virtual void				OnMessage(DWORD dwMsgID, SGameMsgHead * pGameMsgHead, LPCSTR pszMsg, int nLen) = 0;
     
-	/** è®¢é˜…æŠ•ç¥¨æ¶ˆæ¯
+	/** ¶©ÔÄÍ¶Æ±ÏûÏ¢
      @param
      @param
      @return
      */
 	virtual bool				Subscibe(DWORD dwMsgID, IMessageVoteSink * pVoteSink, LPCSTR pszDesc) = 0;
     
-	/** å–æ¶ˆè®¢é˜…æŠ•ç¥¨æ¶ˆæ¯
+	/** È¡Ïû¶©ÔÄÍ¶Æ±ÏûÏ¢
      @param
      @param
      @return
      */
 	virtual bool				UnSubscibe(DWORD dwMsgID, IMessageVoteSink * pVoteSink) = 0;
     
-	/** è®¢é˜…æ‰§è¡Œæ¶ˆæ¯
+	/** ¶©ÔÄÖ´ĞĞÏûÏ¢
      @param
      @param
      @return
      */
 	virtual bool				Subscibe(DWORD dwMsgID, IMessageExecuteSink * pExecuteSink, LPCSTR pszDesc) = 0;
     
-	/** å–æ¶ˆè®¢é˜…æ‰§è¡Œæ¶ˆæ¯
+	/** È¡Ïû¶©ÔÄÖ´ĞĞÏûÏ¢
      @param
      @param
      @return
      */
 	virtual bool				UnSubscibe(DWORD dwMsgID, IMessageExecuteSink * pExecuteSink) = 0;
     
-	/** å–å¾—å®ä½“è§†å›¾å¯¹è±¡æ¥å£
+	/** È¡µÃÊµÌåÊÓÍ¼¶ÔÏó½Ó¿Ú
      @param
      @param
      @return
      */
 	virtual EntityView *		GetEntityView(void) = 0;
     
-	/** å–å¾—äº‹ä»¶æºç±»å‹,SOURCE_TYPE_PERSON, SOURCE_TYPE_MONSTER ... ...
+	/** È¡µÃÊÂ¼şÔ´ÀàĞÍ,SOURCE_TYPE_PERSON, SOURCE_TYPE_MONSTER ... ...
      @param
      @param
      @return
@@ -250,7 +250,7 @@ struct IEntity
      */
 	virtual void				Visit(IItemVisitor * pVisitor) = 0;
     
-	/** æ˜¯å¦èƒ½äº¤æ˜“ï¼Œå® ç‰©ï¼Œè£…å¤‡è·Ÿä¸€èˆ¬ç‰©å“éƒ½å¯ä»¥äº¤æ˜“
+	/** ÊÇ·ñÄÜ½»Ò×£¬³èÎï£¬×°±¸¸úÒ»°ãÎïÆ·¶¼¿ÉÒÔ½»Ò×
      @param
      @param
      @return
@@ -258,134 +258,134 @@ struct IEntity
 	virtual bool				CanTrade(ISkepGoods * pSkepGoods,char * errorMsg = NULL) = 0;
 };
 
-////////////////////////////ç”Ÿç‰©å¯¹åƒ////////////////////////////////////
+////////////////////////////ÉúÎï¶ÔÏñ////////////////////////////////////
 struct ICreature : public IEntity
 {
-	/** å¢åŠ å®ä½“éƒ¨ä»¶
+	/** Ôö¼ÓÊµÌå²¿¼ş
      @param
      @param
      @return
      */
 	virtual bool				AddEntityPart(IEntityPart * pEntityPart) = 0;
     
-	/** ç§»é™¤å®ä½“éƒ¨ä»¶
+	/** ÒÆ³ıÊµÌå²¿¼ş
      @param
      @param
      @return
      */
 	virtual bool				RemoveEntityPart(DWORD dwPartID) = 0;
     
-	/** å–å¾—å®ä½“éƒ¨ä»¶
+	/** È¡µÃÊµÌå²¿¼ş
      @param
      @param
      @return
      */
 	virtual IEntityPart *		GetEntityPart(DWORD dwPartID) = 0;
     
-	/** æ˜¯å¦æ­£åœ¨ç§»åŠ¨
+	/** ÊÇ·ñÕıÔÚÒÆ¶¯
      @param
      @param
      @return
      */
 	virtual bool				IsMoving(void) = 0;
     
-	/** è·å–å¤´åƒID
+	/** »ñÈ¡Í·ÏñID
      @param
      @param
      @return
      */
 	virtual int                 GetFaceID(void) = 0;
     
-	/** by cjl å˜èº«ï¼Œåªæ¶‰åŠåˆ°å¤–è§‚å’Œåå­—
-     @param   -1è¡¨ç¤ºè¿˜åŸã€å¦åˆ™å°±æ ¹æ®è¡¨æ¥ä¿®æ”¹åå­—
-     @param	 nakeResIDä¸ä¸º0æ—¶ï¼Œè¡¨ç¤ºä¿®æ”¹å¤‡ä»½è£¸ä½“èµ„æº
-     @param   å˜èº«å‰©ä½™æ—¶é—´ï¼Œä¸º0æ—¶åˆ™è¡¨ç¤ºè¯»è¡¨
+	/** by cjl ±äÉí£¬Ö»Éæ¼°µ½Íâ¹ÛºÍÃû×Ö
+     @param   -1±íÊ¾»¹Ô­¡¢·ñÔò¾Í¸ù¾İ±íÀ´ĞŞ¸ÄÃû×Ö
+     @param	 nakeResID²»Îª0Ê±£¬±íÊ¾ĞŞ¸Ä±¸·İÂãÌå×ÊÔ´
+     @param   ±äÉíÊ£ÓàÊ±¼ä£¬Îª0Ê±Ôò±íÊ¾¶Á±í
      @return
      */
 	virtual bool ChangeBody(int modeID, int nakeResID = 0, int t = 0) = 0;
 };
 
-////////////////////////////äººç‰©å¯¹åƒ////////////////////////////////////
+////////////////////////////ÈËÎï¶ÔÏñ////////////////////////////////////
 //by cjl
 struct SPresentSchemeInfoBase;
 //end cjl
 struct IPerson : public ICreature
 {
-	/** å–å¾—äººç‰©åå­—
+	/** È¡µÃÈËÎïÃû×Ö
      @param
      @param
      @return
      */
 	virtual LPCSTR				GetName(void) = 0;
     
-	/** è°ƒæ•´å½“å‰æ§åˆ¶çŠ¶æ€
+	/** µ÷Õûµ±Ç°¿ØÖÆ×´Ì¬
      @param
      @param
      @return
      */
 	virtual bool				GotoState(DWORD dwState, LPCSTR pContext, int nLen) = 0;
     
-	/** å–å¾—å½“å‰æ§åˆ¶çŠ¶æ€
+	/** È¡µÃµ±Ç°¿ØÖÆ×´Ì¬
      @param
      @param
      @return
      */
 	virtual DWORD				GetCurState(void) = 0;
     
-	/** å®¢æˆ·ç«¯åªèƒ½ä¸»åŠ¨ä¿®æ”¹ä¸»è§’çš„ç§»åŠ¨æ–¹å¼
+	/** ¿Í»§¶ËÖ»ÄÜÖ÷¶¯ĞŞ¸ÄÖ÷½ÇµÄÒÆ¶¯·½Ê½
      @param
      @param
      @return
      */
 	virtual void               UpdateMoveStyle(char nMoveStyle) = 0;
     
-	/** è·å–ä¸ªæ€§ç­¾å
+	/** »ñÈ¡¸öĞÔÇ©Ãû
      */
 	virtual LPCSTR				GetSignature(void) = 0;
     
-	/** è·å–å¤´åƒID
+	/** »ñÈ¡Í·ÏñID
      @param
      @param
      @return
      */
 	virtual int                 GetFaceID(void) = 0;
     
-	/** è·å–è·ŸéšçŠ¶æ€
+	/** »ñÈ¡¸úËæ×´Ì¬
      @param
      @param
      @return
      */
 	virtual bool                GetFollowState(void) = 0;
     
-	/** è®¾ç½®è·ŸéšçŠ¶æ€
+	/** ÉèÖÃ¸úËæ×´Ì¬
      @param
      @param
      @return
      */
 	virtual void                SetFollowState(bool bstate,int nHeroSpeed = 0,int nFollowSpeed = 0) = 0;
     
-	/** é€šè¿‡é˜µè¥IDå»è®¾ç½® é˜µè¥å›¾ç‰‡
+	/** Í¨¹ıÕóÓªIDÈ¥ÉèÖÃ ÕóÓªÍ¼Æ¬
      @param
      @param
      @return
      */
 	virtual void                SetCampPicture(int nCampID) = 0;
     
-	/** è®¾ç½®é£è¡ŒçŠ¶æ€
+	/** ÉèÖÃ·ÉĞĞ×´Ì¬
      @param
      @param
      @return
      */
 	virtual void				SetFLyState(bool bFly) = 0;
     
-	/** è·å–é£è¡ŒçŠ¶æ€
+	/** »ñÈ¡·ÉĞĞ×´Ì¬
      @param
      @param
      @return
      */
 	virtual bool				GetFLyState() = 0;
     
-	/** è·å–é£è¡Œæ¨¡å‹åŠ è½½çŠ¶æ€
+	/** »ñÈ¡·ÉĞĞÄ£ĞÍ¼ÓÔØ×´Ì¬
      @param
      @param
      @return
@@ -399,55 +399,55 @@ struct IPerson : public ICreature
      */
 	virtual ulong                GetRidingPet() = 0;
     
-	/** éª‘ä¹˜æ¨¡å‹åŠ è½½å®Œæ¯•ï¼›å»å¼€å§‹å¯»è·¯äº‹ä»¶è§¦å‘ï¼›
+	/** Æï³ËÄ£ĞÍ¼ÓÔØÍê±Ï£»È¥¿ªÊ¼Ñ°Â·ÊÂ¼ş´¥·¢£»
      @param
      @param
      @return
      */
 	virtual bool				OnResLoadedToMove() = 0;
     
-	/** è®¾ç½®é£è¡ŒçŠ¶æ€åæ ‡ç‚¹å€¼ï¼›
+	/** ÉèÖÃ·ÉĞĞ×´Ì¬×ø±êµãÖµ£»
      @param
      @param
      @return
      */
-	virtual void				SetFLyToMovePoint(POINT pt) = 0;
+	virtual void				SetFLyToMovePoint(xs::Point pt) = 0;
     
     
 	//by cjl
-	/** è·å–æ–°æ‰‹ç¤¼åŒ…å±æ€§
+	/** »ñÈ¡ĞÂÊÖÀñ°üÊôĞÔ
      @param
      @return
      */
 	virtual int						GetPresentProp(int id) = 0;
     
-	/** è·å–è§’è‰²ç›®å‰å¯ä»¥è·å–çš„ç‰©å“ids
+	/** »ñÈ¡½ÇÉ«Ä¿Ç°¿ÉÒÔ»ñÈ¡µÄÎïÆ·ids
      @param
      @return
      */
 	virtual SPresentSchemeInfoBase*  GetPresentGoodsID() = 0;
     
-	/** è·å–æˆ˜æ–—åŠ›æ˜¾ç¤ºå±æ€§
+	/** »ñÈ¡Õ½¶·Á¦ÏÔÊ¾ÊôĞÔ
      @param
      @return
      */
 	virtual int						GetFightDisplayProp(int id) = 0;
 	//end cjl
     
-	/** è®¾ç½®äººç‰©æ­»äº¡çŠ¶æ€ï¼›
+	/** ÉèÖÃÈËÎïËÀÍö×´Ì¬£»
      @param
      @return
      */
 	virtual void                     SetPersonDieFlage(bool bDie) = 0;
     
-	/** è·å–äººç‰©æ­»äº¡çŠ¶æ€ï¼›
+	/** »ñÈ¡ÈËÎïËÀÍö×´Ì¬£»
      @param
      @return
      */
 	virtual bool                     GetPersonDieFlage() = 0;
 };
 
-////////////////////////////äººç‰©å¯¹åƒ////////////////////////////////////
+////////////////////////////ÈËÎï¶ÔÏñ////////////////////////////////////
 struct IMonster : public ICreature
 {
 	/**
@@ -464,21 +464,21 @@ struct IMonster : public ICreature
      */
 	virtual void				SetName(LPCSTR pszName) = 0;
     
-	/** è·å–å¤´åƒID
+	/** »ñÈ¡Í·ÏñID
      @param
      @param
      @return
      */
 	virtual int                 GetFaceID(void) = 0;
     
-	/** åˆ›å»ºæ€ªç‰©èº«ä¸Šçš„é‡‡é›†ç‰¹æ•ˆï¼›
+	/** ´´½¨¹ÖÎïÉíÉÏµÄ²É¼¯ÌØĞ§£»
      @param
      @param
      @return
      */
 	virtual void                CreateCollectionEffect() = 0;
     
-	/** å…³é—­æ€ªç‰©èº«ä¸Šçš„é‡‡é›†ç‰¹æ•ˆï¼›
+	/** ¹Ø±Õ¹ÖÎïÉíÉÏµÄ²É¼¯ÌØĞ§£»
      @param
      @param
      @return
@@ -486,24 +486,24 @@ struct IMonster : public ICreature
 	virtual void				CloseCollectionEffect() = 0;
 };
 
-////////////////////////////ç‰©å“å¯¹åƒ////////////////////////////////////
+////////////////////////////ÎïÆ·¶ÔÏñ////////////////////////////////////
 struct IGoods : public IEntity
 {
-	/** æ˜¯å¦æœ‰æŸç»‘å®šæ ‡å¿—
+	/** ÊÇ·ñÓĞÄ³°ó¶¨±êÖ¾
      @param
      @param
      @return
      */
 	virtual bool				IsHasBindFlag(DWORD dwBindFlag) = 0;
     
-	/** èƒ½å¦æ”¾ç½®
+	/** ÄÜ·ñ·ÅÖÃ
      @param
      @param
      @return
      */
 	virtual bool				CanPlace(ISkepGoods*pSkepGoods,ulong ulPackIDTarget,int& iPlaceTarget) = 0;
     
-	/** èƒ½å¦ä¸¢å¼ƒ
+	/** ÄÜ·ñ¶ªÆú
      @param
      @param
      @return
@@ -511,7 +511,7 @@ struct IGoods : public IEntity
 	virtual bool				CanDropOut(ISkepGoods * pSkepGoods) = 0;
 };
 
-////////////////////////////å® ç‰©å¯¹è±¡////////////////////////////////////
+////////////////////////////³èÎï¶ÔÏó////////////////////////////////////
 struct IPet:public ICreature
 {
 	/**
@@ -527,14 +527,14 @@ struct IPet:public ICreature
      */
 	virtual void				 SetName(LPCSTR pszName) = 0;
     
-	/** å® ç‰©åœ¨é­‚å°†åˆ—è¡¨å†…çš„ç§»åŠ¨æ§åˆ¶
+	/** ³èÎïÔÚ»ê½«ÁĞ±íÄÚµÄÒÆ¶¯¿ØÖÆ
      @param
      @param
      @return
      */
 	virtual bool				CanPlace(ISkepGoods*pSkepGoods,ulong ulPackIDTarget,int& iPlaceTarget) = 0;
     
-	/** å® ç‰©å‡çº§åˆ¤æ–­
+	/** ³èÎïÉı¼¶ÅĞ¶Ï
      @param
      @param
      @return
@@ -548,80 +548,80 @@ struct IPet:public ICreature
      */
 	virtual LONGLONG			GetLeader(void) = 0;
     
-	/** è·å–å¤´åƒID
+	/** »ñÈ¡Í·ÏñID
      @param
      @param
      @return
      */
 	virtual int                 GetFaceID(void) = 0;
     
-	/** æ˜¯å¦å¤„äºæŸç§çŠ¶æ€ï¼ˆå‡ºå¾ï¼Œéª‘ä¹˜ï¼‰
+	/** ÊÇ·ñ´¦ÓÚÄ³ÖÖ×´Ì¬£¨³öÕ÷£¬Æï³Ë£©
      @param
      @param
      @return
      */
 	virtual bool				IsHasStateFlag(DWORD dwState) = 0;
     
-	/** èƒ½å¦ä¸¢å¼ƒ
+	/** ÄÜ·ñ¶ªÆú
      @param
      @param
      @return
      */
 	virtual bool				CanDropOut(ISkepGoods * pSkepGoods) = 0;
     
-	/** æ˜¯å¦æœ‰æŸç»‘å®šæ ‡å¿—
+	/** ÊÇ·ñÓĞÄ³°ó¶¨±êÖ¾
      @param
      @param
      @return
      */
 	virtual bool				IsHasBindFlag(DWORD dwBindFlag) = 0;
 };
-////////////////////////////è£…å¤‡å¯¹åƒ////////////////////////////////////
+////////////////////////////×°±¸¶ÔÏñ////////////////////////////////////
 struct IEquipment : public IGoods
 {
-	/** è£…å¤‡
+	/** ×°±¸
      @param
      @param
      @return
      */
 	virtual bool				OnEquip(ICreature * pCreature) = 0;
     
-	/** è„±ä¸‹
+	/** ÍÑÏÂ
      @param
      @param
      @return
      */
 	virtual bool				UnEquip(ICreature * pCreature) = 0;
     
-	/** è·å¾—æ•ˆæœ
+	/** »ñµÃĞ§¹û
      @param
      @param
      @return
      */
 	virtual IEffect *			GetEffect(int nIndex) = 0;
     
-	/** èƒ½å¦è£…å¤‡
+	/** ÄÜ·ñ×°±¸
      @param
      @param
      @return
      */
 	virtual bool				CanEquip(int nPlace) = 0;
     
-	/**è·å¾—è£…å¤‡åŒ…è£¹ID
+	/**»ñµÃ×°±¸°ü¹üID
      @param
      @param
      @return
      */
 	virtual DWORD				GetEquipPackID(void) = 0;
     
-	/**è·å¾—è£…å¤‡åˆ»å­—
+	/**»ñµÃ×°±¸¿Ì×Ö
      @param
      @param
      @return
      */
 	virtual bool				GetLettering(char * pszValue, int  nLen) = 0;
     
-	/**è·å¾—è£…å¤‡å“è´¨ç­‰çº§
+	/**»ñµÃ×°±¸Æ·ÖÊµÈ¼¶
      @param
      @param
      @return
@@ -629,16 +629,16 @@ struct IEquipment : public IGoods
 	virtual int				GetBrandLevel() = 0;
 };
 
-////////////////////////////éè£…å¤‡ç±»ç‰©å“å¯¹åƒ////////////////////////////////////
+////////////////////////////·Ç×°±¸ÀàÎïÆ·¶ÔÏñ////////////////////////////////////
 struct INonequipableGoods : public IGoods
 {
-	/** èƒ½å¦ä½¿ç”¨
+	/** ÄÜ·ñÊ¹ÓÃ
      @param
      @param
      @return
      */
 	virtual bool				CanUse(void) = 0;
-	/** èƒ½å¦ä½¿ç”¨2
+	/** ÄÜ·ñÊ¹ÓÃ2
      @param
      @param
      @return
@@ -647,17 +647,17 @@ struct INonequipableGoods : public IGoods
     
 };
 
-////////////////////////////å®ç®±å¯¹åƒ////////////////////////////////////
+////////////////////////////±¦Ïä¶ÔÏñ////////////////////////////////////
 struct IBox : public IEntity
 {
-	/** å–å¾—åå­—
+	/** È¡µÃÃû×Ö
      @param
      @param
      @return
      */
 	virtual LPCSTR				GetName(void) = 0;
     
-	/** æ˜¯å¦æœ‰æƒé™
+	/** ÊÇ·ñÓĞÈ¨ÏŞ
      @param
      @param
      @return
@@ -665,10 +665,10 @@ struct IBox : public IEntity
 	virtual bool				IsMaster(long lPDBID) = 0;
 };
 
-////////////////////////////æ——æ†å¯¹åƒ////////////////////////////////////
+////////////////////////////Æì¸Ë¶ÔÏñ////////////////////////////////////
 struct IMast : public IEntity
 {
-	/** å–å¾—åå­—
+	/** È¡µÃÃû×Ö
      @param
      @param
      @return
@@ -676,95 +676,95 @@ struct IMast : public IEntity
 	virtual LPCSTR				GetName(void) = 0;
 };
 
-/////////////////////////////æ³¡æ³¡å¯¹è±¡///////////////////////////////////
+/////////////////////////////ÅİÅİ¶ÔÏó///////////////////////////////////
 // add by zjp.
 struct IBubble : public IEntity
 {
 	
 };
 
-////////////////////////////å®ä½“éƒ¨ä»¶////////////////////////////////////
+////////////////////////////ÊµÌå²¿¼ş////////////////////////////////////
 struct IEntityPart
 {
-	/** é‡Šæ”¾,ä¼šé‡Šæ”¾å†…å­˜
+	/** ÊÍ·Å,»áÊÍ·ÅÄÚ´æ
      @param
      @param
      @return
      */
 	virtual void				Release(void) = 0;
     
-	/** åˆ›å»ºï¼Œé‡æ–°å¯ç”¨ï¼Œä¹Ÿä¼šè°ƒæ­¤æ¥å£
+	/** ´´½¨£¬ÖØĞÂÆôÓÃ£¬Ò²»áµ÷´Ë½Ó¿Ú
      @param
      @param
      @return
      */
 	virtual bool				Create(IEntity * pMaster, LPCSTR pszData, int nLen) = 0;
     
-	/** å–æ˜¯éƒ¨ä»¶ID
+	/** È¡ÊÇ²¿¼şID
      @param
      @param
      @return
      */
 	virtual DWORD				GetPartID(void) = 0;
     
-	/** æ¶ˆæ¯
+	/** ÏûÏ¢
      @param
      @param
      @return
      */
 	virtual	int					OnMessage(DWORD dwMsgID, LPCSTR pszMsg, int nLen) = 0;
     
-	/** å–æ˜¯ä¸»äºº
+	/** È¡ÊÇÖ÷ÈË
      @param
      @param
      @return
      */
 	virtual IEntity *			GetMaster(void) = 0;
     
-	/** æ¿€æ´»éƒ¨ä»¶
+	/** ¼¤»î²¿¼ş
      @param
      @param
      @return
      */
 	virtual bool				Active(LPCSTR pszContext, int nLen) = 0;
     
-	/** å†»ç»“éƒ¨ä»¶
-     @param   æ¯”å¦‚å½“ç”Ÿç‰©è½¬åˆ°åä¸‹çŠ¶æ€ï¼Œå°±éœ€å†»ç»“ç§»åŠ¨éƒ¨ä»¶
+	/** ¶³½á²¿¼ş
+     @param   ±ÈÈçµ±ÉúÎï×ªµ½×øÏÂ×´Ì¬£¬¾ÍĞè¶³½áÒÆ¶¯²¿¼ş
      @param
      @return
      */
 	virtual bool				Freeze(LPCSTR pszContext, int nLen) = 0;
 };
 
-/////////////////////////////å…¬å…±éƒ¨ä»¶//////////////////////////////////////////
+/////////////////////////////¹«¹²²¿¼ş//////////////////////////////////////////
 struct ICommonPart : public IEntityPart
 {
-	/** è·å–è£…å¤‡æ•°æ®
+	/** »ñÈ¡×°±¸Êı¾İ
      @param
      @param
      @return
      */
 	virtual bool  getFormData( void * pFormData) = 0;
     
-	/** é£è¡Œè‡ªåŠ¨å¯»è·¯
+	/** ·ÉĞĞ×Ô¶¯Ñ°Â·
      @param
      @param
      @return
      */
-	virtual bool  SendAutoMoveEventByFly(ulong ulMapID,POINT ptEndPoint) = 0;
+	virtual bool  SendAutoMoveEventByFly(ulong ulMapID,xs::Point ptEndPoint) = 0;
 };
 
-////////////////////////////é˜µè¥éƒ¨ä»¶//////////////////////////////////////
+////////////////////////////ÕóÓª²¿¼ş//////////////////////////////////////
 struct ICampPart : public IEntityPart
 {
-	/** å–å¾—é˜µè¥ID
+	/** È¡µÃÕóÓªID
      @param
      @param
      @return
      */
 	virtual int					GetCampID(void) = 0;
     
-	/** èƒ½å¦æ”»å‡»ï¼Œï¼Šï¼Šï¼Šï¼Šåªé€‚ç”¨äºæ€ªç‰©ï¼Œå® ç‰©æ”»å‡»ï¼Œäººç‰©æ”»å‡»å–PKéƒ¨ä»¶åˆ¤æ–­
+	/** ÄÜ·ñ¹¥»÷£¬£ª£ª£ª£ªÖ»ÊÊÓÃÓÚ¹ÖÎï£¬³èÎï¹¥»÷£¬ÈËÎï¹¥»÷È¡PK²¿¼şÅĞ¶Ï
      @param
      @param
      @return
@@ -786,241 +786,241 @@ struct IConjurePart : public IEntityPart
 ////////////////////////////////////////////////////////////////////////
 struct IPetPart : public IConjurePart
 {
-	/** å‡ºå¾
+	/** ³öÕ÷
      @param
      @param
      @return
      */
 	virtual bool				ConjurePet(LONGLONG petID,int nPlace) = 0;
     
-	/** å¬å›
+	/** ÕÙ»Ø
      @param
      @param
      @return
      */
 	virtual bool				CallBackPet(LONGLONG petID,int nPlace) = 0;
     
-	/** è§£ä½“
+	/** ½âÌå
      @param
      @param
      @return
      */
 	virtual void               DisbandPet(LONGLONG petID,int nPlace) = 0;
     
-	/** ä¸‹é©¬
+	/** ÏÂÂí
      @param
      @param
      @return
      */
 	virtual bool               DismountPet(LONGLONG petID,int nPlace) = 0;
     
-	/** éª‘ä¹˜
+	/** Æï³Ë
      @param
      @param
      @return
      */
 	virtual bool				RidePet(LONGLONG petID,int nPlace) = 0;
     
-	/** éª‘ä¹˜æ£€æŸ¥
+	/** Æï³Ë¼ì²é
      @param
      @param
      @return
      */
 	virtual bool				CanRidePet(LONGLONG petID,int nPlace) = 0;
     
-	/** åˆä½“
+	/** ºÏÌå
      @param
      @param
      @return
      */
 	virtual void				CombinePet(LONGLONG petID,int nPlace) = 0;
     
-	/** æ”¹å
+	/** ¸ÄÃû
      @param
      @param
      @return
      */
 	virtual void                ChangePetName(int nPlace,LONGLONG petID,const std::string &strName,bool hasBadWords = false) = 0;
     
-	/** é˜µæ³•å¼€å¯
+	/** Õó·¨¿ªÆô
      @param
      @param
      @return
      */
 	virtual void                 SetFormation(int formation) = 0;
     
-	/** è®¾ç½®å¤´ç›®
+	/** ÉèÖÃÍ·Ä¿
      @param
      @param
      @return
      */
 	virtual void				 SetLeader(LONGLONG uid) = 0;
     
-	/** é˜µæ³•åˆ—è¡¨
+	/** Õó·¨ÁĞ±í
      @param
      @param
      @return
      */
 	virtual void				 RefreshFormation() = 0;
     
-	/** è·å–å® ç‰©åˆ—è¡¨
+	/** »ñÈ¡³èÎïÁĞ±í
      @param
      @param
      @return
      */
 	virtual list<LONGLONG> *	GetPetList(void) = 0;
     
-	/** è·å–å½“å‰é˜µæ³•
+	/** »ñÈ¡µ±Ç°Õó·¨
      @param
      @param
      @return
      */
 	virtual int					GetCurrentFormation() = 0;
     
-	/** è·å–é˜µæ³•ç­‰çº§
+	/** »ñÈ¡Õó·¨µÈ¼¶
      @param
      @param
      @return
      */
 	virtual short				GetPosSkillGrade(int id) = 0;
     
-	/** å‘½ä»¤å® ç‰©
+	/** ÃüÁî³èÎï
      @param
      @param
      @return
      */
 	virtual void				SendCommand(LPCSTR pszData, int nLen) = 0;
     
-	/** å–æ¶ˆå‘½ä»¤å® ç‰©
+	/** È¡ÏûÃüÁî³èÎï
      @param
      @param
      @return
      */
 	virtual void				CancelCommand(LPCSTR pszData, int nLen) = 0;
     
-	/** å®¢æˆ·ç«¯è¯·æ±‚å¼€å§‹è§£å°å® ç‰©
+	/** ¿Í»§¶ËÇëÇó¿ªÊ¼½â·â³èÎï
      @param
      @param
      @return
      */
 	virtual void				ReqStartPetRelease(LONGLONG petID,int nPlace) = 0;
     
-	/** è·å¾—å½“å‰éª‘ä¹˜å® ç‰©
+	/** »ñµÃµ±Ç°Æï³Ë³èÎï
      @param
      @param
      @return
      */
 	virtual void				GetRidePet(LONGLONG& petID, int& nPlace) = 0;
 };
-//////////////////////////////å®ä½“å®¢æˆ·ç«¯//////////////////////////////////
+//////////////////////////////ÊµÌå¿Í»§¶Ë//////////////////////////////////
 struct IEntityClient
 {
-	/** é‡Šæ”¾
+	/** ÊÍ·Å
      @param
      @param
      @return
      */
 	virtual void				Release(void) = 0;
     
-	/** è®¾ç½®å½“å‰çš„åœºæ™¯ID
+	/** ÉèÖÃµ±Ç°µÄ³¡¾°ID
      @param
      @param
      @return
      */
 	virtual void				SetZoneID(DWORD dwZoneID)	= 0;
     
-	/** å–å¾—å½“å‰çš„åœºæ™¯ID
+	/** È¡µÃµ±Ç°µÄ³¡¾°ID
      @param
      @param
      @return
      */
 	virtual DWORD				GetZoneID(void) = 0;
     
-	/** è®¾ç½®å½“å‰çš„åœ°å›¾ID
+	/** ÉèÖÃµ±Ç°µÄµØÍ¼ID
      @param
      @param
      @return
      */
 	virtual void				SetMapID(DWORD dwMapID) = 0;
     
-	/** å–å¾—å½“å‰çš„åœ°å›¾ID
+	/** È¡µÃµ±Ç°µÄµØÍ¼ID
      @param
      @param
      @return
      */
 	virtual DWORD				GetMapID(void) = 0;
     
-	/** å–å¾—å®¢æˆ·ç«¯ä¸»è§’
+	/** È¡µÃ¿Í»§¶ËÖ÷½Ç
      @param
      @param
      @return
      */
 	virtual IPerson *			GetHero(void) = 0;
     
-	/** å–å¾—å®¢æˆ·ç«¯å® ç‰©
+	/** È¡µÃ¿Í»§¶Ë³èÎï
      @param
      @param
      @return
      */
 	virtual IPet *              GetPet(void) = 0;
-	/** é€šè¿‡UIDå–å¾—å®ä½“
+	/** Í¨¹ıUIDÈ¡µÃÊµÌå
      @param
-     @param   dwGOClass ï¼šæ˜¯ä¸ºäº†é˜²æ­¢å¤–éƒ¨ç›´æ¥ç”¨IEntityè½¬æˆç›¸åº”çš„å®ä½“æ¥å£ï¼Œå¯¹æœåŠ¡å™¨ç¨³å®šçš„å¨èƒ
-     @                    ï¼ˆtEntity_Class_Personï¼Œ tEntity_Class_Monsterï¼ŒtEntity_Class_Equipmentï¼ŒtEntity_Class_NonequipableGoodsï¼‰
+     @param   dwGOClass £ºÊÇÎªÁË·ÀÖ¹Íâ²¿Ö±½ÓÓÃIEntity×ª³ÉÏàÓ¦µÄÊµÌå½Ó¿Ú£¬¶Ô·şÎñÆ÷ÎÈ¶¨µÄÍşĞ²
+     @                    £¨tEntity_Class_Person£¬ tEntity_Class_Monster£¬tEntity_Class_Equipment£¬tEntity_Class_NonequipableGoods£©
      @return
      */
 	virtual IEntity *			Get(LONGLONG uid, DWORD dwGOClass) = 0;
     
-	/** é€šè¿‡PDBIDå–å¾—äººç‰©å®ä½“
+	/** Í¨¹ıPDBIDÈ¡µÃÈËÎïÊµÌå
      @param
      @param
      @return
      */
 	virtual IEntity *			Get(DWORD dwPDBID) = 0;
     
-	/** é€šè¿‡UIDå–å¾—å®ä½“,å°½é‡ä¸è¦ä½¿ç”¨è¿™ä¸ªæ–¹æ³•
+	/** Í¨¹ıUIDÈ¡µÃÊµÌå,¾¡Á¿²»ÒªÊ¹ÓÃÕâ¸ö·½·¨
      @param   
      @param	
      @return  
      */
 	virtual IEntity *			Get(LONGLONG uid) = 0;
     
-	/** å–å¾—é…ç½®ä¸­å¿ƒ
+	/** È¡µÃÅäÖÃÖĞĞÄ
      @param   
      @param   
      @return  
      */
 	virtual ISchemeCenter *		GetSchemeCenter(void) = 0;
     
-	/** é€šè¿‡UIDä¸­çš„åºåˆ—å·å–å¾—å®ä½“
+	/** Í¨¹ıUIDÖĞµÄĞòÁĞºÅÈ¡µÃÊµÌå
      @param   
      @param   
      @return  
      */
 	virtual IEntity *			GetBySNO(DWORD dwSNO) = 0;
     
-	/** å–å¾—å®¢æˆ·ç«¯ä¸»è§’çš„è£…å¤‡ç¯®SKEPID
+	/** È¡µÃ¿Í»§¶ËÖ÷½ÇµÄ×°±¸ÀºSKEPID
      @param   
      @param   
      @return  
      */
 	virtual DWORD				GetEquipSkepID(void) = 0;
     
-	/** å–å¾—å®¢æˆ·ç«¯ä¸»è§’çš„åŒ…è£¹ç¯®SKEPID
+	/** È¡µÃ¿Í»§¶ËÖ÷½ÇµÄ°ü¹üÀºSKEPID
      @param   
      @param   
      @return  
      */
 	virtual	DWORD				GetPacketSkepID(void) = 0;
     
-	/** å–å¾—å®¢æˆ·ç«¯ä¸»è§’çš„å® ç‰©åˆ—è¡¨ç¯®SKEPID
+	/** È¡µÃ¿Í»§¶ËÖ÷½ÇµÄ³èÎïÁĞ±íÀºSKEPID
      @param   
      @param   
      @return  
      */
 	virtual DWORD               GetPetlistSkepID(void) = 0;
     
-	/** å–å¾—å®¢æˆ·ç«¯ä¸»è§’çš„æ‘Šä½ç¯®SKEPID
+	/** È¡µÃ¿Í»§¶ËÖ÷½ÇµÄÌ¯Î»ÀºSKEPID
      @param   
      @param   
      @return  
@@ -1028,28 +1028,28 @@ struct IEntityClient
 	virtual DWORD               GetStallSkepID(void) = 0;
     
     
-	/** è®¾ç½®å®¢æˆ·ç«¯ä¸»è§’çš„è£…å¤‡ç¯®SKEPID
+	/** ÉèÖÃ¿Í»§¶ËÖ÷½ÇµÄ×°±¸ÀºSKEPID
      @param   
      @param   
      @return  
      */
 	virtual void				SetEquipSkepID(DWORD dwSkepID) = 0;
     
-	/** è®¾ç½®å®¢æˆ·ç«¯ä¸»è§’çš„åŒ…è£¹ç¯®SKEPID
+	/** ÉèÖÃ¿Í»§¶ËÖ÷½ÇµÄ°ü¹üÀºSKEPID
      @param   
      @param   
      @return  
      */
 	virtual void				SetPacketSkepID(DWORD dwSkepID) = 0;
     
-	/** è®¾ç½®å®¢æˆ·ç«¯ä¸»è§’çš„å® ç‰©åˆ—è¡¨SKEPID
+	/** ÉèÖÃ¿Í»§¶ËÖ÷½ÇµÄ³èÎïÁĞ±íSKEPID
      @param   
      @param   
      @return  
      */
 	virtual void                SetPetlistSkepID(DWORD dwSkepID) = 0;
     
-	/** è®¾ç½®å®¢æˆ·ç«¯ä¸»è§’çš„æ‘Šä½ç¯®SKEPID
+	/** ÉèÖÃ¿Í»§¶ËÖ÷½ÇµÄÌ¯Î»ÀºSKEPID
      @param   
      @param   
      @return  
@@ -1057,20 +1057,20 @@ struct IEntityClient
 	virtual void                SetStallSkepID(DWORD dwSkepID) = 0;
     
     
-	/** é€šè¿‡é»˜è®¤æ•°æ®æ„é€ å®ä½“
+	/** Í¨¹ıÄ¬ÈÏÊı¾İ¹¹ÔìÊµÌå
      @param   
      @param   
      @return  
      */
 	virtual IEntity *					BuildEntity(DWORD dwEntityClass, LONGLONG uid, LPCSTR pszContext, int nLen, int nIsHero) = 0;
     
-	//é¢„åŠ è½½åœºæ™¯æ€ªç‰©æ¨¡å‹
+	//Ô¤¼ÓÔØ³¡¾°¹ÖÎïÄ£ĞÍ
 	//add by yhc
 	virtual void  LoadMapMonster(DWORD nMapID) = 0;
 	virtual void  AddEffectToList(DWORD nMapID,long lResID) = 0;
     
 	// add by zjp
-	/** è¯·æ±‚ä»–äººè£…å¤‡ä¿¡æ¯
+	/** ÇëÇóËûÈË×°±¸ĞÅÏ¢
      @param   
      @param   
      @return  
@@ -1079,11 +1079,11 @@ struct IEntityClient
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-#if defined(_LIB) || defined(ENTITYCLIENT_STATIC_LIB)		/// é™æ€åº“ç‰ˆæœ¬
+#if defined(_LIB) || defined(ENTITYCLIENT_STATIC_LIB)		/// ¾²Ì¬¿â°æ±¾
 #	pragma comment(lib, MAKE_LIB_NAME(xs_cec))
 extern "C" IEntityClient * LoadCEC(void);
 #	define	CreateEntityClientProc	LoadCEC
-#else														/// åŠ¨æ€åº“ç‰ˆæœ¬
+#else														/// ¶¯Ì¬¿â°æ±¾
 typedef IEntityClient * (RKT_CDECL *procCreateEntityClient)(void);
 #	define	CreateEntityClientProc	DllApi<procCreateEntityClient>::load(MAKE_DLL_NAME(xs_cec), "LoadCEC")
 #endif#endif

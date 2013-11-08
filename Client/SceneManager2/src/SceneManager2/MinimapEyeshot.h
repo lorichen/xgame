@@ -8,11 +8,11 @@ class MinimapTile;
 
 class MinimapEyeshot : public IEyeshotCallback,public IMinimap
 {
-	virtual void drawWorldMap(IRenderSystem *pRenderSystem,const RECT& rcDraw);
+	virtual void drawWorldMap(IRenderSystem *pRenderSystem,const xs::Rect& rcDraw);
 	// 绘制小地图
-	virtual void draw(IRenderSystem *pRenderSystem,const RECT& rcDraw);
+	virtual void draw(IRenderSystem *pRenderSystem,const xs::Rect& rcDraw);
 	// 得到视口
-	virtual RECT getViewport();
+	virtual xs::Rect getViewport();
 
 	/** 改变视口大小
 	*/
@@ -69,7 +69,7 @@ private:
 
 public:
 	void close();
-	bool create(ISceneManager2 *pSceneManager,int mapWidth,int mapHeight,int gridWidth,int gridHeight,const POINT& ptCenter,xs::IResourceManager *pResourceManager,const std::string& mapName = "");
+	bool create(ISceneManager2 *pSceneManager,int mapWidth,int mapHeight,int gridWidth,int gridHeight,const xs::Point& ptCenter,xs::IResourceManager *pResourceManager,const std::string& mapName = "");
 
 	MinimapEyeshot() : m_pResourceManager(0),m_pTile(0)
 	{

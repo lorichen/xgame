@@ -63,14 +63,14 @@ enum
 		class CMap
 		{
 		public:
-		    bool IsBlock(POINT pt);   // 必须实现IsBlock方法,如果名字不叫IsBlock可以在SetMapInfo时修改
+		    bool IsBlock(xs::Point pt);   // 必须实现IsBlock方法,如果名字不叫IsBlock可以在SetMapInfo时修改
 		....
 		};
 
 		CMap m_Map;
 		PathFinder<CMap>  m_PathFinder;
 		m_PathFinder.SetMapInfo(m_Map.GetWidth(),m_Map.GetHeight(),&m_Map,mem_fun1(&CMap::IsBlock));
-		POINT * pPath = 0;
+		xs::Point * pPath = 0;
 		int nPathLen  = 0;
 		if ( m_PathFinder.FindPath(ptStart,ptEnd,pPath,nPathLen) )
 */
@@ -79,7 +79,7 @@ enum
 template
 < 
 	class    _Map,                                                  // 地图 
-	typename _BlockTestFunc = std::mem_fun1_t<bool,_Map,POINT> ,    // 阻挡判断函数对象,函数型如bool IsBlock(POINT pt)
+	typename _BlockTestFunc = std::mem_fun1_t<bool,_Map,xs::Point> ,    // 阻挡判断函数对象,函数型如bool IsBlock(xs::Point pt)
 	int      MAX_PATH_LEN   = 1024 ,                                // 最大路径长度
 	int      MAX_SEARCH_AREA= 256                                   // 最大搜索面积
 >
@@ -145,7 +145,7 @@ public:
 	@param nMaxStep : 最多搜索的步数,如果太远就放弃 (这个参数有两个意义 1.有时候只需要搜出最近几步的路,并不一定非要到达目标点 2.默认设为1024,防止出现死循环)
 	@return         : 返回搜路是否成功 
 	*/
-	bool FindPath(const POINT & ptStart,const POINT & ptEnd,POINT *& pPath,int & nPathLen,int nOption=SEARCH_OPTION_OPTIMIZE,int nMaxStep=MAX_PATH_LEN);
+	bool FindPath(const xs::Point & ptStart,const xs::Point & ptEnd,xs::Point *& pPath,int & nPathLen,int nOption=SEARCH_OPTION_OPTIMIZE,int nMaxStep=MAX_PATH_LEN);
 
 	// 构造函数
 	PathFinder() : m_pMap(0),m_pNearestTile(0),m_nFind(0),m_BlockFunc(0),m_nSearchOption(0),m_nMaxStep(MAX_PATH_LEN),m_nStepCount(0)
@@ -163,22 +163,22 @@ public:
 protected:
 	//////////////////////////////////////////////////////////////////////////
 	// 真正搜索路径的函数
-	bool FindPathCore(const POINT & ptStart,const POINT & ptEnd);
+	bool FindPathCore(const xs::Point & ptStart,const xs::Point & ptEnd);
 
 	// 沿直路靠近目标点
-	bool Approach(const POINT & ptStart,const POINT & ptEnd);
+	bool Approach(const xs::Point & ptStart,const xs::Point & ptEnd);
 
 	// 从某点开始绕路
-	bool Around(const POINT & ptTile,int nMoveDir,int nTurnDir,const POINT & ptStart,const POINT & ptEnd);
+	bool Around(const xs::Point & ptTile,int nMoveDir,int nTurnDir,const xs::Point & ptStart,const xs::Point & ptEnd);
 
 	// 将两个绕来绕去的点尝试直接连起来
-	bool ConnectDirect(const POINT & ptStart,const POINT & ptEnd);
+	bool ConnectDirect(const xs::Point & ptStart,const xs::Point & ptEnd);
 
 	// 获取Tile信息
-	inline TILE_TAG * GetTileTag(const POINT & ptTile);
+	inline TILE_TAG * GetTileTag(const xs::Point & ptTile);
 
 	// 从TAG的指针获得Tile的坐标
-	inline void TileToPoint(TILE_TAG * pTag,POINT &ptTile);
+	inline void TileToPoint(TILE_TAG * pTag,xs::Point &ptTile);
 
 	// 判断某个Tile是否被访问过
 	inline bool IsTileVisited(TILE_TAG * pTag,int nDir);
@@ -187,28 +187,28 @@ protected:
 	inline void MarkTileVisited(TILE_TAG * pTag,int nDir,TILE_TAG * pParent);
 
 	// 取得某方向上下一个点的坐标
-	inline void MoveNext(const POINT & ptTile,int dir,POINT & ptNext);
+	inline void MoveNext(const xs::Point & ptTile,int dir,xs::Point & ptNext);
 
 	// 取得两个点之间的方向 
-	inline int GetDir(const POINT & ptCur,const POINT & ptNext);
+	inline int GetDir(const xs::Point & ptCur,const xs::Point & ptNext);
 
 	// 旋转方向
 	inline int  TurnDir(int nMoveDir,int nTurnDir);
 
 	// 记录拐点
-	inline void RecordCorner(const POINT & ptTile);
+	inline void RecordCorner(const xs::Point & ptTile);
 
 	// 连接所有拐点
-	inline void ConnectCorners(const POINT & ptStart);
+	inline void ConnectCorners(const xs::Point & ptStart);
 
 	// 是否是主线上的点
-	inline bool IsOnStraightWay(const POINT & ptTile,const POINT & ptStart,const POINT & ptEnd);
+	inline bool IsOnStraightWay(const xs::Point & ptTile,const xs::Point & ptStart,const xs::Point & ptEnd);
 
 	// 是否可以直接逼近
-	bool IsCanApproach(const POINT & ptTile,const POINT & ptEnd);
+	bool IsCanApproach(const xs::Point & ptTile,const xs::Point & ptEnd);
 
 	// 根据走路的Tile,回朔完整路径
-	int BuildPath(POINT * pPathBuffer,int nBufSize,bool nReverse);
+	int BuildPath(xs::Point * pPathBuffer,int nBufSize,bool nReverse);
 
 protected:
 	////////////////////////////////////////////////////////////////////////
@@ -218,15 +218,15 @@ protected:
 
 	struct AROUND_POINT
 	{
-		POINT            ptTile;
+		xs::Point            ptTile;
 		int              nMoveDir;
 		int              nTurnDir;
 	};
 
 	TILE_TAG       *     m_TileTags;								  // 用来记录搜路过程中走过的Tile的信息 
-	POINT				 m_PathTemp[4][MAX_PATH_LEN];                 // 用来存储返回的路径
-	POINT                m_ptStart;                                   // 本次搜路的起始点
-	POINT                m_ptEnd;                                     // 本次搜路的结束点
+	xs::Point				 m_PathTemp[4][MAX_PATH_LEN];                 // 用来存储返回的路径
+	xs::Point                m_ptStart;                                   // 本次搜路的起始点
+	xs::Point                m_ptEnd;                                     // 本次搜路的结束点
 	TILE_TAG  *          m_pNearestTile;                              // 最接近的点s
 	unsigned long        m_nMapWidth;                                 // 地图宽度
 	unsigned long        m_nMapHeight;                                // 地图高度
@@ -239,7 +239,7 @@ protected:
 	int                  m_nStepCount;                                // 当前搜索的步数
 
 	std::vector<AROUND_POINT>   m_AroundQueue;                        // 绕转队列
-	POINT                       m_Corners[CORNER_NUM];                // 拐点列表
+	xs::Point                       m_Corners[CORNER_NUM];                // 拐点列表
 	DWORD                       m_nCornerFlag[CORNER_NUM];            // 拐点标志
 };
 
@@ -284,7 +284,7 @@ bool PATH_FINDER_DECLARE::SetMapInfo(unsigned long nMapWidth,unsigned long nMapH
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-bool PATH_FINDER_DECLARE::FindPath(const POINT & ptStart,const POINT & ptEnd,POINT *& pPath,int & nPathLen,int nOption,int nMaxStep)
+bool PATH_FINDER_DECLARE::FindPath(const xs::Point & ptStart,const xs::Point & ptEnd,xs::Point *& pPath,int & nPathLen,int nOption,int nMaxStep)
 {
 	pPath = 0;
 	nPathLen = 0;
@@ -293,7 +293,7 @@ bool PATH_FINDER_DECLARE::FindPath(const POINT & ptStart,const POINT & ptEnd,POI
 	m_nMaxStep      = nMaxStep;
 
 	int  nPathLenTemp[4];
-    POINT * pPathTemp[4];
+    xs::Point * pPathTemp[4];
 
 	int  nShortest  = -1;
 	bool bFindMore  = true;
@@ -423,7 +423,7 @@ bool PATH_FINDER_DECLARE::FindPath(const POINT & ptStart,const POINT & ptEnd,POI
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-bool PATH_FINDER_DECLARE::FindPathCore(const POINT & ptStart,const POINT & ptEnd)
+bool PATH_FINDER_DECLARE::FindPathCore(const xs::Point & ptStart,const xs::Point & ptEnd)
 {
 	++m_nFind;
 
@@ -433,7 +433,7 @@ bool PATH_FINDER_DECLARE::FindPathCore(const POINT & ptStart,const POINT & ptEnd
 	m_pNearestTile = 0;
 	m_nStepCount   = 0;
 
-	POINT ptTile = ptStart;
+	xs::Point ptTile = ptStart;
 
 	m_AroundQueue.clear();
 	
@@ -495,15 +495,15 @@ bool PATH_FINDER_DECLARE::FindPathCore(const POINT & ptStart,const POINT & ptEnd
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-bool PATH_FINDER_DECLARE::Approach(const POINT & ptStart,const POINT & ptEnd)
+bool PATH_FINDER_DECLARE::Approach(const xs::Point & ptStart,const xs::Point & ptEnd)
 {
 	if ( ptStart.x==ptEnd.x && ptStart.y==ptEnd.y )
 	{
 		return true;
 	}
 
-	POINT ptTile = ptStart;
-	POINT ptNext;
+	xs::Point ptTile = ptStart;
+	xs::Point ptNext;
 
 	TILE_TAG  * pParent = GetTileTag(ptStart);
 	if ( pParent==0 )
@@ -598,11 +598,11 @@ bool PATH_FINDER_DECLARE::Approach(const POINT & ptStart,const POINT & ptEnd)
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-bool PATH_FINDER_DECLARE::Around(const POINT & ptLoc,int nMoveDir,int nTurnDir,const POINT & ptStart,const POINT & ptEnd)
+bool PATH_FINDER_DECLARE::Around(const xs::Point & ptLoc,int nMoveDir,int nTurnDir,const xs::Point & ptStart,const xs::Point & ptEnd)
 {
-	POINT ptTile = ptLoc;
-	POINT ptNext;
-	POINT ptAround;
+	xs::Point ptTile = ptLoc;
+	xs::Point ptNext;
+	xs::Point ptAround;
 
 	TILE_TAG * pParent = GetTileTag(ptTile);
 	TILE_TAG * pCurrent= 0;
@@ -684,15 +684,15 @@ bool PATH_FINDER_DECLARE::Around(const POINT & ptLoc,int nMoveDir,int nTurnDir,c
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-bool PATH_FINDER_DECLARE::ConnectDirect(const POINT & ptStart,const POINT & ptEnd)
+bool PATH_FINDER_DECLARE::ConnectDirect(const xs::Point & ptStart,const xs::Point & ptEnd)
 {
 	if ( ptStart.x==ptEnd.x && ptStart.y==ptEnd.y )
 	{
 		return true;
 	}
 
-	POINT ptTile = ptStart;
-	POINT ptNext;
+	xs::Point ptTile = ptStart;
+	xs::Point ptNext;
 
 	TILE_TAG  * pParent = GetTileTag(ptStart);
 	if ( pParent==0 )
@@ -761,7 +761,7 @@ bool PATH_FINDER_DECLARE::ConnectDirect(const POINT & ptStart,const POINT & ptEn
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-void PATH_FINDER_DECLARE::RecordCorner(const POINT & ptTile)
+void PATH_FINDER_DECLARE::RecordCorner(const xs::Point & ptTile)
 {
 	if (( ptTile.x <= m_Corners[CORNER_LEFT_TOP].x && ptTile.y <= m_Corners[CORNER_LEFT_TOP].y ) || m_nCornerFlag[CORNER_LEFT_TOP] == INVALID_CORNER_FLAG)
 	{
@@ -794,12 +794,12 @@ void PATH_FINDER_DECLARE::RecordCorner(const POINT & ptTile)
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-void PATH_FINDER_DECLARE::ConnectCorners(const POINT & ptStart)
+void PATH_FINDER_DECLARE::ConnectCorners(const xs::Point & ptStart)
 {
 	DWORD dwMinCorner = INVALID_CORNER_FLAG;
 	DWORD dwVisited   = 0;
 	int   index = -1;
-	POINT ptConnect = ptStart;
+	xs::Point ptConnect = ptStart;
 
 	while(1)
 	{
@@ -837,7 +837,7 @@ void PATH_FINDER_DECLARE::ConnectCorners(const POINT & ptStart)
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-typename PATH_FINDER_DECLARE::TILE_TAG * PATH_FINDER_DECLARE::GetTileTag(const POINT & ptTile)
+typename PATH_FINDER_DECLARE::TILE_TAG * PATH_FINDER_DECLARE::GetTileTag(const xs::Point & ptTile)
 {
 	// 是否超出边界
 	if ( ptTile.x < 0 || (unsigned long)ptTile.x >= m_nMapWidth )
@@ -872,7 +872,7 @@ typename PATH_FINDER_DECLARE::TILE_TAG * PATH_FINDER_DECLARE::GetTileTag(const P
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-void PATH_FINDER_DECLARE::TileToPoint(TILE_TAG * pTag,POINT &ptTile)
+void PATH_FINDER_DECLARE::TileToPoint(TILE_TAG * pTag,xs::Point &ptTile)
 {
 	int offset = pTag - m_TileTags;
 
@@ -931,7 +931,7 @@ void PATH_FINDER_DECLARE::MarkTileVisited(TILE_TAG * pTag,int nDir,TILE_TAG * pP
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-void PATH_FINDER_DECLARE::MoveNext(const POINT & ptTile,int dir,POINT & ptNext)
+void PATH_FINDER_DECLARE::MoveNext(const xs::Point & ptTile,int dir,xs::Point & ptNext)
 {
 	static int s_DirNextTable[8][2] =
 	{
@@ -959,7 +959,7 @@ void PATH_FINDER_DECLARE::MoveNext(const POINT & ptTile,int dir,POINT & ptNext)
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-int PATH_FINDER_DECLARE::GetDir(const POINT & ptCur,const POINT & ptNext)
+int PATH_FINDER_DECLARE::GetDir(const xs::Point & ptCur,const xs::Point & ptNext)
 {
 	static int s_DirTable[3][3] = {
 		{DIR_WEST_NORTH,DIR_NORTH,DIR_EAST_NORTH},
@@ -1010,7 +1010,7 @@ int  PATH_FINDER_DECLARE::TurnDir(int nMoveDir,int nTurnDir)
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-bool PATH_FINDER_DECLARE::IsOnStraightWay(const POINT & ptTile,const POINT & ptStart,const POINT & ptEnd)
+bool PATH_FINDER_DECLARE::IsOnStraightWay(const xs::Point & ptTile,const xs::Point & ptStart,const xs::Point & ptEnd)
 {
 	int dx = ptEnd.x - ptStart.x;
 	int dy = ptEnd.y - ptStart.y;
@@ -1039,7 +1039,7 @@ bool PATH_FINDER_DECLARE::IsOnStraightWay(const POINT & ptTile,const POINT & ptS
 	}
 	
 	// 折成两断再测
-	POINT ptMiddle;
+	xs::Point ptMiddle;
 
 	if ( abs_x<abs_y )
 	{
@@ -1068,10 +1068,10 @@ bool PATH_FINDER_DECLARE::IsOnStraightWay(const POINT & ptTile,const POINT & ptS
 */
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-bool PATH_FINDER_DECLARE::IsCanApproach(const POINT & ptTile,const POINT & ptEnd)
+bool PATH_FINDER_DECLARE::IsCanApproach(const xs::Point & ptTile,const xs::Point & ptEnd)
 {
 	int nDir = GetDir(ptTile,ptEnd);
-	POINT ptNext;
+	xs::Point ptNext;
 	MoveNext(ptTile,nDir,ptNext);
 
 	if ( m_BlockFunc(m_pMap,ptNext) )
@@ -1099,11 +1099,11 @@ bool PATH_FINDER_DECLARE::IsCanApproach(const POINT & ptTile,const POINT & ptEnd
 */ 
 //////////////////////////////////////////////////////////////////////////
 TEMPLATE_DECLARE
-int PATH_FINDER_DECLARE::BuildPath(POINT * pPathBuffer,int nBufSize,bool nReverse)
+int PATH_FINDER_DECLARE::BuildPath(xs::Point * pPathBuffer,int nBufSize,bool nReverse)
 {
 	int   nBarrier = 0;
 	int   nPathLen = 0; 
-	POINT ptTile;
+	xs::Point ptTile;
 
 	while(m_pNearestTile && nPathLen<nBufSize)
 	{
@@ -1112,7 +1112,7 @@ int PATH_FINDER_DECLARE::BuildPath(POINT * pPathBuffer,int nBufSize,bool nRevers
 		// 绕转的Tile优化,不要频繁转向
 		if ( m_pNearestTile->bAround && nPathLen>=2 )
 		{
-			POINT ptPreTile = nReverse ? pPathBuffer[nBufSize-1-nPathLen+2] : pPathBuffer[nPathLen-2];
+			xs::Point ptPreTile = nReverse ? pPathBuffer[nBufSize-1-nPathLen+2] : pPathBuffer[nPathLen-2];
 			if ( abs(ptPreTile.x-ptTile.x)<=1 && abs(ptPreTile.y-ptTile.y)<=1 )
 			{
 				nPathLen-=1;

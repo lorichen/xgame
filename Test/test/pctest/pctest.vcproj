@@ -114,7 +114,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../Base/Base/Include;../../../RenderEngine/Include;../../../RenderEngine/Include/RenderEngine"
+				AdditionalIncludeDirectories="../../../Base/Base/Include;../../../RenderEngine/Include;../../../RenderEngine/Include/RenderEngine;../../../Client/Common;../../../Base/LuaEngine/Include;../../../Base/SchemeEngine/Include;../../../Base/EventEngine/Include;../../../Client/EntityView/Include;../../../Common;../../../Client/AudioEngine/Include;../../../Base/ResManager/Include;../../../Client/SceneManager2/Include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;RELEASEDEBUG"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -242,6 +242,22 @@
 			</File>
 			<File
 				RelativePath="..\app_wrap.h"
+				>
+			</File>
+			<File
+				RelativePath="..\GlobalClient.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\GlobalClient.h"
 				>
 			</File>
 		</Filter>

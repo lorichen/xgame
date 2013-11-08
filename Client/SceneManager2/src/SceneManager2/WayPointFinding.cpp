@@ -36,14 +36,14 @@ void WayPointFinding::Setpos(int nx, int ny)
 	y = ny;
 }
 
-void WayPointFinding::Setpos(const POINT &pt)
+void WayPointFinding::Setpos(const xs::Point &pt)
 {
 	Setpos(pt.x, pt.y);
 }
 
 
-POINT WayPointFinding::getPos(void) const 
+xs::Point WayPointFinding::getPos(void) const 
 {
-	POINT pt(x, y);
+	xs::Point pt(x, y);
 	return pt;
 }

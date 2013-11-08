@@ -15,9 +15,9 @@ enum EntityListErrType
 struct EntityInfo
 {
 	EntityView*	pEntity;
-	POINT		ptTile;
-	POINT		ptGrid;
-	EntityInfo(EntityView* p, const POINT& tile, const POINT& grid)
+	xs::Point		ptTile;
+	xs::Point		ptGrid;
+	EntityInfo(EntityView* p, const xs::Point& tile, const xs::Point& grid)
 		: pEntity(p), ptTile(tile), ptGrid(grid) {}
 	bool operator == (const EntityInfo& info)
 	{
@@ -65,12 +65,12 @@ public:
 	{
 		return &m_EntityList;
 	}
-	void add(EntityView* pEntity, const POINT& ptTile, const POINT& ptGrid)
+	void add(EntityView* pEntity, const xs::Point& ptTile, const xs::Point& ptGrid)
 	{
 		if (pEntity == 0) return;
 		m_EntityList.push_back(EntityInfo(pEntity, ptTile, ptGrid));
 	}
-	int remove(EntityView* pEntity, const POINT& ptTile)
+	int remove(EntityView* pEntity, const xs::Point& ptTile)
 	{
 		if (pEntity == 0) return EE_INVALID;
 		MapItemInfoListPtr first = m_EntityList.begin();
@@ -88,7 +88,7 @@ public:
 		}
 		return EE_FAILED;
 	}
-	int move(EntityView* pEntity, const POINT& ptTileFrom, const POINT& ptTileTo, const POINT& ptGridTo)
+	int move(EntityView* pEntity, const xs::Point& ptTileFrom, const xs::Point& ptTileTo, const xs::Point& ptGridTo)
 	{
 		if (pEntity == 0) return EE_INVALID;
 		MapItemInfoListPtr first = m_EntityList.begin();

@@ -45,7 +45,7 @@ public:
 	virtual void 		onDetach();
 	virtual void 		onEndFrame(int layer);
 	virtual bool		getTextureData(void  *pData);
-	virtual void		getRect(RECT *rc);
+	virtual void		getRect(xs::Rect *rc);
 public:
 	struct RenderState
 	{
@@ -107,7 +107,7 @@ public:
     bool _CreateIOS(void* view,void* shareContext = NULL);
     void _DestoryIOS();
     bool Reset();
-    void GetClientRect(RECT* rc);
+    void GetClientRect(xs::Rect* rc);
     void* getView();
     void* getRenderContext();
     RenderTarget(void* uiView,RenderSystem* pRenderSystem,void* shareContext = NULL);

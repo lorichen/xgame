@@ -24,7 +24,7 @@ private:
 	handle		m_handle;
 
 public:
-	POINT		m_ptCoord;	//在地图上的MinimapTile坐标
+	xs::Point		m_ptCoord;	//在地图上的MinimapTile坐标
 	MinimapEyeshot*	m_pParent;
 };
 

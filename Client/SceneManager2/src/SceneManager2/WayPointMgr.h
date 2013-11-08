@@ -28,18 +28,18 @@ private:
 	std::map<size_t, WayPoint> m_WayPointMap;
 	typedef std::map<size_t, WayPoint>::iterator WAYPOINT_ITERATOR;
 
-	BOOL findNearestWayPoint(int nx, int ny, int dx,int dy,POINT &pt, BOOL TestAccessible);
+	BOOL findNearestWayPoint(int nx, int ny, int dx,int dy,xs::Point &pt, BOOL TestAccessible);
 	
 	void findWay(std::multiset<WayPointFinding> &OpenSet
 		, std::list<WayPointFinding> &CloseSet, WayPointFinding CurrentNode
 		, WayPointFinding SubNode);
 
-	BOOL getSkeletonPath(const POINT& ptStart, const POINT& ptGoal
-		,std::list<WayPointFinding> &CloseSet, std::list<POINT> &lsPath);
+	BOOL getSkeletonPath(const xs::Point& ptStart, const xs::Point& ptGoal
+		,std::list<WayPointFinding> &CloseSet, std::list<xs::Point> &lsPath);
 
-	BOOL beginFind(int Src_X,int Src_Y,std::list<POINT> &lsPath);
+	BOOL beginFind(int Src_X,int Src_Y,std::list<xs::Point> &lsPath);
 
-	BOOL findPathInSceneBlock(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list<POINT> *plsPath);
+	BOOL findPathInSceneBlock(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list<xs::Point> *plsPath);
 
 	bool isAccessible(int sx,int sy,int dx,int dy);
 
@@ -53,7 +53,7 @@ public:
 
 	BOOL addEdge(int x1, int y1, int x2, int y2, int power);
 
-	BOOL findPath(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list<POINT> &lsPath);
+	BOOL findPath(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list<xs::Point> &lsPath);
 
 	bool loadConfig(const char* szConfigFileName,SceneBlock *pMapBlockBuffer,ISceneManager2* pSceneManager);
 

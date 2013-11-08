@@ -13,7 +13,7 @@ struct IEntityFactory;
 */
 struct SnapshotTileInfo
 {
-	POINT		ptTile;
+	xs::Point		ptTile;
 	Tile*		pTile;
 };
 
@@ -21,7 +21,7 @@ struct SnapshotTileInfo
 */
 struct SnapshotItemInfo 
 {
-	POINT		ptTile;
+	xs::Point		ptTile;
 	EntityView*	pEntity;
 };
 
@@ -121,7 +121,7 @@ struct IGroundTile
 	/**取得包围框
 	@return 包围框
 	*/
-	virtual RECT		getRect() = 0;
+	virtual xs::Rect		getRect() = 0;
 
 	/**取得地表的X下标
 	@param x X下标
@@ -143,7 +143,7 @@ struct IGround
 	@param ptWorld 世界坐标
 	@return 地表块指针
 	*/
-	virtual IGroundTile*	getGroundTile(const POINT& ptWorld) = 0;
+	virtual IGroundTile*	getGroundTile(const xs::Point& ptWorld) = 0;
 
 	/**根据下标取得地表块
 	@param x 地表块X下标
@@ -165,7 +165,7 @@ struct IGround
 	/**取得视口在地表中的X,Y坐标
 	@return 坐标
 	*/
-	virtual POINT			getViewLeftTop() = 0;
+	virtual xs::Point			getViewLeftTop() = 0;
 
 	/**取得地表块的宽度
 	@return 地表块宽度
@@ -240,15 +240,15 @@ struct IMinimap
 {
 	/**
 	*/
-	virtual void drawWorldMap(IRenderSystem *pRenderSystem,const RECT& rcDraw) = 0;
+	virtual void drawWorldMap(IRenderSystem *pRenderSystem,const xs::Rect& rcDraw) = 0;
 
 	/**
 	*/
-	virtual void draw(IRenderSystem *pRenderSystem,const RECT& rcDraw) = 0;
+	virtual void draw(IRenderSystem *pRenderSystem,const xs::Rect& rcDraw) = 0;
 
 	/**
 	*/
-	virtual RECT getViewport() = 0;
+	virtual xs::Rect getViewport() = 0;
 
 	/** 改变视口大小
 	*  倍数
@@ -277,7 +277,7 @@ struct ISceneManager2
 	@param dwParam 附带的参数
 	@return 成功为true，失败为false
 	*/
-	virtual bool addEntity(const POINT& ptTile, EntityView* pEntity, DWORD dwParam=0) = 0;
+	virtual bool addEntity(const xs::Point& ptTile, EntityView* pEntity, DWORD dwParam=0) = 0;
 
 	/**
 	@param ptFrom 初始Tile坐标
@@ -286,7 +286,7 @@ struct ISceneManager2
 	@param dwParam 附带的参数
 	@return 成功为true，失败为false
 	*/
-	virtual bool moveEntity(const POINT& ptFrom, const POINT& ptTo, EntityView* pEntity, DWORD dwParam=0) = 0;
+	virtual bool moveEntity(const xs::Point& ptFrom, const xs::Point& ptTo, EntityView* pEntity, DWORD dwParam=0) = 0;
 
 	/**
 	@param ptTile 实体所在的Tile坐标
@@ -294,29 +294,29 @@ struct ISceneManager2
 	@param dwParam 附带的参数
 	@return 成功为true，失败为false
 	*/
-	virtual bool removeEntity(const POINT& ptTile, EntityView* pEntity, DWORD dwParam=0) = 0;
+	virtual bool removeEntity(const xs::Point& ptTile, EntityView* pEntity, DWORD dwParam=0) = 0;
 
 	/**
 	@param ptTile 实体的Tile坐标
 	@param pEntity 实体对象
 	@return 成功为true，失败为false
 	*/
-	virtual bool addEntityOccupant(const POINT& ptTile, EntityView* pEntity) = 0;
+	virtual bool addEntityOccupant(const xs::Point& ptTile, EntityView* pEntity) = 0;
 
 	/**
 	@param ptTile 实体的Tile坐标
 	@param pEntity 实体对象
 	@return 成功为true，失败为false
 	*/
-	virtual bool removeEntityOccupant(const POINT& ptTile, EntityView* pEntity) = 0;
+	virtual bool removeEntityOccupant(const xs::Point& ptTile, EntityView* pEntity) = 0;
 
 	/**
 	*/
-	virtual bool createScene(int nMapWidth,int nMapHeight,LPRECT lprcViewport) = 0;
+	virtual bool createScene(int nMapWidth,int nMapHeight,xs::Rect* lprcViewport) = 0;
 
 	/**
 	*/
-	virtual bool loadScene(const char* szFilename,const char* szWpFilename,LPRECT lprcViewport,IEntityFactory *pEntityFactory,bool bDynamic,const POINT* pTileCenter = 0,bool oldVersion = false) = 0;
+	virtual bool loadScene(const char* szFilename,const char* szWpFilename,xs::Rect* lprcViewport,IEntityFactory *pEntityFactory,bool bDynamic,const xs::Point* pTileCenter = 0,bool oldVersion = false) = 0;
 
 	/**保存地图
 	@param writeOccupants 是否把占位块写到地图上
@@ -336,7 +336,7 @@ struct ISceneManager2
 	/**
 	@return 视口的矩形
 	*/
-	virtual const RECT& getViewportRect() const = 0;
+	virtual const xs::Rect& getViewportRect() const = 0;
 
 	/**
 	@param nViewWidth 视口的宽度
@@ -356,7 +356,7 @@ struct ISceneManager2
 	@param ptScreenCenter 滚动视口到以此点为中心,为屏幕坐标
 	@return 成功为true，失败为false
 	*/
-	virtual bool scroll2Center(POINT ptScreenCenter) = 0;
+	virtual bool scroll2Center(xs::Point ptScreenCenter) = 0;
 
 	/**
 	*/
@@ -385,67 +385,67 @@ struct ISceneManager2
 	@param ptTile Tile坐标
 	@remarks 将屏幕坐标转换为Tile坐标
 	*/
-	virtual void screen2Tile(IN const POINT& ptScreen, OUT POINT& ptTile) const = 0;
+	virtual void screen2Tile(IN const xs::Point& ptScreen, OUT xs::Point& ptTile) const = 0;
 
 	/**
 	@param ptTile
 	@param ptScreen
 	@remarks 将Tile坐标转换为屏幕坐标
 	*/
-	virtual void tile2Screen(IN const POINT& ptTile, OUT POINT& ptTileCenter) const = 0;
+	virtual void tile2Screen(IN const xs::Point& ptTile, OUT xs::Point& ptTileCenter) const = 0;
 
 	/**
 	@param ptScreen 屏幕坐标
 	@param ptWorld World坐标
 	@remarks 将屏幕坐标转换为World坐标
 	*/
-	virtual void screen2World(IN const POINT& ptScreen, OUT POINT& ptWorld) const = 0;
+	virtual void screen2World(IN const xs::Point& ptScreen, OUT xs::Point& ptWorld) const = 0;
 
 	/**
 	@param ptWorld World坐标
 	@param ptScreen 屏幕坐标
 	@remarks 将World坐标转换为屏幕坐标
 	*/
-	virtual void world2Screen(IN const POINT& ptWorld, OUT POINT& ptScreen) const = 0;
+	virtual void world2Screen(IN const xs::Point& ptWorld, OUT xs::Point& ptScreen) const = 0;
 
 	/**
 	@param ptWorld 世界坐标
 	@param ptTile Tile坐标
 	@remarks 将世界坐标转换为Tile坐标
 	*/
-	virtual void world2Tile(IN const POINT& ptWorld, OUT POINT& ptTile) const = 0;
+	virtual void world2Tile(IN const xs::Point& ptWorld, OUT xs::Point& ptTile) const = 0;
 
 	/**
 	@param ptTile Tile坐标
 	@param ptTileCenter 世界坐标
 	@remarks 将Tile坐标转换为世界坐标
 	*/
-	virtual void tile2World(IN const POINT& ptTile, OUT POINT& ptTileCenter) const = 0;
+	virtual void tile2World(IN const xs::Point& ptTile, OUT xs::Point& ptTileCenter) const = 0;
 
 	/**
 	@param ptTile Tile坐标
 	@return 返回Tile对象
 	*/
-	virtual Tile* getTile(const POINT& ptTile) const = 0;
+	virtual Tile* getTile(const xs::Point& ptTile) const = 0;
 
 	/**  A* 自动寻路时 不能用getTile()去判断title的阻挡信息；因为老的加载Title的范围不够；会将Title的阻挡信息设置为true;
 	// 因此暴露此方法供其他模块调用去判断Title的阻挡信息;（WZH 2010.7.26）
 	@param ptTile Tile坐标
 	@return 返回是否阻挡
 	*/
-	virtual bool IsAllBlock(const POINT& ptTile) = 0;
+	virtual bool IsAllBlock(const xs::Point& ptTile) = 0;
 
 	/**
 	@param ptScreen 屏幕坐标
 	@return 根据屏幕坐标返回Tile对象
 	*/
-	virtual Tile* getTileFromScreen(POINT ptScreen) const = 0;
+	virtual Tile* getTileFromScreen(xs::Point ptScreen) const = 0;
 
 	/**
 	@param ptTile Tile坐标
 	@return ptTile处的Tile是否为有效的Tile
 	*/
-	virtual bool isValidTile(const POINT& ptTile) = 0;
+	virtual bool isValidTile(const xs::Point& ptTile) = 0;
 
 	/**
 	@param dwFlag 要设置的标志位
@@ -472,7 +472,7 @@ struct ISceneManager2
 	@param pListBuf 取得的Tiles由此返回
 	@return 成功为true，失败为false
 	*/
-	virtual bool enumTileByWorldRect(IN const RECT& rcWorld, IN OUT int& nListCount, OUT SnapshotTileInfo* pListBuf) = 0;
+	virtual bool enumTileByWorldRect(IN const xs::Rect& rcWorld, IN OUT int& nListCount, OUT SnapshotTileInfo* pListBuf) = 0;
 
 	/** 取得一个矩形框内的所有Entities
 	@param rcWorld 矩形框坐标
@@ -480,7 +480,7 @@ struct ISceneManager2
 	@param pListBuf 取得的Entities由此返回
 	@return 成功为true，失败为false
 	*/
-	virtual bool enumEntityByWorldRect(IN const RECT& rcWorld, IN OUT int& nListCount, OUT SnapshotItemInfo* pListBuf) = 0;
+	virtual bool enumEntityByWorldRect(IN const xs::Rect& rcWorld, IN OUT int& nListCount, OUT SnapshotItemInfo* pListBuf) = 0;
 
 	/** 寻路(非A*)
 	@param ptFrom 路径的起始点
@@ -489,7 +489,7 @@ struct ISceneManager2
 	@param nPathLen 路径的长度由此返回
 	@return 成功为true，失败为false
 	*/
-	virtual bool findPathEX(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int& nPathLen) = 0;
+	virtual bool findPathEX(xs::Point ptFrom, xs::Point ptTo, xs::Point** ppBuffer, int& nPathLen) = 0;
 
 	/** 寻路(A*)
 	@param ptFrom 路径的起始点
@@ -498,7 +498,7 @@ struct ISceneManager2
 	@param nPathLen 路径的长度由此返回
 	@return 成功为true，失败为false
 	*/
-	virtual bool findPath(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int& nPathLen) = 0;
+	virtual bool findPath(xs::Point ptFrom, xs::Point ptTo, xs::Point** ppBuffer, int& nPathLen) = 0;
 
 	/** 寻路(A*)
 	@param ptFrom 路径的起始点
@@ -508,7 +508,7 @@ struct ISceneManager2
 	@param isNoBlock 是否忽略阻挡
 	@return 成功为true，失败为false
 	*/
-	virtual bool findPathAStar(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int& nPathLen,bool isNoBlock = false) = 0;
+	virtual bool findPathAStar(xs::Point ptFrom, xs::Point ptTo, xs::Point** ppBuffer, int& nPathLen,bool isNoBlock = false) = 0;
 
 
 	/** 路点寻路
@@ -519,14 +519,14 @@ struct ISceneManager2
 	@return 成功为true，失败为false
 	@note 寻找到的路径为所有的路径
 	*/
-	virtual bool findPathViaWaypoint(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int& nPathLen) = 0;
+	virtual bool findPathViaWaypoint(xs::Point ptFrom, xs::Point ptTo, xs::Point** ppBuffer, int& nPathLen) = 0;
 
 	/**
 	@param pt 屏幕坐标
 	@param dwFlag 只有具有dwFlag的EntityView才会被选中
 	@return 返回的EntityView
 	*/
-	virtual EntityView*	hitTest(const POINT& pt) = 0;
+	virtual EntityView*	hitTest(const xs::Point& pt) = 0;
 
 	/**
 	@param pt 屏幕坐标
@@ -534,7 +534,7 @@ struct ISceneManager2
 	@param ppEntityViews 返回的EntityView*数组
 	@param nNum 传入的ppEntityViews的大小，带回选中的物件的数量
 	*/
-	virtual void hitTest(const POINT& pt,EntityView** ppEntityViews,int& nNum) = 0;
+	virtual void hitTest(const xs::Point& pt,EntityView** ppEntityViews,int& nNum) = 0;
 
 	/** 取得地表对象
 	@return 地表对象
@@ -574,23 +574,23 @@ struct ISceneManager2
 	@param ptTile Tile坐标
 	@param vSpace 3D世界坐标
 	*/
-	virtual void tile2Space(const POINT& ptTile,Vector3& vSpace) = 0;
+	virtual void tile2Space(const xs::Point& ptTile,Vector3& vSpace) = 0;
 
 	/**Space坐标转换到World坐标
 	*/
-	virtual void space2World(const Vector3& vSpace,POINT& ptWorld) = 0;
+	virtual void space2World(const Vector3& vSpace,xs::Point& ptWorld) = 0;
 
 	/**World坐标转换到Space坐标
 	*/
-	virtual void world2Space(const POINT& ptWorld,Vector3& vSpace) = 0;
+	virtual void world2Space(const xs::Point& ptWorld,Vector3& vSpace) = 0;
 
 	/**Space坐标转换到Tile坐标
 	*/
-	virtual void space2Tile(const Vector3& vSpace,POINT& ptTile) = 0;
+	virtual void space2Tile(const Vector3& vSpace,xs::Point& ptTile) = 0;
 
 	/**ptTile1和ptTile2之间的距离
 	*/
-	virtual int tileDistance(const POINT& ptTile1, const POINT& ptTile2) = 0;
+	virtual int tileDistance(const xs::Point& ptTile1, const xs::Point& ptTile2) = 0;
 
 	/**设置光线的方向,用来生成影子
 	*/
@@ -624,13 +624,13 @@ struct ISceneManager2
 	@param ptScreenCenter 根据时间渐变的滚动视口到以此点为中心,为屏幕坐标
 	@return 成功为true，失败为false
 	*/
-	virtual bool scroll2CenterByTime(POINT ptScreenCenter,ulong delta) = 0;
+	virtual bool scroll2CenterByTime(xs::Point ptScreenCenter,ulong delta) = 0;
 
 	virtual void vibrate(int nVibrateRange/*振动的最大幅度,象素为单位,范围为10-40之间*/) = 0;
 
 	virtual bool	IsReferencedBySceneManager(EntityView * pEntity) = 0;
 
-	virtual void ShowSkillTile(const POINT& ptTile) = 0;
+	virtual void ShowSkillTile(const xs::Point& ptTile) = 0;
 	virtual void ClearSkillTile() = 0;
 
 	// 锁定场景，用于地表加载与场景释放间的同步 [4/15/2011 zgz]
@@ -648,7 +648,7 @@ extern "C" ISceneManager2* LoadCSM2(xs::IResourceManager *pResourceManager);
 #	define	CreateSceneManagerProc	LoadCSM2
 #else /// 动态库版本
 typedef ISceneManager2* (RKT_CDECL *procCreateSceneManager)(xs::IResourceManager *pResourceManager);
-#	define	CreateSceneManagerProc	DllApi<procCreateSceneManager>::load(MAKE_DLL_NAME(xs_csm), "LoadCSM")
+#	define	CreateSceneManagerProc	DllApi<procCreateSceneManager>::load(MAKE_DLL_NAME(xs_csm), "LoadCSM2")
 #	define  CloseSceneManagerProc()	DllApi<procCreateSceneManager>::free()
 #endif
 

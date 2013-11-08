@@ -218,44 +218,44 @@ struct POINT
     long x;
     long y;
     
-    POINT()
+    xs::Point()
     :x(0),y(0)
     {
         
     }
     
-    POINT(long _x,long _y)
+    xs::Point(long _x,long _y)
     :x(_x),y(_y)
     {
     }
     
-    POINT(int _x,int _y)
+    xs::Point(int _x,int _y)
     :x(_x),y(_y)
     {
     }
     
-    POINT& operator=(const POINT& p)
+    xs::Point& operator=(const xs::Point& p)
     {
         x = p.x;
         y = p.y;
         return *this;
     }
     
-    POINT& operator+=(const POINT& p2)
+    xs::Point& operator+=(const xs::Point& p2)
     {
         x += p2.x;
         y += p2.y;
         return *this;
     }
     
-    POINT& operator-=(const POINT& p2)
+    xs::Point& operator-=(const xs::Point& p2)
     {
         x -= p2.x;
         y -= p2.y;
         return *this;
     }
     
-    POINT& operator/=(const long& n)
+    xs::Point& operator/=(const long& n)
     {
         x /= n;
         y /= n;
@@ -263,28 +263,28 @@ struct POINT
     }
   
     
-    POINT operator + (const POINT& p2) const
+    xs::Point operator + (const xs::Point& p2) const
     {
-        POINT pt(x,y);
+        xs::Point pt(x,y);
         pt.x += p2.x;
         pt.y += p2.y;
         return pt;
     }
     
-    POINT operator - (const POINT& p2) const
+    xs::Point operator - (const xs::Point& p2) const
     {
-        POINT pt(x,y);
+        xs::Point pt(x,y);
         pt.x -= p2.x;
         pt.y -= p2.y;
         return pt;
     }
     
-    bool operator != (const POINT& p) const
+    bool operator != (const xs::Point& p) const
     {
         return !(*this == p);
     }
     
-    bool operator == (const POINT& p) const
+    bool operator == (const xs::Point& p) const
     {
         if(x == p.x && y == p.y)
             return true;
@@ -295,7 +295,7 @@ struct POINT
 
 
 
-inline bool PtInRect(const RECT* rc,POINT& pt)
+inline bool PtInRect(const xs::Rect* rc,xs::Point& pt)
 {
     return (
         rc->left <= pt.x &&
@@ -305,7 +305,7 @@ inline bool PtInRect(const RECT* rc,POINT& pt)
     );
 }
 
-inline bool IntersectRect(RECT* rcout,const RECT* rc1,const RECT* rc2)
+inline bool IntersectRect(xs::Rect* rcout,const xs::Rect* rc1,const xs::Rect* rc2)
 {
     if(rc1->bottom > rc2->top &&
        rc1->top < rc2->bottom &&
@@ -346,7 +346,7 @@ inline bool IntersectRect(RECT* rcout,const RECT* rc1,const RECT* rc2)
     
 }
 
-inline bool OffsetRect( RECT* rc,int dx,int dy)
+inline bool OffsetRect( xs::Rect* rc,int dx,int dy)
 {
     rc->left += dx;
     rc->right += dx;
@@ -355,7 +355,7 @@ inline bool OffsetRect( RECT* rc,int dx,int dy)
     return true;
 }
 
-inline bool EqualRect(const RECT* rc1,const RECT* rc2)
+inline bool EqualRect(const xs::Rect* rc1,const xs::Rect* rc2)
 {
     return (
         rc1->left == rc2->left &&
@@ -365,7 +365,7 @@ inline bool EqualRect(const RECT* rc1,const RECT* rc2)
     );
 }
 
-inline bool UnionRect(RECT* rcout,const RECT *rc1,const RECT *rc2)
+inline bool UnionRect(xs::Rect* rcout,const xs::Rect *rc1,const xs::Rect *rc2)
 {
     if(rc1->left < rc2->left)
         rcout->left = rc1->left;
@@ -390,7 +390,7 @@ inline bool UnionRect(RECT* rcout,const RECT *rc1,const RECT *rc2)
     return true;
 }
 
-inline bool SetRect(RECT* rc,int left,int top,int right,int bottom)
+inline bool SetRect(xs::Rect* rc,int left,int top,int right,int bottom)
 {
     rc->left = left;
     rc->top = top;
@@ -399,7 +399,7 @@ inline bool SetRect(RECT* rc,int left,int top,int right,int bottom)
     return true;
 }
 
-inline bool InflateRect( RECT*  rc,int dx,int dy)
+inline bool InflateRect( xs::Rect*  rc,int dx,int dy)
 {
     rc->left    -= dx;
     rc->right   += dx;
@@ -458,11 +458,11 @@ inline  struct timespec clock_gettime(void)
 
 
 
-
-//replace POINT RECT
-#define POINT xs::Point
-#define RECT  xs::Rect
-#define LPRECT xs::Rect*
+//必须替换POINT和RECT了，windows下不兼容
+//replace PINT RECT
+//#define POINT xs::Point
+//#define RECT  xs::Rect
+//#define LPRECT xs::Rect*
 
 
 

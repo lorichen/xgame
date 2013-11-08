@@ -440,6 +440,10 @@
 			Name="ResPool"
 			>
 			<File
+				RelativePath="..\Src\ResPool.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\Include\ResPool.h"
 				>
 			</File>

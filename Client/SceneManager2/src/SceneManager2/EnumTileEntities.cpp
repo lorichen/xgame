@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "EnumTileEntities.h"
 
-void EnumRect::EnumTileArea(const RECT& rcTileArea)
+void EnumRect::EnumTileArea(const xs::Rect& rcTileArea)
 {
 	int nTileRow = rcTileArea.bottom;
 	int nTileCol = rcTileArea.right*2;
 	for (int row=0; row<nTileRow; row++)
 	{
-		POINT ptCurTile;
+		xs::Point ptCurTile;
 		ptCurTile.x = rcTileArea.left + row;
 		ptCurTile.y = rcTileArea.top - row;
 		for (int col=0; col<nTileCol; col++)

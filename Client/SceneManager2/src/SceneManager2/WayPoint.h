@@ -12,7 +12,7 @@ public:
 
 	size_t getID(void);
 
-	const POINT& getPos(void);
+	const xs::Point& getPos(void);
 
 	const std::list<std::pair<size_t, int> >& getAdjoingList(void) const;
 
@@ -30,7 +30,7 @@ public:
 	typedef std::list<std::pair<size_t, int> > EdgeList;
 
 private:
-	POINT m_Pos;
+	xs::Point m_Pos;
 	EdgeList m_lsAdjoining;
 	int m_nID;
 	BOOL m_bIsGate;

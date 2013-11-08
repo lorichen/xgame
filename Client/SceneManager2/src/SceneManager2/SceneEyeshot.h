@@ -24,11 +24,11 @@ public:
 	EntityView*	getFirstEntity();
 	EntityView*	getNextEntity();
 
-	bool create(int nMapWidth, int nMapHeight, POINT& ptPlayerPos, 
+	bool create(int nMapWidth, int nMapHeight, xs::Point& ptPlayerPos, 
 		SceneManager* pSceneManager,bool bDynamic);
 
 	bool viewportSizeChanged(int nWidth,int nHeight);
-	bool scroll2Center(POINT& ptPlayerPos);
+	bool scroll2Center(xs::Point& ptPlayerPos);
 	void close();
 
 	// IEyeshotCallback
@@ -36,21 +36,21 @@ public:
 	virtual void onFound(int nGridX, int nGridY);
 	virtual void onLost(int nGridX, int nGridY);
 
-	void GetPreReadCoveredGridRect(RECT& rcCoveredRect)
+	void GetPreReadCoveredGridRect(xs::Rect& rcCoveredRect)
 	{
 		m_GridMgr.getGridRectBelowPreRead(rcCoveredRect);
 	}
 	
-	void GetViewCoveredGridRect(RECT& rcCoveredRect)
+	void GetViewCoveredGridRect(xs::Rect& rcCoveredRect)
 	{
 		m_GridMgr.getGridRectBelowViewport(rcCoveredRect);
 	}
-	void AddItemToList(EntityView* pEntity, const POINT& ptTile);
-	void RemoveItemFromList(EntityView* pEntity, const POINT& ptTile);
-	void MoveItemInList(EntityView* pEntity, const POINT& ptTileFrom, const POINT& ptTileTo);
+	void AddItemToList(EntityView* pEntity, const xs::Point& ptTile);
+	void RemoveItemFromList(EntityView* pEntity, const xs::Point& ptTile);
+	void MoveItemInList(EntityView* pEntity, const xs::Point& ptTileFrom, const xs::Point& ptTileTo);
 	EntityList* GetObjectList()		{return &m_EntityList;}
-	RECT& getPreReadGrid()				{return m_GridMgr.getPreReadGrid();}
-	RECT& getViewGrid()					{return m_GridMgr.getViewGrid();}
+	xs::Rect& getPreReadGrid()				{return m_GridMgr.getPreReadGrid();}
+	xs::Rect& getViewGrid()					{return m_GridMgr.getViewGrid();}
 };
 
 #endif

@@ -25,7 +25,7 @@ public:
 	{
 		return x >= 0 && x < m_nArrayWidth && x >= 0 && x < m_nArrayWidth;
 	}
-	void EnumTileArea(const RECT& rcTileArea);
+	void EnumTileArea(const xs::Rect& rcTileArea);
 	enum {retFalse = 0,retTrue = 1,retStop = 2};
 	virtual int OnFoundTile(int x,int y) = 0;
 
@@ -36,7 +36,7 @@ private:
 class EnumEntityByWorldRect : public EnumRect
 {
 public:
-	EnumEntityByWorldRect(SceneMgr* pMap, const RECT &rcWorld, 
+	EnumEntityByWorldRect(SceneMgr* pMap, const xs::Rect &rcWorld, 
 		int nMaxItemCount, EnumItem* pListBuf)
 	{
 		create(pMap->getMapArrayWidth());
@@ -78,7 +78,7 @@ private:
 class EnumTileByWorldRect : public EnumRect
 {
 public:
-	EnumTileByWorldRect(SceneMgr* pMap, const RECT &rcWorld,
+	EnumTileByWorldRect(SceneMgr* pMap, const xs::Rect &rcWorld,
 		int nMaxTileCount, EnumTile* pListBuf)
 	{
 		create(pMap->getMapArrayWidth());

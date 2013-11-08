@@ -27,7 +27,7 @@ SceneEyeshot::~SceneEyeshot()
 {
 }
 
-bool SceneEyeshot::create(int nMapWidth, int nMapHeight, POINT& ptPlayerPos, SceneManager* pSceneManager,bool bDynamic)
+bool SceneEyeshot::create(int nMapWidth, int nMapHeight, xs::Point& ptPlayerPos, SceneManager* pSceneManager,bool bDynamic)
 {
 	m_pSceneManager = pSceneManager;
 
@@ -48,7 +48,7 @@ bool SceneEyeshot::viewportSizeChanged(int nWidth,int nHeight)
 	return m_GridMgr.viewportSizeChanged(nWidth, nHeight);
 }
 
-bool SceneEyeshot::scroll2Center(POINT& ptPlayerPos)
+bool SceneEyeshot::scroll2Center(xs::Point& ptPlayerPos)
 {
 	return m_GridMgr.scroll2Center(ptPlayerPos);
 }
@@ -56,25 +56,25 @@ bool SceneEyeshot::scroll2Center(POINT& ptPlayerPos)
 void SceneEyeshot::onChanged(int nMoveDirection, int nDx, int nDy)	
 {
 	PP_BY_NAME("SceneEyeshot::onChanged");
-	RECT rcPreRead;
-	POINT ptTileOrigin;
+	xs::Rect rcPreRead;
+	xs::Point ptTileOrigin;
 	m_GridMgr.getGridRectBelowPreRead(rcPreRead);
-	m_pSceneManager->getSceneCoord().pixel2Tile((const POINT&)rcPreRead, ptTileOrigin);
+	m_pSceneManager->getSceneCoord().pixel2Tile((const xs::Point&)rcPreRead, ptTileOrigin);
 	ptTileOrigin.y -= (rcPreRead.bottom - rcPreRead.top)/32 - 1;
 
 	BlockInfo BlockInfo[TILE_GRID_ROW * TILE_GRID_COL * 4];
 	int nRows, nCols;
 	m_GridMgr.snapshotLeftTop(nRows, nCols, BlockInfo, nMoveDirection);
-	RECT& rc = m_GridMgr.getPreReadGrid();
-	RECT& rc1 = m_GridMgr.getViewGrid();
-	POINT ptPlayerGrid = m_GridMgr.getPlayerGrid();
+	xs::Rect& rc = m_GridMgr.getPreReadGrid();
+	xs::Rect& rc1 = m_GridMgr.getViewGrid();
+	xs::Point ptPlayerGrid = m_GridMgr.getPlayerGrid();
 	m_pSceneManager->getSceneMgr().scrollTilesInfo(BlockInfo, nRows, nCols, GRID_HEIGHT/32, GRID_WIDTH*2/64, nMoveDirection, ptTileOrigin, nDx, nDy);
 }
 
 void SceneEyeshot::onFound(int nGridX, int nGridY)
 {
 	PP_BY_NAME("SceneEyeshot::onFound");
-	RECT rc;
+	xs::Rect rc;
 	rc.left = nGridX << SHIFT_WIDTH;
 	rc.top = nGridY << SHIFT_HEIGHT;
 	rc.right = rc.left + GRID_WIDTH;
@@ -110,7 +110,7 @@ void SceneEyeshot::onFound(int nGridX, int nGridY)
 void SceneEyeshot::onLost(int nGridX, int nGridY)
 {
 	PP_BY_NAME("SceneEyeshot::onLost");
-	RECT rc;
+	xs::Rect rc;
 	rc.left = nGridX << SHIFT_WIDTH;
 	rc.top = nGridY << SHIFT_HEIGHT;
 	rc.right = rc.left + GRID_WIDTH;
@@ -126,11 +126,11 @@ void SceneEyeshot::onLost(int nGridX, int nGridY)
 	}
 }
 
-void SceneEyeshot::AddItemToList(EntityView* pEntity, const POINT& ptTile)
+void SceneEyeshot::AddItemToList(EntityView* pEntity, const xs::Point& ptTile)
 {
 	if(!m_pSceneManager)return;
 	SceneCoord& coord = m_pSceneManager->getSceneCoord();
-	POINT ptGrid, ptTileCenter;
+	xs::Point ptGrid, ptTileCenter;
 	coord.tile2Pixel(ptTile, ptTileCenter);
 	ptGrid.x = ptTileCenter.x >> SHIFT_WIDTH;
 	ptGrid.y = ptTileCenter.y >> SHIFT_HEIGHT;
@@ -145,7 +145,7 @@ void SceneEyeshot::AddItemToList(EntityView* pEntity, const POINT& ptTile)
 	}
 }
 
-void SceneEyeshot::RemoveItemFromList(EntityView* pEntity, const POINT& ptTile)
+void SceneEyeshot::RemoveItemFromList(EntityView* pEntity, const xs::Point& ptTile)
 {
 	if(m_EntityList.remove(pEntity, ptTile))
 	{
@@ -157,10 +157,10 @@ void SceneEyeshot::RemoveItemFromList(EntityView* pEntity, const POINT& ptTile)
 	}
 }
 
-void SceneEyeshot::MoveItemInList(EntityView* pEntity, const POINT& ptTileFrom, const POINT& ptTileTo)
+void SceneEyeshot::MoveItemInList(EntityView* pEntity, const xs::Point& ptTileFrom, const xs::Point& ptTileTo)
 {
 	SceneCoord& coord = m_pSceneManager->getSceneCoord();
-	POINT ptGridTo, ptTileCenter;
+	xs::Point ptGridTo, ptTileCenter;
 	coord.tile2Pixel(ptTileTo, ptTileCenter);
 	ptGridTo.x = ptTileCenter.x >> SHIFT_WIDTH;
 	ptGridTo.y = ptTileCenter.y >> SHIFT_HEIGHT;

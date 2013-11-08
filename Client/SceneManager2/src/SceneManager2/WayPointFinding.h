@@ -16,8 +16,8 @@ public:
 	bool operator < (const WayPointFinding& other) const;
 	bool operator == (const WayPointFinding& other) const;
 	void Setpos(int nx, int ny);
-	void Setpos(const POINT &pt);
-	POINT getPos(void) const; 
+	void Setpos(const xs::Point &pt);
+	xs::Point getPos(void) const; 
 };
 
 #endif

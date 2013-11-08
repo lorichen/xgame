@@ -274,8 +274,8 @@ uint		GroundTile::getTextureLayerNum()
 
 const Matrix4& GroundTile::getWorldMatrix()
 {
-	POINT pt;
-	POINT ptViewLt = m_pGround->getViewLeftTop();
+	xs::Point pt;
+	xs::Point ptViewLt = m_pGround->getViewLeftTop();
 	pt.x = m_ptCoord.x * 256;
 	pt.y = m_ptCoord.y * 256;
 
@@ -284,10 +284,10 @@ const Matrix4& GroundTile::getWorldMatrix()
 	return m_mtxWorld;
 }
 
-RECT GroundTile::getRect()
+xs::Rect GroundTile::getRect()
 {
-	RECT rectTile;
-	POINT ptViewLt = m_pGround->getViewLeftTop();
+	xs::Rect rectTile;
+	xs::Point ptViewLt = m_pGround->getViewLeftTop();
 	int nGroundTileWidth = m_pGround->getGroundTileWidth();
 	int nGroundTileHeight = m_pGround->getGroundTileHeight();
 	rectTile.left = m_ptCoord.x * nGroundTileWidth;

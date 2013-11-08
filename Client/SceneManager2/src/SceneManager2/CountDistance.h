@@ -29,7 +29,7 @@ public:
 	@param   
 	@return  
 	*/
-	int			Distance(const POINT& ptTile1, const POINT& ptTile2);
+	int			Distance(const xs::Point& ptTile1, const xs::Point& ptTile2);
 
 	/** 
 	@param   

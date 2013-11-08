@@ -16,7 +16,7 @@ struct IEyeshotCallback
 class Eyeshot
 {
 public:
-	bool scroll2Center(const RECT& rcView);
+	bool scroll2Center(const xs::Rect& rcView);
 	Eyeshot()
 	{
 		m_pScrollSheetSink = 0;
@@ -31,11 +31,11 @@ public:
 		m_nGridHeight = 0;
 		m_nGridWidth = 0;
 
-		memset(&m_rcCurViewGrid,0,sizeof(RECT));
-		memset(&m_rcMapGrid,0,sizeof(RECT));
-		memset(&m_rcLastDirty,0,sizeof(RECT));
-		memset(&m_rcViewportRect,0,sizeof(RECT));
-		memset(&m_rcMap,0,sizeof(RECT));
+		memset(&m_rcCurViewGrid,0,sizeof(xs::Rect));
+		memset(&m_rcMapGrid,0,sizeof(xs::Rect));
+		memset(&m_rcLastDirty,0,sizeof(xs::Rect));
+		memset(&m_rcViewportRect,0,sizeof(xs::Rect));
+		memset(&m_rcMap,0,sizeof(xs::Rect));
 	}
 	~Eyeshot()
 	{
@@ -61,19 +61,19 @@ public:
 		return m_nViewHeight;
 	}
 	bool create(IEyeshotCallback* pSink,int nMapWidth,int nMapHeight,
-		int nGridWidth,int nGridHeight,LPRECT lprcViewport,bool bDynamic);
+		int nGridWidth,int nGridHeight,xs::Rect* lprcViewport,bool bDynamic);
 	void close();
 	bool moveViewportTo(int x,int y);
 	bool scrollViewport(int dx,int dy);
 	bool viewportSizeChanged(int nWidth,int nHeight);
-	RECT getViewportRect()
+	xs::Rect getViewportRect()
 	{
 		return m_rcViewportRect;
 	}
 
 private:
-	void setViewTileRect(RECT rc);
-	void updateScrollSheet(const RECT& rcNew);
+	void setViewTileRect(xs::Rect rc);
+	void updateScrollSheet(const xs::Rect& rcNew);
 
 	IEyeshotCallback *m_pScrollSheetSink;
 
@@ -84,15 +84,15 @@ private:
 	int m_nViewHeight;
 	int m_nViewTopX;
 	int m_nViewTopY;
-	RECT m_rcViewportRect;
-	RECT m_rcMap;
+	xs::Rect m_rcViewportRect;
+	xs::Rect m_rcMap;
 
 	int m_nGridWidth;
 	int m_nGridHeight;		
 	
-	RECT m_rcCurViewGrid;
-	RECT m_rcMapGrid;
-	RECT m_rcLastDirty;
+	xs::Rect m_rcCurViewGrid;
+	xs::Rect m_rcMapGrid;
+	xs::Rect m_rcLastDirty;
 };
 
 #endif

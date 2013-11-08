@@ -6,18 +6,18 @@ SceneGrid::SceneGrid()
 {
 	m_pScrollSheetSink = 0;
 	m_ptPlayerGrid.x = m_ptPlayerGrid.y = 0;
-	memset(&m_rcMapGrid, 0, sizeof(RECT));
-	memset(&m_rcPlayerGrid, 0, sizeof(RECT));
-	memset(&m_rcOldPreReadGrid,0,sizeof(RECT));
-	memset(&m_rcPreReadGrid, 0, sizeof(RECT));
-	memset(&m_rcOldViewGrid, 0, sizeof(RECT));
-	memset(&m_rcViewGrid, 0, sizeof(RECT));
+	memset(&m_rcMapGrid, 0, sizeof(xs::Rect));
+	memset(&m_rcPlayerGrid, 0, sizeof(xs::Rect));
+	memset(&m_rcOldPreReadGrid,0,sizeof(xs::Rect));
+	memset(&m_rcPreReadGrid, 0, sizeof(xs::Rect));
+	memset(&m_rcOldViewGrid, 0, sizeof(xs::Rect));
+	memset(&m_rcViewGrid, 0, sizeof(xs::Rect));
 	m_bDynamic = true;
 	m_bFirstTimeLoad = false;
 }
 
 bool SceneGrid::create(IEyeshotCallback* pSink, int nMapWidth, int nMapHeight, 
-					  POINT& ptPlayerPos,bool bDynamic)
+					  xs::Point& ptPlayerPos,bool bDynamic)
 {
 	assert(pSink);
 	m_pScrollSheetSink = pSink;
@@ -73,10 +73,10 @@ void SceneGrid::close()
 	closePreReadTileRect();
 }
 
-void SceneGrid::setPreReadTileRect(RECT rc)
+void SceneGrid::setPreReadTileRect(xs::Rect rc)
 {
 	int nDx, nDy;
-	int nMoveDir = getMoveDirection((POINT&)m_rcOldPreReadGrid, (POINT&)m_rcPreReadGrid, nDx, nDy);
+	int nMoveDir = getMoveDirection((xs::Point&)m_rcOldPreReadGrid, (xs::Point&)m_rcPreReadGrid, nDx, nDy);
 	m_pScrollSheetSink->onChanged(nMoveDir, nDx, nDy);
 }
 
@@ -84,7 +84,7 @@ void SceneGrid::closePreReadTileRect()
 {
 }
 
-void SceneGrid::setViewTileRect(RECT rc)
+void SceneGrid::setViewTileRect(xs::Rect rc)
 {
 	for (int y=m_rcViewGrid.top; y<m_rcViewGrid.bottom; y++)
 		for (int x=m_rcViewGrid.left; x<m_rcViewGrid.right; x++)
@@ -101,7 +101,7 @@ void SceneGrid::closeViewTileRect()
 bool SceneGrid::scrollViewport(int dx, int dy)
 {
 	bool bPreReadGridChanged = false;
-	RECT rcNewPreReadGrid;
+	xs::Rect rcNewPreReadGrid;
 
 	if(m_bDynamic)
 	{
@@ -112,7 +112,7 @@ bool SceneGrid::scrollViewport(int dx, int dy)
 	}
 
 	bool bViewGridChanged = false;
-	RECT rcNewViewGrid;
+	xs::Rect rcNewViewGrid;
 	rcNewViewGrid = m_rcViewGrid;
 	OffsetRect(&rcNewViewGrid, dx, dy);
 	limitRect(rcNewViewGrid, m_rcMapGrid);
@@ -120,7 +120,7 @@ bool SceneGrid::scrollViewport(int dx, int dy)
 	
 	if (bViewGridChanged)
 	{
-		POINT pt;
+		xs::Point pt;
 		for (int y=m_rcViewGrid.top; y<m_rcViewGrid.bottom; y++)
 		{
 			for (int x=m_rcViewGrid.left; x<m_rcViewGrid.right; x++)
@@ -141,13 +141,13 @@ bool SceneGrid::scrollViewport(int dx, int dy)
 		m_rcOldPreReadGrid = m_rcPreReadGrid;
 		m_rcPreReadGrid = rcNewPreReadGrid;
 		int nDx, nDy;
-		int nMoveDirection = getMoveDirection((POINT&)m_rcOldPreReadGrid, (POINT&)m_rcPreReadGrid, nDx, nDy);
+		int nMoveDirection = getMoveDirection((xs::Point&)m_rcOldPreReadGrid, (xs::Point&)m_rcPreReadGrid, nDx, nDy);
 		m_pScrollSheetSink->onChanged(nMoveDirection, nDx, nDy);
 	}
 
 	if (bViewGridChanged)
 	{
-		POINT pt;
+		xs::Point pt;
 		for (int y=m_rcViewGrid.top; y<m_rcViewGrid.bottom; y++)
 		{ 
 			for (int x=m_rcViewGrid.left; x<m_rcViewGrid.right; x++)
@@ -162,9 +162,9 @@ bool SceneGrid::scrollViewport(int dx, int dy)
 	return true;
 }
 
-bool SceneGrid::scroll2Center(POINT& ptPlayerPos)
+bool SceneGrid::scroll2Center(xs::Point& ptPlayerPos)
 {
-	POINT ptPlayerGridNew;
+	xs::Point ptPlayerGridNew;
 	ptPlayerGridNew.x = ptPlayerPos.x >> SHIFT_WIDTH;
 	ptPlayerGridNew.y = ptPlayerPos.y >> SHIFT_HEIGHT;
 	if (m_ptPlayerGrid.x == ptPlayerGridNew.x && m_ptPlayerGrid.y == ptPlayerGridNew.y)
@@ -194,7 +194,7 @@ bool SceneGrid::scroll2Center(POINT& ptPlayerPos)
 	return scrollViewport(dx, dy);
 }
 
-void SceneGrid::getGridRectBelowViewport(RECT& rcCoveredRect)
+void SceneGrid::getGridRectBelowViewport(xs::Rect& rcCoveredRect)
 {
 	rcCoveredRect.left   = m_rcViewGrid.left   << SHIFT_WIDTH;
 	rcCoveredRect.top	 = m_rcViewGrid.top    << SHIFT_HEIGHT;
@@ -202,7 +202,7 @@ void SceneGrid::getGridRectBelowViewport(RECT& rcCoveredRect)
 	rcCoveredRect.bottom = m_rcViewGrid.bottom << SHIFT_HEIGHT;
 }
 
-void SceneGrid::getGridRectBelowPreRead(RECT& rcCoveredRect)
+void SceneGrid::getGridRectBelowPreRead(xs::Rect& rcCoveredRect)
 {
 	rcCoveredRect.left   = m_rcPreReadGrid.left   << SHIFT_WIDTH;
 	rcCoveredRect.top	 = m_rcPreReadGrid.top    << SHIFT_HEIGHT;
@@ -210,7 +210,7 @@ void SceneGrid::getGridRectBelowPreRead(RECT& rcCoveredRect)
 	rcCoveredRect.bottom = m_rcPreReadGrid.bottom << SHIFT_HEIGHT;
 }
 
-int SceneGrid::getMoveDirection(POINT& ptFrom, POINT& ptTo, int& nDx, int& nDy)
+int SceneGrid::getMoveDirection(xs::Point& ptFrom, xs::Point& ptTo, int& nDx, int& nDy)
 {
 	nDx = ptTo.x - ptFrom.x;
 	nDy = ptTo.y - ptFrom.y;
@@ -238,12 +238,12 @@ int SceneGrid::getMoveDirection(POINT& ptFrom, POINT& ptTo, int& nDx, int& nDy)
 
 void SceneGrid::snapshotLeftTop(int& nRows, int& nCols, BlockInfo* pBlockInfo, int nMoveDirection)
 {
-	RECT rcUnion;
+	xs::Rect rcUnion;
 	if (nMoveDirection == mdAll)
 		rcUnion = m_rcPreReadGrid;
 	else
 		UnionRect(&rcUnion, &m_rcOldPreReadGrid, &m_rcPreReadGrid);
-	POINT ptLeftTop;
+	xs::Point ptLeftTop;
 	ptLeftTop.x  = rcUnion.left << SHIFT_WIDTH;
 	ptLeftTop.y	 = rcUnion.top << SHIFT_HEIGHT;
 	nRows = rcUnion.bottom - rcUnion.top;
@@ -263,14 +263,14 @@ void SceneGrid::snapshotLeftTop(int& nRows, int& nCols, BlockInfo* pBlockInfo, i
 	}
 }
 
-int SceneGrid::getBlockIndex(POINT& ptLeftTop)
+int SceneGrid::getBlockIndex(xs::Point& ptLeftTop)
 {
 	int nGridX = ptLeftTop.x >> SHIFT_WIDTH;
 	int nGridY = ptLeftTop.y >> SHIFT_HEIGHT;
 	return nGridY * m_rcMapGrid.right + nGridX;
 }
 
-void SceneGrid::limitRect(RECT& rcSmall, const RECT& rcBig)
+void SceneGrid::limitRect(xs::Rect& rcSmall, const xs::Rect& rcBig)
 {
 	if (rcSmall.left < rcBig.left)
 	{

@@ -38,12 +38,12 @@ public:
 	// pTile.y = pWorld.x>>6 - pWorld.y>>5 + OffSetY[off] + m_myOff
 
 
-	void tile2Pixel(IN const POINT& ptTile, OUT POINT& ptTileCenter) const
+	void tile2Pixel(IN const xs::Point& ptTile, OUT xs::Point& ptTileCenter) const
 	{
 		ptTileCenter.x = (ptTile.x + ptTile.y - m_yOff) << 5; // * 64 / 2;
 		ptTileCenter.y = (ptTile.x - ptTile.y + m_yOff) << 4; // * 32 / 2;
 	}
-	void pixel2Tile(IN const POINT& ptWorld, OUT POINT& ptTile) const
+	void pixel2Tile(IN const xs::Point& ptWorld, OUT xs::Point& ptTile) const
 	{
 		const static int OffsetX[5] = { 0, 1, 1, 1, 2};
 		const static int OffsetY[5] = { 0, 1, 0,-1, 0};
@@ -55,7 +55,7 @@ public:
 		ptTile.y = kx - ky + OffsetY[off] + m_yOff;
 	}
 
-	RECT pixelRectToAreaTileRect(RECT rc) const
+	xs::Rect pixelRectToAreaTileRect(xs::Rect rc) const
 	{
 		IntersectRect(&rc, &m_rcMap, &rc);
 #if 0
@@ -69,8 +69,8 @@ public:
 		rc.right  = Ceil(rc.right,64) * 64;
 		rc.bottom = Ceil(rc.bottom,32) * 32;
 #endif
-		RECT rcTileArea;
-		pixel2Tile((const POINT&)rc, (POINT&)rcTileArea);
+		xs::Rect rcTileArea;
+		pixel2Tile((const xs::Point&)rc, (xs::Point&)rcTileArea);
 		rcTileArea.right = Ceil(rc.right - rc.left, 64);
 		rcTileArea.bottom = Ceil(rc.bottom - rc.top, 32);
         //  待确认的实现代码：
@@ -101,10 +101,10 @@ public:
 		return rcTileArea;
 	}
 
-	RECT _pixelRectToAreaTileRect(RECT rc) const
+	xs::Rect _pixelRectToAreaTileRect(xs::Rect rc) const
 	{
-		RECT rcTileArea;
-		pixel2Tile((const POINT&)rc, (POINT&)rcTileArea);
+		xs::Rect rcTileArea;
+		pixel2Tile((const xs::Point&)rc, (xs::Point&)rcTileArea);
 		rcTileArea.right = Ceil(rc.right - rc.left, 64);
 		rcTileArea.bottom = Ceil(rc.bottom - rc.top, 32);
 
@@ -143,7 +143,7 @@ public:
 	{
 		return m_nMatrixHeight;
 	}
-	RECT& getMapRect()
+	xs::Rect& getMapRect()
 	{
 		return m_rcMap;
 	}
@@ -160,7 +160,7 @@ public:
 	const static char m_TilePoint[32][64];
 private:
 	int		m_yOff;
-	RECT	m_rcMap; // 整个地图的矩形信息
+	xs::Rect	m_rcMap; // 整个地图的矩形信息
 	int		m_nMatrixWidth;
 	int		m_nMatrixHeight;
 };

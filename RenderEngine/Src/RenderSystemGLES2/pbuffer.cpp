@@ -176,7 +176,7 @@ bool		pbuffer::getTextureData(void  *pData)
 	return false;
 }
 
-void		pbuffer::getRect(RECT *rc)
+void		pbuffer::getRect(xs::Rect *rc)
 {
 	rc->left = 0;
 	rc->top = 0;

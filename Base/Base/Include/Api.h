@@ -1,4 +1,4 @@
-/**
+ /**
 * Created by pk 2008.01.03
 */
 
@@ -8,7 +8,7 @@
 #include "Common.h"
 
 namespace xs {
-
+	RKT_API bool GetClientRect(void* hwnd,Rect* rc);
 	/// 获得系统Tick数
 	RKT_API ulong getTickCount();
 

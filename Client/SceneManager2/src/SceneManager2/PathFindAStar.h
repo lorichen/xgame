@@ -13,7 +13,7 @@ public:
 	*/
 	struct stPathPoint
 	{
-		POINT  pt;
+		xs::Point  pt;
 		bool   bPass;
 		bool   bIsObs;
 		long   value;    // 估价值
@@ -42,7 +42,7 @@ public:
 
 	/* 
 	*/
-	typedef std::vector<POINT> aPoint;
+	typedef std::vector<xs::Point> aPoint;
 
 	/* 
 	*/
@@ -67,11 +67,11 @@ public:
 
 	/** 寻路
 	*/
-	bool  FindPath(const POINT& ptFrom, const POINT& ptTo ,bool bChangeEnd,SceneMgr & mSceneMgr,bool isNoBlcok = false);
+	bool  FindPath(const xs::Point& ptFrom, const xs::Point& ptTo ,bool bChangeEnd,SceneMgr & mSceneMgr,bool isNoBlcok = false);
 
 	/** 计算方向
 	*/
-	int  ComputDir(const POINT& pForm, const POINT& pTo);
+	int  ComputDir(const xs::Point& pForm, const xs::Point& pTo);
 
 	/** 需要优化取得正续坐标
 	*/
@@ -118,5 +118,5 @@ protected:
 
 	/* 
 	*/
-	POINT               m_aPoint[8];
+	xs::Point               m_aPoint[8];
 };

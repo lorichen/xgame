@@ -80,7 +80,7 @@ public:
 	/**取得包围框
 	@return 包围框
 	*/
-	virtual RECT		getRect(); // 获取地表块相对地图的世界坐标
+	virtual xs::Rect		getRect(); // 获取地表块相对地图的世界坐标
 
 	/**取得地表的X下标
 	@param x X下标
@@ -131,10 +131,10 @@ private:
 
 public:
 	GroundEyeshot*	m_pGround;
-	POINT		m_ptCoord;	//地表块坐标，每个块是512*512
+	xs::Point		m_ptCoord;	//地表块坐标，每个块是512*512
 
 private:
-	void _draw(const RECT& rect);
+	void _draw(const xs::Rect& rect);
 	void _updateAlphaMap(uint index,bool updateShaderMap = true);
 
 public:

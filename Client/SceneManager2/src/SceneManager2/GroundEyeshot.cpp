@@ -12,7 +12,7 @@ bool GroundEyeshot::create(
 						   int nMapHeight, 
 						   int nGridWidth, 
 						   int nGridHeight,
-						   LPRECT lprcViewport,
+						   xs::Rect* lprcViewport,
 						   xs::IResourceManager *pResourceManager,
 						   xs::Stream *pMapFile,
 						   const std::string& mapFilename,
@@ -79,7 +79,7 @@ bool GroundEyeshot::create(
 	//	}
 	//}
 
-	RECT rc = *lprcViewport;
+	xs::Rect rc = *lprcViewport;
 	/*if(!m_bDynamic)
 	{
 		rc.left = 0;
@@ -497,23 +497,23 @@ void GroundEyeshot::calcViewTileRect()
 	m_rcViewportTileRect = m_SceneCo.pixelRectToAreaTileRect(m_rcViewportRect);
 }
 
-void GroundEyeshot::pixelToViewTop(const POINT &ptTile, POINT &ptTileCenter) const
+void GroundEyeshot::pixelToViewTop(const xs::Point &ptTile, xs::Point &ptTileCenter) const
 {
 	ptTileCenter = ptTile;
 	ptTileCenter.x -= m_Eyeshot.getViewTopX();
 	ptTileCenter.y -= m_Eyeshot.getViewTopY();
 }
 
-void GroundEyeshot::tile2Pixel(const POINT &ptTile, POINT &ptTileCenter) const
+void GroundEyeshot::tile2Pixel(const xs::Point &ptTile, xs::Point &ptTileCenter) const
 {
 	m_SceneCo.tile2Pixel(ptTile,ptTileCenter);
 	ptTileCenter.x -= m_Eyeshot.getViewTopX();
 	ptTileCenter.y -= m_Eyeshot.getViewTopY();
 }
 
-void GroundEyeshot::pixel2Tile(const POINT &ptScreen, POINT &ptTile) const
+void GroundEyeshot::pixel2Tile(const xs::Point &ptScreen, xs::Point &ptTile) const
 {
-	POINT ptWorld;
+	xs::Point ptWorld;
 	ptWorld.x = ptScreen.x + m_Eyeshot.getViewTopX();
 	ptWorld.y = ptScreen.y + m_Eyeshot.getViewTopY();
 	m_SceneCo.pixel2Tile(ptWorld,ptTile);
@@ -523,7 +523,7 @@ void GroundEyeshot::drawTileLine()
 {
 	int nViewTopX = m_Eyeshot.getViewTopX();
 	int nViewTopY = m_Eyeshot.getViewTopY();
-	POINT ktl(nViewTopX / 64,nViewTopY / 32);
+	xs::Point ktl(nViewTopX / 64,nViewTopY / 32);
 
 	int col = m_Eyeshot.getViewWidth() / 64 + 2;
 	int row = m_Eyeshot.getViewHeight() / 32 + 2;
@@ -541,8 +541,8 @@ void GroundEyeshot::drawTileLine()
 	int y = -(nViewTopY - ktl.y * 32) - h + 16;
 	for(int i = 0; i < col; i++)
 	{
-		POINT ptFrom (x,y);
-		POINT ptTo (x + w, y + h);
+		xs::Point ptFrom (x,y);
+		xs::Point ptTo (x + w, y + h);
 		pRenderSystem->sendVertex(Vector3(ptFrom.x,ptFrom.y,-0.998));
 		pRenderSystem->sendVertex(Vector3(ptTo.x,ptTo.y,-0.998));
 		y += 32;
@@ -550,8 +550,8 @@ void GroundEyeshot::drawTileLine()
 
 	for(int i = 0; i < row; i++)
 	{
-		POINT ptFrom (x,y);
-		POINT ptTo (x + w, y + h);
+		xs::Point ptFrom (x,y);
+		xs::Point ptTo (x + w, y + h);
 
 		pRenderSystem->sendVertex(Vector3(ptFrom.x,ptFrom.y,-0.998));
 		pRenderSystem->sendVertex(Vector3(ptTo.x,ptTo.y,-0.998));
@@ -566,8 +566,8 @@ void GroundEyeshot::drawTileLine()
 
 	for(int i = 0; i < col; i++)
 	{
-		POINT ptFrom (x,y);
-		POINT ptTo (x + w, y - h);
+		xs::Point ptFrom (x,y);
+		xs::Point ptTo (x + w, y - h);
 
 		pRenderSystem->sendVertex(Vector3(ptFrom.x,ptFrom.y,-0.998));
 		pRenderSystem->sendVertex(Vector3(ptTo.x,ptTo.y,-0.998));
@@ -578,7 +578,7 @@ void GroundEyeshot::drawTileLine()
 	pRenderSystem->setColor(color);
 }
 
-IGroundTile* GroundEyeshot::getGroundTile(const POINT& ptWorld)
+IGroundTile* GroundEyeshot::getGroundTile(const xs::Point& ptWorld)
 {
 	if(PtInRect(&m_rcMapRect,ptWorld))
 	{
@@ -607,9 +607,9 @@ ITexture* GroundEyeshot::getDefaultTexture()
 	return m_pDefaultTexture;
 }
 
-POINT GroundEyeshot::getViewLeftTop()
+xs::Point GroundEyeshot::getViewLeftTop()
 {
-	POINT pt (m_Eyeshot.getViewTopX(),m_Eyeshot.getViewTopY());
+	xs::Point pt (m_Eyeshot.getViewTopX(),m_Eyeshot.getViewTopY());
 	return pt;
 }
 

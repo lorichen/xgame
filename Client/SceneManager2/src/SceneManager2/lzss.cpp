@@ -16,6 +16,10 @@
 #include <string.h>
 #include <ctype.h>
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+#include <Windows.h>
+#endif
+
 #define N		 4096	/* size of ring buffer */
 #define F		   18	/* upper limit for match_length */
 #define THRESHOLD	2   /* encode string into position and length

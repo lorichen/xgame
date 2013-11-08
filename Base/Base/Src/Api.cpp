@@ -11,8 +11,21 @@
 #include <sys/time.h>
 #endif
 
-namespace xs {
 
+
+namespace xs {
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+	bool GetClientRect(void* hwnd,Rect* rc)
+	{
+		RECT rc1;
+		GetClientRect((HWND)hwnd,&rc1);
+		rc->left = rc1.left;
+		rc->right = rc1.right;
+		rc->top = rc1.top;
+		rc->bottom = rc1.bottom;
+		return true;
+	}
+#endif
 
 	RKT_API	ulong getTickCount()
 	{

@@ -3,6 +3,7 @@
 #include "profile.h"
 #include "Limits.h"
 #include "Resource.h"
+#include "Api.h"
 #include <assert.h>
 
 #define new RKT_NEW
@@ -254,7 +255,7 @@ namespace xs
 		{
 		case WM_INITDIALOG:
 			{
-				RECT rect;
+				xs::Rect rect;
 				GetClientRect(hWnd,&rect);
 
 				CProfiler *pProfiler = (CProfiler*)lParam;
@@ -280,7 +281,7 @@ namespace xs
 			return TRUE;
 		case WM_SIZE:
 			{
-				RECT rect;
+				xs::Rect rect;
 				GetClientRect(hWnd,&rect);
 				MoveWindow(CProfiler::Instance()->m_hTree,rect.left,rect.top,rect.right - rect.left,rect.bottom - rect.top,TRUE);
 			}

@@ -5,6 +5,7 @@
 #include "LoadResourceThread.h"
 #include "ResourceManager.h"
 #include "Thread.h"
+#include "ResPool.cpp"
 
 xs::ResourceManager *gResourceManager = 0;
 xs::IResourceManager* GetResourceManager()

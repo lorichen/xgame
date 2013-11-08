@@ -32,7 +32,7 @@ size_t WayPoint::getID(void)
 	return  idFromPos(m_Pos.x, m_Pos.y);
 }
 
-const POINT& WayPoint::getPos(void)
+const xs::Point& WayPoint::getPos(void)
 {
 	return m_Pos;
 }

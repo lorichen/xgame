@@ -25,7 +25,7 @@ public:
 
 	bool SetMapSize(int nWidth, int nHeight);
 
-	bool IsBlock(POINT pt){return IsBlock(pt.x,pt.y);}
+	bool IsBlock(xs::Point pt){return IsBlock(pt.x,pt.y);}
 	bool IsBlock(int nX, int nY);
 	void SetBlock(int nX, int nY, bool block);
 

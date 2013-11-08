@@ -16,7 +16,7 @@ public:
 	@param ptWorld 世界坐标
 	@return 地表块指针
 	*/
-	virtual IGroundTile*	getGroundTile(const POINT& ptWorld);
+	virtual IGroundTile*	getGroundTile(const xs::Point& ptWorld);
 
 	/**根据下标取得地表块
 	@param x 地表块X下标
@@ -38,7 +38,7 @@ public:
 	/**取得视口在地表中的X,Y坐标
 	@return 坐标
 	*/
-	virtual POINT			getViewLeftTop();
+	virtual xs::Point			getViewLeftTop();
 
 	/**取得地表块的宽度
 	@return 地表块宽度
@@ -108,7 +108,7 @@ public:
 
 	int m_nMapWidth;
 	int m_nMapHeight;
-	RECT m_rcMapRect;
+	xs::Rect m_rcMapRect;
 	
 	int m_nViewWidth;
 	int m_nViewHeight;
@@ -119,8 +119,8 @@ public:
 	int	m_nTotalGridX;
 	int	m_nTotalGridY;
 
-	RECT m_rcViewportRect;
-	RECT m_rcViewportTileRect;
+	xs::Rect m_rcViewportRect;
+	xs::Rect m_rcViewportTileRect;
 	
 	SceneCoord	m_SceneCo;
 	Eyeshot	m_Eyeshot;
@@ -142,9 +142,9 @@ public:
     int    m_RunType;
 public:
 	void drawTileLine();
-	void pixel2Tile(const POINT &ptScreen, POINT &ptTile) const;
-	void pixelToViewTop(const POINT &ptTile, POINT &ptTileCenter) const;
-	void tile2Pixel(const POINT &ptTile, POINT &ptTileCenter) const;
+	void pixel2Tile(const xs::Point &ptScreen, xs::Point &ptTile) const;
+	void pixelToViewTop(const xs::Point &ptTile, xs::Point &ptTileCenter) const;
+	void tile2Pixel(const xs::Point &ptTile, xs::Point &ptTileCenter) const;
 	void scrollViewport(int dx, int dy);
 	void onDraw(bool bWholeGround);
 
@@ -152,11 +152,11 @@ public:
 	void load(xs::Stream* pMapFile);
 
 
-	const RECT& getViewportRect() const
+	const xs::Rect& getViewportRect() const
 	{
 		return m_rcViewportRect;
 	}
-	const RECT& getViewportTileRect() const
+	const xs::Rect& getViewportTileRect() const
 	{
 		return m_rcViewportTileRect;
 	}
@@ -174,7 +174,7 @@ public:
 		return m_nMapHeight;
 	}
 
-	const RECT& getMapRect() const
+	const xs::Rect& getMapRect() const
 	{
 		return m_rcMapRect;
 	}
@@ -207,7 +207,7 @@ public:
 		 m_RunType = runType;
 	}
 	void close();
-	bool create(SceneMgr *pSceneMgr,int nMapWidth,int nMapHeight,int nGridWidth,int nGridHeight,LPRECT lprcViewport,xs::IResourceManager *pResourceManager,xs::Stream *pMapFile,const std::string& mapFilename,bool bDynamic);
+	bool create(SceneMgr *pSceneMgr,int nMapWidth,int nMapHeight,int nGridWidth,int nGridHeight,xs::Rect* lprcViewport,xs::IResourceManager *pResourceManager,xs::Stream *pMapFile,const std::string& mapFilename,bool bDynamic);
 	bool moveViewportTo(int x,int y);
 	bool viewportSizeChanged(int nWidth,int nHeight);
 

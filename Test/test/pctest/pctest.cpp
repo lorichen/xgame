@@ -101,9 +101,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	int width			= nScreenWidth + GetSystemMetrics(SM_CXFIXEDFRAME)*2;
 	int height			= nScreenHeight + GetSystemMetrics(SM_CYFIXEDFRAME)*2 + GetSystemMetrics(SM_CYCAPTION);
 
-	RECT rectW;
+	xs::Rect rectW;
 	LONG styleW,styleFS, styleEx;
-	RECT rectFS;
+	xs::Rect rectFS;
 	rectW.left		= (GetSystemMetrics(SM_CXSCREEN)-width)/2;
 	rectW.top		= (GetSystemMetrics(SM_CYSCREEN)-height)/2;
 	rectW.right		= rectW.left+width;

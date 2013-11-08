@@ -99,7 +99,7 @@ CPathFindAStar::stPathPoint* CPathFindAStar::GetPathPosDirPathPos(int x, int y, 
 
 /** 计算方向
 */
-int CPathFindAStar::ComputDir(const POINT& pForm, const POINT& pTo)
+int CPathFindAStar::ComputDir(const xs::Point& pForm, const xs::Point& pTo)
 {
 	if (pForm.x == pTo.x && pForm.y >= pTo.y)
 		return 0;
@@ -121,7 +121,7 @@ int CPathFindAStar::ComputDir(const POINT& pForm, const POINT& pTo)
 
 /** 寻路
 */
-bool  CPathFindAStar::FindPath(const POINT& ptFrom, const POINT& ptTo ,bool bChangeEnd,SceneMgr & mSceneMgr,bool isNoBlcok)
+bool  CPathFindAStar::FindPath(const xs::Point& ptFrom, const xs::Point& ptTo ,bool bChangeEnd,SceneMgr & mSceneMgr,bool isNoBlcok)
 {
 	m_iResultCount = 0;
 	if (mSceneMgr.IsAllBlock(ptTo))
@@ -141,14 +141,14 @@ bool  CPathFindAStar::FindPath(const POINT& ptFrom, const POINT& ptTo ,bool bCha
 	int realdir = 0;
 	itSearch it;
 	stPathPoint* ppEx;
-	//POINT pt;
+	//xs::Point pt;
 	int offset = 0;
 	int j = 0;
 	bool bIsObs = false;
 	size_t searchNum = 0;
 	size_t maxSearch = 0, loopTimes = 0;
 	ulong tm1max = 0, tm1 = 0, tm1Times = 0;
-	POINT ppPoint, *ppExPoint;
+	xs::Point ppPoint, *ppExPoint;
 	size_t nPP = sizeof(stPathPoint);
 	while (!m_pPathPoint[ptTo.y * m_szMap.cx + ptTo.x].bPass)
 	{
@@ -223,7 +223,7 @@ Found:
 		stPathPoint* pFrom = &m_pPathPoint[ptFrom.y * m_szMap.cx + ptFrom.x];
 		stPathPoint* pTo = &m_pPathPoint[ptTo.y * m_szMap.cx + ptTo.x];
 		stPathPoint* pNext = pTo;
-		//POINT t;
+		//xs::Point t;
 		int i = 0;
 		while (pNext != pFrom) 
 		{
@@ -261,7 +261,7 @@ bool CPathFindAStar::QueryResult()
 	//count = n;
 	//if (lstPoint) 
 	//{
-	//	POINT* pSrc = &s_aResult.front();
+	//	xs::Point* pSrc = &s_aResult.front();
 	//	for (int i = 0; i < n; i++) 
 	//	{
 	//		lstPoint[i] = pSrc[n-i-1];
@@ -271,10 +271,10 @@ bool CPathFindAStar::QueryResult()
 	{
 		return false;
 	}
-	POINT* pSrc = &s_aResult.front();
+	xs::Point* pSrc = &s_aResult.front();
 	for (int i = 0; i < n; i++)
 	{
-		POINT pt = pSrc[n-i-1];
+		xs::Point pt = pSrc[n-i-1];
 		s_aResultAStar.push_back(pt);
 	}
 	//s_aResult = ptemp;

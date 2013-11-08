@@ -29,7 +29,7 @@ using namespace std;
 template
 < 
 	    class    _Map,                                                  // 地图 
-		typename _BlockTestFunc = std::mem_fun1_t<bool,_Map,POINT> ,    // 阻挡判断函数对象,函数型如bool IsBlock(POINT pt)
+		typename _BlockTestFunc = std::mem_fun1_t<bool,_Map,xs::Point> ,    // 阻挡判断函数对象,函数型如bool IsBlock(xs::Point pt)
 		int      MAX_PATH_LEN   = 1024 ,                                // 最大路径长度
 		int      MAX_SEARCH_AREA= 256                                   // 最大搜索面积
 >
@@ -41,7 +41,7 @@ public:
     
 	struct stPathNode 		  //结点,也就是每个格子
 	{
-		POINT m_PointPos;
+		xs::Point m_PointPos;
 		bool bIsObs;
 		int m_nGvalue;            // G值
 		int m_nPointvalue;        // 估算代价值 
@@ -61,11 +61,11 @@ public:
 	unsigned long        m_nMapWidth;                                 // 地图宽度
 	unsigned long        m_nMapHeight;                                // 地图高度
 	stPathNode*          stAStarPoint;
-	POINT				 m_PathTemp[MAX_PATH_LEN];                    // 用来存储返回的路径（反序）
-	POINT				 m_PathResult[MAX_PATH_LEN];                  // 用来存储返回的路径(正序路径)
+	xs::Point				 m_PathTemp[MAX_PATH_LEN];                    // 用来存储返回的路径（反序）
+	xs::Point				 m_PathResult[MAX_PATH_LEN];                  // 用来存储返回的路径(正序路径)
 
 	//cSize			m_szMap;	
-	POINT mapNearPoint;		
+	xs::Point mapNearPoint;		
 public:
 	CPathFinderByAStar( ) : m_pMap(0),m_BlockFunc(0),stAStarPoint(0),m_nPathCount(0)
 	{
@@ -101,7 +101,7 @@ public:
 	@param nMaxStep : 最多搜索的步数,如果太远就放弃 (这个参数有两个意义 1.有时候只需要搜出最近几步的路,并不一定非要到达目标点 2.默认设为1024,防止出现死循环)
 	@return         : 返回搜路是否成功 
 	*/
-	bool FindPathByASatr(const POINT & ptStart,const POINT & ptEnd,POINT *& pPath,int & nPathLen,int nOption=SEARCH_OPTION_OPTIMIZE,int nMaxStep=MAX_PATH_LEN);
+	bool FindPathByASatr(const xs::Point & ptStart,const xs::Point & ptEnd,xs::Point *& pPath,int & nPathLen,int nOption=SEARCH_OPTION_OPTIMIZE,int nMaxStep=MAX_PATH_LEN);
 	/**
 	@name			: 是否可以走直线
 	@brief			: 
@@ -109,7 +109,7 @@ public:
 	@param ptEnd    : 终点坐标
 	@return         : 返回搜路是否成功 
 	*/
-	bool CanWalkDirect(const POINT& ptFrom, const POINT& ptTo);
+	bool CanWalkDirect(const xs::Point& ptFrom, const xs::Point& ptTo);
 	/**
 	@name			: 寻找最短路径(核心寻路过程)
 	@brief			: 
@@ -118,7 +118,7 @@ public:
 	@param bChangeEnd : 是否寻求最近点
 	@return         : 返回搜路是否成功 
 	*/
-	bool FindPathAStar(const POINT& ptFrom, const POINT& ptTo ,bool bChangeEnd );
+	bool FindPathAStar(const xs::Point& ptFrom, const xs::Point& ptTo ,bool bChangeEnd );
 	/**
 	@name			: 获取H值
 	@brief			: 
@@ -154,7 +154,7 @@ public:
 	@name			: 
 	@brief			: 
 	*/
-	bool QueryResult(POINT*& lstPoint, int& count);
+	bool QueryResult(xs::Point*& lstPoint, int& count);
 public:
 	OpenTempList m_mOpenTempList;
 	OpenList     m_mOpenList;       
@@ -226,7 +226,7 @@ bool PATH_FINDERASTAR_DECLARE::SetMapInfo(unsigned long nMapWidth,unsigned long 
 @return         : 返回搜路是否成功 
 */
 TEMPLATEMAP_DECLARE
-bool PATH_FINDERASTAR_DECLARE::FindPathByASatr(const POINT & ptStart,const POINT & ptEnd,POINT *& pPath,int & nPathLen,int nOption,int nMaxStep)
+bool PATH_FINDERASTAR_DECLARE::FindPathByASatr(const xs::Point & ptStart,const xs::Point & ptEnd,xs::Point *& pPath,int & nPathLen,int nOption,int nMaxStep)
 {
 	if(FindPathAStar(ptStart, ptEnd ,true))
 	{
@@ -244,19 +244,19 @@ bool PATH_FINDERASTAR_DECLARE::FindPathByASatr(const POINT & ptStart,const POINT
 @return         : 返回搜路是否成功 
 */
 TEMPLATEMAP_DECLARE
-bool PATH_FINDERASTAR_DECLARE::CanWalkDirect(const POINT& ptFrom, const POINT& ptTo)
+bool PATH_FINDERASTAR_DECLARE::CanWalkDirect(const xs::Point& ptFrom, const xs::Point& ptTo)
 {
 	int dx = ptTo.x - ptFrom.x;
 	int dy = ptTo.y - ptFrom.y;
 
 	if (dx == 0 || dy == 0 || abs(dx) == abs(dy))
 	{
-		POINT ptStep = ptTo - ptFrom;
+		xs::Point ptStep = ptTo - ptFrom;
 		if (ptStep.x != 0)
 			ptStep.x /= abs(ptStep.x);
 		if (ptStep.y != 0)
 			ptStep.y /= abs(ptStep.y);
-		for (POINT temp = ptFrom; temp != ptTo; temp += ptStep)
+		for (xs::Point temp = ptFrom; temp != ptTo; temp += ptStep)
 		{
 			bool bBlock =  m_BlockFunc(m_pMap,temp);
 			if (bBlock)
@@ -267,7 +267,7 @@ bool PATH_FINDERASTAR_DECLARE::CanWalkDirect(const POINT& ptFrom, const POINT& p
 		return true;
 	}
 
-	POINT ptReFr, ptReTo;   //ptReFr跟起点关联的对角点，ptReTo跟终点关联的对角点
+	xs::Point ptReFr, ptReTo;   //ptReFr跟起点关联的对角点，ptReTo跟终点关联的对角点
 	unsigned int uiadx = abs(dx), uiady = abs(dy);
 	int signedDx = (dx > 0) ? 1 : -1;
 	int signedDy = (dy > 0) ? 1 : -1;
@@ -286,15 +286,15 @@ bool PATH_FINDERASTAR_DECLARE::CanWalkDirect(const POINT& ptFrom, const POINT& p
 		ptReTo.y = ptTo.y - uiadx*signedDy;
 	}
 
-	POINT ptStepCro = ptReFr - ptFrom;    //对角距离
-	POINT ptStepVer = ptReTo - ptFrom;    //垂直距离
+	xs::Point ptStepCro = ptReFr - ptFrom;    //对角距离
+	xs::Point ptStepVer = ptReTo - ptFrom;    //垂直距离
 	ptStepCro /= abs(ptStepCro.x);
 	if (ptStepVer.x != 0)
 		ptStepVer /= abs(ptStepVer.x);
 	else
 		ptStepVer /= abs(ptStepVer.y);
 
-	POINT ptStart = ptFrom, ptEnd = ptReTo, ptCur;
+	xs::Point ptStart = ptFrom, ptEnd = ptReTo, ptCur;
 	for (; ptStart != ptReFr + ptStepCro; ptStart += ptStepCro, ptEnd += ptStepCro)
 	{
 		for (ptCur = ptStart; ptCur != ptEnd + ptStepVer; ptCur += ptStepVer)
@@ -317,7 +317,7 @@ bool PATH_FINDERASTAR_DECLARE::CanWalkDirect(const POINT& ptFrom, const POINT& p
 @return         : 返回搜路是否成功 
 */
 TEMPLATEMAP_DECLARE
-bool PATH_FINDERASTAR_DECLARE::FindPathAStar(const POINT& ptFrom, const POINT& ptTo ,bool bChangeEnd )
+bool PATH_FINDERASTAR_DECLARE::FindPathAStar(const xs::Point& ptFrom, const xs::Point& ptTo ,bool bChangeEnd )
 {
 	m_mOpenList.clear(); 	//clean open   list 
 	m_mCloseList.clear();   //clean close  list 
@@ -612,7 +612,7 @@ bool  PATH_FINDERASTAR_DECLARE::FindResult(int nEndId,int nEndPreId)
 @brief			: 
 */
 TEMPLATEMAP_DECLARE
-bool  PATH_FINDERASTAR_DECLARE::QueryResult(POINT*& lstPoint, int& count)
+bool  PATH_FINDERASTAR_DECLARE::QueryResult(xs::Point*& lstPoint, int& count)
 {
 	lstPoint = 0;
 	count = 0;

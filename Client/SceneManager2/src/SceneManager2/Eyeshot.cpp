@@ -4,7 +4,7 @@
 bool Eyeshot::create(IEyeshotCallback* pSink,
 						  int nMapWidth,int nMapHeight,
 						  int nGridWidth,int nGridHeight,
-						  LPRECT lprcViewport,bool bDynamic)
+						  xs::Rect* lprcViewport,bool bDynamic)
 {
 	m_pScrollSheetSink = pSink,
 	m_nMapWidth = nMapWidth;
@@ -21,7 +21,7 @@ bool Eyeshot::create(IEyeshotCallback* pSink,
 	m_nGridHeight = nGridHeight;
 	SetRect(&m_rcMapGrid,0,0,(m_nMapWidth + nGridWidth - 1) / nGridWidth,(m_nMapHeight + nGridHeight - 1) / nGridHeight);
 
-	RECT rc;
+	xs::Rect rc;
 	SetRect(&rc, m_nViewTopX / nGridWidth, m_nViewTopY / nGridHeight,
 		(m_nViewTopX + m_nViewWidth - 1) / nGridWidth + 1, (m_nViewTopY + m_nViewHeight - 1) / nGridHeight + 1);
 
@@ -44,7 +44,7 @@ bool Eyeshot::viewportSizeChanged(int nWidth, int nHeight)
 
 	SetRect(&m_rcViewportRect,m_nViewTopX,m_nViewTopY,m_nViewTopX + m_nViewWidth,m_nViewTopY + m_nViewHeight);
 
-	RECT rcNew;
+	xs::Rect rcNew;
 	SetRect(&rcNew,m_nViewTopX / m_nGridWidth,
 		m_nViewTopY / m_nGridHeight,
 		(m_nViewTopX + m_nViewWidth - 1) / m_nGridWidth + 1,
@@ -55,14 +55,14 @@ bool Eyeshot::viewportSizeChanged(int nWidth, int nHeight)
 		return true;
 	}
 
-	RECT rcNewDirty = rcNew;
+	xs::Rect rcNewDirty = rcNew;
 	InflateRect(&rcNewDirty,1,1);
 	IntersectRect(&rcNewDirty,&rcNewDirty,&m_rcMapGrid);
 
 	for(int y = m_rcLastDirty.top; y < m_rcLastDirty.bottom; y++)
 	for(int x = m_rcLastDirty.left; x < m_rcLastDirty.right; x++)
 	{
-		POINT pt;
+		xs::Point pt;
 		pt.x = x; pt.y = y;
 		if(!PtInRect(&rcNewDirty,pt) && !PtInRect(&rcNew,pt))
 			m_pScrollSheetSink->onLost(x,y);
@@ -71,7 +71,7 @@ bool Eyeshot::viewportSizeChanged(int nWidth, int nHeight)
 	for(LONG y = rcNewDirty.top; y < rcNewDirty.bottom; y++)
 	for(int x = rcNewDirty.left; x < rcNewDirty.right; x++)
 	{
-		POINT pt;
+		xs::Point pt;
 		pt.x = x; pt.y = y;
 		if(!PtInRect(&m_rcLastDirty,pt))
 			m_pScrollSheetSink->onFound(x,y);
@@ -94,7 +94,7 @@ bool Eyeshot::moveViewportTo(int x, int y)
 	return true;
 }
 
-void Eyeshot::setViewTileRect(RECT rc)
+void Eyeshot::setViewTileRect(xs::Rect rc)
 {
 	IntersectRect(&rc,&rc,&m_rcMapGrid);
 	m_rcCurViewGrid = rc;
@@ -120,7 +120,7 @@ bool Eyeshot::scrollViewport(int dx, int dy)
 	if(dx == 0 && dy == 0)
 		return false;
 
-	RECT rcNew,rcOffset,rcNewDirty;
+	xs::Rect rcNew,rcOffset,rcNewDirty;
 	SetRect(&rcNew,(m_nViewTopX + dx) / m_nGridWidth,(m_nViewTopY + dy) / m_nGridHeight,
 		(m_nViewTopX + m_nViewWidth - 1 + dx) / m_nGridWidth + 1,
 		(m_nViewTopY + m_nViewHeight - 1 + dy) / m_nGridHeight + 1);
@@ -144,7 +144,7 @@ bool Eyeshot::scrollViewport(int dx, int dy)
 	for(int y = m_rcLastDirty.top; y < m_rcLastDirty.bottom; y++)
 	for(int x = m_rcLastDirty.left; x < m_rcLastDirty.right; x++)
 	{
-		POINT pt;
+		xs::Point pt;
 		pt.x = x; pt.y = y;
 		if(!PtInRect(&rcNewDirty,pt) && !PtInRect(&rcNew,pt))
 			m_pScrollSheetSink->onLost(x,y);
@@ -153,7 +153,7 @@ bool Eyeshot::scrollViewport(int dx, int dy)
 	for(LONG y = rcNewDirty.top; y < rcNewDirty.bottom; y++)
 	for(int x = rcNewDirty.left; x < rcNewDirty.right; x++)
 	{
-		POINT pt;
+		xs::Point pt;
 		pt.x = x; pt.y = y;
 		if(!PtInRect(&m_rcLastDirty,pt))
 			m_pScrollSheetSink->onFound(x,y);
@@ -164,7 +164,7 @@ bool Eyeshot::scrollViewport(int dx, int dy)
 	return true;
 }
 
-bool Eyeshot::scroll2Center(const RECT& rcView)
+bool Eyeshot::scroll2Center(const xs::Rect& rcView)
 {
 	int x = (rcView.left + rcView.right) / 2  - m_nViewWidth / 2;
 	int y = (rcView.top + rcView.bottom) / 2 - m_nViewHeight / 2;

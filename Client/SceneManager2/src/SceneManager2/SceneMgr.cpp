@@ -50,7 +50,7 @@ SceneMgr::~SceneMgr()
 {
 	close();
 }
-bool SceneMgr::create(GroundEyeshot *pGround,int nMapWidth, int nMapHeight, RECT& rcPreRead,ISceneManager2 *pSceneManager)
+bool SceneMgr::create(GroundEyeshot *pGround,int nMapWidth, int nMapHeight, xs::Rect& rcPreRead,ISceneManager2 *pSceneManager)
 {
 	m_pSceneManager = pSceneManager;
 	m_pGround = pGround;
@@ -67,7 +67,7 @@ bool SceneMgr::create(GroundEyeshot *pGround,int nMapWidth, int nMapHeight, RECT
 
 	if(m_bDynamic)
 	{
-		POINT ptWorld, ptTileOrigin;
+		xs::Point ptWorld, ptTileOrigin;
 		ptWorld.x = rcPreRead.left;
 		ptWorld.y = rcPreRead.top;
 		m_SceneCo.pixel2Tile(ptWorld, ptTileOrigin);
@@ -86,7 +86,7 @@ bool SceneMgr::create(GroundEyeshot *pGround,int nMapWidth, int nMapHeight, RECT
 	return true;
 }
 
-bool SceneMgr::createMapArray(RECT& rcPreRead)
+bool SceneMgr::createMapArray(xs::Rect& rcPreRead)
 {
 	int nCols = Ceil(rcPreRead.right - rcPreRead.left, 64);
 	int nRows = Ceil(rcPreRead.bottom - rcPreRead.top, 32);
@@ -108,36 +108,36 @@ bool SceneMgr::createMapArray(RECT& rcPreRead)
 	for (int k=0,nVal=0; k<m_nMatrixHeight; k++,nVal+=m_nMatrixWidth)
 		m_pMultiValueTable[k] = nVal;
 
-	initBlockInfo((POINT&)rcPreRead, nRows, nCols*2,nRows,nCols*2);
+	initBlockInfo((xs::Point&)rcPreRead, nRows, nCols*2,nRows,nCols*2);
 
 	return true;
 }
 
-void SceneMgr::setOriginTile(POINT& ptTileOrigin)
+void SceneMgr::setOriginTile(xs::Point& ptTileOrigin)
 {
 	m_ptTileOrigin = ptTileOrigin;
 }
 
 void SceneMgr::scrollTilesInfo(BlockInfo* pBlockInfo, int nRows, int nCols, 
-		int nTileRow, int nTileCol, int nDirection, POINT& ptNewTileOrigin, int dx, int dy)
+		int nTileRow, int nTileCol, int nDirection, xs::Point& ptNewTileOrigin, int dx, int dy)
 
 {
 	if(!m_pStream)return;
 	(this->*m_fnScrollTileInfo[nDirection])(pBlockInfo, nRows, nCols, nTileRow, nTileCol, ptNewTileOrigin, dx, dy);
 }
 
-void SceneMgr::initBlockInfo(POINT& ptLeftTop, int nTileRow, int nTileCol,int realRow,int realCol)
+void SceneMgr::initBlockInfo(xs::Point& ptLeftTop, int nTileRow, int nTileCol,int realRow,int realCol)
 {
-	POINT ptTileLeftTop;
+	xs::Point ptTileLeftTop;
 	m_SceneCo.pixel2Tile(ptLeftTop, ptTileLeftTop);
-	POINT ptCurTile;
+	xs::Point ptCurTile;
 	for (int row=0; row<realRow; row++)
 	{
 		ptCurTile.x = ptTileLeftTop.x + row;
 		ptCurTile.y = ptTileLeftTop.y - row;
 		for (int col=0; col<realCol; col++)
 		{
-			POINT ptWorld;
+			xs::Point ptWorld;
 			m_SceneCo.tile2Pixel(ptCurTile,ptWorld);
 			Tile& tile = getTile(ptCurTile);
 			if(row >= nTileRow || col >= nTileCol)
@@ -158,7 +158,7 @@ void SceneMgr::initBlockInfo(POINT& ptLeftTop, int nTileRow, int nTileCol,int re
 	}
 }
 
-void SceneMgr::loadBlockInfo(POINT& ptLeftTop, int nIndex, int nTileRow, int nTileCol)
+void SceneMgr::loadBlockInfo(xs::Point& ptLeftTop, int nIndex, int nTileRow, int nTileCol)
 {
 	int row = nTileRow;
 	int col = nTileCol;
@@ -168,22 +168,22 @@ void SceneMgr::loadBlockInfo(POINT& ptLeftTop, int nIndex, int nTileRow, int nTi
 		nTileRow = Ceil(m_nMapHeight - ptLeftTop.y, 32);
 	initBlockInfo(ptLeftTop, nTileRow, nTileCol,row,col);
 	m_pStream->seek(m_pMapTable[nIndex]);
-	POINT ptTileLeftTop;
+	xs::Point ptTileLeftTop;
 	m_SceneCo.pixel2Tile(ptLeftTop, ptTileLeftTop);
 	_LoadBlock(m_pStream, ptTileLeftTop, nTileRow, nTileCol, m_pItemCF);
 	m_pStream->seekToBegin();
 }
 
-void SceneMgr::copyBlockInfo(POINT& ptSrcLeftTop, POINT& ptDstLeftTop, int nTileRow, int nTileCol)
+void SceneMgr::copyBlockInfo(xs::Point& ptSrcLeftTop, xs::Point& ptDstLeftTop, int nTileRow, int nTileCol)
 {
-	POINT ptSrcTileLeftTop, ptDstTileLeftTop;
+	xs::Point ptSrcTileLeftTop, ptDstTileLeftTop;
 	m_SceneCo.pixel2Tile(ptSrcLeftTop, ptSrcTileLeftTop);
 	m_SceneCo.pixel2Tile(ptDstLeftTop, ptDstTileLeftTop);
 	int dx = ptDstTileLeftTop.x - ptSrcTileLeftTop.x;
 	int dy = ptDstTileLeftTop.y - ptSrcTileLeftTop.y;
 	for (int row=0; row<nTileRow; row++)
 	{
-		POINT ptCurTile;
+		xs::Point ptCurTile;
 		ptCurTile.x = ptSrcTileLeftTop.x + row;
 		ptCurTile.y = ptSrcTileLeftTop.y - row;
 		for (int col=0; col<nTileCol; col++)
@@ -196,9 +196,9 @@ void SceneMgr::copyBlockInfo(POINT& ptSrcLeftTop, POINT& ptDstLeftTop, int nTile
 	}
 }
 
-void SceneMgr::copyBlockInfoForSurface(POINT& ptSrcLeftTop, POINT& ptDstLeftTop, int nTileRow, int nTileCol)
+void SceneMgr::copyBlockInfoForSurface(xs::Point& ptSrcLeftTop, xs::Point& ptDstLeftTop, int nTileRow, int nTileCol)
 {
-	POINT ptSrcTileLeftTop, ptDstTileLeftTop;
+	xs::Point ptSrcTileLeftTop, ptDstTileLeftTop;
 	m_SceneCo.pixel2Tile(ptSrcLeftTop, ptSrcTileLeftTop);
 	m_SceneCo.pixel2Tile(ptDstLeftTop, ptDstTileLeftTop);
 	int dx = ptDstTileLeftTop.x - ptSrcTileLeftTop.x;
@@ -207,7 +207,7 @@ void SceneMgr::copyBlockInfoForSurface(POINT& ptSrcLeftTop, POINT& ptDstLeftTop,
 		return;
 	for (int row=0; row<nTileRow; row++)
 	{
-		POINT ptCurTile;
+		xs::Point ptCurTile;
 		ptCurTile.x = ptSrcTileLeftTop.x + row;
 		ptCurTile.y = ptSrcTileLeftTop.y - row;
 		for (int col=0; col<nTileCol; col++)
@@ -269,19 +269,19 @@ void SceneMgr::close()
 }
 
 
-bool SceneMgr::moveEntity(const POINT& ptFrom, const POINT& ptTo, EntityView* pEntity)
+bool SceneMgr::moveEntity(const xs::Point& ptFrom, const xs::Point& ptTo, EntityView* pEntity)
 {
 	if (!removeEntity(ptFrom, pEntity))
 		return false;
 	return addEntity(ptTo, pEntity);
 }
 
-bool SceneMgr::addLayerItem(const POINT &pt, EntityView *pEntity)
+bool SceneMgr::addLayerItem(const xs::Point &pt, EntityView *pEntity)
 {
 	return addEntity(pt,pEntity);
 }
 
-bool SceneMgr::addEntity(const POINT& ptTile, EntityView* pEntity)
+bool SceneMgr::addEntity(const xs::Point& ptTile, EntityView* pEntity)
 {
 	if (pEntity == 0)
 		return 0;
@@ -289,7 +289,7 @@ bool SceneMgr::addEntity(const POINT& ptTile, EntityView* pEntity)
 	Tile& tile = getTile(ptTile);
 	if (!tile.isValid())
 	{
-		POINT pt;
+		xs::Point pt;
 		m_SceneCo.tile2Pixel(ptTile, pt);
 		int nGridX = pt.x >> SHIFT_WIDTH;
 		int nGridY = pt.y >> SHIFT_HEIGHT;
@@ -341,7 +341,7 @@ bool SceneMgr::addEntity(const POINT& ptTile, EntityView* pEntity)
 	return true;
 }
 
-bool SceneMgr::removeEntity(const POINT& ptTile, EntityView* pEntity)
+bool SceneMgr::removeEntity(const xs::Point& ptTile, EntityView* pEntity)
 {
 	//zgz 由于物件和地表一样，进入ViewPort时会重新加载，所以此处需要删除
 	if (NULL != m_pSceneManager && m_pSceneManager->getRunType() == RUN_TYPE_GAME)
@@ -352,14 +352,14 @@ bool SceneMgr::removeEntity(const POINT& ptTile, EntityView* pEntity)
 	Tile& tile = getTile(ptTile);
 	if (!tile.isValid())
 	{
-		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
+		xs::Point ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 		{
-			POINT pt, ptLeftTop, ptTileLeftTop = m_ptTileOrigin;
+			xs::Point pt, ptLeftTop, ptTileLeftTop = m_ptTileOrigin;
 			m_SceneCo.tile2Pixel(ptTile, pt);
 			ptTileLeftTop.y -= TILES_PREREAD_HEIGHT / 32 - 1;
 			m_SceneCo.tile2Pixel(ptTileLeftTop, ptLeftTop);
-			RECT rcPreRead;
+			xs::Rect rcPreRead;
 			rcPreRead.left = ptLeftTop.x;
 			rcPreRead.top = ptLeftTop.y;
 			rcPreRead.right = rcPreRead.left + TILES_PREREAD_WIDTH;
@@ -380,7 +380,7 @@ bool SceneMgr::removeEntity(const POINT& ptTile, EntityView* pEntity)
 
 	if (tile.getMapEntity() == 0)
 	{
-		POINT pt;
+		xs::Point pt;
 		m_SceneCo.tile2Pixel(ptTile, pt);
 		int nGridX = pt.x >> SHIFT_WIDTH;
 		int nGridY = pt.y >> SHIFT_HEIGHT;
@@ -428,7 +428,7 @@ bool SceneMgr::removeEntity(const POINT& ptTile, EntityView* pEntity)
 	return true;
 }
 
-bool SceneMgr::addEntityOccupant(const POINT& ptTile, EntityView* pEntity)
+bool SceneMgr::addEntityOccupant(const xs::Point& ptTile, EntityView* pEntity)
 {
 	if(pEntity == 0)
 		return false;
@@ -445,7 +445,7 @@ bool SceneMgr::addEntityOccupant(const POINT& ptTile, EntityView* pEntity)
 	return true;
 }
 
-bool SceneMgr::removeEntityOccupant(const POINT& ptTile, EntityView* pEntity)
+bool SceneMgr::removeEntityOccupant(const xs::Point& ptTile, EntityView* pEntity)
 {
 	if(pEntity == 0)
 		return false;
@@ -462,7 +462,7 @@ bool SceneMgr::removeEntityOccupant(const POINT& ptTile, EntityView* pEntity)
 	return true;
 }
 
-void SceneMgr::addMultiOccupantValue(POINT pt, EntityView *pEntity)
+void SceneMgr::addMultiOccupantValue(xs::Point pt, EntityView *pEntity)
 {
 	OccupantTileList* pList = pEntity->getOccupantTileList();
 	pt.x += pList->getParamData().nOffAnchorX;
@@ -511,7 +511,7 @@ void SceneMgr::addMultiOccupantValue(POINT pt, EntityView *pEntity)
 	}
 }
 
-void SceneMgr::removeMultiOccupantValue(POINT pt, EntityView *pEntity)
+void SceneMgr::removeMultiOccupantValue(xs::Point pt, EntityView *pEntity)
 {
 	OccupantTileList* pList = pEntity->getOccupantTileList();
 	pt.x += pList->getParamData().nOffAnchorX;
@@ -558,7 +558,7 @@ void SceneMgr::removeMultiOccupantValue(POINT pt, EntityView *pEntity)
 	}
 }
 
-bool SceneMgr::testIntersect(POINT pt, EntityView* pEntity)
+bool SceneMgr::testIntersect(xs::Point pt, EntityView* pEntity)
 {
 	OccupantTileList* pList = pEntity->getOccupantTileList();
 	pt.x += pList->getParamData().nOffAnchorX; 
@@ -600,10 +600,10 @@ bool SceneMgr::testIntersect(POINT pt, EntityView* pEntity)
 	return true;
 }
 
-bool SceneMgr::isMovableForMultiOcc(EntityView* pEntity, POINT ptFrom, POINT ptTo)
+bool SceneMgr::isMovableForMultiOcc(EntityView* pEntity, xs::Point ptFrom, xs::Point ptTo)
 {
 	OccupantTileList* pList = pEntity->getOccupantTileList();
-	POINT pt = ptFrom;
+	xs::Point pt = ptFrom;
 	pt.x += pList->getParamData().nOffAnchorX; 
 	pt.y += pList->getParamData().nOffAnchorY;
 	int sw = pList->getParamData().wWidth;
@@ -630,7 +630,7 @@ bool SceneMgr::isMovableForMultiOcc(EntityView* pEntity, POINT ptFrom, POINT ptT
 	return true;
 }
 
-bool SceneMgr::AdjustTileRect(RECT &rc)
+bool SceneMgr::AdjustTileRect(xs::Rect &rc)
 {
 	if(rc.right < 0 || rc.left >= m_nMatrixWidth || rc.bottom < 0 || rc.top < 0 || rc.top >= m_nMatrixWidth)
 	{
@@ -656,13 +656,13 @@ bool SceneMgr::AdjustTileRect(RECT &rc)
 	return true;
 }
 
-bool SceneMgr::snapshotRectItem(const RECT& rc,int& nListCount,EnumItem* pListBuf)
+bool SceneMgr::snapshotRectItem(const xs::Rect& rc,int& nListCount,EnumItem* pListBuf)
 {
 	if(pListBuf == 0 || nListCount < 1)
 	{
 		return false;
 	}
-	RECT rcArea;
+	xs::Rect rcArea;
 	if(!IntersectRect(&rcArea,&rc,&m_rcMapTileRect))
 		return false;
 	int nFoundCount = 0;
@@ -702,7 +702,7 @@ END_SnapshotRectItem:
 
 
 
-bool SceneMgr::enumEntityByWorldRect(const RECT &rcWorld,int& nListCount, EnumItem* pListBuf)
+bool SceneMgr::enumEntityByWorldRect(const xs::Rect &rcWorld,int& nListCount, EnumItem* pListBuf)
 {
 	if (pListBuf == 0 || nListCount < 1)
 	{
@@ -713,7 +713,7 @@ bool SceneMgr::enumEntityByWorldRect(const RECT &rcWorld,int& nListCount, EnumIt
 	return nListCount > 0;
 }
 
-bool SceneMgr::enumTileByWorldRect(const RECT &rcWorld,int& nListCount,EnumTile* pListBuf)
+bool SceneMgr::enumTileByWorldRect(const xs::Rect &rcWorld,int& nListCount,EnumTile* pListBuf)
 {
 	if (pListBuf == 0 || nListCount < 1)
 	{
@@ -725,7 +725,7 @@ bool SceneMgr::enumTileByWorldRect(const RECT &rcWorld,int& nListCount,EnumTile*
 }
 
 #if defined(RELEASEDEBUG) || defined(_DEBUG)
-void SceneMgr::AddTileInfo(POINT ptTile, string strFileName)
+void SceneMgr::AddTileInfo(xs::Point ptTile, string strFileName)
 {
 	DWORD dwTile = ptTile.x;
 	dwTile <<= 16;

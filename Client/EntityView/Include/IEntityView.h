@@ -22,7 +22,7 @@ class EntityView;
 /// 用于实体的回调通知
 struct IEntityViewObserver
 {
-	virtual void onTileChanged(EntityView* owner, const POINT& curTile) {}
+	virtual void onTileChanged(EntityView* owner, const xs::Point& curTile) {}
 	virtual void onMoveFinished(EntityView* owner)						{}
 	virtual void onMoveBreak(EntityView* owner)							{}
 };
@@ -43,11 +43,11 @@ protected:
 	ulong			mResType;		/// 资源类型(只读)
 	ulong			mEntityType;	/// 实体类型(逻辑方面，如静态物件，NPC)
 
-	POINT			m_ptTile;		/// 对象在地图上的TILE位置
-	RECT			m_rcArea;		/// 占位区域
-	POINT			m_ptWorld;		/// 对象锚点在地图上对应的世界坐标
-	POINT			m_ptLeft;		/// 左边排序点
-	POINT			m_ptRight;		/// 右边排序点
+	xs::Point			m_ptTile;		/// 对象在地图上的TILE位置
+	xs::Rect			m_rcArea;		/// 占位区域
+	xs::Point			m_ptWorld;		/// 对象锚点在地图上对应的世界坐标
+	xs::Point			m_ptLeft;		/// 左边排序点
+	xs::Point			m_ptRight;		/// 右边排序点
 	ulong			mAngle;			/// 实体的方向[0,360)
 	Vector3			mSpace;			/// 实体在3D世界中的Space坐标
 	IEntityViewObserver* mObserver;	/// 实体观察者
@@ -135,28 +135,28 @@ public:
 	// 坐标/位置相关
 	//////////////////////////////////////////////////////////////////////////
 	/// 设置当前Tile(只能由场景管理器调用)
-	virtual void setTile(const POINT& ptTile) = 0;
+	virtual void setTile(const xs::Point& ptTile) = 0;
 
 	/// 获得当前Tile坐标
-	inline const POINT& getTile() const				
+	inline const xs::Point& getTile() const				
 	{ 
 		return m_ptTile; 
 	}
 
 	/// 设置对象的世界坐标
-	inline void setWorld(const POINT& ptWorld)		{ m_ptWorld = ptWorld; };
+	inline void setWorld(const xs::Point& ptWorld)		{ m_ptWorld = ptWorld; };
 
 	/// 获取实体的世界坐标
-	inline const POINT& getWorld() const			{ return m_ptWorld; }
+	inline const xs::Point& getWorld() const			{ return m_ptWorld; }
 
 	/// 获取实体的占位块区域
-	inline const RECT& getArea() const				{ return m_rcArea; }
+	inline const xs::Rect& getArea() const				{ return m_rcArea; }
 
 	/// 获取左排序点
-	inline const POINT& getSortLeft() const			{ return m_ptLeft; }
+	inline const xs::Point& getSortLeft() const			{ return m_ptLeft; }
 
 	/// 获取右排序点
-	inline const POINT& getSortRight() const		{ return m_ptRight; }
+	inline const xs::Point& getSortRight() const		{ return m_ptRight; }
 
 	/// 设置实体面向的角度
 	virtual void setAngle(long angle) = 0;
@@ -176,9 +176,9 @@ public:
     }
 
 	// add by zjp；获取受击点
-	virtual POINT getAttackPos()
+	virtual xs::Point getAttackPos()
 	{
-		POINT pt(0,0);
+		xs::Point pt(0,0);
 		return pt;
 	}
 
@@ -187,7 +187,7 @@ public:
 	// 视图相关
 	//////////////////////////////////////////////////////////////////////////
 	/// 获得实体的矩形框(2D包围框)，主要用于决策对象是否在屏幕范围之内
-	virtual const RECT& getShowRect() const = 0;
+	virtual const xs::Rect& getShowRect() const = 0;
 
 	/// 绘制实体
 	virtual void draw(IRenderSystem* pRenderSystem) = 0;
@@ -312,13 +312,13 @@ public:
 	virtual OccupantTileList* getOccupantTileList() const { return NULL; }
 
     //  获取锚点偏移；
-    inline POINT GetAnchorOffset() const
+    inline xs::Point GetAnchorOffset() const
     {
         return m_pointAnchorOffset;
     }
 
     //  设置锚点偏移；
-    inline virtual void SetAnchorOffset(const POINT& pointAnchorOffset)
+    inline virtual void SetAnchorOffset(const xs::Point& pointAnchorOffset)
     {
         m_pointAnchorOffset.x = pointAnchorOffset.x;
         m_pointAnchorOffset.y = pointAnchorOffset.y;
@@ -327,7 +327,7 @@ public:
 protected:
     //  锚点偏移的记录：锚点偏移是指在场景设置中放置物件时，鼠标在物件锚点所在tile中，相对于tile的中心位置的偏移；
     //  记录该值用于使物件可以以像素为单位进行移动和放置；
-    POINT m_pointAnchorOffset;
+    xs::Point m_pointAnchorOffset;
 };
 
 #endif // __IENTITYVIEW_H__

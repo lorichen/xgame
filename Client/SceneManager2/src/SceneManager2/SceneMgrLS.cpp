@@ -11,7 +11,7 @@ extern RunType g_runtype;
 /* SceneMgrLS means SceneMgr Load and Save implementation       */
 /************************************************************************/
 
-void SceneMgr::viewRectToPreReadRect(RECT& rcView, RECT& rcPreRead, int nMapWidth, int nMapHeight)
+void SceneMgr::viewRectToPreReadRect(xs::Rect& rcView, xs::Rect& rcPreRead, int nMapWidth, int nMapHeight)
 {
 	rcPreRead.left = (rcView.right + rcView.left) / 2 - (TILES_PREREAD_WIDTH) / 2;
 	rcPreRead.top = (rcView.bottom + rcView.top) / 2 - (TILES_PREREAD_HEIGHT) / 2;
@@ -72,8 +72,8 @@ bool SceneMgr::save(xs::DataChunk* pDataChunk,bool writeOccupants)
 	m_bWriteOccupants = writeOccupants;
 	int nTileRow = nGridHeight / 32;
 	int nTileCol = nGridWidth / (64 / 2);
-	POINT ptTileLeftTop;
-	POINT ptLeftTop;
+	xs::Point ptTileLeftTop;
+	xs::Point ptLeftTop;
 	for(int row = 0;row < nGridRow;row++)
 	for(int col = 0;col < nGridCol;col++)
 	{
@@ -102,7 +102,7 @@ bool SceneMgr::save(xs::DataChunk* pDataChunk,bool writeOccupants)
 	{
 		for (int col = 0; col < nTileWidth; ++col)
 		{
-			POINT ptTile (col, row);
+			xs::Point ptTile (col, row);
 			Tile *pTile = &getTile(ptTile);
 			if (!pTile->isValid())
 			{
@@ -123,7 +123,7 @@ bool SceneMgr::save(xs::DataChunk* pDataChunk,bool writeOccupants)
 	return true;
 }
 
-bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* pEntityFactory,LPRECT pViewport,const POINT* pTileCenter,bool bDynamic,ISceneManager2 *pSceneManager)
+bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* pEntityFactory,xs::Rect* pViewport,const xs::Point* pTileCenter,bool bDynamic,ISceneManager2 *pSceneManager)
 {
 	//总共进度为6
 
@@ -196,7 +196,7 @@ bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* p
 		pChunk = chunk.nextChunk(pStream);
 	}
 
-	RECT rcRect (0,0,nMapWidth,nMapHeight);
+	xs::Rect rcRect (0,0,nMapWidth,nMapHeight);
 
 	if(pTileCenter)
 	{
@@ -206,7 +206,7 @@ bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* p
 		pViewport->top = -height;
 		pViewport->bottom = height;
 		pViewport->right = width;
-		POINT ptWorld;
+		xs::Point ptWorld;
 		m_pSceneManager->tile2World(*pTileCenter,ptWorld);
 		//  offsetRece 表示以后边的点为中心点调整传入矩形的坐标，下边分别对每条边进行调整，
 		//保证矩形落在地图（Rect{0,0,nMapWidth,nMapHeight}）区域内
@@ -228,7 +228,7 @@ bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* p
 			OffsetRect(pViewport,0,-(pViewport->bottom - nMapHeight));
 		}
 	}
-	LPRECT lprcViewport = pViewport;
+	xs::Rect* lprcViewport = pViewport;
 	// 地图和当前场景是否有交叉
 	if(!IntersectRect(&rcRect,&rcRect,lprcViewport))
 	{
@@ -236,7 +236,7 @@ bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* p
 		return false;
 	}
 
-	RECT rcTilesPreRead;
+	xs::Rect rcTilesPreRead;
 	// 此处将动态加载的条件取消，加载整张地图的阻挡信息；
 	//if(m_bDynamic)
 	//	viewRectToPreReadRect(*lprcViewport, rcTilesPreRead, nMapWidth, nMapHeight);
@@ -269,8 +269,8 @@ bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* p
 		// 下面载入整张地图的tile信息
 		int nTileRow = GRID_HEIGHT / 32;
 		int nTileCol = GRID_WIDTH / (64 / 2);
-		POINT ptTileLeftTop;
-		POINT ptLeftTop;
+		xs::Point ptTileLeftTop;
+		xs::Point ptLeftTop;
 		for(int row = 0;row < nGridRow;row++)
 		{
 			for(int col = 0;col < nGridCol;col++)
@@ -300,8 +300,8 @@ bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* p
 			int nTileRow = GRID_HEIGHT / 32;
 			int nTileCol = GRID_WIDTH / (64 / 2);
 
-			POINT ptTileLeftTop;
-			POINT ptLeftTop;
+			xs::Point ptTileLeftTop;
+			xs::Point ptLeftTop;
 			for(int row = 0;row < nGridRow;row++)
 			{
 				for(int col = 0;col < nGridCol;col++)
@@ -323,7 +323,7 @@ bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* p
 	return true;
 }
 
-bool SceneMgr::GetTileEf(xs::Stream* pStream, Tile* pTile, POINT& ptTile)
+bool SceneMgr::GetTileEf(xs::Stream* pStream, Tile* pTile, xs::Point& ptTile)
 {
 	if(ptTile.x == 82 && ptTile.y == 200)
 	 int i=0;
@@ -353,8 +353,8 @@ bool SceneMgr::GetTileEf(xs::Stream* pStream, Tile* pTile, POINT& ptTile)
 		MemoryStream ms;
 		ms.write(&length,sizeof(length));
 		ms.write(szFilename,length);
-		POINT pointAnchorOffset;
-		pStream->read((void*)&pointAnchorOffset, sizeof(POINT));
+		xs::Point pointAnchorOffset;
+		pStream->read((void*)&pointAnchorOffset, sizeof(xs::Point));
 		ms.seekToBegin();
 
 		//
@@ -393,9 +393,9 @@ bool SceneMgr::GetTileEf(xs::Stream* pStream, Tile* pTile, POINT& ptTile)
 
 	return true;
 }
-bool SceneMgr::GetBlockEf(xs::Stream* pStream, POINT ptTileLeftTop, int nTileRow, int nTileCol)
+bool SceneMgr::GetBlockEf(xs::Stream* pStream, xs::Point ptTileLeftTop, int nTileRow, int nTileCol)
 {
-	POINT ptCurTile = ptTileLeftTop;
+	xs::Point ptCurTile = ptTileLeftTop;
 	bool bIsEmptyTile = false;
 	int nCount = 0;
 	Tile* pTile = 0;
@@ -438,10 +438,10 @@ bool SceneMgr::GetBlockEf(xs::Stream* pStream, POINT ptTileLeftTop, int nTileRow
 
 	return true;
 }
-bool SceneMgr::_LoadBlock(xs::Stream* pStream, POINT ptTileLeftTop, 
+bool SceneMgr::_LoadBlock(xs::Stream* pStream, xs::Point ptTileLeftTop, 
 							   int nTileRow, int nTileCol, IEntityFactory* pEntityFactory)
 {
-	POINT ptCurTile = ptTileLeftTop;
+	xs::Point ptCurTile = ptTileLeftTop;
 	bool bIsEmptyTile = false;
 	int nCount = 0;
 	Tile* pTile = 0;
@@ -492,7 +492,7 @@ bool SceneMgr::_LoadBlock(xs::Stream* pStream, POINT ptTileLeftTop,
 	return true;
 }
 
-bool SceneMgr::_LoadTileInfoOld(xs::Stream* pStream, Tile* pTile, POINT& ptTile, IEntityFactory* pEntityFactory)
+bool SceneMgr::_LoadTileInfoOld(xs::Stream* pStream, Tile* pTile, xs::Point& ptTile, IEntityFactory* pEntityFactory)
 {
 	WORD nFlags = 0;
 	pStream->read((char*)&nFlags, sizeof(nFlags));
@@ -575,7 +575,7 @@ bool SceneMgr::_LoadTileInfoOld(xs::Stream* pStream, Tile* pTile, POINT& ptTile,
 }
 
 bool SceneMgr::_LoadTileInfo(xs::Stream* pStream, Tile* pTile, 
-								  POINT& ptTile, IEntityFactory* pEntityFactory)
+								  xs::Point& ptTile, IEntityFactory* pEntityFactory)
 {
 	WORD nFlags = 0;
 	pStream->read((char*)&nFlags, sizeof(nFlags));
@@ -621,8 +621,8 @@ bool SceneMgr::_LoadTileInfo(xs::Stream* pStream, Tile* pTile,
 			MemoryStream ms;
 			ms.write(&length,sizeof(length));
 			ms.write(szFilename,length);
-			POINT pointAnchorOffset;
-			pStream->read((void*)&pointAnchorOffset, sizeof(POINT));
+			xs::Point pointAnchorOffset;
+			pStream->read((void*)&pointAnchorOffset, sizeof(xs::Point));
 			ms.seekToBegin();
 			
             //
@@ -677,13 +677,13 @@ bool SceneMgr::_LoadTileInfo(xs::Stream* pStream, Tile* pTile,
 	return true;
 }
 
-bool SceneMgr::_SaveBlock(xs::Stream* pStream, POINT ptTileLeftTop, int nTileRow, int nTileCol)
+bool SceneMgr::_SaveBlock(xs::Stream* pStream, xs::Point ptTileLeftTop, int nTileRow, int nTileCol)
 {
-	POINT ptCurTile = ptTileLeftTop;
+	xs::Point ptCurTile = ptTileLeftTop;
 	bool bIsEmptyTile = false;
 	int nCount = 0;
 	Tile* pTile=0;
-	POINT ptTileList[130];
+	xs::Point ptTileList[130];
 	for (int row=0; row<nTileRow; row++)
 	{
 		ptCurTile.x = ptTileLeftTop.x + row;
@@ -759,7 +759,7 @@ bool SceneMgr::_SaveMultiEmptyTileInfo(xs::Stream* pStream, int nCount)
 	return true;
 }
 
-bool SceneMgr::_SaveMultiTileInfo(xs::Stream* pStream, POINT* ptTileList, int nCount)
+bool SceneMgr::_SaveMultiTileInfo(xs::Stream* pStream, xs::Point* ptTileList, int nCount)
 {
 	if (nCount == 0)
 		return true;
@@ -866,7 +866,7 @@ bool SceneMgr::_SaveTileInfo(xs::Stream* pStream, Tile* pTile)
 }
 
 void SceneMgr::moveTop(BlockInfo* pBlockInfo, int nRows, int nCols, 
-				 int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy)
+				 int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy)
 {
 	int row,col;
 	int kx = nCols;
@@ -896,7 +896,7 @@ void SceneMgr::moveTop(BlockInfo* pBlockInfo, int nRows, int nCols,
 }
 
 void SceneMgr::moveRightTop(BlockInfo* pBlockInfo, int nRows, int nCols, 
-				int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy)
+				int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy)
 {
 	int row,col;
 	int kx = nCols-dx;
@@ -937,7 +937,7 @@ void SceneMgr::moveRightTop(BlockInfo* pBlockInfo, int nRows, int nCols,
 }
 
 void SceneMgr::moveRight(BlockInfo* pBlockInfo, int nRows, int nCols, 
-				int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy)
+				int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy)
 {
 	int row,col;
 	int kx = nCols-dx;
@@ -967,7 +967,7 @@ void SceneMgr::moveRight(BlockInfo* pBlockInfo, int nRows, int nCols,
 }
 
 void SceneMgr::moveRightDown(BlockInfo* pBlockInfo, int nRows, int nCols,
-				int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy)
+				int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy)
 {
 	int row,col;
 	int kx = nCols - dx;
@@ -1007,7 +1007,7 @@ void SceneMgr::moveRightDown(BlockInfo* pBlockInfo, int nRows, int nCols,
 	}
 }
 void SceneMgr::moveDown(BlockInfo* pBlockInfo, int nRows, int nCols, 
-				int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy)
+				int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy)
 {
 	int row,col;
 	int kx = nCols;
@@ -1037,7 +1037,7 @@ void SceneMgr::moveDown(BlockInfo* pBlockInfo, int nRows, int nCols,
 }
 
 void SceneMgr::moveLeftDown(BlockInfo* pBlockInfo, int nRows, int nCols, 
-				int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy)
+				int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy)
 {
 	int row,col;
 	int kx = nCols + dx;
@@ -1078,7 +1078,7 @@ void SceneMgr::moveLeftDown(BlockInfo* pBlockInfo, int nRows, int nCols,
 }
 
 void SceneMgr::moveLeft(BlockInfo* pBlockInfo, int nRows, int nCols, 
-				int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy)
+				int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy)
 {
 	int row,col;
 	int kx = nCols + dx;
@@ -1107,7 +1107,7 @@ void SceneMgr::moveLeft(BlockInfo* pBlockInfo, int nRows, int nCols,
 	}
 }
 void SceneMgr::moveleftTop(BlockInfo* pBlockInfo, int nRows, int nCols, 
-				int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy)
+				int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy)
 {
 	int row,col;
 	int kx = nCols + dx;
@@ -1148,7 +1148,7 @@ void SceneMgr::moveleftTop(BlockInfo* pBlockInfo, int nRows, int nCols,
 }
 
 void SceneMgr::moveAll(BlockInfo* pBlockInfo, int nRows, int nCols, 
-				int nTileRow, int nTileCol, POINT& ptNewTileOrigin, int dx, int dy)
+				int nTileRow, int nTileCol, xs::Point& ptNewTileOrigin, int dx, int dy)
 {
 	int row,col;
 

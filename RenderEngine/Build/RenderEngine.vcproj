@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../include;../include/RenderEngine;../Src/RenderEngine/Font/Include;../Src/RenderEngine/Png/Zlib;../../Base/Base/Include;../../Dependence/Include;../Src/RenderEngine;../Src/RenderEngine/MpwLoader;../../Base/ResManager/Include;../../Base/PerfProf/Include;../Src/RenderEngine/Font/TextDesigner;../../Dependence/freetype;../../Dependence"
+				AdditionalIncludeDirectories="../include;../include/RenderEngine;../Src/RenderEngine/Font/Include;../Src/RenderEngine/Png/Zlib;../../Base/Base/Include;../../Dependence/Include;../Src/RenderEngine;../Src/RenderEngine/MpwLoader;../../Base/ResManager/Include;../../Base/PerfProf/Include;../Src/RenderEngine/Font/TextDesigner;../../Dependence/freetype;../../Dependence;../../Dependence/squish"
 				PreprocessorDefinitions="RELEASEDEBUG;WIN32;NDEBUG;_WINDOWS;_USRDLL;RENDERENGINE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;_EXCLUDE_UNL_NEW"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
@@ -65,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="xs_com_rd.lib freetype2110MT.lib Gdiplus.lib"
+				AdditionalDependencies="xs_com_rd.lib freetype2110MT.lib Gdiplus.lib squish.lib"
 				OutputFile="$(OutDir)/xs_render_rd.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../Dependence/Lib;../../Lib"

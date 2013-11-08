@@ -43,7 +43,7 @@ public:
 	virtual void		release();
 	virtual void 		onEndFrame();
 	virtual bool		getTextureData(void  *pData);
-	virtual void		getRect(RECT *rc);
+	virtual void		getRect(xs::Rect *rc);
 };
 
 #endif

@@ -42,7 +42,7 @@ bool WayPointMgr::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFile
 	const TiXmlElement *pEd = pWp->NextSiblingElement();
 	if(!pEd)return true;
 
-	std::vector<POINT> vPt;
+	std::vector<xs::Point> vPt;
 	for(const TiXmlElement* childchild = pWp->FirstChildElement();childchild;childchild = childchild->NextSiblingElement())
 	{
 		int index = 1;
@@ -54,7 +54,7 @@ bool WayPointMgr::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFile
 		childchild->Attribute("d",&gateway);
 		addWayPoint(index++,x,y,gateway);
 
-		POINT pt(x,y);
+		xs::Point pt(x,y);
 		vPt.push_back(pt);
 	}
 
@@ -132,9 +132,9 @@ bool WayPointMgr::isAccessible(int sx,int sy,int dx,int dy)
 		return true;
 	}
 
-	POINT ptFrom (sx,sy);
-	POINT ptTo (dx,dy);
-	POINT * pPath = NULL;
+	xs::Point ptFrom (sx,sy);
+	xs::Point ptTo (dx,dy);
+	xs::Point * pPath = NULL;
 	int nPathLen = 0;
 
 	BOOL bResult = m_pathFinder.FindPath(ptFrom, ptTo, pPath, nPathLen);
@@ -149,7 +149,7 @@ bool WayPointMgr::isAccessible(int sx,int sy,int dx,int dy)
 	return true;
 }
 
-BOOL WayPointMgr::findNearestWayPoint(int nx, int ny, int dx,int dy,POINT &pt, BOOL TestAccessible)
+BOOL WayPointMgr::findNearestWayPoint(int nx, int ny, int dx,int dy,xs::Point &pt, BOOL TestAccessible)
 {
 	BOOL bResult = FALSE;
 	int nNearestDistance = 99999999;
@@ -159,7 +159,7 @@ BOOL WayPointMgr::findNearestWayPoint(int nx, int ny, int dx,int dy,POINT &pt, B
 	{
 		WayPoint &WayPoint = (*itor).second;
 		int nDistance = WayPoint.distance(nx, ny);
-		POINT ptPos = WayPoint.getPos();
+		xs::Point ptPos = WayPoint.getPos();
 		Vector2 v1 = Vector2(dx - nx,dy - ny);
 		Vector2 v2 = Vector2(ptPos.x - nx,ptPos.y - ny);
 		v1.normalize();
@@ -181,20 +181,20 @@ BOOL WayPointMgr::findNearestWayPoint(int nx, int ny, int dx,int dy,POINT &pt, B
 	return bResult;
 }
 
-BOOL WayPointMgr::findPath(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list<POINT> &lsPath)
+BOOL WayPointMgr::findPath(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list<xs::Point> &lsPath)
 {
 	if (!m_pMapBlockBuffer->IsOK())
 	{
 		return FALSE;
 	}
 
-	POINT ptFrom;
+	xs::Point ptFrom;
 	if (!findNearestWayPoint(Src_X, Src_Y,Dst_X,Dst_Y, ptFrom, TRUE))
 	{
 		return FALSE;
 	}
 
-	POINT ptTo;
+	xs::Point ptTo;
 	if (!findNearestWayPoint(Dst_X, Dst_Y,Src_X,Src_Y, ptTo, TRUE/*FALSE*/))
 	{
 		return FALSE;
@@ -215,8 +215,8 @@ BOOL WayPointMgr::findPath(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list
 		OpenSet.erase(OpenSet.begin());	
 		if (BestNode.x == ptTo.x && BestNode.y == ptTo.y)
 		{			
-			POINT ptStart (Src_X, Src_Y);
-			POINT ptGoal (Dst_X, Dst_Y);
+			xs::Point ptStart (Src_X, Src_Y);
+			xs::Point ptGoal (Dst_X, Dst_Y);
 			CloseSet.push_back(BestNode);
 			getSkeletonPath(ptStart, ptGoal, CloseSet, lsPath);
 			
@@ -250,19 +250,19 @@ BOOL WayPointMgr::findPath(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list
 }
 
 
-BOOL WayPointMgr::findPathInSceneBlock(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list<POINT> *plsPath)
+BOOL WayPointMgr::findPathInSceneBlock(int Src_X, int Src_Y, int Dst_X, int Dst_Y, std::list<xs::Point> *plsPath)
 {
-	POINT ptFrom (Src_X,Src_Y);
-	POINT ptTo (Dst_X,Dst_Y);
-	POINT ptFrom1 (Src_X,Src_Y);
-	POINT ptTo1 (Dst_X,Dst_Y);
-	POINT *pBuffer;
+	xs::Point ptFrom (Src_X,Src_Y);
+	xs::Point ptTo (Dst_X,Dst_Y);
+	xs::Point ptFrom1 (Src_X,Src_Y);
+	xs::Point ptTo1 (Dst_X,Dst_Y);
+	xs::Point *pBuffer;
 	int nPathLen;
 	if(m_pathFinder.FindPath(ptFrom1,ptTo1,pBuffer,nPathLen))
 	{
 		for(int i = 0;i < nPathLen;i++)
 		{
-			POINT pt (pBuffer[i].x,pBuffer[i].y);
+			xs::Point pt (pBuffer[i].x,pBuffer[i].y);
 			plsPath->push_back(pt);
 		}
 		return TRUE;
@@ -313,8 +313,8 @@ void WayPointMgr::findWay(std::multiset<WayPointFinding> &OpenSet
 
 }
 
-BOOL WayPointMgr::getSkeletonPath(const POINT& ptStart, const POINT& ptGoal
-				  , std::list<WayPointFinding> &CloseSet, std::list<POINT> &lsPath)
+BOOL WayPointMgr::getSkeletonPath(const xs::Point& ptStart, const xs::Point& ptGoal
+				  , std::list<WayPointFinding> &CloseSet, std::list<xs::Point> &lsPath)
 {	
 	if (!CloseSet.empty())
 	{		
@@ -339,11 +339,11 @@ BOOL WayPointMgr::getSkeletonPath(const POINT& ptStart, const POINT& ptGoal
 
 	return TRUE;
 
-	std::list<POINT> lsTemp;
+	std::list<xs::Point> lsTemp;
 	lsTemp.swap(lsPath);
-	for (std::list<POINT>::iterator itor = lsTemp.begin(); itor != lsTemp.end(); ++itor)
+	for (std::list<xs::Point>::iterator itor = lsTemp.begin(); itor != lsTemp.end(); ++itor)
 	{
-		POINT &pt = *itor;
+		xs::Point &pt = *itor;
 		int nWayPointID = WayPoint::idFromPos(pt.x, pt.y);
 		WAYPOINT_ITERATOR pWayPoint = m_WayPointMap.find(nWayPointID);
 		if (pWayPoint == m_WayPointMap.end())
@@ -353,11 +353,11 @@ BOOL WayPointMgr::getSkeletonPath(const POINT& ptStart, const POINT& ptGoal
 
 		if ((*pWayPoint).second.isGate())
 		{
-			std::list<POINT>::iterator  nextitor = itor;
+			std::list<xs::Point>::iterator  nextitor = itor;
 			++nextitor;
 			if (nextitor != lsTemp.end())
 			{
-				POINT &ptNext = *itor;
+				xs::Point &ptNext = *itor;
 				int nNextWayPointID = WayPoint::idFromPos(ptNext.x, ptNext.y);
 				WAYPOINT_ITERATOR pNextWayPoint = m_WayPointMap.find(nNextWayPointID);
 				if (pNextWayPoint != m_WayPointMap.end()
@@ -374,19 +374,19 @@ BOOL WayPointMgr::getSkeletonPath(const POINT& ptStart, const POINT& ptGoal
 	return TRUE;
 }
 
-BOOL WayPointMgr::beginFind(int Src_X,int Src_Y,std::list<POINT> &lsPath)
+BOOL WayPointMgr::beginFind(int Src_X,int Src_Y,std::list<xs::Point> &lsPath)
 {
 	if (lsPath.empty())
 	{
 		return FALSE;
 	}
 
-	POINT ptFrom (Src_X,Src_Y);
-	POINT ptTo;
+	xs::Point ptFrom (Src_X,Src_Y);
+	xs::Point ptTo;
 	
-	std::list<POINT> lsSegmentPath, lsEntirePath;
+	std::list<xs::Point> lsSegmentPath, lsEntirePath;
 
-	for (std::list<POINT>::iterator itor = lsPath.begin(); itor != lsPath.end(); ++itor)
+	for (std::list<xs::Point>::iterator itor = lsPath.begin(); itor != lsPath.end(); ++itor)
 	{
 		lsSegmentPath.clear();
 		ptTo = *itor;

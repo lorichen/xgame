@@ -110,7 +110,7 @@ bool		RenderTarget::getTextureData(void  *pData)
 	return false;
 }
 
-void		RenderTarget::getRect(RECT *rc)
+void		RenderTarget::getRect(xs::Rect *rc)
 {
 #if (TARGET_PLATFORM == PLATFORM_WIN32)
 	GetClientRect(m_hWnd,rc);

@@ -152,21 +152,21 @@ bool SceneManager::scrollViewport(int dx, int dy)
 		{
 			return false;
 		}
-		POINT ptWorld;
-		POINT ptTitle = pHero->GetMapLoc();
+		xs::Point ptWorld;
+		xs::Point ptTitle = pHero->GetMapLoc();
 		tile2World(ptTitle,ptWorld);	
 		m_MinimapEyeshot.moveViewportTo(ptWorld.x,ptWorld.y,dx,dy);
 	}
-	const RECT& rc = getViewportRect();
+	const xs::Rect& rc = getViewportRect();
 	m_ptSave.x = (rc.left + rc.right) / 2;
 	m_ptSave.y = (rc.top + rc.bottom) / 2;
 
 	return m_SceneEyeshot.scroll2Center(m_ptSave);
 }
 
-int SceneManager::OnDrawOccupant(const POINT& ptTile, Tile* pTile, void* pParam)
+int SceneManager::OnDrawOccupant(const xs::Point& ptTile, Tile* pTile, void* pParam)
 {
-	POINT ptCenter;
+	xs::Point ptCenter;
 	m_GroundEyeshot.tile2Pixel(ptTile,ptCenter);
 
     xs::Rect rc;
@@ -198,14 +198,14 @@ int SceneManager::OnDrawOccupant(const POINT& ptTile, Tile* pTile, void* pParam)
 	return -1;
 }
 
-int SceneManager::OnDrawSortPoint(const POINT& ptTile, EntityView *pEntity)
+int SceneManager::OnDrawSortPoint(const xs::Point& ptTile, EntityView *pEntity)
 {
-	const POINT& pt1 = pEntity->getSortLeft();
-	const POINT& pt2 = pEntity->getSortRight();
-	POINT ptLeft,ptRight;
+	const xs::Point& pt1 = pEntity->getSortLeft();
+	const xs::Point& pt2 = pEntity->getSortRight();
+	xs::Point ptLeft,ptRight;
 	world2Tile(pt1,ptLeft);
 	world2Tile(pt2,ptRight);
-	POINT ptCenter;
+	xs::Point ptCenter;
 	m_GroundEyeshot.tile2Pixel(ptLeft,ptCenter);
 	xs::Rect rc;
 	rc.left = 0;
@@ -223,9 +223,9 @@ int SceneManager::OnDrawSortPoint(const POINT& ptTile, EntityView *pEntity)
 	return -1;
 }
 
-int SceneManager::OnDrawAnchor(const POINT& ptTile, EntityView *pEntity)
+int SceneManager::OnDrawAnchor(const xs::Point& ptTile, EntityView *pEntity)
 {
-	POINT ptCenter;
+	xs::Point ptCenter;
 	m_GroundEyeshot.tile2Pixel(ptTile,ptCenter);
 	xs::Rect rc;
 	rc.left = 0;
@@ -241,8 +241,8 @@ void SceneManager::onViewportSizeChanged(int nViewWidth, int nViewHeight)
 {
 	if (!m_GroundEyeshot.viewportSizeChanged(nViewWidth, nViewHeight))
 		return;
-	const RECT& rc = getViewportRect();
-	POINT ptPlayerPos;
+	const xs::Rect& rc = getViewportRect();
+	xs::Point ptPlayerPos;
 	ptPlayerPos.x = (rc.left + rc.right) >> 1;
 	ptPlayerPos.y = (rc.top + rc.bottom) >> 1;
 	m_SceneEyeshot.viewportSizeChanged(nViewWidth, nViewHeight);
@@ -260,7 +260,7 @@ void SceneManager::createSceneCo(int nMapWidth,int nMapHeight)
 }
 
 // 这里lprcViewport表示场景
-bool SceneManager::createGroundEyeshot(xs::Stream* pMapFile,LPRECT lprcViewport,IEntityFactory* pEntityFactory,bool bDynamic)
+bool SceneManager::createGroundEyeshot(xs::Stream* pMapFile,xs::Rect* lprcViewport,IEntityFactory* pEntityFactory,bool bDynamic)
 {
 	// 设置运行模型
 	m_GroundEyeshot.setRunType(g_runtype);
@@ -278,7 +278,7 @@ bool SceneManager::createGroundEyeshot(xs::Stream* pMapFile,LPRECT lprcViewport,
 	return true;
 }
 
-bool SceneManager::createScene(int nMapWidth,int nMapHeight,LPRECT lprcViewport)
+bool SceneManager::createScene(int nMapWidth,int nMapHeight,xs::Rect* lprcViewport)
 {
 	close();
 
@@ -286,15 +286,15 @@ bool SceneManager::createScene(int nMapWidth,int nMapHeight,LPRECT lprcViewport)
 
 	createSceneCo(w,h);
 
-	RECT rcTilesPreRead (0, 0, w, h);
+	xs::Rect rcTilesPreRead (0, 0, w, h);
 	if (!m_Map.create(&m_GroundEyeshot,w, h, rcTilesPreRead,this))
 		return false;
 
 	if (!createGroundEyeshot(0,lprcViewport,0,false))
 		return false;
 
-	RECT rc(0, 0, w, h);
-	POINT ptPlayerPos (0, 0);
+	xs::Rect rc(0, 0, w, h);
+	xs::Point ptPlayerPos (0, 0);
 	if (!m_SceneEyeshot.create(w, h, ptPlayerPos, this,false))
 		return false;
 	if(!m_MinimapEyeshot.create(this,w, h, 1024, 1024,ptPlayerPos,0))
@@ -307,8 +307,8 @@ bool SceneManager::createScene(int nMapWidth,int nMapHeight,LPRECT lprcViewport)
 bool SceneManager::loadScene(
 							   const char* szFilename,
 							   const char* szWayPointFilename,
-							   LPRECT lprcViewport,
-							   IEntityFactory* pEntityFactory,bool bDynamic,const POINT* pTileCenter,bool oldVersion)
+							   xs::Rect* lprcViewport,
+							   IEntityFactory* pEntityFactory,bool bDynamic,const xs::Point* pTileCenter,bool oldVersion)
 {
 	CSceneLock sceneLock;
 	//总进度为12
@@ -333,7 +333,7 @@ bool SceneManager::loadScene(
 	m_mapStream.attach(pBuffer,length);
 
 	//地图加载的进度进度为6
-	RECT rcViewport = *lprcViewport;
+	xs::Rect rcViewport = *lprcViewport;
 	if(!m_Map.load(&m_GroundEyeshot,&m_mapStream,pEntityFactory,&rcViewport,pTileCenter,bDynamic,this))
 	{
 		ErrorLn("m_Map.load Failed!");
@@ -376,7 +376,7 @@ bool SceneManager::loadScene(
 	//	return false;
 	//}
 
-	POINT ptPlayerPos;
+	xs::Point ptPlayerPos;
 	ptPlayerPos.x = (rcViewport.left + rcViewport.right) / 2;
 	ptPlayerPos.y = (rcViewport.top + rcViewport.bottom) / 2;
 
@@ -392,7 +392,7 @@ bool SceneManager::loadScene(
 
 	if(bDynamic)
 	{
-		RECT rcPreRead;
+		xs::Rect rcPreRead;
 		m_Map.viewRectToPreReadRect(rcViewport, rcPreRead, w, h);
 		if(!m_SceneEyeshot.create(w, h, ptPlayerPos, this, bDynamic))
 		{
@@ -401,7 +401,7 @@ bool SceneManager::loadScene(
 	}
 	else
 	{
-		RECT rc ( 0, 0, w, h );
+		xs::Rect rc ( 0, 0, w, h );
 		if(!m_SceneEyeshot.create(w, h, ptPlayerPos, this, bDynamic))
 		{
 			return false;
@@ -419,7 +419,7 @@ void SceneManager::vibrate( int nVibrateRange/*振动的最大幅度,象素为单位,范围为1
 	m_nVibrateTime = 0;
 	
 }
-bool SceneManager::scroll2Center(POINT ptScreenCenter)
+bool SceneManager::scroll2Center(xs::Point ptScreenCenter)
 {
 	int dx = ptScreenCenter.x - m_GroundEyeshot.getViewWidth() / 2;
 	int dy = ptScreenCenter.y - m_GroundEyeshot.getViewHeight() / 2;	
@@ -488,7 +488,7 @@ bool SceneManager::scroll2Center(POINT ptScreenCenter)
 	//Info("Scroll:"<<ddx<<","<<ddy<<endl);
 	return scrollViewport(ddx, ddy);
 }
-bool SceneManager::scroll2CenterByTime(POINT ptScreenCenter,ulong delta)
+bool SceneManager::scroll2CenterByTime(xs::Point ptScreenCenter,ulong delta)
 {
 
 	int dx = ptScreenCenter.x - m_GroundEyeshot.getViewWidth() / 2;
@@ -619,7 +619,7 @@ bool SceneManager::save(const char* szFilename,bool writeOccupants)
 	return false;
 }
 
-bool SceneManager::addEntity(const POINT& ptTile, EntityView* pEntity, DWORD dwParam)
+bool SceneManager::addEntity(const xs::Point& ptTile, EntityView* pEntity, DWORD dwParam)
 {
 	if (!pEntity)
 		return false;
@@ -673,7 +673,7 @@ bool SceneManager::addEntity(const POINT& ptTile, EntityView* pEntity, DWORD dwP
 	return true;
 }
 
-bool SceneManager::removeEntity(const POINT&, EntityView* pEntity, DWORD dwParam)
+bool SceneManager::removeEntity(const xs::Point&, EntityView* pEntity, DWORD dwParam)
 {
 	if (!pEntity)
 		return false;
@@ -683,7 +683,7 @@ bool SceneManager::removeEntity(const POINT&, EntityView* pEntity, DWORD dwParam
 		return removeGlobalSceneMagic(pEntity);
 	}
 
-	POINT ptTile = pEntity->getTile();
+	xs::Point ptTile = pEntity->getTile();
 	if (!pEntity->hasFlag(flagNoLogic) && dwParam == 0)
 	{
 		m_SceneEyeshot.RemoveItemFromList(pEntity, ptTile);
@@ -738,12 +738,12 @@ bool SceneManager::removeEntity(const POINT&, EntityView* pEntity, DWORD dwParam
 	return true;
 }
 
-bool SceneManager::moveEntity(const POINT&, const POINT& ptTileTo, EntityView* pEntity, DWORD dwParam)
+bool SceneManager::moveEntity(const xs::Point&, const xs::Point& ptTileTo, EntityView* pEntity, DWORD dwParam)
 {
 	if (!pEntity)
 		return false;
 
-	POINT ptTileFrom = pEntity->getTile();
+	xs::Point ptTileFrom = pEntity->getTile();
 	if(ptTileFrom.x == ptTileTo.x && ptTileTo.y == ptTileFrom.y)
 		return true;
 
@@ -785,11 +785,11 @@ bool SceneManager::moveEntity(const POINT&, const POINT& ptTileTo, EntityView* p
 	return true;
 }
 
-bool SceneManager::addEntityOccupant(const POINT& ptTile, EntityView* pEntity)
+bool SceneManager::addEntityOccupant(const xs::Point& ptTile, EntityView* pEntity)
 {
 	return m_Map.addEntityOccupant(ptTile, pEntity);
 }
-bool SceneManager::removeEntityOccupant(const POINT& ptTile, EntityView* pEntity)
+bool SceneManager::removeEntityOccupant(const xs::Point& ptTile, EntityView* pEntity)
 {
 	return m_Map.removeEntityOccupant(ptTile, pEntity);
 }
@@ -839,7 +839,7 @@ void SceneManager::RemoveItemFromDisplayList(EntityView* pEntity)
 	}
 }
 
-void SceneManager::OnEntityEnterViewport(const POINT& ptTile, EntityView* pEntity)
+void SceneManager::OnEntityEnterViewport(const xs::Point& ptTile, EntityView* pEntity)
 {
 	if (!pEntity)
 		return;
@@ -876,7 +876,7 @@ void SceneManager::UnLockScene()
 	m_mutex.Unlock();
 }
 
-void SceneManager::OnEntityLeaveViewport(const POINT& ptTile, EntityView* pEntity)
+void SceneManager::OnEntityLeaveViewport(const xs::Point& ptTile, EntityView* pEntity)
 {
 	if (!pEntity)
 		return;
@@ -892,31 +892,31 @@ void SceneManager::OnEntityLeaveViewport(const POINT& ptTile, EntityView* pEntit
 }
 
 // 这个区域是1024*768一个视口的区域
-bool SceneManager::isItemVisible(const POINT& ptTile, EntityView* pItemView)
+bool SceneManager::isItemVisible(const xs::Point& ptTile, EntityView* pItemView)
 {
-	POINT ptCenter;
+	xs::Point ptCenter;
 	ptCenter = pItemView->getWorld();
-	RECT rcItem = pItemView->getShowRect();
+	xs::Rect rcItem = pItemView->getShowRect();
 
 	OffsetRect(&rcItem, ptCenter.x, ptCenter.y);
 	return IntersectRect(&rcItem, &rcItem, &m_GroundEyeshot.getViewportRect()) != FALSE;
 }
 
 // 这个的区域是3*5的1024*512矩形区域
-bool SceneManager::isItemInViewArea(const POINT& ptTile, EntityView* pItemView)
+bool SceneManager::isItemInViewArea(const xs::Point& ptTile, EntityView* pItemView)
 {
-	POINT ptCenter;
+	xs::Point ptCenter;
 	ptCenter = pItemView->getWorld();
-	RECT rcPreRead;
+	xs::Rect rcPreRead;
 	m_SceneEyeshot.GetViewCoveredGridRect(rcPreRead);
 	return PtInRect(&rcPreRead, ptCenter) != FALSE;
 }
 
-bool SceneManager::isItemInLogicArea(const POINT& ptTile, EntityView* pItemView)
+bool SceneManager::isItemInLogicArea(const xs::Point& ptTile, EntityView* pItemView)
 {
-	POINT ptCenter;
+	xs::Point ptCenter;
 	ptCenter = pItemView->getWorld();
-	RECT rcPreRead;
+	xs::Rect rcPreRead;
 	m_SceneEyeshot.GetPreReadCoveredGridRect(rcPreRead);
 	return PtInRect(&rcPreRead, ptCenter) != FALSE;
 }
@@ -939,7 +939,7 @@ void SceneManager::updateDisplayList(DisplayList& list,float tick,float deltaTic
 	{
 		EntityView *pItemViewPtr = *it;
 
-		const POINT& ptTile = pItemViewPtr->getTile();
+		const xs::Point& ptTile = pItemViewPtr->getTile();
 
 		//by yhc 2010.3.29
 		//确保在编辑器状态下删除无效指针
@@ -1365,7 +1365,7 @@ void SceneManager::drawTopMost(IRenderSystem* pRenderSystem)
 		//	m_pOccupantImageRect->initialize(getRenderEngine()->getRenderSystem(),"mask.bmp",false,&c);
 		//}
 
-		RECT rcWorld = m_GroundEyeshot.getViewportRect();
+		xs::Rect rcWorld = m_GroundEyeshot.getViewportRect();
 		InflateRect(&rcWorld, 64 * 2, 32 * 2);
 		IntersectRect(&rcWorld, &rcWorld, &m_SceneCo.getMapRect());
 		EnumTile ListBuf[MAX_EnumItem_COUNT];
@@ -1384,7 +1384,7 @@ void SceneManager::drawTopMost(IRenderSystem* pRenderSystem)
 	PP_BY_NAME_START("SceneManager::drawTopMost::OnDrawSortPoint&OnDrawAnchor");
 	if ((m_dwDrawFlag & eDrawSortPoint) || (m_dwDrawFlag & eDrawAnchor))
 	{
-		RECT rcWorld = m_GroundEyeshot.getViewportRect();
+		xs::Rect rcWorld = m_GroundEyeshot.getViewportRect();
 		InflateRect(&rcWorld, 64 * 2, 32 * 2);
 		IntersectRect(&rcWorld, &rcWorld, &m_SceneCo.getMapRect());
 		EnumItem ListBuf[MAX_EnumItem_COUNT];
@@ -1407,10 +1407,10 @@ void SceneManager::drawTopMost(IRenderSystem* pRenderSystem)
 			}
 		}
 
-		list<POINT>::iterator it = m_ListSkillTile.begin();
+		list<xs::Point>::iterator it = m_ListSkillTile.begin();
 		for (it; it!=m_ListSkillTile.end(); it++)
 		{
-			POINT pt = (*it);
+			xs::Point pt = (*it);
 			OnDrawAnchor(pt, NULL);
 		}
 	}
@@ -1419,7 +1419,7 @@ void SceneManager::drawTopMost(IRenderSystem* pRenderSystem)
 	PP_BY_NAME_START("SceneManager::drawTopMost::DrawMapGrid");
 	if(m_dwDrawFlag & eDrawMapGrid)
 	{
-		RECT rcWorld = m_GroundEyeshot.getViewportRect();
+		xs::Rect rcWorld = m_GroundEyeshot.getViewportRect();
 		int lx = rcWorld.left / GRID_WIDTH;
 		int ly = rcWorld.top / GRID_HEIGHT;
 		int nx = (rcWorld.right - rcWorld.left + (GRID_WIDTH - 1)) / GRID_WIDTH;
@@ -1444,8 +1444,8 @@ void SceneManager::drawTopMost(IRenderSystem* pRenderSystem)
 	PP_BY_NAME_START("SceneManager::drawTopMost::Draw9Grid");
 	if(m_dwDrawFlag & eDraw9Grid)
 	{
-		const RECT& rc = getViewportRect();
-		POINT ptCenter;
+		const xs::Rect& rc = getViewportRect();
+		xs::Point ptCenter;
 		ptCenter.x = (rc.right + rc.left) >> 1;
 		ptCenter.y = (rc.bottom + rc.top) >> 1;
 		Vector3 vSpace;
@@ -1461,12 +1461,12 @@ void SceneManager::drawTopMost(IRenderSystem* pRenderSystem)
 			Vector3 v2 = v1 + Vector3(w,0,0);
 			Vector3 v3 = v1 + Vector3(w,0,w);
 			Vector3 v4 = v1 + Vector3(0,0,w);
-			POINT pt1,pt2,pt3,pt4;
+			xs::Point pt1,pt2,pt3,pt4;
 			space2World(v1,pt1);
 			space2World(v2,pt2);
 			space2World(v3,pt3);
 			space2World(v4,pt4);
-			POINT ptS1,ptS2,ptS3,ptS4;
+			xs::Point ptS1,ptS2,ptS3,ptS4;
 			world2Screen(pt1,ptS1);
 			world2Screen(pt2,ptS2);
 			world2Screen(pt3,ptS3);
@@ -1486,7 +1486,7 @@ void SceneManager::drawTopMost(IRenderSystem* pRenderSystem)
 	PP_BY_NAME_STOP();
 }
 // 
-bool SceneManager::findPathEX(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int& nPathLen)
+bool SceneManager::findPathEX(xs::Point ptFrom, xs::Point ptTo, xs::Point** ppBuffer, int& nPathLen)
 {
 	if (m_Map.FindPath(ptFrom,ptTo,*ppBuffer, nPathLen))
 	{
@@ -1495,12 +1495,12 @@ bool SceneManager::findPathEX(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int& n
 	return false;
 }
 
-bool SceneManager::findPath(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int& nPathLen)
+bool SceneManager::findPath(xs::Point ptFrom, xs::Point ptTo, xs::Point** ppBuffer, int& nPathLen)
 {
 	return m_Map.FindPathByASatr(ptFrom, ptTo, *ppBuffer, nPathLen);
 }
 
-bool SceneManager::findPathAStar(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int& nPathLen,bool isNoBlock)
+bool SceneManager::findPathAStar(xs::Point ptFrom, xs::Point ptTo, xs::Point** ppBuffer, int& nPathLen,bool isNoBlock)
 {
 	//如果以前找到过；则不再进行寻找
 	int nTempPathLen = CPathFindAStar::s_aResultAStar.size();
@@ -1537,10 +1537,10 @@ bool SceneManager::findPathAStar(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int
 	}
 	return false;
 }
-bool SceneManager::findPathViaWaypoint(POINT ptFrom, POINT ptTo, POINT** ppBuffer, int& nPathLen)
+bool SceneManager::findPathViaWaypoint(xs::Point ptFrom, xs::Point ptTo, xs::Point** ppBuffer, int& nPathLen)
 {
-	static std::vector<POINT> vPath;
-	static std::list<POINT> lPath;
+	static std::vector<xs::Point> vPath;
+	static std::list<xs::Point> lPath;
 	vPath.clear();
 	lPath.clear();
 	if(m_WayPointManager.findPath(ptFrom.x,ptFrom.y,ptTo.x,ptTo.y,lPath))
@@ -1550,9 +1550,9 @@ bool SceneManager::findPathViaWaypoint(POINT ptFrom, POINT ptTo, POINT** ppBuffe
 			return false;
 		}
 		vPath.reserve(lPath.size());
-		for(std::list<POINT>::iterator it = lPath.begin();it != lPath.end();++it)
+		for(std::list<xs::Point>::iterator it = lPath.begin();it != lPath.end();++it)
 		{
-			POINT pt ((*it).x,(*it).y);
+			xs::Point pt ((*it).x,(*it).y);
 			vPath.push_back(pt);
 		}
 		*ppBuffer = &vPath[0];
@@ -1562,7 +1562,7 @@ bool SceneManager::findPathViaWaypoint(POINT ptFrom, POINT ptTo, POINT** ppBuffe
 	return false;
 }
 
-void SceneManager::hitTest(const POINT& pt,EntityView** ppEntityViews,int& nNum)
+void SceneManager::hitTest(const xs::Point& pt,EntityView** ppEntityViews,int& nNum)
 {
 	if(nNum == 0)return;
 
@@ -1585,15 +1585,15 @@ void SceneManager::hitTest(const POINT& pt,EntityView** ppEntityViews,int& nNum)
 		{
 			if(flag & flag2D)
 			{
-				RECT rect = pEntity->getShowRect();
+				xs::Rect rect = pEntity->getShowRect();
 				if( pEntity->getEntityType() == typeBox)
 				{
 					// 调高box的包围盒
 					rect.top -= 25;
 				}
-				POINT ptWorld = pEntity->getWorld();
+				xs::Point ptWorld = pEntity->getWorld();
 				OffsetRect(&rect,ptWorld.x,ptWorld.y);
-				POINT ptMouse;
+				xs::Point ptMouse;
 				screen2World(pt,ptMouse);
 				if(PtInRect(&rect,ptMouse) && !pEntity->isTransparent(ptMouse.x - rect.left,ptMouse.y - rect.top))
 				{
@@ -1616,10 +1616,10 @@ void SceneManager::hitTest(const POINT& pt,EntityView** ppEntityViews,int& nNum)
 				//pItemViewPtr.pEntity->drawPickObject(pRenderSystem,false);
 				//index++;
 				//m_selectableEntities.push_back(pItemViewPtr);
-				RECT rect = pEntity->getShowRect();
-				POINT ptWorld = pEntity->getWorld();
+				xs::Rect rect = pEntity->getShowRect();
+				xs::Point ptWorld = pEntity->getWorld();
 				OffsetRect(&rect,ptWorld.x,ptWorld.y);
-				POINT ptMouse;
+				xs::Point ptMouse;
 				screen2World(pt,ptMouse);
 				if(PtInRect(&rect,ptMouse))
 				{
@@ -1647,10 +1647,10 @@ void SceneManager::hitTest(const POINT& pt,EntityView** ppEntityViews,int& nNum)
 		EntityView *pEntity = *it;
 		if(pEntity->getFlag() & flagSelectable)
 		{
-			RECT rect = pEntity->getShowRect();
-			POINT ptWorld = pEntity->getWorld();
+			xs::Rect rect = pEntity->getShowRect();
+			xs::Point ptWorld = pEntity->getWorld();
 			OffsetRect(&rect,ptWorld.x,ptWorld.y);
-			POINT ptMouse;
+			xs::Point ptMouse;
 			screen2World(pt,ptMouse);
 			if(PtInRect(&rect,ptMouse) && !pEntity->isTransparent(ptMouse.x - rect.left,ptMouse.y - rect.top))
 			{
@@ -1670,7 +1670,7 @@ void SceneManager::hitTest(const POINT& pt,EntityView** ppEntityViews,int& nNum)
 	nNum = currIndex;
 }
 
-EntityView*	SceneManager::hitTest(const POINT& pt)
+EntityView*	SceneManager::hitTest(const xs::Point& pt)
 {
 	EntityView *pEntity = 0;
 	int nNum = 1;
@@ -1679,15 +1679,15 @@ EntityView*	SceneManager::hitTest(const POINT& pt)
 	return pEntity;
 }
 
-bool SceneManager::IsIntersect(EntityView& item1, EntityView& item2, RECT& rc)
+bool SceneManager::IsIntersect(EntityView& item1, EntityView& item2, xs::Rect& rc)
 {
-	POINT ptTileWorld;
+	xs::Point ptTileWorld;
 	ptTileWorld = item1.getWorld();
-	RECT rc1 = item1.getShowRect();
+	xs::Rect rc1 = item1.getShowRect();
 	OffsetRect(&rc1, ptTileWorld.x, ptTileWorld.y);
 	
 	ptTileWorld = item2.getWorld();
-	RECT rc2 = item2.getShowRect();
+	xs::Rect rc2 = item2.getShowRect();
 	OffsetRect(&rc2, ptTileWorld.x, ptTileWorld.y);
 	return IntersectRect(&rc, &rc1, &rc2) != FALSE;
 
@@ -1696,7 +1696,7 @@ bool SceneManager::IsIntersect(EntityView& item1, EntityView& item2, RECT& rc)
 
 int SceneManager::cmpPP(EntityView& item1, EntityView& item2)
 {
-	RECT rc;
+	xs::Rect rc;
 	if (IsIntersect(item1, item2, rc))
 	{
 		//显示
@@ -1714,7 +1714,7 @@ int SceneManager::cmpPP(EntityView& item1, EntityView& item2)
 
 int SceneManager::cmpPL(EntityView& item1, EntityView& item2)
 {
-	RECT rc;
+	xs::Rect rc;
 	if (IsIntersect(item1, item2, rc))
 	{
 		if (item2.getSortLeft().y == item2.getSortRight().y)
@@ -1742,7 +1742,7 @@ int SceneManager::cmpPL(EntityView& item1, EntityView& item2)
 
 int SceneManager::cmpLL(EntityView& item1, EntityView& item2)
 {
-	RECT rc;
+	xs::Rect rc;
 	if (IsIntersect(item1, item2, rc))
 	{
 		int Xcross = (rc.left + rc.right ) /2;
@@ -1805,14 +1805,14 @@ int SceneManager::compare(EntityView& item1, EntityView& item2)
 
 void SceneManager::addSortingEntitiesAll(EntityView* pEntity, DisplayList& _DisplayList)
 {
-	POINT ptTileCenter;
+	xs::Point ptTileCenter;
 	ptTileCenter = pEntity->getWorld();
 	
 	bool bFound = false;
 	DisplayListPtr it = _DisplayList.begin();
 	DisplayListPtr _end = _DisplayList.end();
 	
-	POINT ptTempTileCenter;
+	xs::Point ptTempTileCenter;
 	while (it != _end)
 	{
 		ptTempTileCenter = (*it)->getWorld();
@@ -1928,12 +1928,12 @@ DWORD SceneManager::getDrawFlag()
 	return m_dwDrawFlag;
 }
 
-bool SceneManager::enumTileByWorldRect(const RECT& rcWorld, IN OUT int& nListCount, OUT SnapshotTileInfo* pListBuf)
+bool SceneManager::enumTileByWorldRect(const xs::Rect& rcWorld, IN OUT int& nListCount, OUT SnapshotTileInfo* pListBuf)
 {
 	return m_Map.enumTileByWorldRect(rcWorld,nListCount, (EnumTile*)pListBuf);
 }
 
-bool SceneManager::enumEntityByWorldRect(const RECT& rcWorld, IN OUT int& nListCount, OUT SnapshotItemInfo* pListBuf)
+bool SceneManager::enumEntityByWorldRect(const xs::Rect& rcWorld, IN OUT int& nListCount, OUT SnapshotItemInfo* pListBuf)
 {
 	return m_Map.enumEntityByWorldRect(rcWorld,nListCount, (EnumItem*)pListBuf);
 }
@@ -1948,51 +1948,51 @@ int SceneManager::getViewTopLeftY() const
 	return m_GroundEyeshot.getViewTopY();
 }
 
-void SceneManager::screen2Tile(const POINT& ptScreen, POINT &ptTile) const
+void SceneManager::screen2Tile(const xs::Point& ptScreen, xs::Point &ptTile) const
 {
 	m_GroundEyeshot.pixel2Tile(ptScreen,ptTile);
 }
 
-void SceneManager::tile2Screen(const POINT &ptTile, POINT &ptTileCenter) const
+void SceneManager::tile2Screen(const xs::Point &ptTile, xs::Point &ptTileCenter) const
 {
 	m_GroundEyeshot.tile2Pixel(ptTile,ptTileCenter);
 }
 
-void SceneManager::screen2World(IN const POINT& ptScreen, OUT POINT& ptWorld) const
+void SceneManager::screen2World(IN const xs::Point& ptScreen, OUT xs::Point& ptWorld) const
 {
 	ptWorld.x = ptScreen.x + m_GroundEyeshot.getViewTopX();
 	ptWorld.y = ptScreen.y + m_GroundEyeshot.getViewTopY();
 }
 
-void SceneManager::world2Screen(IN const POINT& ptWorld, OUT POINT& ptScreen) const
+void SceneManager::world2Screen(IN const xs::Point& ptWorld, OUT xs::Point& ptScreen) const
 {
 	ptScreen.x = ptWorld.x - m_GroundEyeshot.getViewTopX();
 	ptScreen.y = ptWorld.y - m_GroundEyeshot.getViewTopY();
 }
 
-void SceneManager::tile2World(const POINT &ptTile, POINT &ptTileCenter) const
+void SceneManager::tile2World(const xs::Point &ptTile, xs::Point &ptTileCenter) const
 {
 	m_SceneCo.tile2Pixel(ptTile,ptTileCenter);
 }
 
-void SceneManager::world2Tile(const POINT& ptWorld, POINT &ptTile) const
+void SceneManager::world2Tile(const xs::Point& ptWorld, xs::Point &ptTile) const
 {
 	m_SceneCo.pixel2Tile(ptWorld,ptTile);
 }
 
-Tile* SceneManager::getTile(const POINT& ptTile) const
+Tile* SceneManager::getTile(const xs::Point& ptTile) const
 {
 	return &m_Map.getTile(ptTile);
 }
 
-Tile* SceneManager::getTileFromScreen(POINT ptScreen) const
+Tile* SceneManager::getTileFromScreen(xs::Point ptScreen) const
 {
-	POINT ptTile;
+	xs::Point ptTile;
 	m_GroundEyeshot.pixel2Tile(ptScreen,ptTile);
 	return &m_Map.getTile(ptTile);
 }
 
-bool SceneManager::isValidTile(const POINT& ptTile)
+bool SceneManager::isValidTile(const xs::Point& ptTile)
 {
 	return m_Map.getTile(ptTile).isValid();
 }
@@ -2010,7 +2010,7 @@ void SceneManager::release()
 }
 int SceneManager::getSceneWidth()const		{return m_Map.getSceneWidth();}
 int SceneManager::getSceneHeight()const		{return m_Map.getSceneHeight();}
-const RECT& SceneManager::getViewportRect() const
+const xs::Rect& SceneManager::getViewportRect() const
 {
 	return m_GroundEyeshot.getViewportRect();
 }
@@ -2034,11 +2034,11 @@ void SceneManager::setupMatrix(bool wholeScene)
 {
 	if(!wholeScene)
 	{
-		RECT rc = getViewportRect();
+		xs::Rect rc = getViewportRect();
 		OffsetRect(&rc,-rc.left,-rc.top);
 
-		POINT ptWorld (0,0);
-		POINT ptTile;
+		xs::Point ptWorld (0,0);
+		xs::Point ptTile;
 		world2Tile(ptWorld,ptTile);
 		OffsetRect(&rc,((ptTile.y + 1) << 5) + getViewTopLeftX(),(ptTile.y << 4) - (rc.bottom - rc.top) - getViewTopLeftY());
 		// note by zjp；
@@ -2050,10 +2050,10 @@ void SceneManager::setupMatrix(bool wholeScene)
 	{
 		uint width = getSceneWidth();
 		uint height = getSceneHeight();
-		RECT rc (0,0,width,height);
+		xs::Rect rc (0,0,width,height);
 
-		POINT ptWorld (0,0);
-		POINT ptTile;
+		xs::Point ptWorld (0,0);
+		xs::Point ptTile;
 		world2Tile(ptWorld,ptTile);
 		OffsetRect(&rc,((ptTile.y + 1) << 5),(ptTile.y << 4) - (rc.bottom - rc.top));
 		m_mtxProjection = Matrix4::orthogonalProjection(rc.left,rc.right,rc.top,rc.bottom,-20000,20000);
@@ -2070,23 +2070,23 @@ Matrix4 SceneManager::getViewMatrix()
 	return m_mtxView;
 }
 
-void SceneManager::tile2Space(const POINT& ptTile,Vector3& vSpace)
+void SceneManager::tile2Space(const xs::Point& ptTile,Vector3& vSpace)
 {
 	vSpace.x = (((ptTile.y << 1) + 1) << 4) * Math::fSqrt2;
 	vSpace.z = (((ptTile.x << 1) + 1) << 4) * Math::fSqrt2;
 	vSpace.y = 0;
 }
 
-void SceneManager::world2Space(const POINT& ptWorld,Vector3& vSpace)
+void SceneManager::world2Space(const xs::Point& ptWorld,Vector3& vSpace)
 {
-	POINT ptTile;
+	xs::Point ptTile;
 	world2Tile(ptWorld,ptTile);
-	POINT ptW;
+	xs::Point ptW;
 	tile2World(ptTile,ptW);
 	Vector3 v;
 	tile2Space(ptTile,v);
 
-	POINT ptDelta (ptWorld.x - ptW.x,ptWorld.y - ptW.y);
+	xs::Point ptDelta (ptWorld.x - ptW.x,ptWorld.y - ptW.y);
 	ptDelta.y <<= 1;
 
 	static float sinN45 = Math::Sin(-Math::PI / 4.0f);
@@ -2101,13 +2101,13 @@ void SceneManager::world2Space(const POINT& ptWorld,Vector3& vSpace)
 	vSpace.y = 0;
 }
 
-void SceneManager::space2World(const Vector3& vSpace,POINT& ptWorld)
+void SceneManager::space2World(const Vector3& vSpace,xs::Point& ptWorld)
 {
-	POINT ptTile;
+	xs::Point ptTile;
 	space2Tile(vSpace,ptTile);
 	Vector3 vS;
 	tile2Space(ptTile,vS);		//Tile中心点的空间坐标
-	POINT ptW;
+	xs::Point ptW;
 	tile2World(ptTile,ptW);		//Tile中心点的世界坐标
 
 	Vector3 vDelta = vSpace - vS;
@@ -2124,7 +2124,7 @@ void SceneManager::space2World(const Vector3& vSpace,POINT& ptWorld)
 	ptWorld.y = ptW.y + Math::Round(y);
 }
 
-void SceneManager::space2Tile(const Vector3& vSpace,POINT& ptTile)
+void SceneManager::space2Tile(const Vector3& vSpace,xs::Point& ptTile)
 {
 	static float spaceWidth = 32 * Math::fSqrt2;
 	ptTile.x = vSpace.z / spaceWidth;
@@ -2134,7 +2134,7 @@ void SceneManager::space2Tile(const Vector3& vSpace,POINT& ptTile)
 #include "CountDistance.h"
 
 extern CCountDistance	g_countDistance;
-int SceneManager::tileDistance(const POINT& ptTile1, const POINT& ptTile2)
+int SceneManager::tileDistance(const xs::Point& ptTile1, const xs::Point& ptTile2)
 {
 	return g_countDistance.Distance(ptTile1,ptTile2);
 }
@@ -2185,7 +2185,7 @@ void SceneManager::SetAllEntityVisible()
 {
 	m_VisibleListGround.clear();
 
-	RECT rc;
+	xs::Rect rc;
 	rc.left = 0;
 	rc.top = 0;
 	rc.right = rc.left + GRID_WIDTH*100;
@@ -2213,12 +2213,12 @@ RunType SceneManager::getRunType()
 @param ptTile Tile坐标
 @return 返回是否阻挡
 */
-bool SceneManager::IsAllBlock(const POINT& ptTile)
+bool SceneManager::IsAllBlock(const xs::Point& ptTile)
 {
 	return getSceneMgr().IsAllBlock(ptTile);
 }
 
-void SceneManager::ShowSkillTile(const POINT& ptTile)
+void SceneManager::ShowSkillTile(const xs::Point& ptTile)
 {
 	m_ListSkillTile.push_back(ptTile);
 }

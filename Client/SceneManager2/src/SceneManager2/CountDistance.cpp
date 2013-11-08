@@ -49,7 +49,7 @@ CCountDistance::~CCountDistance(void)
 @param   
 @return  
 */
-int	CCountDistance::Distance(const POINT& ptTile1, const POINT& ptTile2)
+int	CCountDistance::Distance(const xs::Point& ptTile1, const xs::Point& ptTile2)
 {
 	int nW = abs(ptTile1.x - ptTile2.x);
 	int nH = abs(ptTile1.y - ptTile2.y);	
