@@ -2,6 +2,8 @@
 #ifndef __RECT_H__
 #define __RECT_H__
 
+#include "point.h"
+
 namespace xs
 {
 
@@ -68,11 +70,80 @@ struct Rect
         rcIntersect = rc;
         return true;
     }
-    bool ptInRect(const Point& pt)
+    bool ptInRect(const Point& pt) const
     {
         return pt.x >= left && pt.x <= right && pt.y >= top && pt.y <= bottom;
     }
 };
+    
+    //--------------------------
+    
+    inline bool PtInRect(const Rect* rc,Point& pt)
+    {
+        return rc->ptInRect(pt);
+    }
+    
+    inline bool IntersectRect(Rect* rcout,const Rect* rc1,const Rect* rc2)
+    {
+        return rc1->intersect(*rc2,*rcout);
+    }
+    
+    inline bool OffsetRect( Rect* rc,int dx,int dy)
+    {
+        rc->left += dx;
+        rc->right += dx;
+        rc->top += dy;
+        rc->bottom += dy;
+        return true;
+    }
+    
+    inline bool EqualRect(const Rect* rc1,const Rect* rc2)
+    {
+        return *rc1 == *rc2;
+    }
+    
+    inline bool UnionRect(Rect* rcout,const Rect *rc1,const Rect *rc2)
+    {
+        if(rc1->left < rc2->left)
+            rcout->left = rc1->left;
+        else
+            rcout->left = rc2->left;
+        
+        if(rc1->right > rc2->right)
+            rcout->right = rc1->right;
+        else
+            rcout->right = rc2->right;
+        
+        if(rc1->top < rc2->top)
+            rcout->top = rc1->top;
+        else
+            rcout->top = rc2->top;
+        
+        if(rc1->bottom > rc2->bottom)
+            rcout->bottom = rc1->bottom;
+        else
+            rcout->bottom = rc2->bottom;
+        
+        return true;
+    }
+    
+    inline bool SetRect(Rect* rc,int left,int top,int right,int bottom)
+    {
+        rc->left = left;
+        rc->top = top;
+        rc->right = right;
+        rc->bottom = bottom;
+        return true;
+    }
+    
+    inline bool InflateRect( Rect*  rc,int dx,int dy)
+    {
+        rc->left    -= dx;
+        rc->right   += dx;
+        rc->top     -= dy;
+        rc->bottom  += dy;
+        return true;
+    }
 
 }
 #endif //

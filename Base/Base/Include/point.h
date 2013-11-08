@@ -26,6 +26,43 @@ struct Point
     {
         return x != pt.x || y != pt.y;
     }
+    
+    Point& operator+=(const Point& p2)
+    {
+        x += p2.x;
+        y += p2.y;
+        return *this;
+    }
+    
+    Point& operator-=(const Point& p2)
+    {
+        x -= p2.x;
+        y -= p2.y;
+        return *this;
+    }
+    
+    Point& operator/=(const int n)
+    {
+        x /= n;
+        y /= n;
+        return *this;
+    }
+    
+    Point operator + (const Point& p2) const
+    {
+        Point pt(x,y);
+        pt.x += p2.x;
+        pt.y += p2.y;
+        return pt;
+    }
+    
+    Point operator - (const Point& p2) const
+    {
+        Point pt(x,y);
+        pt.x -= p2.x;
+        pt.y -= p2.y;
+        return pt;
+    }
 };
     
 }

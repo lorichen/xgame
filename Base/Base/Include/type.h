@@ -1,6 +1,10 @@
 #ifndef __TYPE__H__
 #define __TYPE__H__
 
+
+#include "point.h"
+#include "rect.h"
+
 typedef unsigned int			uint;
 typedef unsigned char			uchar;
 typedef unsigned short			ushort;
@@ -192,8 +196,15 @@ struct RECT
     long bottom;
 };
 
+struct SIZE
+{
+    long cx;
+    long cy;
+};
+
 typedef RECT* LPRECT;
 
+/*
 struct POINT
 {
     long x;
@@ -274,11 +285,7 @@ struct POINT
 
 };
 
-struct SIZE
-{
-    long cx;
-    long cy;
-};
+
 
 inline bool PtInRect(const RECT* rc,POINT& pt)
 {
@@ -392,6 +399,7 @@ inline bool InflateRect( RECT*  rc,int dx,int dy)
     rc->bottom  += dy;
     return true;
 }
+*/
 
 
 #else   //--------------  win32  -----------------
