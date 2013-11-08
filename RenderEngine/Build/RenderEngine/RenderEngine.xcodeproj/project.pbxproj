@@ -109,7 +109,6 @@
 		18D0B431181E980F005AEEF8 /* ImageCodecPng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B423181E980F005AEEF8 /* ImageCodecPng.cpp */; };
 		18D0B446181E9AE9005AEEF8 /* ImageCodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B435181E9AE9005AEEF8 /* ImageCodec.cpp */; };
 		18D0B447181E9AE9005AEEF8 /* ImageCodecBlp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B436181E9AE9005AEEF8 /* ImageCodecBlp.cpp */; };
-		18D0B449181E9AE9005AEEF8 /* ImageCodecDds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B43A181E9AE9005AEEF8 /* ImageCodecDds.cpp */; };
 		18D0B44A181E9AE9005AEEF8 /* ImageCodecJpg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B43C181E9AE9005AEEF8 /* ImageCodecJpg.cpp */; };
 		18D0B44B181E9AE9005AEEF8 /* ImageCodecPcx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B43E181E9AE9005AEEF8 /* ImageCodecPcx.cpp */; };
 		18D0B44C181E9AE9005AEEF8 /* ImageCodecRaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B440181E9AE9005AEEF8 /* ImageCodecRaw.cpp */; };
@@ -148,6 +147,7 @@
 		18D0B4E118214E39005AEEF8 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C718214E39005AEEF8 /* stdafx.cpp */; };
 		CDDC56FE1822048400622541 /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56FC1822048400622541 /* RenderEngine.cpp */; };
 		CDDC56FF1822048400622541 /* RibbonSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56FD1822048400622541 /* RibbonSystem.cpp */; };
+		CDF8629F182CBA890028C260 /* ImageCodecDds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF8629E182CBA890028C260 /* ImageCodecDds.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +157,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 181BC019181CB08500786855;
 			remoteInfo = RenderEngine;
+		};
+		CDF86260182CAF660028C260 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDF8625B182CAF650028C260 /* squish.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1880D99C182A8B7C001FD16C;
+			remoteInfo = squish;
+		};
+		CDF86262182CAF660028C260 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDF8625B182CAF650028C260 /* squish.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1880D9AC182A8B7C001FD16C;
+			remoteInfo = squishTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -318,7 +332,6 @@
 		18D0B436181E9AE9005AEEF8 /* ImageCodecBlp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecBlp.cpp; path = ../../Src/RenderEngine/ImageCodecBlp.cpp; sourceTree = "<group>"; };
 		18D0B437181E9AE9005AEEF8 /* ImageCodecBlp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecBlp.h; path = ../../Src/RenderEngine/ImageCodecBlp.h; sourceTree = "<group>"; };
 		18D0B439181E9AE9005AEEF8 /* ImageCodecBmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecBmp.h; path = ../../Src/RenderEngine/ImageCodecBmp.h; sourceTree = "<group>"; };
-		18D0B43A181E9AE9005AEEF8 /* ImageCodecDds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecDds.cpp; path = ../../Src/RenderEngine/ImageCodecDds.cpp; sourceTree = "<group>"; };
 		18D0B43B181E9AE9005AEEF8 /* ImageCodecDds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecDds.h; path = ../../Src/RenderEngine/ImageCodecDds.h; sourceTree = "<group>"; };
 		18D0B43C181E9AE9005AEEF8 /* ImageCodecJpg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecJpg.cpp; path = ../../Src/RenderEngine/ImageCodecJpg.cpp; sourceTree = "<group>"; };
 		18D0B43D181E9AE9005AEEF8 /* ImageCodecJpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCodecJpg.h; path = ../../Src/RenderEngine/ImageCodecJpg.h; sourceTree = "<group>"; };
@@ -383,6 +396,8 @@
 		CDF86252182C7A0C0028C260 /* PixelFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PixelFormat.h; path = ../../Include/RenderEngine/PixelFormat.h; sourceTree = "<group>"; };
 		CDF86253182C808B0028C260 /* point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = point.h; path = ../../../Base/Base/Include/point.h; sourceTree = "<group>"; };
 		CDF86254182C808B0028C260 /* rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rect.h; path = ../../../Base/Base/Include/rect.h; sourceTree = "<group>"; };
+		CDF8625B182CAF650028C260 /* squish.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = squish.xcodeproj; path = ../../../Dependence/squish/squish/squish.xcodeproj; sourceTree = "<group>"; };
+		CDF8629E182CBA890028C260 /* ImageCodecDds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCodecDds.cpp; path = ../../Src/RenderEngine/ImageCodecDds.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,6 +426,7 @@
 		181BC011181CB08500786855 = {
 			isa = PBXGroup;
 			children = (
+				CDF8625B182CAF650028C260 /* squish.xcodeproj */,
 				CDF86253182C808B0028C260 /* point.h */,
 				CDF86254182C808B0028C260 /* rect.h */,
 				CDF86252182C7A0C0028C260 /* PixelFormat.h */,
@@ -769,13 +785,13 @@
 		18D0B417181E97FA005AEEF8 /* imagedecode */ = {
 			isa = PBXGroup;
 			children = (
+				CDF8629E182CBA890028C260 /* ImageCodecDds.cpp */,
+				18D0B43B181E9AE9005AEEF8 /* ImageCodecDds.h */,
 				1880D8B618271C82001FD16C /* ImageCodecBmp.cpp */,
 				18D0B439181E9AE9005AEEF8 /* ImageCodecBmp.h */,
 				18D0B450181E9C89005AEEF8 /* ImageCodecSfp.h */,
 				18D0B436181E9AE9005AEEF8 /* ImageCodecBlp.cpp */,
 				18D0B437181E9AE9005AEEF8 /* ImageCodecBlp.h */,
-				18D0B43A181E9AE9005AEEF8 /* ImageCodecDds.cpp */,
-				18D0B43B181E9AE9005AEEF8 /* ImageCodecDds.h */,
 				18D0B43C181E9AE9005AEEF8 /* ImageCodecJpg.cpp */,
 				18D0B43D181E9AE9005AEEF8 /* ImageCodecJpg.h */,
 				18D0B43E181E9AE9005AEEF8 /* ImageCodecPcx.cpp */,
@@ -841,6 +857,15 @@
 			path = Src;
 			sourceTree = "<group>";
 		};
+		CDF8625C182CAF650028C260 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDF86261182CAF660028C260 /* libsquish.a */,
+				CDF86263182CAF660028C260 /* squishTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -898,6 +923,12 @@
 			mainGroup = 181BC011181CB08500786855;
 			productRefGroup = 181BC01B181CB08500786855 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CDF8625C182CAF650028C260 /* Products */;
+					ProjectRef = CDF8625B182CAF650028C260 /* squish.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				181BC019181CB08500786855 /* RenderEngine */,
@@ -905,6 +936,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CDF86261182CAF660028C260 /* libsquish.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libsquish.a;
+			remoteRef = CDF86260182CAF660028C260 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDF86263182CAF660028C260 /* squishTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = squishTests.xctest;
+			remoteRef = CDF86262182CAF660028C260 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		181BC028181CB08500786855 /* Resources */ = {
@@ -936,6 +984,7 @@
 				1880D89F18271BF1001FD16C /* jdhuff.c in Sources */,
 				18D0B468181E9CDB005AEEF8 /* RenderQueue.cpp in Sources */,
 				18D0B45B181E9C89005AEEF8 /* Manager.cpp in Sources */,
+				CDF8629F182CBA890028C260 /* ImageCodecDds.cpp in Sources */,
 				18D0B3FE181E9671005AEEF8 /* _ParticleSystemEmitterPlane.cpp in Sources */,
 				1880D8A118271BF1001FD16C /* jdmainct.c in Sources */,
 				18D0B3BD181E92A0005AEEF8 /* pngwrite.c in Sources */,
@@ -964,7 +1013,6 @@
 				18D0B4D018214E39005AEEF8 /* FTTextureFont.cpp in Sources */,
 				1880D8AA18271BF1001FD16C /* jfdctflt.c in Sources */,
 				18D0B3E0181E92CB005AEEF8 /* compress.c in Sources */,
-				18D0B449181E9AE9005AEEF8 /* ImageCodecDds.cpp in Sources */,
 				18D0B3B0181E92A0005AEEF8 /* pngerror.c in Sources */,
 				18D0B397181E9284005AEEF8 /* jcmainct.c in Sources */,
 				18D0B44E181E9AE9005AEEF8 /* ImageCodecTga.cpp in Sources */,
@@ -1171,11 +1219,12 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../Dependence,
+					../../../Dependence/squish,
 					../../../Base/Base/Include,
 					../../Include,
 					../../Include/RenderEngine,
 					../../../Dependence/freetype,
-					../../../Dependence,
 					../../src/RenderEngine,
 				);
 				OTHER_LDFLAGS = "-ObjC";
@@ -1197,11 +1246,12 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../Dependence,
+					../../../Dependence/squish,
 					../../../Base/Base/Include,
 					../../Include,
 					../../Include/RenderEngine,
 					../../../Dependence/freetype,
-					../../../Dependence,
 					../../src/RenderEngine,
 				);
 				OTHER_LDFLAGS = "-ObjC";

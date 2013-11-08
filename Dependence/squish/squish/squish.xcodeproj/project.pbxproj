@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1880D9A0182A8B7C001FD16C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D99F182A8B7C001FD16C /* Foundation.framework */; };
-		1880D9A5182A8B7C001FD16C /* squish.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1880D9A4182A8B7C001FD16C /* squish.h */; };
-		1880D9A7182A8B7C001FD16C /* squish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880D9A6182A8B7C001FD16C /* squish.m */; };
 		1880D9AE182A8B7C001FD16C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D9AD182A8B7C001FD16C /* XCTest.framework */; };
 		1880D9AF182A8B7C001FD16C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D99F182A8B7C001FD16C /* Foundation.framework */; };
 		1880D9B1182A8B7C001FD16C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D9B0182A8B7C001FD16C /* UIKit.framework */; };
@@ -44,7 +42,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				1880D9A5182A8B7C001FD16C /* squish.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +50,6 @@
 /* Begin PBXFileReference section */
 		1880D99C182A8B7C001FD16C /* libsquish.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsquish.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1880D99F182A8B7C001FD16C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1880D9A4182A8B7C001FD16C /* squish.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = squish.h; sourceTree = "<group>"; };
-		1880D9A6182A8B7C001FD16C /* squish.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = squish.m; sourceTree = "<group>"; };
 		1880D9AC182A8B7C001FD16C /* squishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = squishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1880D9AD182A8B7C001FD16C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		1880D9B0182A8B7C001FD16C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -164,8 +159,6 @@
 		1880D9A1182A8B7C001FD16C /* squish */ = {
 			isa = PBXGroup;
 			children = (
-				1880D9A4182A8B7C001FD16C /* squish.h */,
-				1880D9A6182A8B7C001FD16C /* squish.m */,
 				1880D9A2182A8B7C001FD16C /* Supporting Files */,
 			);
 			path = squish;
@@ -278,7 +271,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1880D9DC182A8BC0001FD16C /* alpha.cpp in Sources */,
-				1880D9A7182A8B7C001FD16C /* squish.m in Sources */,
 				1880D9E4182A8BC0001FD16C /* squish.cpp in Sources */,
 				1880D9E1182A8BC0001FD16C /* maths.cpp in Sources */,
 				1880D9E0182A8BC0001FD16C /* colourset.cpp in Sources */,

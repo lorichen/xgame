@@ -252,7 +252,7 @@ void GroundEyeshot::save(xs::DataChunk *pDataChunk)
 {
 	xs::Stream *pDataStream = 0;
 
-	stdext::hash_map<std::string,int>	mTextures;
+	HASH_MAP_NAMESPACE::hash_map<std::string,int>	mTextures;
 	std::vector<std::string> vTextures;
 	pDataChunk->beginChunk('MTEX',&pDataStream);
 	for(int i = 0;i < m_nTotalGridX;i++)
@@ -380,7 +380,7 @@ void GroundEyeshot::load(xs::Stream* pMapFile)
                 ASSERT(pChunk->m_pData != NULL);
                 BYTE cbFileNameLength = *((BYTE*)(pChunk->m_pData));
                 char* szFileName = new char[cbFileNameLength + 1];
-                memcpy_s(szFileName, cbFileNameLength, (BYTE*)(pChunk->m_pData) + sizeof(BYTE), cbFileNameLength);
+                memcpy(szFileName, (BYTE*)(pChunk->m_pData) + sizeof(BYTE), cbFileNameLength);
                 szFileName[cbFileNameLength] = 0;
                 SetDistanceTexture(szFileName);
 
@@ -523,7 +523,7 @@ void GroundEyeshot::drawTileLine()
 {
 	int nViewTopX = m_Eyeshot.getViewTopX();
 	int nViewTopY = m_Eyeshot.getViewTopY();
-	POINT ktl = {nViewTopX / 64,nViewTopY / 32};
+	POINT ktl(nViewTopX / 64,nViewTopY / 32);
 
 	int col = m_Eyeshot.getViewWidth() / 64 + 2;
 	int row = m_Eyeshot.getViewHeight() / 32 + 2;
@@ -541,8 +541,8 @@ void GroundEyeshot::drawTileLine()
 	int y = -(nViewTopY - ktl.y * 32) - h + 16;
 	for(int i = 0; i < col; i++)
 	{
-		POINT ptFrom = {x,y};
-		POINT ptTo = {x + w, y + h};
+		POINT ptFrom (x,y);
+		POINT ptTo (x + w, y + h);
 		pRenderSystem->sendVertex(Vector3(ptFrom.x,ptFrom.y,-0.998));
 		pRenderSystem->sendVertex(Vector3(ptTo.x,ptTo.y,-0.998));
 		y += 32;
@@ -550,8 +550,8 @@ void GroundEyeshot::drawTileLine()
 
 	for(int i = 0; i < row; i++)
 	{
-		POINT ptFrom = {x,y};
-		POINT ptTo = {x + w, y + h};
+		POINT ptFrom (x,y);
+		POINT ptTo (x + w, y + h);
 
 		pRenderSystem->sendVertex(Vector3(ptFrom.x,ptFrom.y,-0.998));
 		pRenderSystem->sendVertex(Vector3(ptTo.x,ptTo.y,-0.998));
@@ -566,8 +566,8 @@ void GroundEyeshot::drawTileLine()
 
 	for(int i = 0; i < col; i++)
 	{
-		POINT ptFrom = {x,y};
-		POINT ptTo = {x + w, y - h};
+		POINT ptFrom (x,y);
+		POINT ptTo (x + w, y - h);
 
 		pRenderSystem->sendVertex(Vector3(ptFrom.x,ptFrom.y,-0.998));
 		pRenderSystem->sendVertex(Vector3(ptTo.x,ptTo.y,-0.998));
@@ -609,7 +609,7 @@ ITexture* GroundEyeshot::getDefaultTexture()
 
 POINT GroundEyeshot::getViewLeftTop()
 {
-	POINT pt = {m_Eyeshot.getViewTopX(),m_Eyeshot.getViewTopY()};
+	POINT pt (m_Eyeshot.getViewTopX(),m_Eyeshot.getViewTopY());
 	return pt;
 }
 

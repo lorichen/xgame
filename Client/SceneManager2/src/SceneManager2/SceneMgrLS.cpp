@@ -196,7 +196,7 @@ bool SceneMgr::load(GroundEyeshot *pGround,xs::Stream* pStream,IEntityFactory* p
 		pChunk = chunk.nextChunk(pStream);
 	}
 
-	RECT rcRect = {0,0,nMapWidth,nMapHeight};
+	RECT rcRect (0,0,nMapWidth,nMapHeight);
 
 	if(pTileCenter)
 	{

@@ -352,7 +352,7 @@ bool SceneMgr::removeEntity(const POINT& ptTile, EntityView* pEntity)
 	Tile& tile = getTile(ptTile);
 	if (!tile.isValid())
 	{
-		POINT ptOff = {ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y};
+		POINT ptOff (ptTile.x - m_ptTileOrigin.x, ptTile.y - m_ptTileOrigin.y);
 		if (ptOff.x >= 0 && ptOff.x < m_nMatrixWidth && ptOff.y >= 0 && ptOff.y < m_nMatrixHeight)
 		{
 			POINT pt, ptLeftTop, ptTileLeftTop = m_ptTileOrigin;

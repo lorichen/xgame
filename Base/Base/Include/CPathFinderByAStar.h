@@ -36,9 +36,9 @@ template
 
 class CPathFinderByAStar
 {
-	struct stPathNode;
+	//struct stPathNode;
 public:
-    /*
+    
 	struct stPathNode 		  //结点,也就是每个格子
 	{
 		POINT m_PointPos;
@@ -47,7 +47,7 @@ public:
 		int m_nPointvalue;        // 估算代价值 
 		stPathNode *pParent;	  // 父结点指针
 	} ;	
-     */
+    
 	typedef std::multimap<int, int>  OpenTempList;   //open list 	第二个int是ID号 第一个是估算代价值
 	typedef std::set<int>            OpenList;      // //open list 	    第一个int是ID号 第二个是估算代价值
 	typedef std::set<int>            CloseList;      //close list 

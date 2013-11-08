@@ -558,6 +558,10 @@
 					../../Include,
 					../../../../Base/SchemeEngine/Include,
 					../../../Common,
+					../../../EntityClient/Include,
+					../../../Game/Include,
+					../../../TeamClient/Include,
+					../../../ChatClient/Include,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -585,6 +589,10 @@
 					../../Include,
 					../../../../Base/SchemeEngine/Include,
 					../../../Common,
+					../../../EntityClient/Include,
+					../../../Game/Include,
+					../../../TeamClient/Include,
+					../../../ChatClient/Include,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

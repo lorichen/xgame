@@ -2,6 +2,8 @@
 #include "PixelFormat.h"
 #include "ImageCodecDds.h"
 
+#include "squish.h"
+
 namespace xs
 {
 	/**
@@ -239,58 +241,46 @@ namespace xs
 		data.pData = new uchar[ui32ImageDataSize];
 		input->read(data.pData,ui32ImageDataSize);
 
-		//Alpha Info
-		/*data.pTransparenceData = 0;
-		switch(data.format)
+		if(m_trans2rgba)
 		{
-		case PF_DXT1:
+			uchar* pSrc = data.pData;
+			data.flags = 0;
+			
+			int w = data.width;
+			int h = data.height;
+			data.size = 0;
+			
+			PixelFormat desFormat = PF_R8G8B8A8;
+			for(uint i = 0;i < data.num_mipmaps;i++)
 			{
-				bool hasAlpha = false;
-				data.pTransparenceData = new uchar[data.width * data.height];
-				int blockW = (data.width >> 2);
-				int blockH = (data.height >> 2);
-				for(int i = 0;i < blockW;i++)
-				for(int j = 0;j < blockH;j++)
-				{
-					uchar *c = data.pData + ((blockW * j + i) << 3);
-					ushort c0,c1;
-					uint bits;
-					c0 = c[0] + (c[1] << 8);
-					c1 = c[2] + (c[3] << 8);
-					bits = c[4] + ((c[5] + ((c[6] + (c[7] << 8)) << 8)) << 8);
-
-					for(uint k = 0;k < 4;k++)
-					for(uint l = 0;l < 4;l++)
-					{
-						uchar code = ((bits >> (((l << 2) + k) << 1)) & 0x3);
-
-						int w = i * 4 + k;
-						int h = j * 4 + l;
-						if(c0 < c1 && code == 3)
-						{
-							hasAlpha = true;
-							data.pTransparenceData[h * data.width + w] = 0;
-						}
-						else
-						{
-							data.pTransparenceData[h * data.width + w] = 255;
-						}
-					}
-				}
-				if(!hasAlpha)
-				{
-					data.format = PF_RGB_DXT1;
-					delete[] data.pTransparenceData;
-					data.pTransparenceData = 0;
-				}
+				data.size += PixelUtil::getMemorySize(w,h,data.depth,desFormat);
+				w /= 2;
+				h /= 2;
+				if(w == 0)w = 1;
+				if(h == 0)h = 1;
 			}
-			break;
-		case PF_DXT3:
-			break;
-		case PF_DXT5:
-			break;
-		}*/
-
+			data.pData = new uchar[data.size];
+            
+			switch(data.format)
+			{
+                case PF_DXT1:
+                    squish::DecompressImage(data.pData,data.width,data.height,pSrc,squish::kDxt1);
+                    break;
+                    
+                case PF_DXT3:
+                    squish::DecompressImage(data.pData,data.width,data.height,pSrc,squish::kDxt3);
+                    break;
+                    
+                case PF_DXT5:
+                    squish::DecompressImage(data.pData,data.width,data.height,pSrc,squish::kDxt5);
+                    break;
+			}
+            
+			data.format = desFormat;
+            
+			delete []pSrc;
+		}
+        
 		return true;
 	}
 

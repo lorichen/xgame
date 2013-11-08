@@ -81,7 +81,7 @@ struct Rect
 
 //--------------------------
 
-inline bool PtInRect(const xs::Rect* rc,xs::Point& pt)
+inline bool PtInRect(const xs::Rect* rc,xs::Point pt)
 {
     return rc->ptInRect(pt);
 }

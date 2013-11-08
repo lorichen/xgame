@@ -5,6 +5,9 @@
 #include "IEntityClient.h"
 #include "ISceneManager2.h"
 
+
+
+
 extern RunType g_runtype;
 size_t ResourceMinimap::size() const
 {

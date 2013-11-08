@@ -14,6 +14,8 @@ typedef unsigned long			ulong;
 //----------------non win32-------------------------------
 #if (TARGET_PLATFORM != PLATFORM_WIN32)
 
+//#define NULL 0
+
 typedef unsigned long size_t;
 typedef unsigned long size_type;
 
@@ -171,6 +173,7 @@ extern unsigned int GetCurrentThreadId();
 
 #include <math.h>
 #define FLT_MAX 3.40282347e+38F
+#define mem_fun1 mem_fun
 
 
 inline void ZeroMemory(void* p,unsigned int size)
@@ -188,13 +191,7 @@ inline char* strlwr( char* str )
 }
 
 
-struct RECT
-{
-    long left;
-    long top;
-    long right;
-    long bottom;
-};
+
 
 struct SIZE
 {
@@ -202,9 +199,20 @@ struct SIZE
     long cy;
 };
 
-typedef RECT* LPRECT;
+
+
 
 /*
+ 
+ struct RECT
+ {
+    long left;
+    long top;
+    long right;
+    long bottom;
+ };
+ typedef RECT* LPRECT;
+ 
 struct POINT
 {
     long x;
@@ -452,6 +460,8 @@ inline  struct timespec clock_gettime(void)
 //replace POINT RECT
 #define POINT xs::Point
 #define RECT  xs::Rect
+#define LPRECT xs::Rect*
+
 
 
 #endif

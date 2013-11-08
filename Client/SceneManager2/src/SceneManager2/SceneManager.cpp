@@ -6,9 +6,9 @@
 #include "IConfigManager.h"
 #include "IChatClient.h"
 #include "ITeamClient.h"
+#include "DEntityProp.h"
 
 
-//#include <fstream>
 extern RunType g_runtype;
 SceneManager::SceneManager(xs::IResourceManager *pResourceManager)
 {
@@ -169,7 +169,7 @@ int SceneManager::OnDrawOccupant(const POINT& ptTile, Tile* pTile, void* pParam)
 	POINT ptCenter;
 	m_GroundEyeshot.tile2Pixel(ptTile,ptCenter);
 
-	Rect rc;
+    xs::Rect rc;
 	if (pTile->isBlock())
 	{
 		rc.left = 0;
@@ -207,7 +207,7 @@ int SceneManager::OnDrawSortPoint(const POINT& ptTile, EntityView *pEntity)
 	world2Tile(pt2,ptRight);
 	POINT ptCenter;
 	m_GroundEyeshot.tile2Pixel(ptLeft,ptCenter);
-	Rect rc;
+	xs::Rect rc;
 	rc.left = 0;
 	rc.top = 32 * 3;
 	rc.right = rc.left + 64 - 1;
@@ -227,7 +227,7 @@ int SceneManager::OnDrawAnchor(const POINT& ptTile, EntityView *pEntity)
 {
 	POINT ptCenter;
 	m_GroundEyeshot.tile2Pixel(ptTile,ptCenter);
-	Rect rc;
+	xs::Rect rc;
 	rc.left = 0;
 	rc.top = 32 * 5;
 	rc.right = rc.left + 64 - 1;
@@ -286,15 +286,15 @@ bool SceneManager::createScene(int nMapWidth,int nMapHeight,LPRECT lprcViewport)
 
 	createSceneCo(w,h);
 
-	RECT rcTilesPreRead = {0, 0, w, h};
+	RECT rcTilesPreRead (0, 0, w, h);
 	if (!m_Map.create(&m_GroundEyeshot,w, h, rcTilesPreRead,this))
 		return false;
 
 	if (!createGroundEyeshot(0,lprcViewport,0,false))
 		return false;
 
-	RECT rc = {0, 0, w, h};
-	POINT ptPlayerPos = {0, 0};
+	RECT rc(0, 0, w, h);
+	POINT ptPlayerPos (0, 0);
 	if (!m_SceneEyeshot.create(w, h, ptPlayerPos, this,false))
 		return false;
 	if(!m_MinimapEyeshot.create(this,w, h, 1024, 1024,ptPlayerPos,0))
@@ -384,7 +384,8 @@ bool SceneManager::loadScene(
 	if( pProMgr)
 		pProMgr->AdvanceLoadingScenceProgressLength(1);
 
-	CPath path = szFilename;
+	CPath path ;
+    path = szFilename;
 	std::string title = path.getFileTitle();
 	if(!m_MinimapEyeshot.create(this,w,h,1024,1024,ptPlayerPos,m_pResourceManager,title))
 		return false;
@@ -400,7 +401,7 @@ bool SceneManager::loadScene(
 	}
 	else
 	{
-		RECT rc = {0, 0, w, h};
+		RECT rc ( 0, 0, w, h );
 		if(!m_SceneEyeshot.create(w, h, ptPlayerPos, this, bDynamic))
 		{
 			return false;
@@ -1551,7 +1552,7 @@ bool SceneManager::findPathViaWaypoint(POINT ptFrom, POINT ptTo, POINT** ppBuffe
 		vPath.reserve(lPath.size());
 		for(std::list<POINT>::iterator it = lPath.begin();it != lPath.end();++it)
 		{
-			POINT pt = {(*it).x,(*it).y};
+			POINT pt ((*it).x,(*it).y);
 			vPath.push_back(pt);
 		}
 		*ppBuffer = &vPath[0];
@@ -2036,7 +2037,7 @@ void SceneManager::setupMatrix(bool wholeScene)
 		RECT rc = getViewportRect();
 		OffsetRect(&rc,-rc.left,-rc.top);
 
-		POINT ptWorld = {0,0};
+		POINT ptWorld (0,0);
 		POINT ptTile;
 		world2Tile(ptWorld,ptTile);
 		OffsetRect(&rc,((ptTile.y + 1) << 5) + getViewTopLeftX(),(ptTile.y << 4) - (rc.bottom - rc.top) - getViewTopLeftY());
@@ -2049,9 +2050,9 @@ void SceneManager::setupMatrix(bool wholeScene)
 	{
 		uint width = getSceneWidth();
 		uint height = getSceneHeight();
-		RECT rc = {0,0,width,height};
+		RECT rc (0,0,width,height);
 
-		POINT ptWorld = {0,0};
+		POINT ptWorld (0,0);
 		POINT ptTile;
 		world2Tile(ptWorld,ptTile);
 		OffsetRect(&rc,((ptTile.y + 1) << 5),(ptTile.y << 4) - (rc.bottom - rc.top));
@@ -2085,7 +2086,7 @@ void SceneManager::world2Space(const POINT& ptWorld,Vector3& vSpace)
 	Vector3 v;
 	tile2Space(ptTile,v);
 
-	POINT ptDelta = {ptWorld.x - ptW.x,ptWorld.y - ptW.y};
+	POINT ptDelta (ptWorld.x - ptW.x,ptWorld.y - ptW.y);
 	ptDelta.y <<= 1;
 
 	static float sinN45 = Math::Sin(-Math::PI / 4.0f);

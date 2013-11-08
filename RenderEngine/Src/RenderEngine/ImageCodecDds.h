@@ -8,7 +8,8 @@ namespace xs
 	class ImageCodecDds : public ImageCodec
 	{
 	protected:
-		ImageCodecDds(){}
+        bool m_trans2rgba;
+		ImageCodecDds(){m_trans2rgba = true;}
 	public:
 		static ImageCodec*	Instance()
 		{

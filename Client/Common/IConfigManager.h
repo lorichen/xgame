@@ -133,46 +133,46 @@ struct IServerListConfig
 	@param   
 	@param  
 	*/
-	virtual int GetAreaCount(void) = NULL;
+	virtual int GetAreaCount(void) = 0;
 
 	/** 根据分区数量n，使用下标0至n-1获取某分区名字
 	@param  iAreaIndex： 分区下标
 	@param  
 	*/
-	virtual const std::string&  GetAreaName(int iAreaIndex) = NULL;
+	virtual const std::string&  GetAreaName(int iAreaIndex) = 0;
 
 	/** 根据分区数量n，使用下标0至n-1获取某分区下面服务器的数量
 	@param  iAreaIndex： 分区下标
 	@param  
 	*/
-	virtual int GetServerCount(int iAreaIndex) = NULL;
+	virtual int GetServerCount(int iAreaIndex) = 0;
 
 
 	/** 使用下标获取 某分区下面 某服务器的名字
 	@param  iAreaIndex： 分区下标
 	@param  iServerIndex ：服务器下标
 	*/
-	virtual const std::string&  GetServerName(int iAreaIndex, int iServerIndex) = NULL;
+	virtual const std::string&  GetServerName(int iAreaIndex, int iServerIndex) = 0;
 
 
 	//////////////////////////////////////////////////////////////////////////////////
 	/** 被推荐的服务器数量n
 	@param  	@param  
 	*/
-	virtual int GetRecommendedServerCount() = NULL;
+	virtual int GetRecommendedServerCount() = 0;
 
 	/** 根据被推荐的服务器数量n，使用下标0至n-1获取其对应的分区名字
 	@param  iIndex： 分区下标
 	@param  
 	*/
-	virtual const std::string&  GetRecommendedAreaName(int iIndex) = NULL;
+	virtual const std::string&  GetRecommendedAreaName(int iIndex) = 0;
 
 
 	/** 根据被推荐的服务器数量n，使用下标0至n-1获取其对应的服务器的名字
 	@param  iIndex： 下标
 	@param  
 	*/
-	virtual const std::string&  GetRecommendedServerName(int iIndex) = NULL;
+	virtual const std::string&  GetRecommendedServerName(int iIndex) = 0;
 	////////////////////////////////////////////////////////////////////////////////////
 
 	/** 根据分区名字，及服务器名字，定位到某具体的服务器，获取其对外所有网关主机的ip及端口中值最小的那个
@@ -181,7 +181,7 @@ struct IServerListConfig
 	@param  strIpOut： 输出型参数，服务器主机的IP
 	@param  iPortOut ：服务器名称，服务器主机的Port
 	*/
-	virtual bool FindMinHost(const std::string& strAreaName, const std::string &strServerName, std::string &strIpOut, int &iPortOut) = NULL;
+	virtual bool FindMinHost(const std::string& strAreaName, const std::string &strServerName, std::string &strIpOut, int &iPortOut) = 0;
 
 
 	/** 根据分区名字，及服务器名字，定位到某具体的服务器，获取其对外主机的ip及端口,多网关的时候随机返回一个
@@ -190,46 +190,46 @@ struct IServerListConfig
 	@param  strIpOut： 输出型参数，服务器主机的IP
 	@param  iPortOut ：服务器名称，服务器主机的Port
 	*/
-	virtual bool FindHost(const std::string& strAreaName, const std::string &strServerName, std::string &strIpOut, int &iPortOut) = NULL;
+	virtual bool FindHost(const std::string& strAreaName, const std::string &strServerName, std::string &strIpOut, int &iPortOut) = 0;
 
 
 	//////////////////////////////////////////////////////////////////////////////
 	//获取配置的超级中心ip/port
-	virtual void GetSuperCenterHost(std::string &strIpOut, int &iPortOut) = NULL;
+	virtual void GetSuperCenterHost(std::string &strIpOut, int &iPortOut) = 0;
 
 	/** 更新某个服务器的在线人数
 	@param  dwServerAddr： 服务器地址
 	@param  wServerPort ：服务器端口
 	@param  dwOnlineNum： 在线人数
 	*/
-	virtual bool UpdateOnlineNum(DWORD dwServerAddr, WORD wServerPort, DWORD dwOnlineNum) = NULL;
+	virtual bool UpdateOnlineNum(DWORD dwServerAddr, WORD wServerPort, DWORD dwOnlineNum) = 0;
 
 
 	/** 设置服务器列表在线人数已经更新
 	@param  bFlag： 服务器地址
 	*/
-	virtual void SetServerListStatusUpdated(bool bFlag= true) = NULL;
+	virtual void SetServerListStatusUpdated(bool bFlag= true) = 0;
 
 	/** 使用下标获取 某分区下面 某服务器的名字
 	@param  iAreaIndex： 分区下标
 	@param  iServerIndex ：服务器下标
 	*/
-	virtual DWORD   GetServerOnlineNum(int iAreaIndex, int iServerIndex) = NULL;
+	virtual DWORD   GetServerOnlineNum(int iAreaIndex, int iServerIndex) = 0;
 
 	/** 通过分区名 及该分区下面服务器的名字 来获取某服务器的在线人数
 	@param strArea：	地域分区，比如"电信一区"
 	@param strServer：  分区下面的某服务器名称比如"满江红"
 	*/
-	virtual DWORD   GetServerOnlineNumByName(const std::string& strArea, const std::string & strServer) = NULL;
+	virtual DWORD   GetServerOnlineNumByName(const std::string& strArea, const std::string & strServer) = 0;
 
 	/** 通过分区名 及该分区下面服务器的名字 来判断该服务器是否被推荐
 	@param strArea：	地域分区，比如"电信一区"
 	@param strServer：  分区下面的某服务器名称比如"满江红"
 	*/
-	virtual int   CheckServerRecommendedByName(const std::string& strArea, const std::string & strServer) = NULL;
+	virtual int   CheckServerRecommendedByName(const std::string& strArea, const std::string & strServer) = 0;
 	///////////////////////////////////////////////////////////////////////////////
 
 	//删除自己
-	virtual void release(void) = NULL;
+	virtual void release(void) = 0;
 };
 #endif
