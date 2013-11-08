@@ -6,6 +6,8 @@ typedef unsigned char			uchar;
 typedef unsigned short			ushort;
 typedef unsigned long			ulong;
 
+
+//----------------non win32-------------------------------
 #if (TARGET_PLATFORM != PLATFORM_WIN32)
 
 typedef unsigned long size_t;
@@ -403,9 +405,9 @@ using namespace stdext;
 
 #endif
 
+//-------------------------------------------------------
 
-
-
+//just for ios
 #if (TARGET_PLATFORM == PLATFORM_IOS)
 
 #include <CoreFoundation/CFBase.h>

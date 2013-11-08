@@ -2,6 +2,9 @@
 #ifndef __PixelFormat_H__
 #define __PixelFormat_H__
 
+#include "point.h"
+#include "rect.h"
+
 namespace xs 
 {
 	/*! \addtogroup RenderEngine
@@ -133,6 +136,7 @@ namespace xs
 
 	/**
 	*/
+    /*
 	struct _RenderEngineExport Point
 	{
 		int x,y;
@@ -154,9 +158,11 @@ namespace xs
 			return x != pt.x || y != pt.y;
 		}
 	};
+    */
 
 	/** Structure used to define a rectangle in a 2-D integer space.
 	*/
+    /*
 	struct _RenderEngineExport Rect
 	{
 		int left, top, right, bottom;
@@ -225,6 +231,7 @@ namespace xs
 			return pt.x >= left && pt.x <= right && pt.y >= top && pt.y <= bottom;
 		}
 	};
+    */
 
 	/** Structure used to define a box in a 3-D integer space.
 	Note that the left, top, and front edges are included but the right, 
