@@ -381,6 +381,8 @@
 		CDDC56FC1822048400622541 /* RenderEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderEngine.cpp; path = ../../Src/RenderEngine/RenderEngine.cpp; sourceTree = "<group>"; };
 		CDDC56FD1822048400622541 /* RibbonSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RibbonSystem.cpp; path = ../../Src/RenderEngine/RibbonSystem.cpp; sourceTree = "<group>"; };
 		CDF86252182C7A0C0028C260 /* PixelFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PixelFormat.h; path = ../../Include/RenderEngine/PixelFormat.h; sourceTree = "<group>"; };
+		CDF86253182C808B0028C260 /* point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = point.h; path = ../../../Base/Base/Include/point.h; sourceTree = "<group>"; };
+		CDF86254182C808B0028C260 /* rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rect.h; path = ../../../Base/Base/Include/rect.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +411,8 @@
 		181BC011181CB08500786855 = {
 			isa = PBXGroup;
 			children = (
+				CDF86253182C808B0028C260 /* point.h */,
+				CDF86254182C808B0028C260 /* rect.h */,
 				CDF86252182C7A0C0028C260 /* PixelFormat.h */,
 				1881030118269BAA002AF8D8 /* texturemanager */,
 				1881030018269B9E002AF8D8 /* viewport */,

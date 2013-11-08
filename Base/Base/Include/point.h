@@ -8,7 +8,7 @@ namespace xs
     
 struct Point
 {
-    int x,y;
+    long x,y;
     
     Point(){}
     Point(int x,int y) : x(x),y(y){}

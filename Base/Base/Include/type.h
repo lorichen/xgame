@@ -449,5 +449,9 @@ inline  struct timespec clock_gettime(void)
 
 
 
+//replace POINT RECT
+#define POINT xs::Point
+#define RECT  xs::Rect
+
 
 #endif
