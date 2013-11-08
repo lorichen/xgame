@@ -134,6 +134,7 @@
 		1880D976182A88CA001FD16C /* WayPointMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WayPointMgr.cpp; path = ../../src/SceneManager2/WayPointMgr.cpp; sourceTree = "<group>"; };
 		1880D977182A88CA001FD16C /* WayPointMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WayPointMgr.h; path = ../../src/SceneManager2/WayPointMgr.h; sourceTree = "<group>"; };
 		1880D9E5182A8C91001FD16C /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../../../Base/Base/Include/type.h; sourceTree = "<group>"; };
+		18EFA868182D2F8C00A5A7B4 /* ISceneManager2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISceneManager2.h; path = ../../include/ISceneManager2.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +163,7 @@
 		1880D910182A887A001FD16C = {
 			isa = PBXGroup;
 			children = (
+				18EFA868182D2F8C00A5A7B4 /* ISceneManager2.h */,
 				CDF8624B182B7E510028C260 /* scenemanager */,
 				CDF8624A182B7E240028C260 /* pathfinder */,
 				CDF86248182B7DF10028C260 /* minimp */,

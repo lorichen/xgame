@@ -263,8 +263,8 @@ struct SkillEffectContext
 	ulong			id;				/// 效果Id
 	handle			src;			/// 技能效果发起者
 	handle			target;			/// 技能效果承受者，可以为 NULL
-	POINT			ptCenter;		/// 技能效果中心点(施放位置)，对于瞬移类效果，是指瞬移目标瞬移后到达的位置；
-	POINT			ptTarget;		/// 目标点
+    xs::Point			ptCenter;		/// 技能效果中心点(施放位置)，对于瞬移类效果，是指瞬移目标瞬移后到达的位置；
+	xs::Point			ptTarget;		/// 目标点
 	int				loops;			/// 光效循环次数
     //  记录光效的持续时间；
     int nDuration;

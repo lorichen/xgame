@@ -2,6 +2,9 @@
 
 #include "stdafx.h"
 #include "ResPool.h"
+#include "ResourceManager.h"
+
+extern xs::ResourceManager *gResourceManager;
 
 namespace xs {
 

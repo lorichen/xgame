@@ -105,7 +105,7 @@ static int luaA_LoadLua(lua_State * L)
 	const char * sFileName = luaL_checklstring(L, 1, &l);
 	if(sFileName != NULL && g_pLuaEngine != NULL)
 	{
-		return g_pLuaEngine->LoadLuaFile(sFileName);
+		return g_pLuaEngine->LoadLuaFile((char*)sFileName);
 	}
 
 	return false;
@@ -276,7 +276,7 @@ bool CLuaEngine::LoadLuaFile(LPCSTR szLuaFileName)
 
 			delete []pData;
 
-			LPCSTR pszErrInfor = lua_tostring(m_pLuaState, -1);
+			const char* pszErrInfor = lua_tostring(m_pLuaState, -1);
 			Error("[LuaEngine] 载入" << szLuaFileName << "文件失败，失败原因：" << pszErrInfor << endl);
 
 			lua_settop(m_pLuaState, top);
@@ -308,7 +308,7 @@ bool CLuaEngine::LoadLuaFile(LPCSTR szLuaFileName)
 
 		}
 
-		LPCSTR pszErrInfor = lua_tostring(m_pLuaState, -1);
+		const char* pszErrInfor = lua_tostring(m_pLuaState, -1);
 		Error("[LuaEngine] 载入" << szLuaFileName << "文件失败，失败原因：" << pszErrInfor << endl);
 
 		lua_settop(m_pLuaState, top);
@@ -349,7 +349,7 @@ bool CLuaEngine::RunMemoryLua(LPCSTR pLuaData, int nDataLen)
 		}
 	}
 
-	LPCSTR pszErrInfor = lua_tostring(m_pLuaState, -1);
+	const char* pszErrInfor = lua_tostring(m_pLuaState, -1);
 	Error("[LuaEngine] 执行内存lua失败，失败原因：" << pszErrInfor << endl);
 
 	lua_settop(m_pLuaState, top);			
@@ -466,7 +466,7 @@ bool CLuaEngine::RunLuaFunction(LPCSTR szFunName, CLuaParam * pInParam, int nInN
 
 	}
 
-	LPCSTR pszErrInfor = lua_tostring(m_pLuaState, -1);
+	const char* pszErrInfor = lua_tostring(m_pLuaState, -1);
 	Error("[LuaEngine] 调用" << szFunName << "函数失败，失败原因：" << pszErrInfor << endl);
 
 	lua_settop(m_pLuaState, top);
@@ -483,7 +483,7 @@ bool CLuaEngine::RunLuaFunction(LPCSTR szFunName, CLuaParam * pInParam, int nInN
 @warning 
 @retval buffer 
 */
-LPCSTR CLuaEngine::GetLastError(void)
+const char* CLuaEngine::GetLastError(void)
 {
 	return lua_tostring(m_pLuaState, -1);
 }

@@ -86,7 +86,7 @@ public:
 	@warning 
 	@retval buffer 
 	*/
-	virtual LPCSTR			GetLastError(void);
+	virtual const char*			GetLastError(void);
 
 	/** 重置Lua引擎，会重新加载所有脚本
 	@param

@@ -19,6 +19,7 @@
 		1880D904182A7688001FD16C /* ResourceNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D8FF182A7688001FD16C /* ResourceNode.cpp */; };
 		1880D90A182A84BF001FD16C /* LoadResourceThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D907182A84BF001FD16C /* LoadResourceThread.cpp */; };
 		1880D90B182A84BF001FD16C /* ResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1880D908182A84BF001FD16C /* ResourceManager.cpp */; };
+		18EFA863182D29B700A5A7B4 /* ResPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EFA862182D29B700A5A7B4 /* ResPool.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		1880D90D182A86EB001FD16C /* IResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IResourceManager.h; path = ../../Include/IResourceManager.h; sourceTree = "<group>"; };
 		1880D90E182A86EB001FD16C /* LoadResourceThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadResourceThread.h; path = ../../Include/LoadResourceThread.h; sourceTree = "<group>"; };
 		1880D90F182A86EB001FD16C /* ResPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResPool.h; path = ../../Include/ResPool.h; sourceTree = "<group>"; };
+		18EFA862182D29B700A5A7B4 /* ResPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ResPool.cpp; path = ../../Src/ResPool.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		1880D8C9182A760C001FD16C = {
 			isa = PBXGroup;
 			children = (
+				18EFA862182D29B700A5A7B4 /* ResPool.cpp */,
 				1880D90D182A86EB001FD16C /* IResourceManager.h */,
 				1880D90E182A86EB001FD16C /* LoadResourceThread.h */,
 				1880D90F182A86EB001FD16C /* ResPool.h */,
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1880D90A182A84BF001FD16C /* LoadResourceThread.cpp in Sources */,
+				18EFA863182D29B700A5A7B4 /* ResPool.cpp in Sources */,
 				1880D904182A7688001FD16C /* ResourceNode.cpp in Sources */,
 				1880D8DD182A760C001FD16C /* resmanager.m in Sources */,
 				1880D90B182A84BF001FD16C /* ResourceManager.cpp in Sources */,

@@ -204,7 +204,7 @@ struct ILuaEngine
 	@warning 
 	@retval buffer 
 	*/
-	virtual LPCSTR			GetLastError(void) = 0;
+	virtual const char*			GetLastError(void) = 0;
 
 	/** 重置Lua引擎，会重新加载所有脚本
 	@param

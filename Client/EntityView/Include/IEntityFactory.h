@@ -47,11 +47,11 @@ struct FlowTextContext
 		ulong		effectTime;	/// 动画效果时间，这个时间一般很短，针对字体的放大缩小
 	};
 
-	POINT		pos;		/// 初始位置(根据align而填写)
+	xs::Point		pos;		/// 初始位置(根据align而填写)
 	
     //hide by kevin.chen 
     //union{
-		POINT           posOffset;	/// 相对初始位置的偏移量
+		xs::Point           posOffset;	/// 相对初始位置的偏移量
 		struct{
 			float		v0_x;		/// x方向上的初始速度
 			float		v0_y;		/// y方向上的初始速度
@@ -147,7 +147,7 @@ struct IEntityFactory
 	@param effId	是EffectView.xls脚本中定义的Buff效果id
 	*/
 	virtual bool createBuffEffect(EntityView* view, ulong effId) = 0;
-	virtual bool createEffect(ulong effId, const POINT& ptTile) = 0;
+	virtual bool createEffect(ulong effId, const xs::Point& ptTile) = 0;
 
 	/** 关闭Buff效果
 	@param view		拥有该Buff效果的EntityView对象

@@ -46,7 +46,6 @@
 /* Begin PBXFileReference section */
 		CDF86215182B78A80028C260 /* libschemengine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libschemengine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF86218182B78A80028C260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		CDF8621C182B78A80028C260 /* schemengine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "schemengine-Prefix.pch"; sourceTree = "<group>"; };
 		CDF8621D182B78A80028C260 /* schemengine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = schemengine.h; sourceTree = "<group>"; };
 		CDF8621F182B78A80028C260 /* schemengine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = schemengine.m; sourceTree = "<group>"; };
 		CDF86225182B78A80028C260 /* schemengineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = schemengineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +133,6 @@
 		CDF8621B182B78A80028C260 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CDF8621C182B78A80028C260 /* schemengine-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -443,6 +441,7 @@
 				CDF8623A182B78A80028C260 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CDF8623B182B78A80028C260 /* Build configuration list for PBXNativeTarget "schemengineTests" */ = {
 			isa = XCConfigurationList;
@@ -451,6 +450,7 @@
 				CDF8623D182B78A80028C260 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

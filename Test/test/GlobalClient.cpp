@@ -42,9 +42,9 @@ static DWORD g_startTick,g_endTick;
 #define CREATE_ERROR()		//myosb<<"Failed LastError=" << GetLastError() <<endl;Error(myosb.c_str())
 #define CREATE_SUCCESS()	g_endTick = getTickCount(); myosb<<"OK, timing " << (g_endTick - g_startTick) << "ms"<<endl;Trace(myosb.c_str())
 
-#if (TARGET_PLATFORM != PLATFORM_WIN32)
-extern bool GetClientRect(HWND hwnd,RECT* rc); 
-#endif
+
+#include "Api.h"
+
 
 // TODO 下面的Trace用于调试信息显示，需要删除
 class ScreenTrace : public TraceListener
@@ -610,8 +610,8 @@ bool GlobalClient::init3D(void* hwnd)
 	RenderEngineCreationParameters params;
 	params.hwnd = hwnd;
 
-	RECT rc;
-	GetClientRect((HWND)hwnd, &rc);
+    xs::Rect rc;
+	GetClientRect((void*)hwnd, &rc);
 	params.w = rc.right - rc.left;
 	params.h = rc.bottom - rc.top;
 	params.colorDepth = 32;
@@ -628,7 +628,7 @@ bool GlobalClient::init3D(void* hwnd)
 		return false;
 	}
 
-	GetClientRect((HWND)params.hwnd, &rc);
+	GetClientRect((void*)params.hwnd, &rc);
 	// 获取渲染系统
 	IRenderSystem* renderSystem = mRenderEngine->getRenderSystem();
 
@@ -903,7 +903,7 @@ bool GlobalClient::ResetCompentsForSelectActor(void)
 
 	// 资源管理器
 	CREATE_BEGIN("CreateResourceManager..........");
-	if ((mResourceManager = CreateResourceManagerProc(1)) == NULL)
+	if ((mResourceManager = CreateResourceManagerProc(0)) == NULL)
 	{
 		CREATE_ERROR();
 		return false;
@@ -1044,6 +1044,7 @@ bool GlobalClient::ResetCompentsForSelectActor(void)
 	}
 	CREATE_SUCCESS();
 
+    /*
 	//声音控制器
 	CREATE_BEGIN("CreateAudioEngine..............");
 	if ((mAudioEngine = CreateAudioEngineProc(32,32)) == NULL)
@@ -1052,6 +1053,7 @@ bool GlobalClient::ResetCompentsForSelectActor(void)
 		return false;
 	}
 	CREATE_SUCCESS();
+     */
 /*
 	// 技能管理器
 	CREATE_BEGIN("CreateSkillManager.............");

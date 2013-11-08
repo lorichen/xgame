@@ -86,7 +86,7 @@ void RenderTarget::_DestoryIOS()
     
 }
 
-void RenderTarget::GetClientRect(RECT* rc)
+void RenderTarget::GetClientRect(xs::Rect* rc)
 {
     CAEAGLLayer *eaglLayer = (CAEAGLLayer *)(m_pContext->view.layer);
     CGSize					newSize;

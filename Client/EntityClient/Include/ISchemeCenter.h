@@ -698,7 +698,7 @@ struct SAreaAudioConfig
 	int            nMusicID; 
 	int            nMusicType;      // 声音类型
 	int            nLoop;           // 循环次数    
-	RECT	       rectArea;		// 矩型坐标
+    xs::Rect	       rectArea;		// 矩型坐标
 };
 
 //Creature.xml
@@ -1040,7 +1040,7 @@ struct ISchemeCenter
 	//@param   
 	//@return  
 	//*/
-	virtual bool                 GetAreaAudioMusicID(int lMapID,POINT pt,int &nMusicID,int &nMusicType,int &nLoopType) = 0;
+	virtual bool                 GetAreaAudioMusicID(int lMapID,xs::Point pt,int &nMusicID,int &nMusicType,int &nLoopType) = 0;
 
 	/** 取得初始仇恨
 	@param   nSelfCampID ：自已的阵营ID

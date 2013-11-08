@@ -26,6 +26,8 @@
 		188101701824A91D002AF8D8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881016E1824A91D002AF8D8 /* ViewController.m */; };
 		1881017B1825F5CE002AF8D8 /* libRenderSystemGLES2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188101771824B19B002AF8D8 /* libRenderSystemGLES2.a */; };
 		188101851825FB8E002AF8D8 /* libmath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188101821825FB88002AF8D8 /* libmath.a */; };
+		18EFA8F4182D342900A5A7B4 /* libluaengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA8F1182D340C00A5A7B4 /* libluaengine.a */; };
+		18EFA8F5182D342900A5A7B4 /* libschemengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA8E8182D338F00A5A7B4 /* libschemengine.a */; };
 		CDF861F6182A15010028C260 /* libmodel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF861F3182A14E70028C260 /* libmodel.a */; };
 		CDF861FF182B2CB40028C260 /* app_wrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF861FD182B2CB40028C260 /* app_wrap.cpp */; };
 		CDF86284182CAFA70028C260 /* libresmanager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF86278182CAF870028C260 /* libresmanager.a */; };
@@ -112,6 +114,34 @@
 			remoteGlobalIDString = 18F8E0AE181C11B900E96D41;
 			remoteInfo = baseTests;
 		};
+		18EFA8E7182D338F00A5A7B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CDF86215182B78A80028C260;
+			remoteInfo = schemengine;
+		};
+		18EFA8E9182D338F00A5A7B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CDF86225182B78A80028C260;
+			remoteInfo = schemengineTests;
+		};
+		18EFA8F0182D340C00A5A7B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18EFA8A4182D314800A5A7B4;
+			remoteInfo = luaengine;
+		};
+		18EFA8F2182D340C00A5A7B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18EFA8B4182D314800A5A7B4;
+			remoteInfo = luaengineTests;
+		};
 		CDF861F2182A14E70028C260 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CDF861ED182A14E70028C260 /* model.xcodeproj */;
@@ -182,6 +212,8 @@
 		188101711824B19B002AF8D8 /* RenderSystemGLES2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RenderSystemGLES2.xcodeproj; path = ../../RenderEngine/Build/RenderSystemGLES2/RenderSystemGLES2.xcodeproj; sourceTree = "<group>"; };
 		1881017C1825FB87002AF8D8 /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = ../../RenderEngine/Build/math/math.xcodeproj; sourceTree = "<group>"; };
 		18810192182623AA002AF8D8 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../Base/Base/Build/base/base.xcodeproj; sourceTree = "<group>"; };
+		18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = schemengine.xcodeproj; path = ../../Base/SchemeEngine/Build/schemengine/schemengine.xcodeproj; sourceTree = "<group>"; };
+		18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = luaengine.xcodeproj; path = ../../Base/LuaEngine/Build/luaengine/luaengine.xcodeproj; sourceTree = "<group>"; };
 		CDF861ED182A14E70028C260 /* model.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = model.xcodeproj; path = ../../RenderEngine/Build/model/model.xcodeproj; sourceTree = "<group>"; };
 		CDF861FD182B2CB40028C260 /* app_wrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = app_wrap.cpp; sourceTree = SOURCE_ROOT; };
 		CDF861FE182B2CB40028C260 /* app_wrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_wrap.h; sourceTree = SOURCE_ROOT; };
@@ -197,6 +229,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EFA8F4182D342900A5A7B4 /* libluaengine.a in Frameworks */,
+				18EFA8F5182D342900A5A7B4 /* libschemengine.a in Frameworks */,
 				CDF86287182CAFA70028C260 /* libsquish.a in Frameworks */,
 				CDF86284182CAFA70028C260 /* libresmanager.a in Frameworks */,
 				CDF86285182CAFA70028C260 /* libscenemanager2.a in Frameworks */,
@@ -246,6 +280,8 @@
 		188101301824A892002AF8D8 = {
 			isa = PBXGroup;
 			children = (
+				18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */,
+				18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */,
 				CDF8627B182CAF9E0028C260 /* scenemanager2.xcodeproj */,
 				CDF86272182CAF870028C260 /* resmanager.xcodeproj */,
 				CDF861ED182A14E70028C260 /* model.xcodeproj */,
@@ -357,6 +393,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		18EFA8D3182D338F00A5A7B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18EFA8E8182D338F00A5A7B4 /* libschemengine.a */,
+				18EFA8EA182D338F00A5A7B4 /* schemengineTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18EFA8EC182D340C00A5A7B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18EFA8F1182D340C00A5A7B4 /* libluaengine.a */,
+				18EFA8F3182D340C00A5A7B4 /* luaengineTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CDF861EE182A14E70028C260 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +510,10 @@
 					ProjectRef = 18810192182623AA002AF8D8 /* base.xcodeproj */;
 				},
 				{
+					ProductGroup = 18EFA8EC182D340C00A5A7B4 /* Products */;
+					ProjectRef = 18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */;
+				},
+				{
 					ProductGroup = 1881017D1825FB87002AF8D8 /* Products */;
 					ProjectRef = 1881017C1825FB87002AF8D8 /* math.xcodeproj */;
 				},
@@ -482,6 +540,10 @@
 				{
 					ProductGroup = CDF8627C182CAF9E0028C260 /* Products */;
 					ProjectRef = CDF8627B182CAF9E0028C260 /* scenemanager2.xcodeproj */;
+				},
+				{
+					ProductGroup = 18EFA8D3182D338F00A5A7B4 /* Products */;
+					ProjectRef = 18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -561,6 +623,34 @@
 			fileType = wrapper.cfbundle;
 			path = baseTests.xctest;
 			remoteRef = 18810199182623AA002AF8D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		18EFA8E8182D338F00A5A7B4 /* libschemengine.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libschemengine.a;
+			remoteRef = 18EFA8E7182D338F00A5A7B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		18EFA8EA182D338F00A5A7B4 /* schemengineTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = schemengineTests.xctest;
+			remoteRef = 18EFA8E9182D338F00A5A7B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		18EFA8F1182D340C00A5A7B4 /* libluaengine.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libluaengine.a;
+			remoteRef = 18EFA8F0182D340C00A5A7B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		18EFA8F3182D340C00A5A7B4 /* luaengineTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = luaengineTests.xctest;
+			remoteRef = 18EFA8F2182D340C00A5A7B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CDF861F3182A14E70028C260 /* libmodel.a */ = {

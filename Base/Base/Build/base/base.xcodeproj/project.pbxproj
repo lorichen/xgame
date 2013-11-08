@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18EFA865182D2B4C00A5A7B4 /* Api.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18EFA864182D2B4C00A5A7B4 /* Api.mm */; };
+		18EFA867182D2F4100A5A7B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA866182D2F4100A5A7B4 /* UIKit.framework */; };
 		18F8E0A2181C11B900E96D41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8E0A1181C11B900E96D41 /* Foundation.framework */; };
 		18F8E0A7181C11B900E96D41 /* base.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18F8E0A6181C11B900E96D41 /* base.h */; };
 		18F8E0A9181C11B900E96D41 /* base.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E0A8181C11B900E96D41 /* base.m */; };
@@ -119,6 +121,8 @@
 		18D0B364181E6F68005AEEF8 /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base.h; path = ../../Include/Base.h; sourceTree = "<group>"; };
 		18D0B365181E6F88005AEEF8 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Common.h; path = ../../Include/Common.h; sourceTree = "<group>"; };
 		18D0B48818214B3B005AEEF8 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../Include/type.h; sourceTree = "<group>"; };
+		18EFA864182D2B4C00A5A7B4 /* Api.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Api.mm; path = ../../Src/Api.mm; sourceTree = "<group>"; };
+		18EFA866182D2F4100A5A7B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18F8E09E181C11B900E96D41 /* libbase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F8E0A1181C11B900E96D41 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		18F8E0A5181C11B900E96D41 /* base-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "base-Prefix.pch"; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EFA867182D2F4100A5A7B4 /* UIKit.framework in Frameworks */,
 				18F8E0A2181C11B900E96D41 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +270,7 @@
 		18F8E095181C11B800E96D41 = {
 			isa = PBXGroup;
 			children = (
+				18EFA864182D2B4C00A5A7B4 /* Api.mm */,
 				CD7824171828A02300D0E295 /* profile.cpp */,
 				CD78241518289F7D00D0E295 /* PerfProf.cpp */,
 				CDDC5701182237E000622541 /* LockFree.h */,
@@ -324,6 +330,7 @@
 		18F8E0A0181C11B900E96D41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18EFA866182D2F4100A5A7B4 /* UIKit.framework */,
 				18F8E0A1181C11B900E96D41 /* Foundation.framework */,
 				18F8E0AF181C11B900E96D41 /* XCTest.framework */,
 				18F8E0B2181C11B900E96D41 /* UIKit.framework */,
@@ -558,6 +565,7 @@
 				18F8E149181C12EF00E96D41 /* lobject.c in Sources */,
 				18F8E0E8181C12CC00E96D41 /* Api.cpp in Sources */,
 				18F8E156181C12EF00E96D41 /* tolua_event.c in Sources */,
+				18EFA865182D2B4C00A5A7B4 /* Api.mm in Sources */,
 				18F8E145181C12EF00E96D41 /* llex.c in Sources */,
 				18F8E151181C12EF00E96D41 /* ltests.c in Sources */,
 				18F8E101181C12CC00E96D41 /* tinyxmlparser.cpp in Sources */,
@@ -718,6 +726,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/base.dst;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -742,6 +751,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/base.dst;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
