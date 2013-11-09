@@ -747,15 +747,15 @@ namespace xs
 		m_eglDisplay = eglGetDisplay(m_hDC);
 		if(m_eglDisplay == EGL_NO_DISPLAY)
 			m_eglDisplay = eglGetDisplay((EGLNativeDisplayType) EGL_DEFAULT_DISPLAY);
-		TestGLError("eglGetDisplay");
+		//TestGLError("eglGetDisplay");
 
 		EGLint iMajorVersion, iMinorVersion;
 		if (!eglInitialize(m_eglDisplay, &iMajorVersion, &iMinorVersion))
 			return false;
-		TestGLError("eglInitialize");
+		//TestGLError("eglInitialize");
 
 		eglBindAPI(EGL_OPENGL_ES_API);
-		TestGLError("eglBindAPI");
+		//TestGLError("eglBindAPI");
 
 		const EGLint pi32ConfigAttribs[] =
 		{

@@ -38,4 +38,5 @@ lib/*
 
 #test path
 Test/test/pctest/Release/*
+Dependence/Lib/squish.lib
 
