@@ -45,11 +45,7 @@ namespace xs
 	protected:
 		FontManager();
 	public:
-		static FontManager*	Instance()
-		{
-			static FontManager fm;
-			return &fm;
-		}
+		static FontManager*	Instance();
 		~FontManager();
 	private:
 		FontString		m_fs;

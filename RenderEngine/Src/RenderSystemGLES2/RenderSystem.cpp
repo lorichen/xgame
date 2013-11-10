@@ -2056,7 +2056,9 @@ namespace xs
 
 	void		RenderSystem::setLight(ushort unit,Light* pLight)
 	{
-		assert(0);
+        //assert(0);
+        printf("\n RenderSystem::setLight!!!  %d",unit);
+		
 
 		/*
 		GLenum light = GL_LIGHT0 + unit;
@@ -2209,8 +2211,10 @@ namespace xs
 		float shininess)
 	{
 		m_surfaceDiffuse = diffuse;
-		assert(0);
-		/*
+		//assert(0);
+		printf("\n RenderSystem::setSurfaceParams");
+        
+        /*
 		GLfloat f4val[4] = {diffuse.r,diffuse.g,diffuse.b,diffuse.a};
 		glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,f4val);
 		f4val[0] = ambient.r;

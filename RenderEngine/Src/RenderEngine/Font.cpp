@@ -124,6 +124,8 @@ namespace xs
 		{
 		case FontType_GDI:
 			{
+                assert(0);
+                return false;
 				/*
 				GDITextureFont* pGDIFont = new GDITextureFont();
 				if( !pGDIFont->create(pRenderSystem, wszFontPath.c_wstr(), size) )
@@ -136,11 +138,14 @@ namespace xs
 					m_pFTFont = pGDIFont;
 				}
 				*/
-				return 0;
+				
 			}
 			break;
 		case FontType_PIX:
 			{
+                assert(0);
+                return false;
+                /*
 				PixTextureFont* pPixFont = new PixTextureFont();
 				if( !pPixFont->create(pRenderSystem, wszFontPath.c_wstr(), size) )
 				{
@@ -151,6 +156,7 @@ namespace xs
 				{
 					m_pFTFont = pPixFont;
 				}
+                */
 			}
 			break;
 		default:
@@ -313,7 +319,7 @@ namespace xs
 		string[1] = 0;
 		return getAdvance(string);
 	}
-
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	//add by yhc
 	//文字效果
 	//颜色渐变
@@ -351,6 +357,7 @@ namespace xs
 	{
 		m_pFTFont->Extrude(Gdiplus::Color(color.val[3]*255,color.val[0],color.val[1],color.val[2]),nThickness,Gdiplus::Point(nOffsetX,nOffsetY));
 	}
+#endif
 
 	//预初始化一些常用字
 	void Font::InitText(wchar_t *pStr)

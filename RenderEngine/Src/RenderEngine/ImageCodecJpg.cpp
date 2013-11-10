@@ -2,8 +2,11 @@
 #include "PixelFormat.h"
 #include "ImageCodecJpg.h" 
 
-#include "IJG/jconfig.h"
-#include "IJG/cdjpeg.h"
+extern "C"
+{
+    #include "IJG/jconfig.h"
+    #include "IJG/cdjpeg.h"
+}
 
 namespace xs
 {

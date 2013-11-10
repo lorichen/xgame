@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1880D8D6182A760C001FD16C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D8D5182A760C001FD16C /* Foundation.framework */; };
-		1880D8DB182A760C001FD16C /* resmanager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1880D8DA182A760C001FD16C /* resmanager.h */; };
-		1880D8DD182A760C001FD16C /* resmanager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880D8DC182A760C001FD16C /* resmanager.m */; };
 		1880D8E4182A760C001FD16C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D8E3182A760C001FD16C /* XCTest.framework */; };
 		1880D8E5182A760C001FD16C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D8D5182A760C001FD16C /* Foundation.framework */; };
 		1880D8E7182A760C001FD16C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D8E6182A760C001FD16C /* UIKit.framework */; };
@@ -39,7 +37,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				1880D8DB182A760C001FD16C /* resmanager.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,8 +45,6 @@
 /* Begin PBXFileReference section */
 		1880D8D2182A760C001FD16C /* libresmanager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libresmanager.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1880D8D5182A760C001FD16C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1880D8DA182A760C001FD16C /* resmanager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resmanager.h; sourceTree = "<group>"; };
-		1880D8DC182A760C001FD16C /* resmanager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = resmanager.m; sourceTree = "<group>"; };
 		1880D8E2182A760C001FD16C /* resmanagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = resmanagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1880D8E3182A760C001FD16C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		1880D8E6182A760C001FD16C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -137,8 +132,6 @@
 		1880D8D7182A760C001FD16C /* resmanager */ = {
 			isa = PBXGroup;
 			children = (
-				1880D8DA182A760C001FD16C /* resmanager.h */,
-				1880D8DC182A760C001FD16C /* resmanager.m */,
 				1880D8D8182A760C001FD16C /* Supporting Files */,
 			);
 			path = resmanager;
@@ -253,7 +246,6 @@
 				1880D90A182A84BF001FD16C /* LoadResourceThread.cpp in Sources */,
 				18EFA863182D29B700A5A7B4 /* ResPool.cpp in Sources */,
 				1880D904182A7688001FD16C /* ResourceNode.cpp in Sources */,
-				1880D8DD182A760C001FD16C /* resmanager.m in Sources */,
 				1880D90B182A84BF001FD16C /* ResourceManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

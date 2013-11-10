@@ -444,20 +444,22 @@ list<string> * CSchemeEngine::GetDynamicSchemeFileName(void)
 @param
 @return  
 */
-API_EXPORT ISchemeEngine * LoadSEM(void)
-{
-	// 如果创建了，则直接返回
-	if(g_pSchemeEngine != NULL)
-	{
-		return g_pSchemeEngine;
-	}
-
-	// 实例化声音引擎
-	g_pSchemeEngine = new CSchemeEngine();
-	if(g_pSchemeEngine == NULL)
-	{
-		return NULL;
-	}	
-
-	return g_pSchemeEngine;
+namespace  xs {
+    extern "C" API_EXPORT ISchemeEngine * LoadSEM(void)
+    {
+        // 如果创建了，则直接返回
+        if(g_pSchemeEngine != NULL)
+        {
+            return g_pSchemeEngine;
+        }
+        
+        // 实例化声音引擎
+        g_pSchemeEngine = new CSchemeEngine();
+        if(g_pSchemeEngine == NULL)
+        {
+            return NULL;
+        }	
+        
+        return g_pSchemeEngine;
+    }
 }

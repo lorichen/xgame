@@ -605,6 +605,7 @@ IFont* GlobalClient::getFont(int type) const
 }
 
 
+
 bool GlobalClient::init3D(void* hwnd)
 {
 	RenderEngineCreationParameters params;
@@ -622,7 +623,8 @@ bool GlobalClient::init3D(void* hwnd)
 
 	// ¥¥Ω®‰÷»æ“˝«Ê
 	mRenderEngine = LoadRenderEngine(&params);
-	if (!mRenderEngine)
+
+    if (!mRenderEngine)
 	{
 		Error("[3D]Create render engine failed"<<endl);
 		return false;

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		18EFA865182D2B4C00A5A7B4 /* Api.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18EFA864182D2B4C00A5A7B4 /* Api.mm */; };
-		18EFA867182D2F4100A5A7B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA866182D2F4100A5A7B4 /* UIKit.framework */; };
 		18F8E0A2181C11B900E96D41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F8E0A1181C11B900E96D41 /* Foundation.framework */; };
 		18F8E0A7181C11B900E96D41 /* base.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 18F8E0A6181C11B900E96D41 /* base.h */; };
 		18F8E0A9181C11B900E96D41 /* base.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8E0A8181C11B900E96D41 /* base.m */; };
@@ -118,6 +117,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		18C14DF1182E191500BF6D69 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		18C14DF3182E197A00BF6D69 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		18C14DF5182E70E100BF6D69 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		18D0B364181E6F68005AEEF8 /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base.h; path = ../../Include/Base.h; sourceTree = "<group>"; };
 		18D0B365181E6F88005AEEF8 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Common.h; path = ../../Include/Common.h; sourceTree = "<group>"; };
 		18D0B48818214B3B005AEEF8 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = type.h; path = ../../Include/type.h; sourceTree = "<group>"; };
@@ -248,7 +250,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18EFA867182D2F4100A5A7B4 /* UIKit.framework in Frameworks */,
 				18F8E0A2181C11B900E96D41 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +331,9 @@
 		18F8E0A0181C11B900E96D41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18C14DF5182E70E100BF6D69 /* QuartzCore.framework */,
+				18C14DF3182E197A00BF6D69 /* OpenGLES.framework */,
+				18C14DF1182E191500BF6D69 /* CoreGraphics.framework */,
 				18EFA866182D2F4100A5A7B4 /* UIKit.framework */,
 				18F8E0A1181C11B900E96D41 /* Foundation.framework */,
 				18F8E0AF181C11B900E96D41 /* XCTest.framework */,
@@ -727,6 +731,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
 				DSTROOT = /tmp/base.dst;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -752,6 +757,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
 				DSTROOT = /tmp/base.dst;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

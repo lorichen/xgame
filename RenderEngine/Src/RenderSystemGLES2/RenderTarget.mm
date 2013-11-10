@@ -88,6 +88,7 @@ void RenderTarget::_DestoryIOS()
 
 void RenderTarget::GetClientRect(xs::Rect* rc)
 {
+#if 1
     CAEAGLLayer *eaglLayer = (CAEAGLLayer *)(m_pContext->view.layer);
     CGSize					newSize;
     newSize = [eaglLayer bounds].size;
@@ -96,6 +97,11 @@ void RenderTarget::GetClientRect(xs::Rect* rc)
     rc->top = 0;
     rc->right = 2 * newSize.width;
     rc->bottom = 2 * newSize.height;
+#else
+    xs::GetClientRect(m_pContext->view, rc);
+    rc->right *= 2;
+    rc->bottom *= 2;
+#endif
 }
 
 void* RenderTarget::getView()

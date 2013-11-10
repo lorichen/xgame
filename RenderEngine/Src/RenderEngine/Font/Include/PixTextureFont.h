@@ -45,7 +45,7 @@ namespace xs
 
 		//描边效果
 		void effectGlyphToBuffer (CharTextureInfo * pInfo,wchar_t  szText,DWORD dwSize);
-
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		//颜色渐变
 		virtual void GradientText(Color color1,Color color2) {}
 
@@ -71,7 +71,7 @@ namespace xs
 
 		//突出字,阴影在后
 		virtual void Extrude(Gdiplus::Color color, int nThickness,Gdiplus::Point ptOffset) {}
-
+#endif
 
 		virtual void  RenderByScale(const wchar_t* c,float fScale) {}
 
@@ -89,6 +89,7 @@ namespace xs
 
 		//是否描边
 		bool m_bOutline;
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		HDC m_hdc;
 		HFONT m_hFont;
 		TEXTMETRIC m_textmetric;
@@ -96,7 +97,7 @@ namespace xs
 		Gdiplus::Color fontcolor;
 		//描边颜色
 		Gdiplus::Color effectcolor;
-
+#endif
 	private:
 		//保存已渲染过的字符的纹理信息
 		typedef std::map<wchar_t,CharTextureInfo>		FontTexture;

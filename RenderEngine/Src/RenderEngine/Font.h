@@ -65,6 +65,8 @@ namespace xs
 		virtual FontRenderDirection setRenderDirection( FontRenderDirection rd)= 0;
 		virtual float setFontGap( float gap)= 0;
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+        //hide gdiplus for windows by kevin.chen
 		//颜色渐变
 		virtual void GradientText(Color color1,Color color2)= 0;
 
@@ -96,7 +98,7 @@ namespace xs
 			Gdiplus::Color color, 
 			int nThickness,
 			Gdiplus::Point ptOffset)= 0;
-
+#endif
 		//预初始化一些常用字
 		virtual void InitText(wchar_t *pStr) = 0;
 	
@@ -252,6 +254,7 @@ namespace xs
 		*/
 		virtual float setFontGap( float gap);
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		//add by yhc
 		//文字效果
 		//颜色渐变
@@ -268,7 +271,7 @@ namespace xs
 		virtual void DiffusedShadow(ColorValue& color, int nThickness,int nOffsetX,int nOffsetY);
 		//突出字,阴影在后
 		virtual void Extrude(ColorValue& color, int nThickness,int nOffsetX,int nOffsetY);
-
+#endif
 		virtual void  render2dByScale(float xx,float yy,float zz,const ColorValue& color,const wchar_t* pText,float fScale);
 
 		//预初始化一些常用字

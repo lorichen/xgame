@@ -50,6 +50,6 @@ namespace xs
 		ImageCodec::registerCodec(ImageCodecPng::Instance());
 		ImageCodec::registerCodec(ImageCodecPcx::Instance());
 		ImageCodec::registerCodec(ImageCodecRaw::Instance());
-		ImageCodec::registerCodec(ImageCodecSfp::Instance());
+		//ImageCodec::registerCodec(ImageCodecSfp::Instance());
 	}
 }

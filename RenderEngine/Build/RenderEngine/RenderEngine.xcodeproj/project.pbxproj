@@ -87,7 +87,6 @@
 		18D0B3E4181E92CB005AEEF8 /* inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3CD181E92CB005AEEF8 /* inffast.c */; };
 		18D0B3E5181E92CB005AEEF8 /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3D0181E92CB005AEEF8 /* inflate.c */; };
 		18D0B3E6181E92CB005AEEF8 /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3D2181E92CB005AEEF8 /* inftrees.c */; };
-		18D0B3E7181E92CB005AEEF8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3D5181E92CB005AEEF8 /* Makefile */; };
 		18D0B3E8181E92CB005AEEF8 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3D8181E92CB005AEEF8 /* trees.c */; };
 		18D0B3E9181E92CB005AEEF8 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3DA181E92CB005AEEF8 /* uncompr.c */; };
 		18D0B3EA181E92CB005AEEF8 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B3DE181E92CB005AEEF8 /* zutil.c */; };
@@ -145,6 +144,8 @@
 		18D0B4DE18214E39005AEEF8 /* PixelFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */; };
 		18D0B4E018214E39005AEEF8 /* RenderEngineDll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C618214E39005AEEF8 /* RenderEngineDll.cpp */; };
 		18D0B4E118214E39005AEEF8 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B4C718214E39005AEEF8 /* stdafx.cpp */; };
+		18EFA912182E0C1B00A5A7B4 /* FontManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EFA910182E0C1B00A5A7B4 /* FontManager.cpp */; };
+		18EFA914182E0CDD00A5A7B4 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EFA913182E0CDD00A5A7B4 /* Font.cpp */; };
 		CDDC56FE1822048400622541 /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56FC1822048400622541 /* RenderEngine.cpp */; };
 		CDDC56FF1822048400622541 /* RibbonSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDDC56FD1822048400622541 /* RibbonSystem.cpp */; };
 		CDF8629F182CBA890028C260 /* ImageCodecDds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF8629E182CBA890028C260 /* ImageCodecDds.cpp */; };
@@ -278,17 +279,12 @@
 		18D0B3AD181E92A0005AEEF8 /* pngwtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngwtran.c; path = ../../Src/RenderEngine/png/pngwtran.c; sourceTree = "<group>"; };
 		18D0B3AE181E92A0005AEEF8 /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngwutil.c; path = ../../Src/RenderEngine/png/pngwutil.c; sourceTree = "<group>"; };
 		18D0B3C1181E92CB005AEEF8 /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = adler32.c; path = ../../Src/RenderEngine/png/zlib/adler32.c; sourceTree = "<group>"; };
-		18D0B3C2181E92CB005AEEF8 /* algorithm.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = algorithm.txt; path = ../../Src/RenderEngine/png/zlib/algorithm.txt; sourceTree = "<group>"; };
-		18D0B3C3181E92CB005AEEF8 /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ChangeLog; path = ../../Src/RenderEngine/png/zlib/ChangeLog; sourceTree = "<group>"; };
-		18D0B3C4181E92CB005AEEF8 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = ../../Src/RenderEngine/png/zlib/CMakeLists.txt; sourceTree = "<group>"; };
 		18D0B3C5181E92CB005AEEF8 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = compress.c; path = ../../Src/RenderEngine/png/zlib/compress.c; sourceTree = "<group>"; };
 		18D0B3C6181E92CB005AEEF8 /* crc32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crc32.c; path = ../../Src/RenderEngine/png/zlib/crc32.c; sourceTree = "<group>"; };
 		18D0B3C7181E92CB005AEEF8 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crc32.h; path = ../../Src/RenderEngine/png/zlib/crc32.h; sourceTree = "<group>"; };
 		18D0B3C8181E92CB005AEEF8 /* deflate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = deflate.c; path = ../../Src/RenderEngine/png/zlib/deflate.c; sourceTree = "<group>"; };
 		18D0B3C9181E92CB005AEEF8 /* deflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = deflate.h; path = ../../Src/RenderEngine/png/zlib/deflate.h; sourceTree = "<group>"; };
-		18D0B3CA181E92CB005AEEF8 /* FAQ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FAQ; path = ../../Src/RenderEngine/png/zlib/FAQ; sourceTree = "<group>"; };
 		18D0B3CB181E92CB005AEEF8 /* gzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = gzio.c; path = ../../Src/RenderEngine/png/zlib/gzio.c; sourceTree = "<group>"; };
-		18D0B3CC181E92CB005AEEF8 /* INDEX */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = INDEX; path = ../../Src/RenderEngine/png/zlib/INDEX; sourceTree = "<group>"; };
 		18D0B3CD181E92CB005AEEF8 /* inffast.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = inffast.c; path = ../../Src/RenderEngine/png/zlib/inffast.c; sourceTree = "<group>"; };
 		18D0B3CE181E92CB005AEEF8 /* inffast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inffast.h; path = ../../Src/RenderEngine/png/zlib/inffast.h; sourceTree = "<group>"; };
 		18D0B3CF181E92CB005AEEF8 /* inffixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inffixed.h; path = ../../Src/RenderEngine/png/zlib/inffixed.h; sourceTree = "<group>"; };
@@ -296,15 +292,10 @@
 		18D0B3D1181E92CB005AEEF8 /* inflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inflate.h; path = ../../Src/RenderEngine/png/zlib/inflate.h; sourceTree = "<group>"; };
 		18D0B3D2181E92CB005AEEF8 /* inftrees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = inftrees.c; path = ../../Src/RenderEngine/png/zlib/inftrees.c; sourceTree = "<group>"; };
 		18D0B3D3181E92CB005AEEF8 /* inftrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inftrees.h; path = ../../Src/RenderEngine/png/zlib/inftrees.h; sourceTree = "<group>"; };
-		18D0B3D4181E92CB005AEEF8 /* makedepend */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = makedepend; path = ../../Src/RenderEngine/png/zlib/makedepend; sourceTree = "<group>"; };
-		18D0B3D5181E92CB005AEEF8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = ../../Src/RenderEngine/png/zlib/Makefile; sourceTree = "<group>"; };
-		18D0B3D6181E92CB005AEEF8 /* makefile.wat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = makefile.wat; path = ../../Src/RenderEngine/png/zlib/makefile.wat; sourceTree = "<group>"; };
-		18D0B3D7181E92CB005AEEF8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../../Src/RenderEngine/png/zlib/README; sourceTree = "<group>"; };
 		18D0B3D8181E92CB005AEEF8 /* trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = trees.c; path = ../../Src/RenderEngine/png/zlib/trees.c; sourceTree = "<group>"; };
 		18D0B3D9181E92CB005AEEF8 /* trees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = trees.h; path = ../../Src/RenderEngine/png/zlib/trees.h; sourceTree = "<group>"; };
 		18D0B3DA181E92CB005AEEF8 /* uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = uncompr.c; path = ../../Src/RenderEngine/png/zlib/uncompr.c; sourceTree = "<group>"; };
 		18D0B3DB181E92CB005AEEF8 /* zconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zconf.h; path = ../../Src/RenderEngine/png/zlib/zconf.h; sourceTree = "<group>"; };
-		18D0B3DC181E92CB005AEEF8 /* zlib.3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = zlib.3; path = ../../Src/RenderEngine/png/zlib/zlib.3; sourceTree = "<group>"; };
 		18D0B3DD181E92CB005AEEF8 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zlib.h; path = ../../Src/RenderEngine/png/zlib/zlib.h; sourceTree = "<group>"; };
 		18D0B3DE181E92CB005AEEF8 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zutil.c; path = ../../Src/RenderEngine/png/zlib/zutil.c; sourceTree = "<group>"; };
 		18D0B3F2181E9671005AEEF8 /* _Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _Particle.cpp; path = ../../Src/RenderEngine/_Particle.cpp; sourceTree = "<group>"; };
@@ -391,6 +382,11 @@
 		18D0B4C418214E39005AEEF8 /* PixelFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PixelFormat.cpp; path = ../../Src/RenderEngine/PixelFormat.cpp; sourceTree = "<group>"; };
 		18D0B4C618214E39005AEEF8 /* RenderEngineDll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderEngineDll.cpp; path = ../../Src/RenderEngine/RenderEngineDll.cpp; sourceTree = "<group>"; };
 		18D0B4C718214E39005AEEF8 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = ../../Src/RenderEngine/stdafx.cpp; sourceTree = "<group>"; };
+		18EFA90E182E08DF00A5A7B4 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zutil.h; path = ../../Src/RenderEngine/png/zlib/zutil.h; sourceTree = "<group>"; };
+		18EFA90F182E0C1B00A5A7B4 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = ../Font.h; sourceTree = "<group>"; };
+		18EFA910182E0C1B00A5A7B4 /* FontManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontManager.cpp; path = ../FontManager.cpp; sourceTree = "<group>"; };
+		18EFA911182E0C1B00A5A7B4 /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontManager.h; path = ../FontManager.h; sourceTree = "<group>"; };
+		18EFA913182E0CDD00A5A7B4 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../Font.cpp; sourceTree = "<group>"; };
 		CDDC56FC1822048400622541 /* RenderEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderEngine.cpp; path = ../../Src/RenderEngine/RenderEngine.cpp; sourceTree = "<group>"; };
 		CDDC56FD1822048400622541 /* RibbonSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RibbonSystem.cpp; path = ../../Src/RenderEngine/RibbonSystem.cpp; sourceTree = "<group>"; };
 		CDF86252182C7A0C0028C260 /* PixelFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PixelFormat.h; path = ../../Include/RenderEngine/PixelFormat.h; sourceTree = "<group>"; };
@@ -738,18 +734,14 @@
 		18D0B3C0181E92A9005AEEF8 /* zip */ = {
 			isa = PBXGroup;
 			children = (
+				18EFA90E182E08DF00A5A7B4 /* zutil.h */,
 				18D0B3C1181E92CB005AEEF8 /* adler32.c */,
-				18D0B3C2181E92CB005AEEF8 /* algorithm.txt */,
-				18D0B3C3181E92CB005AEEF8 /* ChangeLog */,
-				18D0B3C4181E92CB005AEEF8 /* CMakeLists.txt */,
 				18D0B3C5181E92CB005AEEF8 /* compress.c */,
 				18D0B3C6181E92CB005AEEF8 /* crc32.c */,
 				18D0B3C7181E92CB005AEEF8 /* crc32.h */,
 				18D0B3C8181E92CB005AEEF8 /* deflate.c */,
 				18D0B3C9181E92CB005AEEF8 /* deflate.h */,
-				18D0B3CA181E92CB005AEEF8 /* FAQ */,
 				18D0B3CB181E92CB005AEEF8 /* gzio.c */,
-				18D0B3CC181E92CB005AEEF8 /* INDEX */,
 				18D0B3CD181E92CB005AEEF8 /* inffast.c */,
 				18D0B3CE181E92CB005AEEF8 /* inffast.h */,
 				18D0B3CF181E92CB005AEEF8 /* inffixed.h */,
@@ -757,15 +749,10 @@
 				18D0B3D1181E92CB005AEEF8 /* inflate.h */,
 				18D0B3D2181E92CB005AEEF8 /* inftrees.c */,
 				18D0B3D3181E92CB005AEEF8 /* inftrees.h */,
-				18D0B3D4181E92CB005AEEF8 /* makedepend */,
-				18D0B3D5181E92CB005AEEF8 /* Makefile */,
-				18D0B3D6181E92CB005AEEF8 /* makefile.wat */,
-				18D0B3D7181E92CB005AEEF8 /* README */,
 				18D0B3D8181E92CB005AEEF8 /* trees.c */,
 				18D0B3D9181E92CB005AEEF8 /* trees.h */,
 				18D0B3DA181E92CB005AEEF8 /* uncompr.c */,
 				18D0B3DB181E92CB005AEEF8 /* zconf.h */,
-				18D0B3DC181E92CB005AEEF8 /* zlib.3 */,
 				18D0B3DD181E92CB005AEEF8 /* zlib.h */,
 				18D0B3DE181E92CB005AEEF8 /* zutil.c */,
 			);
@@ -809,6 +796,10 @@
 		18D0B48F18214E39005AEEF8 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				18EFA913182E0CDD00A5A7B4 /* Font.cpp */,
+				18EFA90F182E0C1B00A5A7B4 /* Font.h */,
+				18EFA910182E0C1B00A5A7B4 /* FontManager.cpp */,
+				18EFA911182E0C1B00A5A7B4 /* FontManager.h */,
 				18D0B49018214E39005AEEF8 /* Include */,
 				18D0B4A218214E39005AEEF8 /* Src */,
 			);
@@ -1024,6 +1015,7 @@
 				18D0B4CD18214E39005AEEF8 /* FTLibrary.cpp in Sources */,
 				1880D8B418271BF1001FD16C /* jquant2.c in Sources */,
 				18D0B4DE18214E39005AEEF8 /* PixelFormat.cpp in Sources */,
+				18EFA914182E0CDD00A5A7B4 /* Font.cpp in Sources */,
 				18D0B3FB181E9671005AEEF8 /* _Particle.cpp in Sources */,
 				18D0B3B7181E92A0005AEEF8 /* pngrtran.c in Sources */,
 				18D0B398181E9284005AEEF8 /* jcmarker.c in Sources */,
@@ -1052,6 +1044,7 @@
 				18D0B3BE181E92A0005AEEF8 /* pngwtran.c in Sources */,
 				18D0B46D181E9CDB005AEEF8 /* Viewport.cpp in Sources */,
 				18D0B3FD181E9671005AEEF8 /* _ParticleSystemEmitter.cpp in Sources */,
+				18EFA912182E0C1B00A5A7B4 /* FontManager.cpp in Sources */,
 				18D0B3B3181E92A0005AEEF8 /* pngmem.c in Sources */,
 				CDDC56FF1822048400622541 /* RibbonSystem.cpp in Sources */,
 				1880D8B218271BF1001FD16C /* jmemmgr.c in Sources */,
@@ -1096,7 +1089,6 @@
 				1880D8AB18271BF1001FD16C /* jfdctfst.c in Sources */,
 				18D0B3DF181E92CB005AEEF8 /* adler32.c in Sources */,
 				18D0B44B181E9AE9005AEEF8 /* ImageCodecPcx.cpp in Sources */,
-				18D0B3E7181E92CB005AEEF8 /* Makefile in Sources */,
 				18D0B391181E9284005AEEF8 /* jcapistd.c in Sources */,
 				18D0B410181E9789005AEEF8 /* Bone.cpp in Sources */,
 				1880D89618271BF1001FD16C /* jcsample.c in Sources */,

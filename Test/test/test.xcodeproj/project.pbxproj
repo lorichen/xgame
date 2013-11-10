@@ -26,6 +26,8 @@
 		188101701824A91D002AF8D8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881016E1824A91D002AF8D8 /* ViewController.m */; };
 		1881017B1825F5CE002AF8D8 /* libRenderSystemGLES2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188101771824B19B002AF8D8 /* libRenderSystemGLES2.a */; };
 		188101851825FB8E002AF8D8 /* libmath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188101821825FB88002AF8D8 /* libmath.a */; };
+		18C14DF8182E712D00BF6D69 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C14DF7182E712D00BF6D69 /* QuartzCore.framework */; };
+		18C14E0E182E714800BF6D69 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C14E0D182E714800BF6D69 /* OpenGLES.framework */; };
 		18EFA8F4182D342900A5A7B4 /* libluaengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA8F1182D340C00A5A7B4 /* libluaengine.a */; };
 		18EFA8F5182D342900A5A7B4 /* libschemengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA8E8182D338F00A5A7B4 /* libschemengine.a */; };
 		CDF861F6182A15010028C260 /* libmodel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF861F3182A14E70028C260 /* libmodel.a */; };
@@ -212,6 +214,8 @@
 		188101711824B19B002AF8D8 /* RenderSystemGLES2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RenderSystemGLES2.xcodeproj; path = ../../RenderEngine/Build/RenderSystemGLES2/RenderSystemGLES2.xcodeproj; sourceTree = "<group>"; };
 		1881017C1825FB87002AF8D8 /* math.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = math.xcodeproj; path = ../../RenderEngine/Build/math/math.xcodeproj; sourceTree = "<group>"; };
 		18810192182623AA002AF8D8 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../Base/Base/Build/base/base.xcodeproj; sourceTree = "<group>"; };
+		18C14DF7182E712D00BF6D69 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		18C14E0D182E714800BF6D69 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = schemengine.xcodeproj; path = ../../Base/SchemeEngine/Build/schemengine/schemengine.xcodeproj; sourceTree = "<group>"; };
 		18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = luaengine.xcodeproj; path = ../../Base/LuaEngine/Build/luaengine/luaengine.xcodeproj; sourceTree = "<group>"; };
 		CDF861ED182A14E70028C260 /* model.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = model.xcodeproj; path = ../../RenderEngine/Build/model/model.xcodeproj; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 				1880D62B18271A9A001FD16C /* libbase.a in Frameworks */,
 				188101851825FB8E002AF8D8 /* libmath.a in Frameworks */,
 				1881017B1825F5CE002AF8D8 /* libRenderSystemGLES2.a in Frameworks */,
+				18C14DF8182E712D00BF6D69 /* QuartzCore.framework in Frameworks */,
+				18C14E0E182E714800BF6D69 /* OpenGLES.framework in Frameworks */,
 				1881013F1824A892002AF8D8 /* CoreGraphics.framework in Frameworks */,
 				188101411824A892002AF8D8 /* UIKit.framework in Frameworks */,
 				1881013D1824A892002AF8D8 /* Foundation.framework in Frameworks */,
@@ -313,6 +319,8 @@
 		1881013B1824A892002AF8D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18C14E0D182E714800BF6D69 /* OpenGLES.framework */,
+				18C14DF7182E712D00BF6D69 /* QuartzCore.framework */,
 				CDF86286182CAFA70028C260 /* libsquish.a */,
 				1881013C1824A892002AF8D8 /* Foundation.framework */,
 				1881013E1824A892002AF8D8 /* CoreGraphics.framework */,

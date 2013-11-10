@@ -4,6 +4,12 @@
 
 namespace xs
 {
+    
+    ImageCodec*	ImageCodecSfp::Instance()
+    {
+        static ImageCodecSfp codec;
+        return &codec;
+    }
 
 	const char*	ImageCodecSfp::getType() const
 	{

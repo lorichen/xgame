@@ -10,11 +10,7 @@ namespace xs
 	protected:
 		ImageCodecSfp();
 	public:
-		static ImageCodec*	Instance()
-		{
-			static ImageCodecSfp codec;
-			return &codec;
-		}
+		static ImageCodec*	Instance();
 	public:
 		ImageCodecImplement
 	private:

@@ -145,8 +145,10 @@ char& BUFFER::operator [](int Index) const
 }
 
 #define XMD_H
-#include "ijg/jpeglib.h"
-
+extern "C"
+{
+    #include "ijg/jpeglib.h"
+}
 
 //+-----------------------------------------------------------------------------
 //| Source manager structure

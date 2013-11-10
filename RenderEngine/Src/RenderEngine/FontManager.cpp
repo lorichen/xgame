@@ -1,26 +1,39 @@
 
 //gdi ◊÷ÃÂ‰÷»ælib
-#include <windows.h>
-#include <gdiplus.h>
-using namespace Gdiplus;
+
 
 
 
 #include "StdAfx.h"
+
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+#include <windows.h>
+#include <gdiplus.h>
+using namespace Gdiplus;
+ULONG_PTR g_gdiplusToken;
+#endif
+
 #include "FontManager.h"
 #include "Font.h"
 
-ULONG_PTR g_gdiplusToken;
 
 namespace xs
 {
 	//≥ı ºªØgui+
 	void InitGuiplus()
 	{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		GdiplusStartupInput gdiplusStartupInput;
-		
 		GdiplusStartup(&g_gdiplusToken, &gdiplusStartupInput, NULL);
+#endif
 	}
+    
+    
+    FontManager*	FontManager::Instance()
+    {
+        static FontManager fm;
+        return &fm;
+    }
 
 	FontManager::FontManager()
 	{
@@ -29,7 +42,9 @@ namespace xs
 
 	FontManager::~FontManager()
 	{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		GdiplusShutdown(g_gdiplusToken);
+#endif
 	}
 
 	IFont*	FontManager::createFont(IRenderSystem* pRenderSystem,ITextureManager* pTextureManager,const char* name,const char* szFontName,uint size,FontType fonttype)

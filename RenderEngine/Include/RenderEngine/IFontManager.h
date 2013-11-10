@@ -122,6 +122,7 @@ namespace xs
 		*/
 		virtual float setFontGap( float gap)=0;
 		
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		//add by yhc
 		//文字效果
 		//颜色渐变
@@ -138,6 +139,7 @@ namespace xs
 		virtual void DiffusedShadow(ColorValue& color, int nThickness,int nOffsetX,int nOffsetY)= 0;
 		//突出字,阴影在后
 		virtual void Extrude(ColorValue& color, int nThickness,int nOffsetX,int nOffsetY)= 0;
+#endif
 		//有缩放的字
 		virtual void  render2dByScale(float xx,float yy,float zz,const ColorValue& color,const wchar_t* pText,float fScale)= 0;
 

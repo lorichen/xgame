@@ -20,6 +20,10 @@
 
 namespace xs
 {
+    
+    extern "C" IRenderSystem* createRenderSystem(RenderEngineCreationParameters* param);
+    
+    
 	RenderEngine::RenderEngine() : m_pRenderSystem(0),m_pModelManager(0)
 	{
 	}
@@ -87,7 +91,12 @@ namespace xs
 				strcpy(szRenderSystemDllName,"RenderSystemGLES2.dll");
 #endif
 #endif
+                
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 				pRenderSystem = m_RenderSystem.create(szRenderSystemDllName,param);
+#else
+                pRenderSystem = xs::createRenderSystem(param);
+#endif
 			}
 			break;
 
@@ -159,7 +168,7 @@ namespace xs
 			ImageCodec::registerCodec(ImageCodecPng::Instance());
 			ImageCodec::registerCodec(ImageCodecPcx::Instance());
 			ImageCodec::registerCodec(ImageCodecRaw::Instance());
-			ImageCodec::registerCodec(ImageCodecSfp::Instance());
+			//ImageCodec::registerCodec(ImageCodecSfp::Instance());
 
 			//Register EmitterFactories
 			ParticleSystemEmitterFactory::registerEmitterFactory(PSET_PLANE,ParticleSystemEmitterFactoryPlane::Instance());

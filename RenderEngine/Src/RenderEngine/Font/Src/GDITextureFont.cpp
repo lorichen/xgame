@@ -7,7 +7,7 @@
 
 #define TEXTURE_SIZE	512
 
-#if 0 //add by kevin.chen
+#if 1 //add by kevin.chen
 
 namespace xs
 {
