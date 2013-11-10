@@ -442,6 +442,10 @@
 				RelativePath="..\Include\RenderEngine\RenderEngineInc.h"
 				>
 			</File>
+			<File
+				RelativePath="..\Include\RenderEngine\shaderdeclare.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Camera"

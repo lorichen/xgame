@@ -81,7 +81,7 @@ public:
 	virtual int getPosition() const;
 
 	/// 用法同Stream
-	virtual bool flush() const;
+	virtual bool flush() ;
 
 	/// 用法同Stream
 	virtual uint getLength() const;

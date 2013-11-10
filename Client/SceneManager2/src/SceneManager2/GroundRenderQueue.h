@@ -41,6 +41,7 @@ public:
 
 private:
 	IShaderProgram*		m_pShaderPrograms[4];
+	
 	IVertexBuffer*		m_pVB;
 	IVertexBuffer*		m_pVBTexcoord;
 	IVertexBuffer*		m_pDistantVB;//‘∂æ∞Ã˘Õº”√

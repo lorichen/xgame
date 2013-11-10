@@ -163,7 +163,7 @@ bool FileStream::seekToEnd() const
 	return seek(0, SEEK_END);
 }
 
-bool FileStream::flush() const
+bool FileStream::flush() 
 {
 	Assert(m_stream != NULL);
 	return fflush(m_stream) == 0;

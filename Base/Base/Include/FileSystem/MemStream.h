@@ -88,19 +88,19 @@ public:
 	 @note 失败的可能原因：<br>
 		参数无效；通过计算后的位置< 0；通过计算后的位置大于文件尾，但内存不支持增长
 	 */
-	virtual bool seek(int offset, uint from = SEEK_SET);
+	virtual bool seek(int offset, uint from = SEEK_SET) ;
 
 	/// 内存读写指针定位到内存开始处
-	virtual bool seekToBegin();
+	virtual bool seekToBegin() ;
 
 	/// 内存读写指针定位到内存结尾处
-	virtual bool seekToEnd();
+	virtual bool seekToEnd() ;
 
 	/// 得到当前的位置
 	virtual int getPosition() const;
 
 	/// 总是返回true
-	virtual bool flush() const;
+	virtual bool flush() ;
 
 	/// 获取内存流的大小（小于等于内存缓冲区大小）
 	virtual uint getLength() const;

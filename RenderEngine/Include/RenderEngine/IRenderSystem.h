@@ -21,7 +21,7 @@ namespace xs
 	class RenderDirect;
 	struct IVideoObject;
 	struct IHardwareCursorManager;
-
+	struct IShaderProgram;
 
 	/** 渲染系统接口
 	*/
@@ -387,31 +387,31 @@ namespace xs
 		@param pVB 顶点缓冲区的地址
 		@param start 开始顶点的下标,可以不从第一个开始
 		*/
-		virtual void 		setTexcoordVertexBuffer(ushort unit,IVertexBuffer* pVB,uint start = 0) = 0;
+		virtual void 		setTexcoordVertexBuffer(ushort unit,IVertexBuffer* pVB,uint start = 0 ,uint stride = 0) = 0;
 
 		/** 设置位置顶点缓冲区
 		@param pVB 顶点缓冲区的地址
 		@param start 开始顶点的下标,可以不从第一个开始
 		*/
-		virtual void 		setVertexVertexBuffer(IVertexBuffer* pVB,uint start = 0) = 0;				
+		virtual void 		setVertexVertexBuffer(IVertexBuffer* pVB,uint start = 0,uint stride = 0) = 0;				
 
 		/** 设置法线顶点缓冲区
 		@param pVB 顶点缓冲区的地址
 		@param start 开始顶点的下标,可以不从第一个开始
 		*/
-		virtual void 		setNormalVertexBuffer(IVertexBuffer* pVB,uint start = 0) = 0;				
+		virtual void 		setNormalVertexBuffer(IVertexBuffer* pVB,uint start = 0 ,uint stride = 0) = 0;				
 
 		/** 设置颜色顶点缓冲区
 		@param pVB 顶点缓冲区的地址
 		@param start 开始顶点的下标,可以不从第一个开始
 		*/
-		virtual void 		setDiffuseVertexBuffer(IVertexBuffer* pVB,uint start = 0) = 0;			
+		virtual void 		setDiffuseVertexBuffer(IVertexBuffer* pVB,uint start = 0 ,uint stride = 0) = 0;			
 
 		/** 设置镜面光顶点缓冲区
 		@param pVB 顶点缓冲区的地址
 		@param start 开始顶点的下标,可以不从第一个开始
 		*/
-		virtual void 		setSpecularVertexBuffer(IVertexBuffer* pVB,uint start = 0) = 0;		
+		virtual void 		setSpecularVertexBuffer(IVertexBuffer* pVB,uint start = 0 ,uint stride = 0) = 0;		
 
 		/** 设置索引缓冲区
 		@param pIB 索引缓冲区的地址
@@ -771,8 +771,15 @@ namespace xs
 		/** 获取当前的显示模式
 		@param createParam 显示模式参数
 		*/
-		virtual bool		getDisplayMode(RenderEngineCreationParameters & createParam)=0;
+		virtual bool		getDisplayMode(RenderEngineCreationParameters & createParam) = 0;
 
+		//-------kevin.chen 新增接口-------
+		//得到内置的shaderprogram
+		virtual IShaderProgram* getShaderProgram(int id) = 0;
+		
+		//设置当前绑定的shader,如为空则接绑定之前的shader
+		//该接口可用于内置shader和外置shader,外置shader 需要关注声明周期对该接口的影响
+		virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram) = 0;
 	};
 	/** @} */
 

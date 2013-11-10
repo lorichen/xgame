@@ -4,8 +4,9 @@
 class AppWrap
 {
 public:
+	static void setViewSize(unsigned int width,unsigned int height);
 	static bool init(void* hwnd);
-	static void update(int delta_ms);
+	static void update(int tick,int delta_ms);
 	static void uninit();
 };
 

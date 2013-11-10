@@ -30,8 +30,8 @@ namespace xs
 			FilterOptions minFO = FO_LINEAR,												
 			FilterOptions magFO = FO_LINEAR,												
 			FilterOptions mipFO = FO_NONE,													
-			TextureAddressingMode s = TAM_WRAP,											
-			TextureAddressingMode t = TAM_WRAP);										
+			TextureAddressingMode s = TAM_CLAMP_TO_EDGE,											
+			TextureAddressingMode t = TAM_CLAMP_TO_EDGE);										
 
 		/** 从图像数据创建贴图,贴图的大小是pRect的宽度,如果pRect则为整张图片的尺寸
 		@param image 图像数据
@@ -49,8 +49,8 @@ namespace xs
 			FilterOptions minFO = FO_LINEAR,												
 			FilterOptions magFO = FO_LINEAR,												
 			FilterOptions mipFO = FO_NONE,													
-			TextureAddressingMode s = TAM_WRAP,											
-			TextureAddressingMode t = TAM_WRAP);										
+			TextureAddressingMode s = TAM_CLAMP_TO_EDGE,											
+			TextureAddressingMode t = TAM_CLAMP_TO_EDGE);										
 
 		/** 从图像文件创建贴图,在有些显卡上支持非2^n贴图,但大多数时候用户需要使用2^N贴图
 		@param name 文件名
@@ -66,8 +66,8 @@ namespace xs
 			FilterOptions minFO = FO_LINEAR,												
 			FilterOptions magFO = FO_LINEAR,												
 			FilterOptions mipFO = FO_NONE,													
-			TextureAddressingMode s = TAM_WRAP,											
-			TextureAddressingMode t = TAM_WRAP);										
+			TextureAddressingMode s = TAM_CLAMP_TO_EDGE,											
+			TextureAddressingMode t = TAM_CLAMP_TO_EDGE);										
 
 		/** 从Raw数据创建贴图
 		@param pBuffer 数据指针
@@ -86,8 +86,8 @@ namespace xs
 			FilterOptions minFO = FO_LINEAR,												
 			FilterOptions magFO = FO_LINEAR,												
 			FilterOptions mipFO = FO_NONE,													
-			TextureAddressingMode s = TAM_WRAP,											
-			TextureAddressingMode t = TAM_WRAP);										
+			TextureAddressingMode s = TAM_CLAMP_TO_EDGE,											
+			TextureAddressingMode t = TAM_CLAMP_TO_EDGE);										
 
 		/** 创建空的贴图,未指定宽度、高度和像素格式
 		@param minFO Min Filter
@@ -101,8 +101,8 @@ namespace xs
 			FilterOptions minFO = FO_LINEAR,												
 			FilterOptions magFO = FO_LINEAR,												
 			FilterOptions mipFO = FO_NONE,													
-			TextureAddressingMode s = TAM_WRAP,											
-			TextureAddressingMode t = TAM_WRAP,const std::string& name= "");			
+			TextureAddressingMode s = TAM_CLAMP_TO_EDGE,											
+			TextureAddressingMode t = TAM_CLAMP_TO_EDGE,const std::string& name= "");			
 
 		/** 创建空的贴图,并指定宽度、高度和像素格式
 		@param width 宽度
@@ -120,8 +120,8 @@ namespace xs
 			FilterOptions minFO = FO_LINEAR,												
 			FilterOptions magFO = FO_LINEAR,												
 			FilterOptions mipFO = FO_NONE,													
-			TextureAddressingMode s = TAM_WRAP,											
-			TextureAddressingMode t = TAM_WRAP);	
+			TextureAddressingMode s = TAM_CLAMP_TO_EDGE,											
+			TextureAddressingMode t = TAM_CLAMP_TO_EDGE);	
 
 		/** 创建空的贴图,并指定宽度、高度和像素格式。不需要等待渲染结束，这个函数会影响帧率，但是
 		在渲染中调用不会锁定。
@@ -140,8 +140,8 @@ namespace xs
 			FilterOptions minFO = FO_LINEAR,												
 			FilterOptions magFO = FO_LINEAR,												
 			FilterOptions mipFO = FO_NONE,													
-			TextureAddressingMode s = TAM_WRAP,											
-			TextureAddressingMode t = TAM_WRAP);
+			TextureAddressingMode s = TAM_CLAMP_TO_EDGE,											
+			TextureAddressingMode t = TAM_CLAMP_TO_EDGE);
 
 		/** 根据文件名取得贴图指针，也可以是自定义的贴图名称
 		@param name 文件名或者自定义的贴图名称

@@ -126,6 +126,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		rectW.left, rectW.top, rectW.right-rectW.left, rectW.bottom-rectW.top,
 		GetDesktopWindow(), NULL, hInstance, NULL);
 
+	AppWrap::setViewSize(rectW.right-rectW.left,rectW.bottom-rectW.top);
+
 	RECT wRect;
 	GetClientRect((HWND)param.hwnd,&wRect);
 
@@ -174,7 +176,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				if (dt > 20)
 				{
 					g_lastTime = timenow;
-					AppWrap::update(dt);
+					AppWrap::update(timenow,dt);
 				}
 				else
 				{

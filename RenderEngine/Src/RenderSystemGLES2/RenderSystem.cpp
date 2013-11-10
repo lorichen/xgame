@@ -17,6 +17,8 @@
 //#include "AVIVideoObject.h"
 #include "HardwareCursorManagerOGL.h"
 
+#define DEFAULT_TEX_SIZE 64
+
 namespace xs
 {
 	bool	RenderSystem::m_sCapabilitiesInit = false;
@@ -110,10 +112,27 @@ namespace xs
 		m_surfaceDiffuse = ColorValue(0.8f,0.8f,0.8f,1.0f);
 		m_textureUnit = 0;
 		m_pOverlayRenderTarget = 0;
+
+		m_pWhiteTex = 0;
+		m_pCurrentShaderProgram = 0;
+
+		for(int i = 0;i < ESP_NUM;++i)
+		{
+			m_pInnerShader[i] = 0;
+		}
 	}
 
 	void	RenderSystem::close()
 	{
+		_releaseInnerShader();
+		//--other uninit----------------
+		if(m_pWhiteTex)
+		{
+			TextureManager::Instance()->releaseTexture(m_pWhiteTex);
+			m_pWhiteTex = 0;
+		}
+		//-------------------------
+
 		RenderTargetType::iterator begin = m_vRenderTarget.begin();
 		RenderTargetType::iterator end = m_vRenderTarget.end();
 		for(RenderTargetType::iterator it = begin;it != end;++it)
@@ -834,8 +853,18 @@ namespace xs
 		glPixelStorei( GL_PACK_ALIGNMENT,1);
 
 		//glEnable(GL_SCISSOR_TEST);
-
 		m_vRenderSystems.push_back(this);
+
+		//----other init-------------------------------------
+		m_pWhiteTex = TextureManager::Instance()->createEmptyTexture(DEFAULT_TEX_SIZE,DEFAULT_TEX_SIZE,PF_R8G8B8A8);
+		unsigned char* buffer = new unsigned char[DEFAULT_TEX_SIZE * DEFAULT_TEX_SIZE *4];
+		memset(buffer,0xff,DEFAULT_TEX_SIZE * DEFAULT_TEX_SIZE *4);
+		m_pWhiteTex->loadFromRawData(buffer,DEFAULT_TEX_SIZE,DEFAULT_TEX_SIZE,PF_R8G8B8A8);
+		delete [] buffer;
+
+		if(!_createInnerShader())
+			return false;
+
 		return true;
 	}
 
@@ -877,6 +906,7 @@ namespace xs
 		m_pCurrentRenderTarget->m_vpHeight = height;
 		if(m_scissorEnabled)
 			glScissor(m_pCurrentRenderTarget->m_vpLeft,m_pCurrentRenderTarget->m_vpTop,m_pCurrentRenderTarget->m_vpWidth,m_pCurrentRenderTarget->m_vpHeight);
+		
 		glViewport(m_pCurrentRenderTarget->m_vpLeft,m_pCurrentRenderTarget->m_vpTop,m_pCurrentRenderTarget->m_vpWidth,m_pCurrentRenderTarget->m_vpHeight);
 
 		if(m_pCurrentRenderTarget->m_b2D)
@@ -1020,6 +1050,7 @@ namespace xs
 		glLoadMatrixf(&m[0][0]);
 		glMatrixMode(GL_MODELVIEW);
 		*/
+		_setWorldViewProj2Shader();
 	}
 
 	void		RenderSystem::setViewMatrix(const Matrix4& mtx)
@@ -1029,6 +1060,7 @@ namespace xs
 		
 		//Matrix4 m = m_pCurrentRenderTarget->m_RenderState.m_mtxModelView.transpose();
 		//glLoadMatrixf(&m[0][0]);
+		_setWorldViewProj2Shader();
 	}
 
 	const Matrix4&	RenderSystem::getProjectionMatrix()
@@ -1058,6 +1090,8 @@ namespace xs
 		
 		//Matrix4 m = m_pCurrentRenderTarget->m_RenderState.m_mtxModelView.transpose();
 		//glLoadMatrixf(&m[0][0]);
+
+		_setWorldViewProj2Shader();
 	}
 
 	void		RenderSystem::setDepthBufferWriteEnabled(bool enabled)
@@ -1508,6 +1542,9 @@ namespace xs
 		setTexcoordVertexBuffer(1,0);
 
 		//vertex pos and color always
+
+		//bind shader
+		bindCurrentShaderProgram(getShaderProgram(ESP_V3_UV_C));
 	}
 
 	void		RenderSystem::endPrimitive()
@@ -1740,11 +1777,19 @@ namespace xs
 		*/
 	}
 
+	void RenderSystem::_setTempTexture()
+	{
+		glActiveTexture(GL_TEXTURE0);
+		glEnable(GL_TEXTURE_2D);
+		Texture * pTextureImp =static_cast<Texture *>(m_pWhiteTex);
+		glBindTexture(GL_TEXTURE_2D,pTextureImp->getGLTextureID());
+	}
+
 	void RenderSystem::setTexture(ushort unit,ITexture* pTexture)
 	{
-		assert(0);
+		
 
-		/*
+		
 		//modified by xxh 由于压缩纹理的同步加载
 		if(m_textureUnit != unit)glActiveTexture(GL_TEXTURE0 + unit);
 
@@ -1757,13 +1802,10 @@ namespace xs
 		}
 		else
 		{
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+			//glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 			glDisable(GL_TEXTURE_2D);
 		}
-		*/
-
 		m_textureUnit = unit;
-		
 	}
 
 	const ColorValue& RenderSystem::getAmbientLight()
@@ -1779,9 +1821,40 @@ namespace xs
 		//glLightModelfv(GL_LIGHT_MODEL_AMBIENT,&ambient[0]);
 	}
 
-	void		RenderSystem::setTexcoordVertexBuffer(ushort unit,IVertexBuffer* vertexBuffer,uint start)
+	void		RenderSystem::setTexcoordVertexBuffer(ushort unit,IVertexBuffer* vertexBuffer,uint start,uint stride)
 	{
-		assert(0);
+		VetextAttr type = (VetextAttr)(EVA_TEX_COORDS_0+unit);
+		if(type > EVA_TEX_COORDS_1)
+		{
+			printf("\n暂时只支持2组纹理坐标!");
+			return;
+		}
+		const AttrInfo* pInfo = getAttrInfo(type);
+		GLint location = getAttrLocation(pInfo->usage,pInfo->index);
+		if(!vertexBuffer)
+		{
+			glBindBuffer(GL_ARRAY_BUFFER,0);
+			glDisableVertexAttribArray(location);
+			return;
+		}
+
+		VertexBuffer* pVb = static_cast<VertexBuffer*>(vertexBuffer);
+		glBindBuffer(GL_ARRAY_BUFFER,pVb->getGLBufferId());
+
+		GLenum glType;
+		GLint components;
+		GLboolean normalized;
+		getAttrGLInfo(pInfo->type,glType,components,normalized);
+
+		glEnableVertexAttribArray(location);
+		glVertexAttribPointer(location
+			, components
+			, glType
+			, normalized
+			, stride
+			, (const void*)(((char*)start))
+			);
+		TestGLError("setTexcoordVertexBuffer");
 		/*
 		if(!vertexBuffer)
 		{
@@ -1816,9 +1889,35 @@ namespace xs
 		*/
 	}
 
-	void		RenderSystem::setVertexVertexBuffer(IVertexBuffer* vertexBuffer,uint start)
+	void		RenderSystem::setVertexVertexBuffer(IVertexBuffer* vertexBuffer,uint start,uint stride)
 	{
-		assert(0);
+		const AttrInfo* pInfo = getAttrInfo(EVA_POSITION);
+		GLint location = getAttrLocation(pInfo->usage,pInfo->index);
+		if(!vertexBuffer)
+		{
+			glBindBuffer(GL_ARRAY_BUFFER,0);
+			glDisableVertexAttribArray(location);
+			return;
+		}
+
+		VertexBuffer* pVb = static_cast<VertexBuffer*>(vertexBuffer);
+		glBindBuffer(GL_ARRAY_BUFFER,pVb->getGLBufferId());
+
+		GLenum glType;
+		GLint components;
+		GLboolean normalized;
+		getAttrGLInfo(pInfo->type,glType,components,normalized);
+
+		glEnableVertexAttribArray(location);
+		glVertexAttribPointer(location
+			, components
+			, glType
+			, normalized
+			, stride
+			, (const void*)(((char*)start))
+			);
+		TestGLError("setVertexVertexBuffer");
+
 		/*
 		if(!vertexBuffer)
 		{
@@ -1847,9 +1946,34 @@ namespace xs
 		*/
 	}
 
-	void		RenderSystem::setDiffuseVertexBuffer(IVertexBuffer* vertexBuffer,uint start)
+	void		RenderSystem::setDiffuseVertexBuffer(IVertexBuffer* vertexBuffer,uint start,uint stride)
 	{
-		assert(0);
+		const AttrInfo* pInfo = getAttrInfo(EVA_COLOR);
+		GLint location = getAttrLocation(pInfo->usage,pInfo->index);
+		if(!vertexBuffer)
+		{
+			glBindBuffer(GL_ARRAY_BUFFER,0);
+			glDisableVertexAttribArray(location);
+			return;
+		}
+
+		VertexBuffer* pVb = static_cast<VertexBuffer*>(vertexBuffer);
+		glBindBuffer(GL_ARRAY_BUFFER,pVb->getGLBufferId());
+
+		GLenum glType;
+		GLint components;
+		GLboolean normalized;
+		getAttrGLInfo(pInfo->type,glType,components,normalized);
+
+		glEnableVertexAttribArray(location);
+		glVertexAttribPointer(location
+			, components
+			, glType
+			, normalized
+			, stride
+			, (const void*)(((char*)start))
+			);
+		TestGLError("setDiffuseVertexBuffer");
 		/*
 		if(!vertexBuffer)
 		{
@@ -1878,7 +2002,7 @@ namespace xs
 		*/
 	}
 
-	void		RenderSystem::setSpecularVertexBuffer(IVertexBuffer* vertexBuffer,uint start)
+	void		RenderSystem::setSpecularVertexBuffer(IVertexBuffer* vertexBuffer,uint start ,uint stride)
 	{
 		assert(0);
 		/*
@@ -1919,9 +2043,35 @@ namespace xs
 		//to be continued...
 	}
 
-	void		RenderSystem::setNormalVertexBuffer(IVertexBuffer* vertexBuffer,uint start)
+	void		RenderSystem::setNormalVertexBuffer(IVertexBuffer* vertexBuffer,uint start,uint stride)
 	{
-		assert(0);
+		const AttrInfo* pInfo = getAttrInfo(EVA_NORMAL);
+		GLint location = getAttrLocation(pInfo->usage,pInfo->index);
+		if(!vertexBuffer)
+		{
+			glBindBuffer(GL_ARRAY_BUFFER,0);
+			glDisableVertexAttribArray(location);
+			return;
+		}
+
+		VertexBuffer* pVb = static_cast<VertexBuffer*>(vertexBuffer);
+		glBindBuffer(GL_ARRAY_BUFFER,pVb->getGLBufferId());
+
+		GLenum glType;
+		GLint components;
+		GLboolean normalized;
+		getAttrGLInfo(pInfo->type,glType,components,normalized);
+
+		glEnableVertexAttribArray(location);
+		glVertexAttribPointer(location
+			, components
+			, glType
+			, normalized
+			, stride
+			, (const void*)(((char*)start))
+			);
+		TestGLError("setNormalVertexBuffer");
+
 		/*
 		if(!vertexBuffer)
 		{
@@ -2315,6 +2465,7 @@ namespace xs
 		setColor(color);
 
 		beginPrimitive(PT_LINES);
+		_setTempTexture();
 		sendVertex(Vector2(ptFirst.x,ptFirst.y));
 		sendVertex(Vector2(ptSecond.x,ptSecond.y));
 		endPrimitive();
@@ -2324,10 +2475,13 @@ namespace xs
 
 	void RenderSystem::rectangle(const Rect& rc,const ColorValue& color)
 	{
+		
+
 		ColorValue c = m_pCurrentRenderTarget->m_RenderState.m_color;
 		setColor(color);
 
 		beginPrimitive(PT_LINES);
+		_setTempTexture();
 		sendVertex(Vector2(rc.left,rc.top));
 		sendVertex(Vector2(rc.left,rc.bottom));
 		sendVertex(Vector2(rc.left,rc.bottom));
@@ -2343,9 +2497,11 @@ namespace xs
 
 	void RenderSystem::rectangle(const Rect& rc,const ColorValue& cLeftTop,const ColorValue& cLeftBottom,const ColorValue& cRightTop,const ColorValue& cRightBottom)
 	{
+		
 		ColorValue c = m_pCurrentRenderTarget->m_RenderState.m_color;
 
 		beginPrimitive(PT_LINES);
+		_setTempTexture();
 		setColor(cLeftTop);
 		sendVertex(Vector2(rc.left,rc.top));
 		sendVertex(Vector2(rc.left,rc.bottom));
@@ -2369,6 +2525,7 @@ namespace xs
 		setColor(color);
 
 		beginPrimitive(PT_POINTS);
+		_setTempTexture();
 		sendVertex(Vector2(pt.x,pt.y));
 		endPrimitive();
 
@@ -2377,9 +2534,13 @@ namespace xs
 
 	void RenderSystem::rectangle(const Rect& rc,ITexture* pTexture, const Vector2 & vLetfTop, const Vector2 & vLeftBottom, const Vector2 & vRightBottom, const Vector2 & RightTop)
 	{
-		setTexture(0, pTexture);
-
 		beginPrimitive(PT_QUADS);
+
+		if(pTexture)
+			setTexture(0,pTexture);
+		else
+			_setTempTexture();
+
 		setTexcoord(vLetfTop);
 		sendVertex(Vector2(rc.left,rc.top));
 		setTexcoord(vLeftBottom);
@@ -2391,14 +2552,17 @@ namespace xs
 		endPrimitive();
 
 		setTexture(0,0);
-
 	}
 
 	void		RenderSystem::rectangle(const Rect& rc,ITexture* pTexture)
 	{
-		setTexture(0,pTexture);
-
 		beginPrimitive(PT_QUADS);
+
+		if(pTexture)
+			setTexture(0,pTexture);
+		else
+			_setTempTexture();
+
 		setTexcoord(Vector2(0,0));
 		sendVertex(Vector2(rc.left,rc.top));
 		setTexcoord(Vector2(0,1));
@@ -2419,6 +2583,7 @@ namespace xs
 
 		Rect rc(r.left,r.top - 1,r.right + 1,r.bottom);
 		beginPrimitive(PT_QUADS);
+		_setTempTexture();
 		sendVertex(Vector2(rc.left,rc.top));
 		sendVertex(Vector2(rc.left,rc.bottom));
 		sendVertex(Vector2(rc.right,rc.bottom));
@@ -2984,6 +3149,9 @@ namespace xs
 					);
 			}
 
+			//set world_view_proj to shader!
+			_setWorldViewProj2Shader();
+
 			if(PT_QUADS == m_batchStatus.pt)
 			{
 				unsigned int indexunm = (m_batchStatus.vertexCount>>2)*6;
@@ -2997,7 +3165,77 @@ namespace xs
 		m_batchStatus.clear();
 	}
 
-	///----------------------------------------------------------------
+
+	bool RenderSystem::_createInnerShader()
+	{
+		IShaderProgramManager* pShaderProgamMgr = getShaderProgramManager();
+		
+		std::string vs;
+		std::string fs;
+		for(int i = 0;i < ESP_NUM;++i)
+		{
+			m_pInnerShader[i] = static_cast<IHighLevelShaderProgram*>(pShaderProgamMgr->createShaderProgram(SPT_HIGHLEVEL));
+			vs = "Shader/OGLES2/";
+			fs = "Shader/OGLES2/";
+			
+			vs += g_shader_program_name[i];
+			vs += VS;
+			
+			fs += g_shader_program_name[i];
+			fs += FS;
+			
+			m_pInnerShader[i]->addShaderFromFile(ST_VERTEX_PROGRAM,vs);
+			m_pInnerShader[i]->addShaderFromFile(ST_FRAGMENT_PROGRAM,fs);
+			m_pInnerShader[i]->link();
+		}
+		return true;
+	}
+
+	void RenderSystem::_releaseInnerShader()
+	{
+		for(int i = 0;i < 4;i++)
+		{
+			if(m_pInnerShader[i])
+			{
+				safeRelease(m_pInnerShader[i]);
+			}
+		}
+	}
+
+	IShaderProgram* RenderSystem::getShaderProgram(int id)
+	{
+		if(id >= ESP_NUM)
+			return 0;
+
+		return m_pInnerShader[id];
+	}
+
+	void RenderSystem::bindCurrentShaderProgram(IShaderProgram* pShaderProgram)
+	{
+		if(m_pCurrentShaderProgram == pShaderProgram || pShaderProgram->getProgramType() != SPT_HIGHLEVEL)
+			return;
+
+		if(m_pCurrentShaderProgram)
+		{
+			m_pCurrentShaderProgram->unbind();
+		}
+		m_pCurrentShaderProgram = static_cast<IHighLevelShaderProgram*>(pShaderProgram);
+		if(m_pCurrentShaderProgram)
+		{
+			m_pCurrentShaderProgram->bind();
+		}
+	}
+
+	void RenderSystem::_setWorldViewProj2Shader()
+	{
+		if(m_pCurrentShaderProgram)
+		{
+			Matrix4 proj = getProjectionMatrix() * getModelViewMatrix();
+			m_pCurrentShaderProgram->setUniformMatrix(G_WORLD_VIEW_PROJ,proj);
+		}
+	}
+
+///----------------------------------------------------------------
 	RenderSystem::BatchStatus::BatchStatus()
 	{
 		pt = PT_POINTS;

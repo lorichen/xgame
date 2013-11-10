@@ -182,20 +182,22 @@ void GroundRenderQueue::render()
 			{		
 				pRenderSystem->setTexture(i + 1,pTile->getTexture(i));	
 			}
-
 			IHighLevelShaderProgram* pProgram = static_cast<IHighLevelShaderProgram*>(m_pShaderPrograms[pTile->m_textureLayerNum - 1]);
-			pProgram->bind();
-			pProgram->bindSampler( pTile->m_textureLayerNum);
-			pRenderSystem->setWorldMatrix(mtxWorld *pTile->getWorldMatrix());
+			pRenderSystem->bindCurrentShaderProgram(pProgram);//pProgram->bind();
+			if(pRenderSystem->getRenderSystemType() != RS_OPENGLES2)
+			{
+				pProgram->bindSampler( pTile->m_textureLayerNum);
+			}
+			pRenderSystem->setWorldMatrix(mtxWorld * pTile->getWorldMatrix());
 			pRenderSystem->drawPrimitive(PT_TRIANGLES,0,6);
-			pProgram->unbind();			
+			//pProgram->unbind();			
 			for(uint i = 0;i < pTile->m_textureLayerNum + 1;i++)
 			{		
 				pRenderSystem->setTexture(i,0);				
 			}
-
 			++begin;
 		}
+		pRenderSystem->bindCurrentShaderProgram(0);
 		pRenderSystem->setTexcoordVertexBuffer(0,0);
 		pRenderSystem->setVertexVertexBuffer(0);
 		pRenderSystem->setCullingMode(cm);
@@ -293,8 +295,20 @@ void GroundRenderQueue::initialize()
 			for(int i = 0;i < 4;i++)
 			{
 				char str[256];
-				sprintf(str,"Data\\Shader\\D3D9\\terrain%d.hlsl",i + 1);
+				sprintf(str,"Shader\\D3D9\\terrain%d.hlsl",i + 1);
 				m_pShaderPrograms[i] = pShaderProgamMgr->createShaderProgram(SPT_HIGHLEVEL);
+				m_pShaderPrograms[i]->addShaderFromFile(ST_FRAGMENT_PROGRAM,str);
+				m_pShaderPrograms[i]->link();
+			}
+		}
+		else if(pRenderSystem->getRenderSystemType() == RS_OPENGLES2)
+		{
+			for(int i = 0;i < 4;i++)
+			{
+				char str[256];
+				sprintf(str,"Shader/OGLES2/terrain%d.frag",i + 1);
+				m_pShaderPrograms[i] = pShaderProgamMgr->createShaderProgram(SPT_HIGHLEVEL);
+				m_pShaderPrograms[i]->addShaderFromFile(ST_VERTEX_PROGRAM,"Shader/OGLES2/terrain.vs");
 				m_pShaderPrograms[i]->addShaderFromFile(ST_FRAGMENT_PROGRAM,str);
 				m_pShaderPrograms[i]->link();
 			}
@@ -336,7 +350,6 @@ void GroundRenderQueue::initialize()
 				m_pShaderPrograms[i]->link();
 			}
 		}
-
 	}
 
 	Assert( 0 == m_pVB);

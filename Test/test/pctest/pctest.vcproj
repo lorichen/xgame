@@ -133,6 +133,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="../../../../ÓÎÏ·¿Í»§¶Ë/Client\$(ProjectName).exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="../../../lib"
 				GenerateDebugInformation="true"

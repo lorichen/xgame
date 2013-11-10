@@ -72,13 +72,13 @@ public:
 	 @param from 从那种指定的位置开始进行偏移，参考: SEEK_SET 文件头; SEEK_CUR 文件当前位置; SEEK_END 文件尾
 	 @return 
 	 */ 
-	virtual bool seek(int offset, uint from = SEEK_SET) const { return false; }
+	virtual bool seek(int offset, uint from = SEEK_SET)  { return false; }
 
 	/// 文件读写位置定位到文件头
-	virtual bool seekToBegin() const { return false; }
+	virtual bool seekToBegin()  { return false; }
 
 	/// 文件读写位置定位到文件尾
-	virtual bool seekToEnd() const { return false; }
+	virtual bool seekToEnd()  { return false; }
 
 	/// 获得文件指针的位置
 	virtual int getPosition() const { return 0; }
@@ -89,7 +89,7 @@ public:
 
 
 	/// 获取文件长度(文件没打开时也能获取长度),如果是包文件,则是指压缩后的长度
-	virtual uint getLength() const { return 0; }
+	virtual uint getLength() const  { return 0; }
 
 	/// 设置流的长度
 	virtual bool setLength(uint newLen) { return false; }

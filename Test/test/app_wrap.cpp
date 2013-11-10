@@ -22,7 +22,7 @@ using namespace xs;
 #include "FileSystem/MemStream.h"
 #include "FileSystem/IFileSystem.h"
 #include "FileSystem/VirtualFileSystem.h"
-
+#include "ISceneManager2.h"
 
 #include "app_wrap.h"
 
@@ -34,9 +34,18 @@ using namespace xs;
 //}
 
 using namespace xs;
+static unsigned int gs_width,gs_height;
+static GlobalClient		gs_global;
+static IRenderSystem*	g_psRenderSystem = 0;
+static ISceneManager2*  g_psScenemanager = 0;
 
-IRenderSystem* g_psRenderSystem = 0;
-static GlobalClient gs_global;
+static ITexture* gs_pTex = 0;
+
+void AppWrap::setViewSize(unsigned int width,unsigned int height)
+{
+	gs_width = width;
+	gs_height = height;
+}
 
 bool AppWrap::init(void* hwnd)
 {
@@ -48,23 +57,79 @@ bool AppWrap::init(void* hwnd)
 	param.colorDepth = 32;
 	param.hwnd = hwnd;
 
+	xs::getFileSystem()->addFindPath("data");
+	xs::getFileSystem()->addFindPath("");
+
 	//g_psRenderSystem = xs::createRenderSystem(&param);
     if(!gs_global.create(hwnd))
     {
+		assert(0);
         return false;
     }
     
     g_psRenderSystem = gs_global.getRenderSystem();
     
-	if(!g_psRenderSystem) return false;
+	if(!g_psRenderSystem)
+	{
+		assert(0);
+		return false;
+	}
+
+	IResourceManager* pResManager = gs_global.getResourceManager();
+	g_psScenemanager = gs_global.getSceneManager();
+	
+	//------------------test-----------------------------------
+
+
+	
+	g_psScenemanager->setRunType(RUN_TYPE_GAME);
+
+	std::string strMapFile = "苍隐村";
+	std::string strWayFile = "苍隐村路点.xml";
+
+	std::string mpFile = "Maps/";
+	mpFile += strMapFile;
+	mpFile += ".mp";
+	std::string xmlFile = "Maps/";
+	xmlFile += strMapFile;
+	xmlFile += ".xml";
+	std::string wpFile = "Maps/";
+	wpFile += strWayFile;	
+
+	xs::Point pt;
+	xs::Rect  rc(0,0,gs_width,gs_height);
+
+	/*
+	bool bLoadMap = g_psScenemanager->loadScene(mpFile.c_str(),wpFile.c_str(),&rc,NULL,false,&pt);
+	if(!bLoadMap)
+	{
+		assert(0);
+		printf("\n 加载场景失败！");
+		return false;
+	}
+	*/
+
+	gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
 
 	return true;
 }
 
-void AppWrap::update(int delta_ms)
+void AppWrap::update(int tick,int delta_ms)
 {
-	g_psRenderSystem->setClearColor(ColorValue(1.0,0,0,1.0));
+	g_psRenderSystem->setClearColor(ColorValue(0.0,0,0,0.0));
 	g_psRenderSystem->beginFrame(true,true,true);
+	
+	g_psRenderSystem->switchTo2D();
+	//g_psRenderSystem->point(Point(100,100),ColorValue(1.0,0,0,1.0));
+	g_psRenderSystem->line(Point(0,0),Point(800,600),ColorValue(1,0,0,1));
+	Rect rc(0,0,10,10);
+	g_psRenderSystem->rectangle(rc,0);
+
+	if(g_psScenemanager)
+	{
+		g_psScenemanager->update(tick,delta_ms,g_psRenderSystem);
+		g_psScenemanager->draw(g_psRenderSystem);
+	}
 
 	g_psRenderSystem->endFrame();
 }

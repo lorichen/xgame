@@ -162,7 +162,7 @@ namespace xs
 			glGetProgramiv(m_handle, GL_INFO_LOG_LENGTH, &i32InfoLogLength);
 			char* pszInfoLog = new char[i32InfoLogLength];
 			glGetProgramInfoLog(m_handle, i32InfoLogLength, &i32CharsWritten, pszInfoLog);
-			printf("Failed to link program!\n");
+			printf("Failed to link program! err : %s \n",pszInfoLog);
 			delete[] pszInfoLog;
 			glDeleteProgram(m_handle);
 			return false;

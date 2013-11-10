@@ -56,8 +56,31 @@ namespace xs
 		VET_UBYTE4
 	};
 
+	//Vertex element type
+	const unsigned short g_vertexElementSize[] = 
+	{
+		4,//VET_FLOAT1,
+		8,//VET_FLOAT2,
+		12,//VET_FLOAT3,
+		16,//VET_FLOAT4,
+		4,//VET_COLOR,
+		2,//VET_SHORT1,
+		4,//VET_SHORT2,
+		6,//VET_SHORT3,
+		8,//VET_SHORT4, 
+		4,//VET_UBYTE4,
+	};
 
-	//vertex attr enum
+	//vertex attr define info
+	struct VertexElementDecs
+	{
+		VertexElementType		type;
+		VertexElementSemantic	usage;
+		unsigned int            offset;
+		unsigned int            usageIndex;
+	};
+
+	//vertex attr instance enum
 	enum VetextAttr
 	{
 		EVA_POSITION = 0,
@@ -69,7 +92,7 @@ namespace xs
 		EVA_MAX,
 	};
 
-	//shader vertex attr info
+	//shader vertex attr instance info
 	struct AttrInfo
 	{
 		VertexElementSemantic usage;

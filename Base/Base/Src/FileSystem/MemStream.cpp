@@ -184,7 +184,7 @@ bool MemoryStream::write(const void* buffer, uint toWrite)
 	return true;
 }
 
-bool MemoryStream::seek(int offset, uint from)
+bool MemoryStream::seek(int offset, uint from) 
 {
 	Assert(from == SEEK_SET || from == SEEK_CUR || from == SEEK_END);
 
@@ -215,7 +215,7 @@ bool MemoryStream::seek(int offset, uint from)
 	return true;
 }
 
-bool MemoryStream::seekToBegin()
+bool MemoryStream::seekToBegin() 
 {
 	return seek(0, SEEK_SET);
 }
@@ -225,7 +225,7 @@ bool MemoryStream::seekToEnd()
 	return seek(0, SEEK_END);
 }
 
-bool MemoryStream::flush() const
+bool MemoryStream::flush() 
 {
 	return true;
 }

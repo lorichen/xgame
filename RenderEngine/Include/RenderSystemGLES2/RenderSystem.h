@@ -2,7 +2,7 @@
 #define __RenderSystem_H__
 
 #include "RenderTarget.h"
-
+#include "shaderdeclare.h"
 
 
 namespace xs{
@@ -367,31 +367,31 @@ public:
 	@param pVB 顶点缓冲区的地址
 	@param start 开始顶点的下标,可以不从第一个开始
 	*/
-	virtual void 		setTexcoordVertexBuffer(ushort unit,IVertexBuffer* pVB,uint start = 0);
+	virtual void 		setTexcoordVertexBuffer(ushort unit,IVertexBuffer* pVB,uint start = 0 ,uint stride = 0);
 
 	/** 设置位置顶点缓冲区
 	@param pVB 顶点缓冲区的地址
 	@param start 开始顶点的下标,可以不从第一个开始
 	*/
-	virtual void 		setVertexVertexBuffer(IVertexBuffer* pVB,uint start = 0);				
+	virtual void 		setVertexVertexBuffer(IVertexBuffer* pVB,uint start = 0,uint stride = 0);				
 
 	/** 设置法线顶点缓冲区
 	@param pVB 顶点缓冲区的地址
 	@param start 开始顶点的下标,可以不从第一个开始
 	*/
-	virtual void 		setNormalVertexBuffer(IVertexBuffer* pVB,uint start = 0);				
+	virtual void 		setNormalVertexBuffer(IVertexBuffer* pVB,uint start = 0 ,uint stride = 0);				
 
 	/** 设置颜色顶点缓冲区
 	@param pVB 顶点缓冲区的地址
 	@param start 开始顶点的下标,可以不从第一个开始
 	*/
-	virtual void 		setDiffuseVertexBuffer(IVertexBuffer* pVB,uint start = 0);			
+	virtual void 		setDiffuseVertexBuffer(IVertexBuffer* pVB,uint start = 0 ,uint stride = 0);			
 
 	/** 设置镜面光顶点缓冲区
 	@param pVB 顶点缓冲区的地址
 	@param start 开始顶点的下标,可以不从第一个开始
 	*/
-	virtual void 		setSpecularVertexBuffer(IVertexBuffer* pVB,uint start = 0);	
+	virtual void 		setSpecularVertexBuffer(IVertexBuffer* pVB,uint start = 0 ,uint stride = 0);	
 
 	/** 设置索引缓冲区
 	@param pIB 索引缓冲区的地址
@@ -743,6 +743,9 @@ public:
 	*/
 	virtual bool		getDisplayMode(RenderEngineCreationParameters & createParam);
 
+	virtual IShaderProgram* getShaderProgram(int id);
+
+	virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram);
 public:
 	TextureStageOperator getTextureStageOp(GLint op);
 	GLint				 getTextureStageOp( TextureStageOperator op);
@@ -815,9 +818,15 @@ private:
 
 
 //add by kevin.chen
-	ITexture*	    m_pWhiteTex;  //
+	ITexture*	    m_pWhiteTex;				
 	void			_setTempTexture();
 
+	IHighLevelShaderProgram* m_pCurrentShaderProgram;
+	
+	bool			_createInnerShader();
+	void			_releaseInnerShader();
+	IHighLevelShaderProgram* m_pInnerShader[ESP_NUM];
+	void			_setWorldViewProj2Shader();
 //-----为适配setVetext，setTexCoord之类的原接口，进行的各个buff batch cache
 #define VERTEX_CACHE_MAX 80 //待测试,must be 4 的倍数!
 	struct BatchStatus
