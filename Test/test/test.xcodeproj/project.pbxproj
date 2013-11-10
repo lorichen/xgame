@@ -30,6 +30,20 @@
 		18C14E0E182E714800BF6D69 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C14E0D182E714800BF6D69 /* OpenGLES.framework */; };
 		18EFA8F4182D342900A5A7B4 /* libluaengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA8F1182D340C00A5A7B4 /* libluaengine.a */; };
 		18EFA8F5182D342900A5A7B4 /* libschemengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA8E8182D338F00A5A7B4 /* libschemengine.a */; };
+		18F4F78E18304461000F3CF4 /* 13.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F4F77D18304461000F3CF4 /* 13.png */; };
+		18F4F78F18304461000F3CF4 /* sp_v3.fs in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78018304461000F3CF4 /* sp_v3.fs */; };
+		18F4F79018304461000F3CF4 /* sp_v3.vs in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78118304461000F3CF4 /* sp_v3.vs */; };
+		18F4F79118304461000F3CF4 /* sp_v3_n_uv.fs in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78218304461000F3CF4 /* sp_v3_n_uv.fs */; };
+		18F4F79218304461000F3CF4 /* sp_v3_n_uv.vs in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78318304461000F3CF4 /* sp_v3_n_uv.vs */; };
+		18F4F79318304461000F3CF4 /* sp_v3_uv.fs in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78418304461000F3CF4 /* sp_v3_uv.fs */; };
+		18F4F79418304461000F3CF4 /* sp_v3_uv.vs in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78518304461000F3CF4 /* sp_v3_uv.vs */; };
+		18F4F79518304461000F3CF4 /* sp_v3_uv_c.fs in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78618304461000F3CF4 /* sp_v3_uv_c.fs */; };
+		18F4F79618304461000F3CF4 /* sp_v3_uv_c.vs in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78718304461000F3CF4 /* sp_v3_uv_c.vs */; };
+		18F4F79718304461000F3CF4 /* terrain.vs in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78818304461000F3CF4 /* terrain.vs */; };
+		18F4F79818304461000F3CF4 /* terrain1.frag in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78918304461000F3CF4 /* terrain1.frag */; };
+		18F4F79918304461000F3CF4 /* terrain2.frag in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78A18304461000F3CF4 /* terrain2.frag */; };
+		18F4F79A18304461000F3CF4 /* terrain3.frag in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78B18304461000F3CF4 /* terrain3.frag */; };
+		18F4F79B18304461000F3CF4 /* terrain4.frag in Sources */ = {isa = PBXBuildFile; fileRef = 18F4F78C18304461000F3CF4 /* terrain4.frag */; };
 		CDF861F6182A15010028C260 /* libmodel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF861F3182A14E70028C260 /* libmodel.a */; };
 		CDF861FF182B2CB40028C260 /* app_wrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF861FD182B2CB40028C260 /* app_wrap.cpp */; };
 		CDF86284182CAFA70028C260 /* libresmanager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF86278182CAF870028C260 /* libresmanager.a */; };
@@ -218,6 +232,20 @@
 		18C14E0D182E714800BF6D69 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = schemengine.xcodeproj; path = ../../Base/SchemeEngine/Build/schemengine/schemengine.xcodeproj; sourceTree = "<group>"; };
 		18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = luaengine.xcodeproj; path = ../../Base/LuaEngine/Build/luaengine/luaengine.xcodeproj; sourceTree = "<group>"; };
+		18F4F77D18304461000F3CF4 /* 13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13.png; sourceTree = "<group>"; };
+		18F4F78018304461000F3CF4 /* sp_v3.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sp_v3.fs; sourceTree = "<group>"; };
+		18F4F78118304461000F3CF4 /* sp_v3.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sp_v3.vs; sourceTree = "<group>"; };
+		18F4F78218304461000F3CF4 /* sp_v3_n_uv.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sp_v3_n_uv.fs; sourceTree = "<group>"; };
+		18F4F78318304461000F3CF4 /* sp_v3_n_uv.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sp_v3_n_uv.vs; sourceTree = "<group>"; };
+		18F4F78418304461000F3CF4 /* sp_v3_uv.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sp_v3_uv.fs; sourceTree = "<group>"; };
+		18F4F78518304461000F3CF4 /* sp_v3_uv.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sp_v3_uv.vs; sourceTree = "<group>"; };
+		18F4F78618304461000F3CF4 /* sp_v3_uv_c.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sp_v3_uv_c.fs; sourceTree = "<group>"; };
+		18F4F78718304461000F3CF4 /* sp_v3_uv_c.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sp_v3_uv_c.vs; sourceTree = "<group>"; };
+		18F4F78818304461000F3CF4 /* terrain.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = terrain.vs; sourceTree = "<group>"; };
+		18F4F78918304461000F3CF4 /* terrain1.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = terrain1.frag; sourceTree = "<group>"; };
+		18F4F78A18304461000F3CF4 /* terrain2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = terrain2.frag; sourceTree = "<group>"; };
+		18F4F78B18304461000F3CF4 /* terrain3.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = terrain3.frag; sourceTree = "<group>"; };
+		18F4F78C18304461000F3CF4 /* terrain4.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = terrain4.frag; sourceTree = "<group>"; };
 		CDF861ED182A14E70028C260 /* model.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = model.xcodeproj; path = ../../RenderEngine/Build/model/model.xcodeproj; sourceTree = "<group>"; };
 		CDF861FD182B2CB40028C260 /* app_wrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = app_wrap.cpp; sourceTree = SOURCE_ROOT; };
 		CDF861FE182B2CB40028C260 /* app_wrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_wrap.h; sourceTree = SOURCE_ROOT; };
@@ -286,6 +314,7 @@
 		188101301824A892002AF8D8 = {
 			isa = PBXGroup;
 			children = (
+				18F4F77C18304461000F3CF4 /* data */,
 				18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */,
 				18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */,
 				CDF8627B182CAF9E0028C260 /* scenemanager2.xcodeproj */,
@@ -417,6 +446,44 @@
 				18EFA8F3182D340C00A5A7B4 /* luaengineTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		18F4F77C18304461000F3CF4 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				18F4F77D18304461000F3CF4 /* 13.png */,
+				18F4F77E18304461000F3CF4 /* Shader */,
+			);
+			name = data;
+			path = ../../data;
+			sourceTree = "<group>";
+		};
+		18F4F77E18304461000F3CF4 /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				18F4F77F18304461000F3CF4 /* OGLES2 */,
+			);
+			path = Shader;
+			sourceTree = "<group>";
+		};
+		18F4F77F18304461000F3CF4 /* OGLES2 */ = {
+			isa = PBXGroup;
+			children = (
+				18F4F78018304461000F3CF4 /* sp_v3.fs */,
+				18F4F78118304461000F3CF4 /* sp_v3.vs */,
+				18F4F78218304461000F3CF4 /* sp_v3_n_uv.fs */,
+				18F4F78318304461000F3CF4 /* sp_v3_n_uv.vs */,
+				18F4F78418304461000F3CF4 /* sp_v3_uv.fs */,
+				18F4F78518304461000F3CF4 /* sp_v3_uv.vs */,
+				18F4F78618304461000F3CF4 /* sp_v3_uv_c.fs */,
+				18F4F78718304461000F3CF4 /* sp_v3_uv_c.vs */,
+				18F4F78818304461000F3CF4 /* terrain.vs */,
+				18F4F78918304461000F3CF4 /* terrain1.frag */,
+				18F4F78A18304461000F3CF4 /* terrain2.frag */,
+				18F4F78B18304461000F3CF4 /* terrain3.frag */,
+				18F4F78C18304461000F3CF4 /* terrain4.frag */,
+			);
+			path = OGLES2;
 			sourceTree = "<group>";
 		};
 		CDF861EE182A14E70028C260 /* Products */ = {
@@ -712,6 +779,7 @@
 			files = (
 				188101471824A892002AF8D8 /* InfoPlist.strings in Resources */,
 				1881014F1824A892002AF8D8 /* Images.xcassets in Resources */,
+				18F4F78E18304461000F3CF4 /* 13.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,12 +798,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F4F79918304461000F3CF4 /* terrain2.frag in Sources */,
+				18F4F79118304461000F3CF4 /* sp_v3_n_uv.fs in Sources */,
+				18F4F79818304461000F3CF4 /* terrain1.frag in Sources */,
 				1881016F1824A91D002AF8D8 /* EAGLView.mm in Sources */,
 				CDF861FF182B2CB40028C260 /* app_wrap.cpp in Sources */,
+				18F4F79718304461000F3CF4 /* terrain.vs in Sources */,
+				18F4F79018304461000F3CF4 /* sp_v3.vs in Sources */,
+				18F4F79318304461000F3CF4 /* sp_v3_uv.fs in Sources */,
 				1881014D1824A892002AF8D8 /* testAppDelegate.m in Sources */,
 				188101701824A91D002AF8D8 /* ViewController.m in Sources */,
+				18F4F79218304461000F3CF4 /* sp_v3_n_uv.vs in Sources */,
 				188101491824A892002AF8D8 /* main.m in Sources */,
+				18F4F79B18304461000F3CF4 /* terrain4.frag in Sources */,
 				CDF862AB182CC6A30028C260 /* GlobalClient.cpp in Sources */,
+				18F4F79518304461000F3CF4 /* sp_v3_uv_c.fs in Sources */,
+				18F4F79618304461000F3CF4 /* sp_v3_uv_c.vs in Sources */,
+				18F4F79A18304461000F3CF4 /* terrain3.frag in Sources */,
+				18F4F78F18304461000F3CF4 /* sp_v3.fs in Sources */,
+				18F4F79418304461000F3CF4 /* sp_v3_uv.vs in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

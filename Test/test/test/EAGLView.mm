@@ -30,6 +30,7 @@
 #include "Re.h"
 #include "IRenderSystem.h"
 #include "IRenderEngine.h"
+#include "Api.h"
 
 #define USE_DEPTH_BUFFER 1
 
@@ -118,7 +119,7 @@ using namespace xs;
     }
     */
     int delta_ms = 1000/60;
-    AppWrap::update(delta_ms);
+    AppWrap::update(getTickCount(),delta_ms);
     
 //    [EAGLContext setCurrentContext:context];
 //    

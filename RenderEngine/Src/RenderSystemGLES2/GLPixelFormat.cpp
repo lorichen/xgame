@@ -177,6 +177,7 @@ namespace xs
                 return GL_RGB;
             case PF_A8R8G8B8:
             case PF_B8G8R8A8:
+            case PF_R8G8B8A8:
                 return GL_RGBA;
             case PF_A2R10G10B10:
             //case PF_A2B10G10R10:

@@ -121,9 +121,9 @@ void AppWrap::update(int tick,int delta_ms)
 	
 	g_psRenderSystem->switchTo2D();
 	//g_psRenderSystem->point(Point(100,100),ColorValue(1.0,0,0,1.0));
-	g_psRenderSystem->line(Point(0,0),Point(800,600),ColorValue(1,0,0,1));
-	Rect rc(0,0,10,10);
-	g_psRenderSystem->rectangle(rc,0);
+	g_psRenderSystem->line(xs::Point(0,0),xs::Point(800,600),ColorValue(1,0,0,1));
+    xs::Rect rc(0,0,100,100);
+	g_psRenderSystem->rectangle(rc,gs_pTex);
 
 	if(g_psScenemanager)
 	{

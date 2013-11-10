@@ -899,11 +899,17 @@ namespace xs
 		m_pCurrentRenderTarget->getRect(&rc);
 
 		int h = rc.bottom - rc.top;
-
+        #if 0
 		m_pCurrentRenderTarget->m_vpLeft = left;
 		m_pCurrentRenderTarget->m_vpTop = h - top - height;
 		m_pCurrentRenderTarget->m_vpWidth = width;
 		m_pCurrentRenderTarget->m_vpHeight = height;
+        #else
+        m_pCurrentRenderTarget->m_vpLeft = 0;
+		m_pCurrentRenderTarget->m_vpTop = 0;
+		m_pCurrentRenderTarget->m_vpWidth = rc.right;
+		m_pCurrentRenderTarget->m_vpHeight = rc.bottom;
+        #endif
 		if(m_scissorEnabled)
 			glScissor(m_pCurrentRenderTarget->m_vpLeft,m_pCurrentRenderTarget->m_vpTop,m_pCurrentRenderTarget->m_vpWidth,m_pCurrentRenderTarget->m_vpHeight);
 		
@@ -1225,7 +1231,7 @@ namespace xs
 		m_pCurrentRenderTarget->m_RenderState.m_AlphaCompareFunction = cf;
 		m_pCurrentRenderTarget->m_RenderState.m_AlphaCompareValue = value;
 		
-		assert(0);
+		//assert(0);
 		//glAlphaFunc(convertCompareFunction(cf),value);
 	}
 
