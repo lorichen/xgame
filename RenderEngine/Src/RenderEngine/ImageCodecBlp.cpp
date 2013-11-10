@@ -3,6 +3,19 @@
 #include "ImageCodecBlp.h" 
 
 using namespace xs;
+
+
+#define XMD_H
+
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+	#include "ijg/jpeglib.h"
+#else
+extern "C"
+{
+	#include "ijg/jpeglib.h"
+}
+#endif
+
 //+-----------------------------------------------------------------------------
 //| Buffer class
 //+-----------------------------------------------------------------------------
@@ -144,11 +157,7 @@ char& BUFFER::operator [](int Index) const
 	return Data[Index];
 }
 
-#define XMD_H
-extern "C"
-{
-    #include "ijg/jpeglib.h"
-}
+
 
 //+-----------------------------------------------------------------------------
 //| Source manager structure

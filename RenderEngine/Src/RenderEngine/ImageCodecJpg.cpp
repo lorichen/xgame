@@ -2,11 +2,16 @@
 #include "PixelFormat.h"
 #include "ImageCodecJpg.h" 
 
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
+	#include "IJG/jconfig.h"
+	#include "IJG/cdjpeg.h"
+#else
 extern "C"
 {
     #include "IJG/jconfig.h"
     #include "IJG/cdjpeg.h"
 }
+#endif
 
 namespace xs
 {
