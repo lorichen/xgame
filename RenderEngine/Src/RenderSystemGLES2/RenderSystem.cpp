@@ -3237,7 +3237,7 @@ namespace xs
 		if(m_pCurrentShaderProgram)
 		{
 			Matrix4 proj = getProjectionMatrix() * getModelViewMatrix();
-			m_pCurrentShaderProgram->setUniformMatrix(G_WORLD_VIEW_PROJ,proj);
+			m_pCurrentShaderProgram->setUniformMatrix(G_WORLD_VIEW_PROJ,proj,false);
 		}
 	}
 

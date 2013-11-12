@@ -81,7 +81,7 @@ namespace xs
 		@param	value	变量值，矩阵的数据，是行主序的
 		@return			是否设置成功
 		*/
-		virtual bool			setUniformMatrix(const std::string & strPara, const Matrix4 &  value);
+		virtual bool			setUniformMatrix(const std::string & strPara, const Matrix4 &  value ,bool normal = true);
 
 
 		/** 设置统一布尔型数组

@@ -207,7 +207,7 @@ namespace xs
 		@param	value	变量值，矩阵的数据，是行主序的
 		@return			是否设置成功
 		*/
-		virtual bool			setUniformMatrix(const std::string & strPara, const Matrix4 &  value)=0;
+		virtual bool			setUniformMatrix(const std::string & strPara, const Matrix4 &  value ,bool normal = true)=0;
 
 
 		/** 设置统一布尔型数组
@@ -259,6 +259,7 @@ namespace xs
 		@param flag 是TransformMatrixType的或，指示绑定不同的矩阵类型
 		*/
 		virtual void			bindTransformMatrix( uint flag) = 0;
+
 	};
 
 	/** 着色器管理器指针，这个接口暂时给内部使用，外部获取不到

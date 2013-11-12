@@ -250,12 +250,15 @@ namespace xs
 	@param	value	变量值，矩阵的数据，是行主序的
 	@return			是否设置成功
 	*/
-	bool HighLevelShaderProgram::setUniformMatrix(const std::string & strPara, const Matrix4 &  value)
+	bool HighLevelShaderProgram::setUniformMatrix(const std::string & strPara, const Matrix4 &  value,bool normal)
 	{
 		GLint loc = glGetUniformLocation(m_handle, strPara.c_str() );
 		if( loc < 0) return false;
-
-		glUniformMatrix4fv(loc, 1, GL_TRUE, &value[0][0]);
+		
+		if(normal)
+			glUniformMatrix4fv(loc, 1, GL_TRUE, &value[0][0]); 
+		else
+			glUniformMatrix4fv(loc, 1, GL_FALSE, &value[0][0]);//这里应该是false,否则传投影矩阵过去就错了
 		return true;
 	}
 

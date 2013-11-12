@@ -117,12 +117,14 @@ bool AppWrap::init(void* hwnd)
 void AppWrap::update(int tick,int delta_ms)
 {
 	g_psRenderSystem->setClearColor(ColorValue(0.0,0,0,0.0));
+	g_psRenderSystem->setSceneBlending(SBF_SOURCE_ALPHA,SBF_ONE_MINUS_SOURCE_ALPHA);
 	g_psRenderSystem->beginFrame(true,true,true);
 	
 	g_psRenderSystem->switchTo2D();
-	//g_psRenderSystem->point(Point(100,100),ColorValue(1.0,0,0,1.0));
+	//g_psRenderSystem->point(Point(0,0),ColorValue(1.0,0,0,1.0));
 	g_psRenderSystem->line(xs::Point(0,0),xs::Point(800,600),ColorValue(1,0,0,1));
-    xs::Rect rc(0,0,100,100);
+    xs::Rect rc(400,300,500,400);
+	//g_psRenderSystem->box(rc,ColorValue(1,0,0,1));
 	g_psRenderSystem->rectangle(rc,gs_pTex);
 
 	if(g_psScenemanager)
