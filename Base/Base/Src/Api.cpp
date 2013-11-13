@@ -25,6 +25,11 @@ namespace xs {
 		rc->bottom = rc1.bottom;
 		return true;
 	}
+    
+    const char* getAppPath()
+    {
+        return "./";
+    }
 #endif
 
 	RKT_API	ulong getTickCount()

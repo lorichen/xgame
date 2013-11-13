@@ -7,7 +7,7 @@
 
 namespace xs {
     
-extern "C" bool GetClientRect(void* hwnd,Rect* rc)
+bool GetClientRect(void* hwnd,Rect* rc)
 {
     /*
     UIView* view = (UIView*)hwnd;
@@ -24,6 +24,13 @@ extern "C" bool GetClientRect(void* hwnd,Rect* rc)
     */
     //ios do nothing!
     return true;
+}
+    
+const char* getAppPath()
+{
+    NSString* path = [[NSBundle mainBundle] bundlePath];
+    static std::string str = [path cStringUsingEncoding:NSASCIIStringEncoding];
+    return str.c_str();
 }
 
 }

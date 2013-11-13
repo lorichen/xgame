@@ -17,6 +17,12 @@ struct OGLES2Context
     GLuint depthRenderbuffer;
 };
 
+static float g_scaleFactor = 1.0f;
+float GetScaleFactor()
+{
+    return g_scaleFactor;
+}
+
 
 void RenderTarget::Present()
 {
@@ -39,9 +45,18 @@ bool RenderTarget::_CreateIOS(void* view,void* shareContext)
     if(view)
     {
         m_pContext->view = (UIView*)(view);
+        
+        //get view scale factor
+        CGFloat f = m_pContext->view.contentScaleFactor;
+        if ([m_pContext->view respondsToSelector:@selector(contentScaleFactor)])
+        {
+            m_pContext->view.contentScaleFactor = [[UIScreen mainScreen] scale];
+        }
+        f = m_pContext->view.contentScaleFactor;
+        g_scaleFactor = f;
     
-        // Get the layer
-        CAEAGLLayer *eaglLayer = (CAEAGLLayer *)(m_pContext->view.layer);
+        //init eagl
+        CAEAGLLayer* eaglLayer = (CAEAGLLayer *)(m_pContext->view.layer);
     
         eaglLayer.opaque = YES;
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -59,6 +74,7 @@ bool RenderTarget::_CreateIOS(void* view,void* shareContext)
     }
     else
     {
+        //create opengles2 !
          m_pContext->context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     }
     
@@ -66,6 +82,7 @@ bool RenderTarget::_CreateIOS(void* view,void* shareContext)
         return false;
     }
     
+    //make current render context for this thread!
     [EAGLContext setCurrentContext:m_pContext->context];
     glBindFramebuffer(GL_FRAMEBUFFER, m_pContext->viewFramebuffer);
     m_FrameBufferObj = m_pContext->viewFramebuffer;
@@ -88,19 +105,20 @@ void RenderTarget::_DestoryIOS()
 
 void RenderTarget::GetClientRect(xs::Rect* rc)
 {
+    float f = GetScaleFactor();
 #if 1
-    CAEAGLLayer *eaglLayer = (CAEAGLLayer *)(m_pContext->view.layer);
-    CGSize					newSize;
+    CAEAGLLayer* eaglLayer = (CAEAGLLayer *)(m_pContext->view.layer);
+    CGSize	newSize;
     newSize = [eaglLayer bounds].size;
     
     rc->left = 0;
     rc->top = 0;
-    rc->right = 2 * newSize.width;
-    rc->bottom = 2 * newSize.height;
+    rc->right = newSize.width * f;
+    rc->bottom = newSize.height * f;
 #else
     xs::GetClientRect(m_pContext->view, rc);
-    rc->right *= 2;
-    rc->bottom *= 2;
+    rc->right *= f;
+    rc->bottom *= f;
 #endif
 }
 

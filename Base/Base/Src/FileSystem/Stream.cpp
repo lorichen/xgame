@@ -77,18 +77,18 @@ inline static bool _isAbsolutePath(CPathA& path)
 	return !::PathIsRelativeA(path.c_str());
     
 #else
-    return (path.length() >= 3 && path[0] == '\\') || path[0] == '/' || path[1] == ':' ;
+    return (path.length() >= 3 && path[0] == '\\') || path[0] == '/' || path[0] == '.' ||  path[0] == '\\'|| path[1] == ':' ;
 #endif
 }
 
 RKT_API void toggleFullPath(CPathA& path)
 {
+#if (TAGET_PLATFORM == PLATFORM_WIN32)
 	if (path.empty())
 	{
 		path = getWorkDir();
 		return;
 	}
-
 	if (!_isAbsolutePath(path))
 	{
 		CPathA workPath;
@@ -96,29 +96,42 @@ RKT_API void toggleFullPath(CPathA& path)
 		workPath.addTailSlash();
 		path.insert(0, workPath);
 	}
+#endif
 }
 
 RKT_API bool checkPath(const char* path, bool& isAbsolutePath, uint& attrib)
 {
 	CPathA mypath ;
     mypath = path;
-	toggleFullPath(mypath);
-
+	
+    
 #if (TARGET_PLATFORM == PLATFORM_WIN32)
+    toggleFullPath(mypath);
 	_finddata_t fd;
 	intptr_t r = _findfirst(mypath.c_str(), &fd); // "c:\"“≤ª·∑µªÿ£≠1£¨µ±ƒø¬º≤ª¥Ê‘⁄£¨“ÚŒ™«˝∂Ø∆˜≤ª «ƒø¬º
 	attrib = fd.attrib;
 	_findclose(r);
 	return r != -1;
 #else
+    //toggleFullPath(mypath);
+    if(mypath.empty())
+    {
+        attrib |= 16;
+        return true;
+    }
     DIR* dir;
     if((dir = opendir(mypath.c_str())))
+    {
+        attrib |= 16;
         return true;
-    
+    }
     FILE* fp = fopen(mypath.c_str(),"rb");
     if(!fp)
+    {
+        attrib = 0;
         return false;
-    
+    }
+    attrib = 0;
     fclose(fp);
     return true;
 #endif

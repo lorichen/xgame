@@ -15,6 +15,7 @@
 
 //#include "UITestIOS.h"
 #include <unistd.h>
+#include <stdio.h>
 
 #if 0
 #include "Base.h"
@@ -71,7 +72,12 @@ using namespace xs;
         
         NSString* path = [[NSBundle mainBundle] bundlePath];
         chdir([path cStringUsingEncoding:NSASCIIStringEncoding]);
-       
+        
+        std::string str;
+        str = "data/Shader/OGLES2/sp_v3_uv_c.vs";
+        //str = "data/13.png";
+        //FILE* fp = fopen(str.c_str(),"rb");
+        
         //testCase = 0;
         //testCase = new UITestIOS();
         //testCase->OnAppInit((CSimpleTestApp*)self);

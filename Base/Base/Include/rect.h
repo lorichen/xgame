@@ -12,6 +12,7 @@ struct Rect
     long left, top, right, bottom;
     
     Rect()
+    :left(0),top(0),right(1),bottom(1)
     {
     }
     Rect( int l, int t, int r, int b )

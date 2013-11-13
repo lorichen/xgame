@@ -8,7 +8,10 @@
 #include "Common.h"
 
 namespace xs {
-	extern "C" RKT_API bool GetClientRect(void* hwnd,Rect* rc);
+	RKT_API bool GetClientRect(void* hwnd,Rect* rc);
+    
+    RKT_API const char* getAppPath();
+    
 	/// 获得系统Tick数
 	RKT_API ulong getTickCount();
 

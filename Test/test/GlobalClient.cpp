@@ -611,10 +611,10 @@ bool GlobalClient::init3D(void* hwnd)
 	RenderEngineCreationParameters params;
 	params.hwnd = hwnd;
 
-    xs::Rect rc;
-	GetClientRect((void*)hwnd, &rc);
-	params.w = rc.right - rc.left;
-	params.h = rc.bottom - rc.top;
+    //xs::Rect rc;
+	//GetClientRect((void*)hwnd, &rc);
+	params.w = 1;//rc.right - rc.left;
+	params.h = 1;//rc.bottom - rc.top;
 	params.colorDepth = 32;
 	params.fullscreen = false;
 	params.refreshRate = 85;
@@ -630,7 +630,6 @@ bool GlobalClient::init3D(void* hwnd)
 		return false;
 	}
 
-	GetClientRect((void*)params.hwnd, &rc);
 	// 获取渲染系统
 	IRenderSystem* renderSystem = mRenderEngine->getRenderSystem();
 
@@ -642,10 +641,11 @@ bool GlobalClient::init3D(void* hwnd)
 		Error("[3D]Create mViewport failed"<<endl);
 		return false;
 	}
-	mViewport->setValues(0, 0, rc.right - rc.left, rc.bottom - rc.top);
+    int left,top,width,height;
+    renderSystem->getViewport(left,top,width,height);
+	mViewport->setValues(left,top,width,height);
 	mViewport->setBackgroundColor(ColorValue(0.223f, 0.427f, 0.647f));
 	mViewport->setClearEveryFrame(true);
-	renderSystem->setViewport(0, 0, rc.right - rc.left, rc.bottom - rc.top);
 
 	// 创建相机
 	mCamera = mRenderEngine->createCamera(mViewport);

@@ -182,8 +182,10 @@ namespace xs
 	{
 		if(cx == 0 || cy == 0)return;
 
-		glViewport(0,0,cx,cy);
-		GLfloat fAspectRatio = (GLfloat)cx / (GLfloat)cy;
+        setViewport(0, 0, cx, cy);
+        
+		//glViewport(0,0,cx,cy);
+		//GLfloat fAspectRatio = (GLfloat)cx / (GLfloat)cy;
 		
 		/*
 		glMatrixMode(GL_PROJECTION);
@@ -194,7 +196,7 @@ namespace xs
 		gluLookAt(0,0,1,0,0,0,0,1,0);
 		*/
 
-		glClearColor(0.223f,0.427f,0.647f,1);
+		//glClearColor(0.223f,0.427f,0.647f,1);
 		glClearDepthf(1.0f);
 	}
 

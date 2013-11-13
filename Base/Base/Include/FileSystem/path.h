@@ -118,9 +118,11 @@ public:
 	 */
 	void normalize()
 	{
-		_Elem slash[2] = {CHAR_SLASH};
-		_Elem slash2[2] = {CHAR_SLASH2};
+        /*
+		_Elem slash[2] = {CHAR_SLASH2};
+		_Elem slash2[2] = {CHAR_SLASH};
 		replace_all(_String(slash2), _String(slash));
+        */
 	}
 
 	void replace_all(const _String& substr,const _String& str)
@@ -188,8 +190,8 @@ public:
 
 	_MyType& addTailSlash()
 	{
-		if (*(this->end() - 1) != CHAR_SLASH)
-			*this += CHAR_SLASH;
+		if (*(this->end() - 1) != CHAR_SLASH || *(this->end() - 1) != CHAR_SLASH2)
+			*this += CHAR_SLASH2;
 		return (*this);
 	}
 
