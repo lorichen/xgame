@@ -33,6 +33,8 @@ bool GroundRenderQueue::RenderDistance(int nMapWidth, int nMapHeight, int nViewW
 		return false;
 	}
 
+	pRenderSystem->bindCurrentShaderProgram(m_pShaderPrograms[0],true);
+
     //  计算远景图的偏移比例：这个偏移比例这样来算，L(a, b)表示a和b之间的距离：
     //
     /*     float fx = (float)(256 * 11 - m_nViewWidth) / (float)(m_nMapWidth - m_nViewWidth);
@@ -182,12 +184,11 @@ void GroundRenderQueue::render()
 			{		
 				pRenderSystem->setTexture(i + 1,pTile->getTexture(i));	
 			}
+			
 			IHighLevelShaderProgram* pProgram = static_cast<IHighLevelShaderProgram*>(m_pShaderPrograms[pTile->m_textureLayerNum - 1]);
 			pRenderSystem->bindCurrentShaderProgram(pProgram);//pProgram->bind();
-			if(pRenderSystem->getRenderSystemType() != RS_OPENGLES2)
-			{
-				pProgram->bindSampler( pTile->m_textureLayerNum);
-			}
+			pProgram->bindSampler( pTile->m_textureLayerNum);
+			
 			pRenderSystem->setWorldMatrix(mtxWorld * pTile->getWorldMatrix());
 			pRenderSystem->drawPrimitive(PT_TRIANGLES,0,6);
 			//pProgram->unbind();			

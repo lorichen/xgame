@@ -8,6 +8,9 @@ public:
 	static bool init(void* hwnd);
 	static void update(int tick,int delta_ms);
 	static void uninit();
+
+	//simple input
+	static void move(int dx,int dy);
 };
 
 

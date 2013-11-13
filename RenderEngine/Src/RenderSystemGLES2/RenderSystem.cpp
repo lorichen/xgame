@@ -3218,9 +3218,12 @@ namespace xs
 		return m_pInnerShader[id];
 	}
 
-	void RenderSystem::bindCurrentShaderProgram(IShaderProgram* pShaderProgram)
+	void RenderSystem::bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst)
 	{
-		if(m_pCurrentShaderProgram == pShaderProgram || pShaderProgram->getProgramType() != SPT_HIGHLEVEL)
+		if(m_pCurrentShaderProgram == pShaderProgram)
+			return;
+
+		if(pShaderProgram && pShaderProgram->getProgramType() != SPT_HIGHLEVEL)
 			return;
 
 		if(m_pCurrentShaderProgram)
@@ -3231,6 +3234,11 @@ namespace xs
 		if(m_pCurrentShaderProgram)
 		{
 			m_pCurrentShaderProgram->bind();
+
+			if(setShaderConst)
+			{
+				_setWorldViewProj2Shader();
+			}
 		}
 	}
 

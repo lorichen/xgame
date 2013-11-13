@@ -745,7 +745,7 @@ public:
 
 	virtual IShaderProgram* getShaderProgram(int id);
 
-	virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram);
+	virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false);
 public:
 	TextureStageOperator getTextureStageOp(GLint op);
 	GLint				 getTextureStageOp( TextureStageOperator op);

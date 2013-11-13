@@ -779,7 +779,7 @@ namespace xs
 		
 		//设置当前绑定的shader,如为空则接绑定之前的shader
 		//该接口可用于内置shader和外置shader,外置shader 需要关注声明周期对该接口的影响
-		virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram) = 0;
+		virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false) = 0;
 	};
 	/** @} */
 

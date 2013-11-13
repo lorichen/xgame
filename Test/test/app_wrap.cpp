@@ -100,7 +100,8 @@ bool AppWrap::init(void* hwnd)
 	xs::Point pt;
 	xs::Rect  rc(0,0,gs_width,gs_height);
 
-	/*
+	//gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
+
 	bool bLoadMap = g_psScenemanager->loadScene(mpFile.c_str(),wpFile.c_str(),&rc,NULL,false,&pt);
 	if(!bLoadMap)
 	{
@@ -108,9 +109,7 @@ bool AppWrap::init(void* hwnd)
 		printf("\n ¼ÓÔØ³¡¾°Ê§°Ü£¡");
 		return false;
 	}
-	*/
-
-	gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
+	
 
 	return true;
 }
@@ -120,16 +119,18 @@ void AppWrap::update(int tick,int delta_ms)
 	g_psRenderSystem->setClearColor(ColorValue(0.0,0.0,0.0,0.0));
 	g_psRenderSystem->beginFrame(true,true,true);
     
-    g_psRenderSystem->setSceneBlending(SBF_SOURCE_ALPHA,SBF_ONE_MINUS_SOURCE_ALPHA);
-	
-	g_psRenderSystem->switchTo2D();
-	//g_psRenderSystem->point(xs::Point(100,100),xs::ColorValue(1.0,0,0,1.0));
-	g_psRenderSystem->line(xs::Point(0,0),xs::Point(800,600),ColorValue(1,0,0,1));
     
-    xs::Rect rc(0,0,100,100);
+	g_psRenderSystem->switchTo2D();
+	g_psRenderSystem->setSceneBlending(SBF_SOURCE_ALPHA,SBF_ONE_MINUS_SOURCE_ALPHA);
+
+	//g_psRenderSystem->point(xs::Point(100,100),xs::ColorValue(1.0,0,0,1.0));
+	//g_psRenderSystem->line(xs::Point(0,0),xs::Point(800,600),ColorValue(1,0,0,1));
+    
+    //xs::Rect rc(0,0,100,100);
 	//g_psRenderSystem->box(rc,ColorValue(1,0,0,1));
-	g_psRenderSystem->rectangle(rc,gs_pTex);
-    //g_psRenderSystem->rectangle(rc,0);
+	//g_psRenderSystem->rectangle(rc,gs_pTex);
+
+	//---------------------------------------------
 
 	if(g_psScenemanager)
 	{
@@ -144,5 +145,13 @@ void AppWrap::uninit()
 {
 	//g_psRenderSystem->release();
     gs_global.close();
+}
+
+void AppWrap::move(int dx,int dy)
+{
+	if(g_psScenemanager)
+	{
+		g_psScenemanager->scrollViewport(dx,dy);
+	}
 }
 

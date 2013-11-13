@@ -32,6 +32,9 @@ using namespace xs;
 
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
+	static int s_lastX = 0;
+	static int s_lastY = 0;
+
 	switch(msg)
 	{
 	case WM_DESTROY:
@@ -63,6 +66,27 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 			
 			break;
 
+		}
+		break;
+
+		case WM_LBUTTONDOWN:
+		{
+			s_lastX = LOWORD(lParam); 
+			s_lastY = HIWORD(lParam); 
+		}
+		break;
+
+		case WM_MOUSEMOVE:
+		{
+			if(wParam & MK_LBUTTON)
+			{
+				int xPos = LOWORD(lParam); 
+				int yPos = HIWORD(lParam); 
+				AppWrap::move(s_lastX - xPos,s_lastY - yPos);
+				s_lastX = xPos;
+				s_lastY = yPos;
+				return 0;
+			}
 		}
 		break;
 	}
