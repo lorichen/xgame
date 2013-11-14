@@ -176,7 +176,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../Dependence/Include;../Include;"
+				AdditionalIncludeDirectories="../../../Dependence/Include;../Include;../../Base/Include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;RELEASEDEBUG"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -303,10 +303,6 @@
 			>
 			<File
 				RelativePath="..\Src\MpkPortLinux.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Src\MpkPortMac.cpp"
 				>
 			</File>
 			<File
