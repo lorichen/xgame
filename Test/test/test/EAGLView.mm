@@ -74,13 +74,11 @@ using namespace xs;
         chdir([path cStringUsingEncoding:NSASCIIStringEncoding]);
         
         std::string str;
-        str = "data/Shader/OGLES2/sp_v3_uv_c.vs";
-        //str = "data/13.png";
-        //FILE* fp = fopen(str.c_str(),"rb");
-        
-        //testCase = 0;
-        //testCase = new UITestIOS();
-        //testCase->OnAppInit((CSimpleTestApp*)self);
+        //str = "data/Shader/OGLES2/sp_v3_uv_c.vs";
+        str = "myconfig.txt";
+        //str = "13.png";
+        //FILE* fp = fopen(str.c_str(),"r");
+
         
         //init
         AppWrap::init(self);
@@ -100,14 +98,7 @@ using namespace xs;
 - (void)dealloc {
     
     [self stopAnimation];
-    
-    
-    /*
-     if (testCase) {
-     delete testCase;
-     testCase = 0;
-     }
-     */
+
     
     //uninit;
     AppWrap::uninit();
@@ -118,12 +109,7 @@ using namespace xs;
 - (void)drawView:(id)sender {
     
     //update and render!
-    
-    /*
-    if (testCase) {
-        testCase->Update();
-    }
-    */
+ 
     int delta_ms = 1000/60;
     AppWrap::update(getTickCount(),delta_ms);
     

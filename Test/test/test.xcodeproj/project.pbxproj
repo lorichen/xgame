@@ -28,9 +28,9 @@
 		188101851825FB8E002AF8D8 /* libmath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188101821825FB88002AF8D8 /* libmath.a */; };
 		18C14DF8182E712D00BF6D69 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C14DF7182E712D00BF6D69 /* QuartzCore.framework */; };
 		18C14E0E182E714800BF6D69 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C14E0D182E714800BF6D69 /* OpenGLES.framework */; };
+		18D4BFD418351B6100A836C1 /* bin in Resources */ = {isa = PBXBuildFile; fileRef = 18D4BFD318351B6100A836C1 /* bin */; };
 		18EFA8F4182D342900A5A7B4 /* libluaengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA8F1182D340C00A5A7B4 /* libluaengine.a */; };
 		18EFA8F5182D342900A5A7B4 /* libschemengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EFA8E8182D338F00A5A7B4 /* libschemengine.a */; };
-		18F4F7FD1833B2AA000F3CF4 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 18F4F7FC1833B2AA000F3CF4 /* data */; };
 		CDF861F6182A15010028C260 /* libmodel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF861F3182A14E70028C260 /* libmodel.a */; };
 		CDF861FF182B2CB40028C260 /* app_wrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF861FD182B2CB40028C260 /* app_wrap.cpp */; };
 		CDF86284182CAFA70028C260 /* libresmanager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF86278182CAF870028C260 /* libresmanager.a */; };
@@ -217,9 +217,9 @@
 		18810192182623AA002AF8D8 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../Base/Base/Build/base/base.xcodeproj; sourceTree = "<group>"; };
 		18C14DF7182E712D00BF6D69 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		18C14E0D182E714800BF6D69 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		18D4BFD318351B6100A836C1 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bin; path = ../../../bin; sourceTree = "<group>"; };
 		18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = schemengine.xcodeproj; path = ../../Base/SchemeEngine/Build/schemengine/schemengine.xcodeproj; sourceTree = "<group>"; };
 		18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = luaengine.xcodeproj; path = ../../Base/LuaEngine/Build/luaengine/luaengine.xcodeproj; sourceTree = "<group>"; };
-		18F4F7FC1833B2AA000F3CF4 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../../data; sourceTree = "<group>"; };
 		CDF861ED182A14E70028C260 /* model.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = model.xcodeproj; path = ../../RenderEngine/Build/model/model.xcodeproj; sourceTree = "<group>"; };
 		CDF861FD182B2CB40028C260 /* app_wrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = app_wrap.cpp; sourceTree = SOURCE_ROOT; };
 		CDF861FE182B2CB40028C260 /* app_wrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_wrap.h; sourceTree = SOURCE_ROOT; };
@@ -288,7 +288,7 @@
 		188101301824A892002AF8D8 = {
 			isa = PBXGroup;
 			children = (
-				18F4F7FC1833B2AA000F3CF4 /* data */,
+				18D4BFD318351B6100A836C1 /* bin */,
 				18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */,
 				18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */,
 				CDF8627B182CAF9E0028C260 /* scenemanager2.xcodeproj */,
@@ -713,8 +713,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D4BFD418351B6100A836C1 /* bin in Resources */,
 				188101471824A892002AF8D8 /* InfoPlist.strings in Resources */,
-				18F4F7FD1833B2AA000F3CF4 /* data in Resources */,
 				1881014F1824A892002AF8D8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

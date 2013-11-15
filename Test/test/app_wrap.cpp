@@ -85,31 +85,34 @@ bool AppWrap::init(void* hwnd)
 	
 	g_psScenemanager->setRunType(RUN_TYPE_GAME);
 
-	std::string strMapFile = "苍隐村";
-	std::string strWayFile = "苍隐村路点.xml";
-
-	std::string mpFile = "Maps/";
-	mpFile += strMapFile;
-	mpFile += ".mp";
-	std::string xmlFile = "Maps/";
-	xmlFile += strMapFile;
-	xmlFile += ".xml";
-	std::string wpFile = "Maps/";
-	wpFile += strWayFile;	
-
+	std::string strMapFile;
+	std::string strWayFile;
+    
+    std::ifstream file;
+    file.open("myconfig.txt",std::ios::binary|std::ios::in);
+    if(file.is_open())
+    {
+        file >> strMapFile;
+        file >> strWayFile;
+        file.close();
+    }
+    else
+    {
+        assert(0);
+    }
+	
 	xs::Point pt;
 	xs::Rect  rc(0,0,gs_width,gs_height);
 
 	gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
 
-	bool bLoadMap = g_psScenemanager->loadScene(mpFile.c_str(),wpFile.c_str(),&rc,NULL,false,&pt);
+	bool bLoadMap = g_psScenemanager->loadScene(strMapFile.c_str(),strWayFile.c_str(),&rc,NULL,false,&pt);
 	if(!bLoadMap)
 	{
 		assert(0);
 		printf("\n 加载场景失败！");
 		return false;
 	}
-
 	return true;
 }
 
