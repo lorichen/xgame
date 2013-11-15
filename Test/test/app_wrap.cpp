@@ -58,8 +58,8 @@ bool AppWrap::init(void* hwnd)
 	param.hwnd = hwnd;
 
     ////xs::getFileSystem()->addFindPath(""); //globalclient have done!
-	xs::getFileSystem()->addFindPath("data");
-	
+	//xs::getFileSystem()->addFindPath("maps");
+    xs::getFileSystem()->addFindPath("data");
 
 	//g_psRenderSystem = xs::createRenderSystem(&param);
     if(!gs_global.create(hwnd))
@@ -81,38 +81,44 @@ bool AppWrap::init(void* hwnd)
 	
 	//------------------test-----------------------------------
 
-
 	
 	g_psScenemanager->setRunType(RUN_TYPE_GAME);
 
-	std::string strMapFile;
-	std::string strWayFile;
+	std::string strMapFile = "maps/cyc.mp";
+	std::string strWayFile = "maps/苍隐村路点.xml";
+    std::string strPicName = "11.dds";
     
+    /*
     std::ifstream file;
-    file.open("myconfig.txt",std::ios::binary|std::ios::in);
+    file.open("test",std::ios::binary|std::ios::in);
     if(file.is_open())
     {
-        file >> strMapFile;
-        file >> strWayFile;
+        //file >> strMapFile;
+        //file >> strWayFile;
+        file >> strPicName;
         file.close();
     }
     else
     {
         assert(0);
     }
+     */
+    
 	
 	xs::Point pt;
 	xs::Rect  rc(0,0,gs_width,gs_height);
 
-	gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
-
+	//gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
+    gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile(strPicName.c_str());
+    
 	bool bLoadMap = g_psScenemanager->loadScene(strMapFile.c_str(),strWayFile.c_str(),&rc,NULL,false,&pt);
 	if(!bLoadMap)
 	{
 		assert(0);
-		printf("\n 加载场景失败！");
+		printf("\n加载错误!");
 		return false;
 	}
+    
 	return true;
 }
 
@@ -128,7 +134,7 @@ void AppWrap::update(int tick,int delta_ms)
 	//g_psRenderSystem->point(xs::Point(100,100),xs::ColorValue(1.0,0,0,1.0));
 	g_psRenderSystem->line(xs::Point(0,0),xs::Point(800,600),ColorValue(1,0,0,1));
     
-    xs::Rect rc(0,0,100,100);
+    xs::Rect rc(0,0,256,256);
 	g_psRenderSystem->rectangle(rc,gs_pTex);
 
 	//---------------------------------------------

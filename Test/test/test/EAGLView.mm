@@ -75,8 +75,8 @@ using namespace xs;
         
         std::string str;
         //str = "data/Shader/OGLES2/sp_v3_uv_c.vs";
-        str = "myconfig.txt";
-        //str = "13.png";
+        //str = "myconfig";
+        str = "test";
         //FILE* fp = fopen(str.c_str(),"r");
 
         
