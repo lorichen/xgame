@@ -23,7 +23,7 @@ JumpManager::JumpManager()
 	mObserver = NULL;
 }
 
-bool JumpManager::create(const POINT& ptBegin, const POINT& ptEnd)
+bool JumpManager::create(const xs::Point& ptBegin, const xs::Point& ptEnd)
 {
 	mTargetTile = ptEnd;
 	gGlobalClient->getSceneManager()->tile2Space(ptBegin, mStartPos);

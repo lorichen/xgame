@@ -34,7 +34,7 @@ class JumpManager
 	float				m_jumpHeight; //跳跃的当前高度
 	ulong				m_AllTick;//跳跃总时间长
 	float				m_MoveSpeed;//移动速度
-	POINT			    mTargetTile;
+	xs::Point			    mTargetTile;
 	IJumpObserver*	    mObserver;
 
 	ulong				mAniTick;//当前动作时间
@@ -43,7 +43,7 @@ class JumpManager
 public:
 	JumpManager();
 	void setObserver(IJumpObserver* ob)	{ mObserver = ob; }
-	bool create(const POINT& ptBegin, const POINT& ptEnd);
+	bool create(const xs::Point& ptBegin, const xs::Point& ptEnd);
 	bool update(ulong tick, ulong deltaTick,EntityViewImpl* pView);
 	bool IsEnd(ulong tick);
 	JUMPSTATE GetJumpState();

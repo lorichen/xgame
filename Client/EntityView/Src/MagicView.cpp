@@ -211,7 +211,7 @@ void MagicView::setFadeDie()
 	}
 }
 
-void MagicView::setTile(const POINT& ptTile)
+void MagicView::setTile(const xs::Point& ptTile)
 {
 	if (ptTile.x != m_ptTile.x || ptTile.y != m_ptTile.y)
 	{
@@ -222,7 +222,7 @@ void MagicView::setTile(const POINT& ptTile)
 
 void MagicView::onTileChanged()
 {
-	POINT pt;
+	xs::Point pt;
 	gGlobalClient->getSceneManager()->tile2World(getTile(), pt);
 	setWorld(pt);
 	setSortLeft(getWorld());
@@ -452,9 +452,9 @@ void MagicView::drawTopMost(IRenderSystem* pRenderSystem)
     ulong flags = getFlag();
     if (flags & flagSelectedForMapEdit)
     {
-        POINT pointtScreen;
+        xs::Point pointtScreen;
         gGlobalClient->getSceneManager()->world2Screen(getWorld(), pointtScreen);
-        RECT rectBoundingBox = mShowRect;
+        xs::Rect rectBoundingBox = mShowRect;
         ::OffsetRect(&rectBoundingBox, pointtScreen.x, pointtScreen.y);
         //  微调一下，使显示更协调；
         Rect rectShow;
@@ -516,8 +516,8 @@ size_t MagicView::onSave(Stream* stream) const
     int nResID = getResId();
     stream->write(&nResID, ucResIDLength);
     //  锚点偏移的处理；
-    uchar uPointLength = sizeof(POINT);
-    stream->write((const void *)&m_pointAnchorOffset, sizeof(POINT));
+    uchar uPointLength = sizeof(xs::Point);
+    stream->write((const void *)&m_pointAnchorOffset, sizeof(xs::Point));
     //  缩放比的记录；
     stream->write((const void *)&mScale, sizeof(float));
     //  旋转角度的记录；
@@ -624,14 +624,14 @@ void MagicView::OnTimer(unsigned long dwTimerID)
     }
 }
 
-void MagicView::SetAnchorOffset(const POINT& pointAnchorOffset)
+void MagicView::SetAnchorOffset(const xs::Point& pointAnchorOffset)
 {
     //  更新锚点偏移信息；
     m_pointAnchorOffset.x = pointAnchorOffset.x;
     m_pointAnchorOffset.y = pointAnchorOffset.y;
 
     //  更新特效位置；
-    POINT pointWorld;
+    xs::Point pointWorld;
     gGlobalClient->getSceneManager()->tile2World(getTile(), pointWorld);
     pointWorld.x -= m_pointAnchorOffset.x;
     pointWorld.y -= m_pointAnchorOffset.y;
@@ -639,11 +639,11 @@ void MagicView::SetAnchorOffset(const POINT& pointAnchorOffset)
     setSortLeft(getWorld());
     setSortRight(getWorld());
 
-    POINT ptScreenCenter;
+    xs::Point ptScreenCenter;
     gGlobalClient->getSceneManager()->tile2Screen(getTile(),ptScreenCenter);
     ptScreenCenter.x -= pointAnchorOffset.x;
     ptScreenCenter.y -= pointAnchorOffset.y;
-    POINT ptWorld;
+    xs::Point ptWorld;
     gGlobalClient->getSceneManager()->screen2World(ptScreenCenter,ptWorld);
     Vector3 vSpace;
     gGlobalClient->getSceneManager()->world2Space(ptWorld,vSpace);
@@ -869,7 +869,7 @@ bool MagicView::update(float tick, float deltaTick, IRenderSystem* pRenderSystem
 void MagicView::setPosition(const Vector3& pos)
 {
 	setSpace(pos);
-	POINT pt;
+	xs::Point pt;
 	gGlobalClient->getSceneManager()->space2World(pos, pt);
 	setWorld(pt);
 	mUpdateOption |= updatePosition;
@@ -951,7 +951,7 @@ void MagicView_Move::stopMove()
 void MagicView_Move::onPosChanged(const Vector3& pos)
 {
 	setSpace(pos);
-	POINT pt;
+	xs::Point pt;
 	gGlobalClient->getSceneManager()->space2World(pos, pt);
 	setWorld(pt);
 
@@ -996,8 +996,8 @@ bool MagicViewWithMoveRadial::onCommand(ulong cmd, ulong param1, ulong param2)
 	{
 	case EntityCommand_MoveRadial:
 		{
-			POINT* start = (POINT*)param1;
-			POINT* end = (POINT*)param2;
+			xs::Point* start = (xs::Point*)param1;
+			xs::Point* end = (xs::Point*)param2;
 			gGlobalClient->getSceneManager()->tile2Space(*start, mStartPos);
 			gGlobalClient->getSceneManager()->tile2Space(*end, mNextPos);
 			long angle = calcAngle_space(mStartPos, mNextPos);
@@ -1046,7 +1046,7 @@ void MagicViewWithMoveRadial::moveStep(ulong period)
 	else
 	{
 		Vector3 curPos = mStartPos + mDirDistance * (mTicks * mMoveSpeed);
-		POINT tile;
+		xs::Point tile;
 		gGlobalClient->getSceneManager()->space2Tile(curPos, tile);
 		if (getTile().x != tile.x || getTile().y != tile.y)
 		{
@@ -1186,7 +1186,7 @@ void MagicViewWithMoveTrack::adjustStartInfo()
 		return;
 	}
 
-	RECT rt = source->getShowRect();
+	xs::Rect rt = source->getShowRect();
 	mOffset.y  = 3*(rt.bottom-rt.top)/4;
 }
 
@@ -1195,7 +1195,7 @@ void MagicViewWithMoveTrack::resetMoveInfo()
 	EntityView* target = (EntityView*)(getHandleData(mTarget));
 	if (target) // 目标还在
 	{
-		const POINT& tile = target->getTile();
+		const xs::Point& tile = target->getTile();
 		if (tile.x != mTargetTile.x || tile.y != mTargetTile.y) // 位置改变了，需要重新计算
 		{
 			// add by zjp
@@ -1240,7 +1240,7 @@ void MagicViewWithMoveTrack::resetMoveInfo()
 			mOldTicks = gGlobalClient->getTimeStamp();
 			mDirDistance = mNextPos - mStartPos;
 
-			//POINT sTile,nTile;
+			//xs::Point sTile,nTile;
 			//Vector3 sSpace,nSpace;
 			//sTile.x = 800;
 			//sTile.y = 600;
@@ -1350,7 +1350,7 @@ void MagicViewWithMoveTrack::moveStep(ulong period)
 		}
 		else
 		{
-			POINT tile;
+			xs::Point tile;
 			gGlobalClient->getSceneManager()->space2Tile(curPos, tile);
 			if (getTile().x != tile.x || getTile().y != tile.y)
 				gGlobalClient->getSceneManager()->moveEntity(getTile(), tile, this);

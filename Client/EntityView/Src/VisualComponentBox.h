@@ -11,7 +11,7 @@
 #define __VisualComponentBOX_H__
 
 #include "VisualComponent.h"
-#include "TxSysGui.h"
+
 
 class VisualComponentBOX : public VisualComponent
 {
@@ -19,7 +19,7 @@ private:
 	bool	m_bIsInit;
 	string  m_imageName;
 	ITexture * m_pTexture;
-	xsgui::Imageset * m_pImageSet;
+	//xsgui::Imageset * m_pImageSet;
 	bool m_bHasGuiException;
 	long m_nlastTick;
 	int m_nEffectID;
@@ -35,7 +35,7 @@ public:
 	virtual void onLeaveViewport();
 	virtual void draw(IRenderSystem* pRenderSystem);
 
-	virtual const RECT& getShowRect() const						{ return mShowRect; }
+	virtual const xs::Rect& getShowRect() const						{ return mShowRect; }
 
 	void requestRes(int priority);
 	void releaseRes();

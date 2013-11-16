@@ -77,7 +77,7 @@ public:
 		else
 			delete this;
 	}
-	virtual void setTile(const POINT& ptTile);
+	virtual void setTile(const xs::Point& ptTile);
 	virtual bool onCommand(ulong cmd, ulong param1 = 0, ulong param2 = 0);
 	virtual void onEnterViewport(int priority = 0);
 	virtual void onLeaveViewport();
@@ -86,7 +86,7 @@ public:
 	virtual void draw(IRenderSystem* pRenderSystem);
 	virtual void drawTopMost(IRenderSystem* pRenderSystem);
 	virtual bool update(float tick, float deltaTick, IRenderSystem* pRenderSystem);
-	virtual const RECT& getShowRect() const;
+	virtual const xs::Rect& getShowRect() const;
 	virtual OccupantTileList* getOccupantTileList() const;
 	virtual size_t onLoad(Stream* stream, size_t len);
 	virtual size_t onSave(Stream* stream) const;
@@ -98,14 +98,14 @@ public:
 	virtual void drawTopMostEffect(IRenderSystem* pRenderSystem);
 
 	// 获取受击点
-	virtual POINT getAttackPos();
+	virtual xs::Point getAttackPos();
 
 public:
 	void setResType(int type)				{ mResType = type; }
 	void setResId(ulong id)					{ mResId = id; }
-	void setArea(const RECT& rc)			{ m_rcArea = rc; }
-	void setSortLeft(const POINT& pt)		{ m_ptLeft = pt; }
-	void setSortRight(const POINT& pt)		{ m_ptRight = pt; }
+	void setArea(const xs::Rect& rc)			{ m_rcArea = rc; }
+	void setSortLeft(const xs::Point& pt)		{ m_ptLeft = pt; }
+	void setSortRight(const xs::Point& pt)		{ m_ptRight = pt; }
 	virtual void setAngle(long angle);
 	virtual void setSpace(const Vector3& space);
 	void setOccupantValue(ulong occVal)		{ mOccVal = occVal; }

@@ -140,7 +140,7 @@ struct EffectContext_General
 	int			loops;	/// 光效循环次数
 	ulong		angle;	/// 光效的角度(当脚本设定矫正光效角度时才有意义)
 	handle		owner;	/// 动画拥有者(不一定是技能发起者)
-	POINT		tile;	/// 动画位置（如果不是绑定到EntityView对象的话）
+	xs::Point		tile;	/// 动画位置（如果不是绑定到EntityView对象的话）
 
 	EffectContext_General() : magicId(0), loops(0), angle(0), owner(0) { tile.x = tile.y = 0;}
 };
@@ -482,7 +482,7 @@ public:
 			return;
 		}
 
-		POINT pt;
+		xs::Point pt;
 		Tile* tile = 0;
 		ulong loops = 0;
 
@@ -534,7 +534,7 @@ struct EffectContext_MultiDir: public EffectContext_General
 {
 	ulong	dirs;		/// 方向数
 	float	moveSpeed;	/// 移动速度
-	POINT	pt;			/// 开始位置
+	xs::Point	pt;			/// 开始位置
 	ulong	width;		/// 单向宽度
 	ulong	maxDist;	/// 最大距离
 	ulong	blockType;	/// 阻挡类型
@@ -568,9 +568,9 @@ public:
 		if (mWidth == 0) mWidth = 1;
 		if (!(mWidth & 1)) return false;
 
-		static POINT offset[eDirectionCount] = {
-			{ 1,  0}, { 1,  1}, { 0,  1}, {-1,  1},
-			{-1,  0}, {-1, -1}, { 0, -1}, { 1, -1},
+		static xs::Point offset[eDirectionCount] = {
+			xs::Point(1,  0), xs::Point( 1,  1), xs::Point(0,  1), xs::Point(-1,  1),
+			xs::Point(-1,  0), xs::Point(-1, -1), xs::Point(0, -1), xs::Point( 1, -1),
 		};
 
 		EntityView* owner = (EntityView*)getHandleData(context.owner);
@@ -587,7 +587,7 @@ public:
 		mc.moveSpeed = context.moveSpeed;
 		mc.blockType = context.blockType;
 
-		POINT ptTarget;
+		xs::Point ptTarget;
 		switch (mDirs)
 		{
 		case 1: // 中心点前方
@@ -603,7 +603,7 @@ public:
 				ptTarget.x = mc.tile.x + offset[dir].x * (context.maxDist - 1);
 				ptTarget.y = mc.tile.y + offset[dir].y * (context.maxDist - 1);
 
-				POINT ptFrom, ptTo;
+				xs::Point ptFrom, ptTo;
 				for (ulong j=0; j<mWidth; j++)
 				{
 					ptFrom.x = context.tile.x + arrOff[j].x;
@@ -634,7 +634,7 @@ public:
 				ptTarget.x = mc.tile.x + offset[newDir].x * (context.maxDist - 1);
 				ptTarget.y = mc.tile.y + offset[newDir].y * (context.maxDist - 1);
 
-				POINT ptFrom, ptTo;
+				xs::Point ptFrom, ptTo;
 				for (ulong j=0; j<mWidth; j++)
 				{
 					ptFrom.x = context.tile.x + arrOff[j].x;
@@ -665,7 +665,7 @@ public:
 				ptTarget.x = mc.tile.x + offset[newDir].x * (context.maxDist - 1);
 				ptTarget.y = mc.tile.y + offset[newDir].y * (context.maxDist - 1);
 
-				POINT ptFrom, ptTo;
+				xs::Point ptFrom, ptTo;
 				for (ulong j=0; j<mWidth; j++)
 				{
 					ptFrom.x = context.tile.x + arrOff[j].x;
@@ -692,7 +692,7 @@ public:
 				ptTarget.x = mc.tile.x + offset[i].x * (context.maxDist - 1);
 				ptTarget.y = mc.tile.y + offset[i].y * (context.maxDist - 1);
 
-				POINT ptFrom, ptTo;
+				xs::Point ptFrom, ptTo;
 				for (ulong j=0; j<mWidth; j++)
 				{
 					ptFrom.x = context.tile.x + arrOff[j].x;
@@ -726,7 +726,7 @@ class EffectControl_RapidMove : public EffectControl, public IShadowObserver
 {
 	ShadowManager*	mShadowManager;
 	handle			mOwner;
-	POINT			mTargetTile;
+	xs::Point			mTargetTile;
 	AttackContext	mAttackContext;
 public:
 	bool create(const EffectContext_RapidMove& context)
@@ -772,7 +772,7 @@ public:
 //跳跃类效果
 class EffectControl_Jump : public EffectControl, public IJumpObserver
 {
-	POINT			mTargetTile;
+	xs::Point			mTargetTile;
 	handle			mOwner;
 	JumpManager*	pJumpManager;
 public:

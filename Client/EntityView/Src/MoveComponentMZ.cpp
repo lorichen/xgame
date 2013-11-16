@@ -47,7 +47,7 @@ bool MoveComponentMZ::handleCommand(ulong cmd, ulong param1, ulong param2)
 				breakable;
 			}
 
-			const POINT* pathList = (const POINT*)param1;
+			const xs::Point* pathList = (const xs::Point*)param1;
 			size_t count = (size_t)param2;
 
 			if (!pathList) return false;
@@ -66,8 +66,8 @@ bool MoveComponentMZ::handleCommand(ulong cmd, ulong param1, ulong param2)
 		}
 		if (param1 != 0) // 传入了新的tile坐标，可用于异常站立或瞬移
 		{
-			const POINT& newTile = *(const POINT*)param1;
-			const POINT& ptTile = getOwner()->getTile();
+			const xs::Point& newTile = *(const xs::Point*)param1;
+			const xs::Point& ptTile = getOwner()->getTile();
 			if (ptTile.x != newTile.x || ptTile.y != newTile.y)
 			{
 #if 0
@@ -124,7 +124,7 @@ bool MoveComponentMZ::handleCommand(ulong cmd, ulong param1, ulong param2)
 		break;
 	case EntityCommand_NextMovingTile:
 		{
-			return GetNextMovingTile((POINT*)param1);
+			return GetNextMovingTile((xs::Point*)param1);
 		}
 
 		break;
@@ -173,9 +173,9 @@ void MoveComponentMZ::handleMessage(ulong msgId, ulong param1, ulong param2)
 }
 
 // 角色沿着指定的路径移动
-// nodes: 路径列表指针(POINT*);
+// nodes: 路径列表指针(xs::Point*);
 // count: 路径列表节点数目
-bool MoveComponentMZ::move(const POINT* nodes, size_t count)
+bool MoveComponentMZ::move(const xs::Point* nodes, size_t count)
 {
 	//IEntity* pEntity = (IEntity*)getOwner()->getUserData();
 	//if(pEntity&&!pEntity->GetEntityClass()->IsPerson())
@@ -189,8 +189,8 @@ bool MoveComponentMZ::move(const POINT* nodes, size_t count)
 
 	// 是否是从原地开始走路，否则可能是服务器强制拉人
 	{
-		const POINT& ptNewTile = nodes[0];
-		const POINT& ptCurTile = getOwner()->getTile();
+		const xs::Point& ptNewTile = nodes[0];
+		const xs::Point& ptCurTile = getOwner()->getTile();
 		
 		if (ptCurTile.x != ptNewTile.x || ptCurTile.y != ptNewTile.y) // 强制拉人
 		{
@@ -227,8 +227,8 @@ bool MoveComponentMZ::move(const POINT* nodes, size_t count)
 
 	if (!mPathList.empty()) // 上一次的还没走完
 	{
-		const POINT& ptCurTile = getOwner()->getTile();
-		const POINT& back = mPathList.back();
+		const xs::Point& ptCurTile = getOwner()->getTile();
+		const xs::Point& back = mPathList.back();
 		if (nodes[count-1].x == back.x && nodes[count-1].y == back.y
 			&& nodes[0].x == ptCurTile.x && nodes[0].y == ptCurTile.y) // 目标相同，忽略
 		{
@@ -334,15 +334,15 @@ bool MoveComponentMZ::update(ulong curTicks, ulong deltaTicks)
 	return true;
 }
 
-bool MoveComponentMZ::GetNextMovingTile(POINT * pt)
+bool MoveComponentMZ::GetNextMovingTile(xs::Point * pt)
 {
 	if(!mPathList.empty()&& pt )
 		*pt = mPathList.next();
 	return mIsMoving;
 }
-POINT MoveComponentMZ::GetPixelSpeed(long angle,ulong period)
+xs::Point MoveComponentMZ::GetPixelSpeed(long angle,ulong period)
 {
-	POINT ptRet;
+	xs::Point ptRet;
 	ptRet.x = 0;
 	ptRet.y = 0;
 	if(angle==0)
@@ -438,7 +438,7 @@ void MoveComponentMZ::moveStep(ulong period)
 			if(pHero && pEntity && pHero->GetUID() == pEntity->GetUID())
 			{
 				// 优先判断是否关闭交互窗口(在移动过程中进行判断)
-				POINT ptMapLoc = pHero->GetMapLoc();
+				xs::Point ptMapLoc = pHero->GetMapLoc();
 				IFormManager* pFromManager = gGlobalClient->getFormManager();
 				if (pFromManager)
 				{
@@ -465,7 +465,7 @@ void MoveComponentMZ::moveStep(ulong period)
 					obuf.push_back(&gamemsghead, sizeof(gamemsghead));
 					obuf.push_back(&msgmovemaster, sizeof(msgmovemaster));
 					obuf.push_back(&msgactionmove, sizeof(msgactionmove));
-					obuf.push_back(&mPathList.cur(),msgactionmove.dwPathLen * sizeof(POINT));
+					obuf.push_back(&mPathList.cur(),msgactionmove.dwPathLen * sizeof(xs::Point));
 					IConnection * pConn = gGlobalClient->getNetConnection();
 					if( pConn) 
 					{
@@ -518,11 +518,11 @@ void MoveComponentMZ::moveStep(ulong period)
 	{
 		//不使用空间坐标了,采用2D屏幕象素坐标
 		long angle = calcAngle8_tile(mPathList.cur(), mPathList.next()); //方向
-		POINT ptStart;
+		xs::Point ptStart;
 		gGlobalClient->getSceneManager()->space2World(mStartPos,ptStart);
 		//Info("ptStart:"<<ptStart.x<<","<<ptStart.y<<endl);
 
-		POINT ptAdd = GetPixelSpeed(angle,mTicks);
+		xs::Point ptAdd = GetPixelSpeed(angle,mTicks);
 
 		//四舍五入
 		int nAdd = 0;

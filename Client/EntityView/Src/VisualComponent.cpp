@@ -12,6 +12,7 @@
 #include "ITeamClient.h"
 #include "IEntityFactory.h"
 
+
 #if defined(RELEASEDEBUG) || defined(_DEBUG)
 #define SHOW_BOUNDBOX
 #endif
@@ -74,7 +75,9 @@ VisualComponent::VisualComponent()
 	: mHandle(INVALID_HANDLE), mResLoaded(false), mNameOffset(100.f), mUpdateOption(0), 
 	mAlpha(1.f),m_foffset(10.f),m_bRset(false),mTextEffectTickCount(0)
 {
-	SetRectEmpty(&mShowRect);
+	//SetRectEmpty(&mShowRect);
+	mShowRect.left = mShowRect.right = mShowRect.top = mShowRect.bottom = 0;
+
 	mCurHP = mMaxHP = mCurMP = mMaxMP = 100;
 	mNameColor = ColorValue(1,1,1,1);
 
@@ -91,15 +94,15 @@ VisualComponent::VisualComponent()
     m_CurrentTaskSign = ETS_LOWWER_BOUND;
 
 	m_pHPTexture = NULL;
-	m_pHPImageSet = NULL;
+	//m_pHPImageSet = NULL;
 
 	m_pTaskSignTexture = NULL;
 
 	m_pTeamTexture = NULL; 
-	m_pTeamImageSet = NULL;
+	//m_pTeamImageSet = NULL;
 
 	m_pIconTexture = 0;
-	m_pIconImageSet = 0;
+	//m_pIconImageSet = 0;
 
 	// 创建特效模型
 	m_pFinshTaskEffect = NULL;
@@ -120,7 +123,7 @@ VisualComponent::~VisualComponent()
 
 void VisualComponent::updateWorldCoord()
 {
-	POINT pt;
+	xs::Point pt;
 	gGlobalClient->getSceneManager()->tile2World(getOwner()->getTile(), pt);
 	getOwner()->setWorld(pt);
 }
@@ -186,8 +189,9 @@ bool VisualComponent::update(float tick, float deltaTick, IRenderSystem* pRender
 		//打包后，整个data\\UI\\image\\被打包成单个的mpk，在这个mpk内不能有data\\UI\\image\\前缀
 		if( 0 == m_pHPTexture && pRenderSystem)
 			m_pHPTexture = gGlobalClient->getRenderSystem()->getTextureManager()->createTextureFromFile("Common.tga");
-		if( 0 == m_pHPImageSet)
-			m_pHPImageSet = xsgui::ImagesetManager::getSingleton().getImageset("Common");	
+		
+		//if( 0 == m_pHPImageSet)
+		//	m_pHPImageSet = xsgui::ImagesetManager::getSingleton().getImageset("Common");	
 	}
 
 	if( flags & flagDrawTextGroup)
@@ -198,8 +202,9 @@ bool VisualComponent::update(float tick, float deltaTick, IRenderSystem* pRender
 		//ITexture * pIconTexture = gGlobalClient->getRenderSystem()->getTextureManager()->createTextureFromFile("data\\UI\\image\\main3-1.dds");
 		if( 0 == m_pIconTexture && pRenderSystem)
 			m_pIconTexture = pRenderSystem->getTextureManager()->createTextureFromFile("Common2.tga");
-		if( 0 == m_pIconImageSet)
-			m_pIconImageSet = xsgui::ImagesetManager::getSingleton().getImageset("Common2");	
+		
+		//if( 0 == m_pIconImageSet)
+		//	m_pIconImageSet = xsgui::ImagesetManager::getSingleton().getImageset("Common2");	
 	}
 
 	//队伍
@@ -207,8 +212,8 @@ bool VisualComponent::update(float tick, float deltaTick, IRenderSystem* pRender
 	{
 		if( 0 == m_pTeamTexture && pRenderSystem)
 			m_pTeamTexture = pRenderSystem->getTextureManager()->createTextureFromFile("Common.tga");
-		if( 0 ==  m_pTeamImageSet )
-			m_pTeamImageSet = xsgui::ImagesetManager::getSingleton().getImageset("Common");	
+		//if( 0 ==  m_pTeamImageSet )
+		//	m_pTeamImageSet = xsgui::ImagesetManager::getSingleton().getImageset("Common");	
 	}
 	//  绘制任务标记；
 	IEntity* pEntity = (IEntity*)getOwner()->getUserData();
@@ -320,9 +325,9 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 	EntityView* entity = getOwner();
 	ulong flags = entity->getFlag();
 
-	POINT ptScreen;
+	xs::Point ptScreen;
 	gGlobalClient->getSceneManager()->world2Screen(getOwner()->getWorld(), ptScreen);
-	RECT rc = entity->getShowRect();
+	xs::Rect rc = entity->getShowRect();
 	::OffsetRect(&rc, ptScreen.x, ptScreen.y);
 	Rect rect;
 	rect.left = rc.left;
@@ -398,11 +403,12 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 
 	// 血条	
 	if ( (flags & flagDrawHP)
-		&& m_pHPImageSet
-		&& m_pHPImageSet )
+		/*&& m_pHPImageSet
+		&& m_pHPImageSet*/ )
 	{
 		PP_BY_NAME("VisualComponent::drawTopMost::drawFlagDrawHP");
 
+		/*
 		const xsgui::Image &pHPImage = m_pHPImageSet->getImage("HpBg");
 
 		int nImageWidth = pHPImage.getWidth();
@@ -444,6 +450,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 		xs::Vector2 leftbottom(subrect.d_left/width, subrect.d_bottom/height);
 
 		pRenderSystem->rectangle(rcLeft, m_pHPTexture,lefttop, leftbottom,rightbottom,rightop);
+		*/
 	}
 
 	// 摊位标识
@@ -478,7 +485,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 	if ((flags & flagDrawTextGroup)
 		&& !m_listText.empty()
 		&& m_pIconTexture 
-		&& m_pIconImageSet )
+		/*&& m_pIconImageSet*/ )
 	{
 		PP_BY_NAME("VisualComponent::drawTopMost::drawFlagDrawTextGroup");
 		list<TextLine>::iterator it = m_listText.begin();
@@ -487,6 +494,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 			// 小图标 
 			if( !(*it).txPicture.empty() )
 			{
+				/*
 				const xsgui::Image  pImage = m_pIconImageSet->getImage((*it).txPicture);
 				const xsgui::Rect & subrect = pImage.getSourceTextureArea();
 				float width = static_cast<float> (m_pIconImageSet->getTexture()->getHeight());
@@ -504,6 +512,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 				rectIcon.bottom = rectIcon.top + pImage.getHeight();
 
 				pRenderSystem->rectangle(rectIcon, m_pIconTexture,lefttop, leftbottom,rightbottom,rightop );
+				*/
 			}
 
 			if(!(*it).txStr.empty())
@@ -527,7 +536,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 						long curTick = GetTickCount();
 						if( curTick - mTextEffectTickCount > 5 * 1000)
 						{
-							POINT ptTile,ptScreenEffect;
+							xs::Point ptTile,ptScreenEffect;
 							ptScreenEffect.x = 	ptScreen.x;
 							ptScreenEffect.y = yOffset;
 							gGlobalClient->getSceneManager()->screen2Tile(ptScreenEffect,ptTile);		
@@ -549,6 +558,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
     }
 
 	// 绘制队伍图标
+	/*
     ITeamClient* pTeamClient = gGlobalClient->getTeamClient();
 	//ASSERT(pTeamClient != NULL);
 	if (pTeamClient && m_pTeamTexture && m_pTeamImageSet)
@@ -610,6 +620,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 			}
 		}
 	}
+	*/
 
 	// 绘制聊天泡泡
 	IChatClient* pChatClient = gGlobalClient->getChatClient();
@@ -620,11 +631,11 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 		{
 			PP_BY_NAME("VisualComponent::drawTopMost::drawPaoPao");
 
-			POINT pos = pEntity->GetEntityView()->getWorld();
+			xs::Point pos = pEntity->GetEntityView()->getWorld();
 			yOffset -= 5;
 			pos.y = yOffset;
 			// 得到相对于实体视图的 屏幕位子
-			POINT ptPlayerPos;
+			xs::Point ptPlayerPos;
 			gGlobalClient->getSceneManager()->world2Screen(pos,ptPlayerPos);
 			ptPlayerPos.x -= 60;
 			//ptPlayerPos.y -= 100;
@@ -753,7 +764,7 @@ void VisualComponent::handleMessage(ulong msgId, ulong param1, ulong param2)
 		{
 			mUpdateOption |= updatePosition;
 
-			POINT pt;
+			xs::Point pt;
 			gGlobalClient->getSceneManager()->space2World(getOwner()->getSpace(), pt);
 			getOwner()->setWorld(pt);
 		}
@@ -766,9 +777,9 @@ void VisualComponent::drawAlwayseTopMost(IRenderSystem* pRenderSystem)
 	EntityView* entity = getOwner();
 	ulong flags = entity->getFlag();
 
-	POINT ptScreen;
+	xs::Point ptScreen;
 	gGlobalClient->getSceneManager()->world2Screen(getOwner()->getWorld(), ptScreen);
-	RECT rc = entity->getShowRect();
+	xs::Rect rc = entity->getShowRect();
 	::OffsetRect(&rc, ptScreen.x, ptScreen.y);
 
 	int yOffset = rc.top;
@@ -820,6 +831,7 @@ void VisualComponent::drawAlwayseTopMost(IRenderSystem* pRenderSystem)
 		if (m_CurrentTaskSign > ETS_NoTaskSign)
 		{
 			//  获得图标
+			 /*
 			 xsgui::Imageset * pImageSet = xsgui::ImagesetManager::getSingleton().getImageset(TASK_IMAGESET_NAME);
 			 const xsgui::Image &pImageTaskAcceptable = pImageSet->getImage(TASK_ACCEPTABLE_IMAGENAME);
 			 const xsgui::Image &pImageTaskAcceptableRepe = pImageSet->getImage(TASK_ACCEPTABLE_REPE_IMAGENAME);
@@ -879,6 +891,7 @@ void VisualComponent::drawAlwayseTopMost(IRenderSystem* pRenderSystem)
 				pRenderSystem->rectangle(rectTaskSign, m_pTaskSignTexture,lefttop, leftbottom,rightbottom,rightop );
 
 			}
+			*/
 		}
 	}
 }

@@ -21,7 +21,7 @@ ShadowManager::ShadowManager()
 	m_DelayEnd = 0;
 }
 
-bool ShadowManager::create(EntityView* view, const POINT& ptBegin, const POINT& ptEnd)
+bool ShadowManager::create(EntityView* view, const xs::Point& ptBegin, const xs::Point& ptEnd)
 {
 	mView = view;
 	mDeltaAlpha = 1.f / m_LifeTime;

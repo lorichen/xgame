@@ -18,7 +18,7 @@ struct MagicContext_General
 	int			nDuration;    //  光效持续时间：可以根据该值来确定光效的持续时间；
 	ulong		angle;	/// 光效的角度(当脚本设定矫正光效角度时才有意义)
 	handle		owner;	/// 动画拥有者(不一定是技能发起者)
-	POINT		tile;	/// 动画位置（如果不是绑定到EntityView对象的话）
+	xs::Point		tile;	/// 动画位置（如果不是绑定到EntityView对象的话）
 	bool		bSceneMagic; /// 整个游戏场景播放的特效，例如下雨、下雪 zgz
 	MagicContext_General() : magicId(0), loops(0), angle(0), owner(0) , nDuration(0), bSceneMagic(false){ tile.x = tile.y = 0;}
 };
@@ -50,7 +50,7 @@ protected:
 	ulong				mNewResId;		/// 经过Id分配器分配的新Id
 	handle				mOwner;			/// 该光效拥有者
 	int					mLoops;			/// 循环次数
-	RECT				mShowRect;		/// 实体外围矩形
+	xs::Rect				mShowRect;		/// 实体外围矩形
 	bool				mResLoaded;		/// 标识资源已经加载
 	ulong				mUpdateOption;	/// 更新选项（一般发生在位置、动画、方向、缩放、速度等改变时）
 	bool				mNeedDelete;	/// 是否需要删除
@@ -86,7 +86,7 @@ public:
 
 	// IEntityView
 public:
-	virtual void setTile(const POINT& ptTile);
+	virtual void setTile(const xs::Point& ptTile);
 	virtual bool onCommand(ulong cmd, ulong param1 = 0, ulong param2 = 0) {	return false; }
 	virtual void onEnterViewport(int priority = 0);
 	virtual void onLeaveViewport();
@@ -95,7 +95,7 @@ public:
 	virtual void draw(IRenderSystem* pRenderSystem)				{ drawPickObject(pRenderSystem); }
 	virtual void drawTopMost(IRenderSystem* pRenderSystem);
 	virtual bool update(float tick, float deltaTick, IRenderSystem* pRenderSystem);
-	virtual const RECT& getShowRect() const						{ return mShowRect; }
+	virtual const xs::Rect& getShowRect() const						{ return mShowRect; }
 	virtual OccupantTileList* getOccupantTileList() const		{ return NULL; }
 	virtual size_t onLoad(Stream* stream, size_t len);
 	virtual size_t onSave(Stream* stream) const;
@@ -103,16 +103,16 @@ public:
 	virtual void onRemoveEntity();
 	virtual void release();
 	virtual void OnTimer(unsigned long dwTimerID);
-    virtual void SetAnchorOffset(const POINT& pointAnchorOffset);
+    virtual void SetAnchorOffset(const xs::Point& pointAnchorOffset);
 	virtual void drawAlwayseTopMost(IRenderSystem* pRenderSystem) {};
 	virtual void drawTopMostEffect(IRenderSystem* pRenderSystem) {};
 
 public:
 	void setResType(int type)				{ mResType = type; }
 	void setResId(ulong id)					{ mResId = id; }
-	void setArea(const RECT& rc)			{ m_rcArea = rc; }
-	void setSortLeft(const POINT& pt)		{ m_ptLeft = pt; }
-	void setSortRight(const POINT& pt)		{ m_ptRight = pt; }
+	void setArea(const xs::Rect& rc)			{ m_rcArea = rc; }
+	void setSortLeft(const xs::Point& pt)		{ m_ptLeft = pt; }
+	void setSortRight(const xs::Point& pt)		{ m_ptRight = pt; }
 	virtual void setAngle(long angle);
 	virtual void setSpace(const Vector3& space);
 	void setOccupantValue(ulong occVal)		{ mOccVal = occVal; }
@@ -238,7 +238,7 @@ class MagicViewWithMoveTrack : public MagicView_Move
 protected:
 	handle			mSource;				/// 源UID
 	handle			mTarget;				/// 目标UID
-	POINT			mTargetTile;			/// 目标的TILE坐标，当变化时，会触发一些参数的计算
+	xs::Point			mTargetTile;			/// 目标的TILE坐标，当变化时，会触发一些参数的计算
 	
 	// add by zjp
 	AABB			m_TargetAABB;			// 记录目标的AABB

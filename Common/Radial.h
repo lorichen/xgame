@@ -64,7 +64,7 @@ public:
 			move(lNowX, lNowY);
 	}
 
-	void move(POINT& pt)
+	void move(xs::Point& pt)
 	{
 		move(pt.x, pt.y);
 	}

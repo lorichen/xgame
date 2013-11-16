@@ -24,7 +24,7 @@
 class MoveComponentMZ : public MoveComponent
 {
 private:
-	PathNodes<POINT>    mPathList;			/// 路径缓冲
+	PathNodes<xs::Point>    mPathList;			/// 路径缓冲
 	float               mBaseTimePerTile;   //基础时间
 	float				mTimePerTile;		//现在改成速度是移动一个tile所需要的时间/// 移动速度 计算方法：speed = 32*1.414/两个tile间的时间
 	bool                mNeedWait;			/// 是否因为前面有人而需要等待?
@@ -50,7 +50,7 @@ public:
 	virtual void handleMessage(ulong msgId, ulong param1, ulong param2);
 
 
-	bool move(const POINT* nodes, size_t count);
+	bool move(const xs::Point* nodes, size_t count);
 
 	// 移动一小步
 	void moveStep(ulong period);
@@ -59,9 +59,9 @@ public:
 	void stopMove();
 	bool isMoving(){return mIsMoving;}
 
-	bool GetNextMovingTile(POINT *pt);
+	bool GetNextMovingTile(xs::Point *pt);
 	//根据象素移动速度,获取当前象素位移
-	POINT GetPixelSpeed(long angle,ulong period);
+	xs::Point GetPixelSpeed(long angle,ulong period);
 };
 
 

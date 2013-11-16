@@ -32,7 +32,7 @@
 // TODO: 在此处引用程序需要的其他头文件
 #include "Base.h"
 #pragma comment(lib, MAKE_DLL_LIB_NAME(xs_com))
-#pragma comment(lib, MAKE_DLL_LIB_NAME(xs_gui))
+//#pragma comment(lib, MAKE_DLL_LIB_NAME(xs_gui))  //暂时屏蔽gui
 #define new RKT_NEW
 
 #include "Re.h"

@@ -124,9 +124,9 @@ void CVisualComponentStateMgr::initCommandToStateMap()
 //
 //		//// 动作类
 //		EVCS_Max,			// EntityCommand_ForceStop		/// add by zjp强制停止站立，停止引导动作
-//		EVCS_Max,			//EntityCommand_Stand,			/// 站立 (const POINT* tile=0, 0)
+//		EVCS_Max,			//EntityCommand_Stand,			/// 站立 (const xs::Point* tile=0, 0)
 //		EVCS_Max,			//EntityCommand_Fallow,			/// 休闲 (ulong fallowId, 0)
-//		EVCS_Max,			//EntityCommand_Move,				/// 移动，不关心是行走还是奔跑 (const POINT* pathList, size_t count)
+//		EVCS_Max,			//EntityCommand_Move,				/// 移动，不关心是行走还是奔跑 (const xs::Point* pathList, size_t count)
 //		EVCS_OnFight,			//EntityCommand_RapidMoveStart,	/// 快速移动(瞬移、冲锋)开始 (ShadowManager* mgr, 0)
 //		EVCS_OnFight,			//EntityCommand_RapidMoveEnd,		/// 快速移动(瞬移、冲锋)结束
 //		EVCS_OnFight,			//EntityCommand_AttackReady,		/// 攻击准备 (const AttackContext* context, 0)
@@ -178,7 +178,7 @@ void CVisualComponentStateMgr::initCommandToStateMap()
 //		EVCS_Max,			//EntityCommand_SetTaskSign,
 //
 //		//// 光效类
-//		EVCS_Max,			//EntityCommand_MoveRadial,		/// 射线移动，用于光效 (const POINT* ptBegin, const POINT* ptEnd)
+//		EVCS_Max,			//EntityCommand_MoveRadial,		/// 射线移动，用于光效 (const xs::Point* ptBegin, const xs::Point* ptEnd)
 //		EVCS_Max,			//EntityCommand_MoveTrack,		/// 移动并跟踪，用于光效，如火球 (IEntity* source, IEntity* target)
 //		EVCS_Max,			//EntityCommand_Jump,				/// 跳跃
 //		EVCS_Max,			//EntityCommand_NextMovingTile,

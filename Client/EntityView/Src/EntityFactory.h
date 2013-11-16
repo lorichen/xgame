@@ -37,7 +37,7 @@ public:
 	virtual EntityView* createMagic(ulong type, const void* context, size_t len) const;
 
 	virtual bool createBuffEffect(EntityView* view, ulong effId);
-	virtual bool createEffect(ulong effId, const POINT& ptTile);
+	virtual bool createEffect(ulong effId, const xs::Point& ptTile);
 	virtual void closeBuffEffect(EntityView* view, ulong effId);
 
 	virtual bool createSkillReadyEffect(const SkillEffectContext& context, bool bPlayAction, bool bHasInterval);

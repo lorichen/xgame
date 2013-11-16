@@ -104,7 +104,7 @@ public:
 	virtual void handleMessage(ulong msgId, ulong param1, ulong param2);
 	virtual const AABB& GetAABB();
 	virtual const Matrix4& GetFullTransform();
-	virtual const RECT& getShowRect() const;
+	virtual const xs::Rect& getShowRect() const;
 
 public:
 	ulong getCurrentAction();
@@ -146,7 +146,7 @@ private:
 	int GetAnimationTime(int nActID);
 
 	// 获取位移的时间
-	int GetJumpTime(POINT ptSrc, POINT ptTarget);
+	int GetJumpTime(xs::Point ptSrc, xs::Point ptTarget);
 
 //将要被删除的函数
 private:

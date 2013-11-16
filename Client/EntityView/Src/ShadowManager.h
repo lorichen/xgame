@@ -44,7 +44,7 @@ public:
 	void setNeedDelete()					{ mNeedDelete = true; }
 	void setModelNode(ModelNode* node)		{ mNode = node; }
 
-	bool create(EntityView* view, const POINT& ptBegin, const POINT& ptEnd);
+	bool create(EntityView* view, const xs::Point& ptBegin, const xs::Point& ptEnd);
 	bool update(ModelNode* pShadowNode, ulong tick, ulong deltaTick);
 	void render(IRenderSystem* pRenderSystem, ModelNode* pShadowNode);
 	void ShadowManager::SetTime(ulong LifeTime,ulong CreateIntval,ulong AllTime,ulong DelayStart,ulong DelayEnd);

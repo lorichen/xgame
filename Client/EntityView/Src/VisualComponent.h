@@ -13,8 +13,8 @@
 #include "EntityViewImpl.h"
 #include "EntityComponent.h"
 #include "PacketFormat.h"
+//#include "TxSysGui.h"
 #include "ITaskClient.h"
-#include "TxSysGui.h"
 
 class VisualComponent : public EntityComponent
 {
@@ -26,7 +26,7 @@ protected:
 	bool			mResLoaded;
 
 	// 实体外围矩形
-	RECT			mShowRect;
+	xs::Rect			mShowRect;
 
 	// 实体的名字
 	autostring		mName;
@@ -80,15 +80,15 @@ protected:
 private:
 	// 定义成成员变量，解决返回选择角色时崩溃的问题
 	ITexture* m_pHPTexture;
-	xsgui::Imageset* m_pHPImageSet;
+	//xsgui::Imageset* m_pHPImageSet;
 
 	//小图标
 	ITexture * m_pIconTexture;
-	xsgui::Imageset * m_pIconImageSet;
+	//xsgui::Imageset * m_pIconImageSet;
 	
 	// 定义成成员变量，解决返回选择角色时崩溃的问题
 	ITexture* m_pTeamTexture;
-	xsgui::Imageset* m_pTeamImageSet;
+	//xsgui::Imageset* m_pTeamImageSet;
 
 private:
 
@@ -123,7 +123,7 @@ public:
 	virtual bool isTransparent(int x, int y)					{ return false; }
 	virtual void onAddEntity();
 	virtual void onRemoveEntity();
-	virtual const RECT& getShowRect() const						{ return mShowRect; }
+	virtual const xs::Rect& getShowRect() const						{ return mShowRect; }
 	virtual void drawAlwayseTopMost(IRenderSystem* pRenderSystem);
 
 	// 绘制顶层特效

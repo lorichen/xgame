@@ -1309,7 +1309,7 @@ struct SMsgActionCloseShop_SC
 #define  MSG_ACTION_JUMP										110
 struct SMsgActionJump
 {
-	POINT		ptTarget;				 // 目标位置
+	xs::Point		ptTarget;				 // 目标位置
 };
 
 //内丹合成预测信息，  by ldy

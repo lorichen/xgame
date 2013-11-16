@@ -128,7 +128,7 @@ void VisualComponentMPW::drawPickObject(IRenderSystem* pRenderSystem)
 		//mAniInfo->GetAnchorOffset(nX,nY);
 
         //  对锚点偏移的处理，使物件能够以像素为单位进行移动和放置；
-        POINT pointAnchorOffset = getOwner()->GetAnchorOffset();
+        xs::Point pointAnchorOffset = getOwner()->GetAnchorOffset();
         nX += pointAnchorOffset.x;
         nY += pointAnchorOffset.y;
 
@@ -349,9 +349,9 @@ size_t VisualComponentMPW::onSave(Stream* stream) const
 	uchar str_len = (uchar)resId.length();
 	stream->write(&str_len, sizeof(uchar));
 	stream->write(resId.c_str(), str_len);
-    uchar uPointLength = sizeof(POINT);
-	POINT pointAnchorOffset = getOwner()->GetAnchorOffset();
-    stream->write((const void *)&pointAnchorOffset, sizeof(POINT));
+    uchar uPointLength = sizeof(xs::Point);
+	xs::Point pointAnchorOffset = getOwner()->GetAnchorOffset();
+    stream->write((const void *)&pointAnchorOffset, sizeof(xs::Point));
 
     return uPointLength + str_len + sizeof(uchar);
 }
@@ -394,7 +394,7 @@ void VisualComponentMPW::setOccupantInfo()
 	char buffer[4096];
 	OccupantTileList *pOccupant = (OccupantTileList*)buffer;
 
-	POINT ptTileOffset;
+	xs::Point ptTileOffset;
 	int nSizeW = 0, nSizeH = 0;
 	CAniInfoHeader *pInfo = mAniInfo;
 	pInfo->GetTileOffset((int &)ptTileOffset.x, (int &)ptTileOffset.y);
@@ -479,7 +479,7 @@ void VisualComponentMPW::setOccupantInfo()
 	char buffer[4096];
 	OccupantTileList *pOccupant = (OccupantTileList*)buffer;
 
-	POINT ptTileOffset;
+	xs::Point ptTileOffset;
 	ptTileOffset.x = mMwdInfo->tileOffset.x;
 	ptTileOffset.y = mMwdInfo->tileOffset.y;
 	int nSizeW = mMwdInfo->tileWidth;
@@ -563,11 +563,11 @@ void VisualComponentMPW::handleMessage(ulong msgId, ulong param1, ulong param2)
 	{
 	case msgTileChanged:
 		{
-			RECT rc;
+			xs::Rect rc;
 			OccupantTileList* potl = getOwner()->getOccupantTileList();
 			if (potl == NULL)
 			{
-				RECT rcArea;
+				xs::Rect rcArea;
 				rcArea.right = rcArea.left = getOwner()->getTile().x;
 				rcArea.bottom = rcArea.top = getOwner()->getTile().y;	// 是单点对象，右上角跟左下角一样
 				getOwner()->setArea(rcArea);
@@ -575,7 +575,7 @@ void VisualComponentMPW::handleMessage(ulong msgId, ulong param1, ulong param2)
 			}
 			else
 			{
-				RECT rcArea;
+				xs::Rect rcArea;
 				COccupantTileListHeader& octh = potl->getParamData();
 				rcArea.left = getOwner()->getTile().x + octh.nOffAnchorX;
 				rcArea.top = getOwner()->getTile().y + octh.nOffAnchorY;
@@ -609,11 +609,11 @@ void VisualComponentMPW::handleMessage(ulong msgId, ulong param1, ulong param2)
 
 			updateWorldCoord();
 
-			POINT pt;
-			gGlobalClient->getSceneManager()->tile2World((POINT&)rc, pt);
+			xs::Point pt;
+			gGlobalClient->getSceneManager()->tile2World((xs::Point&)rc, pt);
 			getOwner()->setSortLeft(pt);
 
-			POINT ptRightTile = {rc.right, rc.bottom};
+			xs::Point ptRightTile (rc.right, rc.bottom);
 			gGlobalClient->getSceneManager()->tile2World(ptRightTile, pt);
 			getOwner()->setSortRight(pt);
 

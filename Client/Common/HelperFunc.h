@@ -87,7 +87,7 @@ inline IEntityManager* getEntityManager()
 }
 
 
-inline int getDistance(const POINT& from, const POINT& to)
+inline int getDistance(const xs::Point& from, const xs::Point& to)
 {
 	return gGlobalClient->getSceneManager()->tileDistance(from, to);
 }
@@ -104,7 +104,7 @@ inline IEntity* uid2Entity(UID uid)
 }
 
 /// 获取射线上最后一个友好的TILE（即ptTo的前面一个非阻挡的TILE）
-inline bool getFriendTile_Radial(const POINT& ptFrom, const POINT& ptTo, ITileContainer* tileContainer, POINT& pt)
+inline bool getFriendTile_Radial(const xs::Point& ptFrom, const xs::Point& ptTo, ITileContainer* tileContainer, xs::Point& pt)
 {
 	if (ptFrom.x==ptTo.x && ptFrom.y==ptTo.y)
 	{
@@ -114,7 +114,7 @@ inline bool getFriendTile_Radial(const POINT& ptFrom, const POINT& ptTo, ITileCo
 	}
 	Radial line(ptTo.x, ptTo.y, ptFrom.x, ptFrom.y);
 
-	POINT ptTempTile = ptTo;
+	xs::Point ptTempTile = ptTo;
 	while (1)
 	{
 		line.move(ptTempTile);
@@ -136,7 +136,7 @@ inline bool getFriendTile_Radial(const POINT& ptFrom, const POINT& ptTo, ITileCo
 }
 
 // 获取ptTo->ptFrom方向上第一个阻挡点前的非阻挡点
-inline bool getFriendTile_Last(const POINT& ptFrom, const POINT& ptTo, ITileContainer* tileContainer, POINT& pt)
+inline bool getFriendTile_Last(const xs::Point& ptFrom, const xs::Point& ptTo, ITileContainer* tileContainer, xs::Point& pt)
 {
 	if (ptFrom.x==ptTo.x && ptFrom.y==ptTo.y)
 	{
@@ -147,8 +147,8 @@ inline bool getFriendTile_Last(const POINT& ptFrom, const POINT& ptTo, ITileCont
 	Radial line(ptTo.x, ptTo.y, ptFrom.x, ptFrom.y);
 
 	const int nCount = 1000;
-	POINT ptTempTile = ptTo;
-	POINT ptRet;
+	xs::Point ptTempTile = ptTo;
+	xs::Point ptRet;
 	int i=0;
 	while (1)
 	{
@@ -181,7 +181,7 @@ inline bool getFriendTile_Last(const POINT& ptFrom, const POINT& ptTo, ITileCont
 }
 
 /// 根据线段的两端点，计算有最大距离限制的点
-inline POINT calcLimitedPoint_Line(const POINT& ptFrom, const POINT& ptTo, ulong maxDist)
+inline xs::Point calcLimitedPoint_Line(const xs::Point& ptFrom, const xs::Point& ptTo, ulong maxDist)
 {
 	if (maxDist == 0) return ptFrom;
 	ulong dist = (ulong)getDistance(ptFrom, ptTo);
@@ -194,7 +194,7 @@ inline POINT calcLimitedPoint_Line(const POINT& ptFrom, const POINT& ptTo, ulong
 	int dx = (deltaX < 0) ? -deltaX : deltaX;
 	int dy = (deltaY < 0) ? -deltaY : deltaY;
 
-	POINT pt;
+	xs::Point pt;
 	pt.x = (dx == 0) ? ptFrom.x : ptFrom.x + (long)(rate * dx + 0.5f);
 	pt.y = (dy == 0) ? ptFrom.y : ptFrom.y + (long)(rate * dy + 0.5f);
 
@@ -207,11 +207,11 @@ inline POINT calcLimitedPoint_Line(const POINT& ptFrom, const POINT& ptTo, ulong
 @param     ptFrom :  源点
 @param     ptTo   :  目标点
 @param     nLen   :  击退的距离
-return     POINT  :  击退后目标所在的点
+return     xs::Point  :  击退后目标所在的点
 */
-inline POINT GetLineLastTile(const POINT& ptFrom, const POINT& ptTo, int nLen)
+inline xs::Point GetLineLastTile(const xs::Point& ptFrom, const xs::Point& ptTo, int nLen)
 {
-	POINT ptRet;
+	xs::Point ptRet;
 
 	// ptFrom和ptTo是同一个点
 	if ((ptFrom.x == ptTo.x) && (ptFrom.y == ptTo.y))

@@ -147,9 +147,9 @@ enum EntityCommand
 
 	// 动作类
 	EntityCommand_ForceStop,		/// add by zjp强制停止站立，停止引导动作
-	EntityCommand_Stand,			/// 站立 (const POINT* tile=0, 0)
+	EntityCommand_Stand,			/// 站立 (const xs::Point* tile=0, 0)
 	EntityCommand_Fallow,			/// 休闲 (ulong fallowId, 0)
-	EntityCommand_Move,				/// 移动，不关心是行走还是奔跑 (const POINT* pathList, size_t count)
+	EntityCommand_Move,				/// 移动，不关心是行走还是奔跑 (const xs::Point* pathList, size_t count)
 	EntityCommand_RapidMoveStart,	/// 快速移动(瞬移、冲锋)开始 (ShadowManager* mgr, 0)
 	EntityCommand_RapidMoveEnd,		/// 快速移动(瞬移、冲锋)结束
 	EntityCommand_AttackReady,		/// 攻击准备 (const AttackContext* context, 0)
@@ -201,7 +201,7 @@ enum EntityCommand
     EntityCommand_SetTaskSign,
 
 	// 光效类
-	EntityCommand_MoveRadial,		/// 射线移动，用于光效 (const POINT* ptBegin, const POINT* ptEnd)
+	EntityCommand_MoveRadial,		/// 射线移动，用于光效 (const xs::Point* ptBegin, const xs::Point* ptEnd)
 	EntityCommand_MoveTrack,		/// 移动并跟踪，用于光效，如火球 (IEntity* source, IEntity* target)
 	EntityCommand_Jump,				/// 跳跃
 	EntityCommand_NextMovingTile,

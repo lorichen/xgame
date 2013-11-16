@@ -32,7 +32,7 @@ EntityViewImpl::~EntityViewImpl()
 	}
 }
 
-void EntityViewImpl::setTile(const POINT& ptTile)
+void EntityViewImpl::setTile(const xs::Point& ptTile)
 {
 	if (ptTile.x != m_ptTile.x || ptTile.y != m_ptTile.y)
 	{
@@ -89,7 +89,7 @@ bool EntityViewImpl::update(float tick, float deltaTick, IRenderSystem* pRenderS
 	return getComponent<VisualComponent>(ComponentIDVisual)->update(tick, deltaTick, pRenderSystem);
 }
 
-const RECT& EntityViewImpl::getShowRect() const
+const xs::Rect& EntityViewImpl::getShowRect() const
 {
 	return getComponent<VisualComponent>(ComponentIDVisual)->getShowRect();
 }
@@ -179,11 +179,11 @@ const Matrix4& EntityViewImpl::GetFullTransform()
 
 
 // 受击点为包围盒的中点
-POINT EntityViewImpl::getAttackPos()
+xs::Point EntityViewImpl::getAttackPos()
 {
-	/*POINT ptScreen;
+	/*xs::Point ptScreen;
 	gGlobalClient->getSceneManager()->world2Screen(getOwner()->getWorld(), ptScreen);
-	RECT rc = entity->getShowRect();
+	xs::Rect rc = entity->getShowRect();
 	::OffsetRect(&rc, ptScreen.x, ptScreen.y);
 	Rect rect;
 	rect.left = rc.left;
@@ -192,8 +192,8 @@ POINT EntityViewImpl::getAttackPos()
 	rect.bottom = rc.bottom - 1;*/
 
 
-	RECT rc = getShowRect();
-	POINT ptCenter = {0};
+	xs::Rect rc = getShowRect();
+	xs::Point ptCenter;
 	ptCenter.x  = (rc.right+rc.left)/2;
 	ptCenter.y  = (rc.bottom+rc.top)/2;
 	return ptCenter;

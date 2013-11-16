@@ -73,7 +73,7 @@ class FlowText : public TimerHandler
 public:	
 	autostring		mText;		/// 字符串
 	ColorValue		mColor;		/// 文字颜色
-	POINT			mPos;		/// 屏幕位置
+	xs::Point			mPos;		/// 屏幕位置
 	ulong			mTotalTime;	/// 总时间
 	CoordAlign		mCoordAlign;/// 坐标对齐方式
 
@@ -130,11 +130,11 @@ class FlowTextArea
 	typedef std::list<FlowTextItem*>	FlowTextItemList;
 	FlowTextItemList	mList;
 	ulong				mAlign;			/// 区域中的条目对其方式,0-左对齐,1-居中对齐,2-右对齐
-	RECT				mRect;			/// 显示区域(相对于主角屏幕坐标的偏移)
+	xs::Rect				mRect;			/// 显示区域(相对于主角屏幕坐标的偏移)
 public:
 	void add(const std::string& text);
 	void update(ulong deltaTime);
-	void render(const POINT& pos, IRenderSystem* pRenderSystem);
+	void render(const xs::Point& pos, IRenderSystem* pRenderSystem);
 private:
 	inline int getWidth() const		{ return mRect.right - mRect.left; }
 	inline int getHeight() const	{ return mRect.bottom - mRect.top; }
@@ -153,7 +153,7 @@ typedef std::list<FlowItem>	FlowItemList;
 /// 浮动区域（里面有多个浮动文字，用于角色旁边的信息提示）
 class FlowArea
 {
-	RECT	mRect;			/// 显示区域(相对于主角屏幕坐标的偏移)
+	xs::Rect	mRect;			/// 显示区域(相对于主角屏幕坐标的偏移)
 	float	mSpeed;			/// 滚动速度或者alpha淡出的速度
 	float	mScale;			/// 字体缩放比例
 	bool	mScroll;		/// 是否文字自动滚动
@@ -166,11 +166,11 @@ public:
 	FlowArea();
 	~FlowArea();
 
-	bool create(const RECT& rc, float speed, float scale, bool scroll = true,bool isCover = false,bool isEffect = false,bool isChangeA = true);
+	bool create(const xs::Rect& rc, float speed, float scale, bool scroll = true,bool isCover = false,bool isEffect = false,bool isChangeA = true);
 	void close();
 	void add(const std::string& text, const ColorValue& color,const DWORD font = 0);
 	void update(ulong deltaTime);
-	void render(const POINT& pt, IRenderSystem* pRenderSystem);
+	void render(const xs::Point& pt, IRenderSystem* pRenderSystem);
 	bool needRender() const			{ return !mList.empty(); }
 
 	FlowItem* GetLastFlowItem(void)

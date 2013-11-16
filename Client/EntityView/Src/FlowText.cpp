@@ -124,13 +124,13 @@ void FlowText::update(ulong deltaTime)
 
 void FlowText::render(IRenderSystem* pRenderSystem)
 {
-	POINT pos;
+	xs::Point pos;
 	pos.x = mPosX ? (ulong)((float)mPos.x + mPosX->getFrame(mCurTime)) : mPos.x;
 	pos.y = mPosY ? (ulong)((float)mPos.y + mPosY->getFrame(mCurTime)) : mPos.y;
 
 	if (mCoordAlign == CoordAlign_World)
 	{
-		POINT tmp = {pos.x, pos.y};
+		xs::Point tmp (pos.x, pos.y);
 		gGlobalClient->getSceneManager()->world2Screen(tmp, pos);
 	}
 
@@ -262,7 +262,7 @@ void FlowTextArea::update(ulong deltaTime)
 
 }
 
-void FlowTextArea::render(const POINT& pos, IRenderSystem* pRenderSystem)
+void FlowTextArea::render(const xs::Point& pos, IRenderSystem* pRenderSystem)
 {
 
 }
@@ -286,7 +286,7 @@ FlowArea::~FlowArea()
 	close();
 }
 
-bool FlowArea::create(const RECT& rc, float speed, float scale, bool scroll /* = true */,bool isCover /* = false */,bool isEffect /* = false */,bool isChangeA /* = true */)
+bool FlowArea::create(const xs::Rect& rc, float speed, float scale, bool scroll /* = true */,bool isCover /* = false */,bool isEffect /* = false */,bool isChangeA /* = true */)
 {
 	mRect = rc;
 	mSpeed = speed;
@@ -400,7 +400,7 @@ void FlowArea::update(ulong deltaTime)
 	update(deltaTime * mSpeed);
 }
 
-void FlowArea::render(const POINT& pt, IRenderSystem* pRenderSystem)
+void FlowArea::render(const xs::Point& pt, IRenderSystem* pRenderSystem)
 {
 	if (mList.empty())
 		return;
@@ -532,16 +532,16 @@ void FlowArea::update(float offY)
 
 FlowTextManager::FlowTextManager()
 {
-	RECT rc1 = {0,-200,100,-150};
+	xs::Rect rc1 (0,-200,100,-150);
 	mFlowArea[FlowArea_Top].create(rc1, 0.03, 0.7,true,true,true);
 
-	RECT rc2 = {-50,0,100,200};
+	xs::Rect rc2 (-50,0,100,200);
 	mFlowArea[FlowArea_Bottom].create(rc2, 0.05, 0.8);
 
-	RECT rc3 = {100,100,400,200};
+	xs::Rect rc3 (100,100,400,200);
 	mFlowArea[FlowArea_Right].create(rc3, 0.05, 1,true,false,false,false);
 
-	//RECT rc4 = {-100,-220,100,-20};
+	//xs::Rect rc4 = {-100,-220,100,-20};
 	//mFlowArea[FlowArea_Mouse].create(rc4, 0.0005, 0.8, false);
 }
 
@@ -570,9 +570,10 @@ void FlowTextManager::flowAreaText(int area, const std::string& text, const Colo
 	if (area == FlowArea_Mouse)
 	{
 		// 获取鼠标位置
-		POINT ptScreen;
-		GetCursorPos(&ptScreen);
-		ScreenToClient((HWND)gGlobalClient->getHWND(), &ptScreen);
+	
+		POINT pt;
+		GetCursorPos(&pt);
+		ScreenToClient((HWND)gGlobalClient->getHWND(), &pt);
 
 		FlowTextContext ftc;
 		memset(&ftc, 0, sizeof(ftc));
@@ -580,7 +581,8 @@ void FlowTextManager::flowAreaText(int area, const std::string& text, const Colo
 		ftc.align = CoordAlign_Screen;
 		ftc.color = color;
 		ftc.lastAlpha = 0.1f;
-		ftc.pos = ptScreen;
+		ftc.pos.x = pt.x;
+		ftc.pos.y = pt.y;
 		ftc.pos.y -= 15;
 		ftc.text = text;
 		ftc.totalTime = 2000;
@@ -668,7 +670,7 @@ void FlowTextManager::updateSystemTips(ulong deltaTime)
 void FlowTextManager::renderSystemTips(IRenderSystem* pRenderSystem)
 {
 	EntityView* player = (EntityView*)getHandleData(gGlobalClient->getPlayer());
-	POINT ptScreen;
+	xs::Point ptScreen;
 	if (player)	
 	{
 		 //获取玩家位置
@@ -679,7 +681,7 @@ void FlowTextManager::renderSystemTips(IRenderSystem* pRenderSystem)
 		mFlowArea[FlowArea_Bottom].render(ptScreen, pRenderSystem);
 	}
 
-	const RECT& rc = gGlobalClient->getSceneManager()->getViewportRect();
+	const xs::Rect& rc = gGlobalClient->getSceneManager()->getViewportRect();
 	ptScreen.x = (rc.left + rc.right) / 2 - gGlobalClient->getSceneManager()->getViewTopLeftX();
 	ptScreen.y = (rc.top + rc.bottom) / 2 - gGlobalClient->getSceneManager()->getViewTopLeftY();
 	mFlowArea[FlowArea_Right].render(ptScreen, pRenderSystem);
@@ -688,7 +690,7 @@ void FlowTextManager::renderSystemTips(IRenderSystem* pRenderSystem)
 	if (mFlowArea[FlowArea_Mouse].needRender())
 	{
 	// 获取鼠标位置
-	POINT ptScreen;
+	xs::Point ptScreen;
 	GetCursorPos(&ptScreen);
 	ScreenToClient((HWND)gGlobalClient->getHWND(), &ptScreen);
 

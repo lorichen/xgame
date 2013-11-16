@@ -149,4 +149,19 @@ inline bool InflateRect( xs::Rect*  rc,int dx,int dy)
     return true;
 }
 
+inline bool SetRectEmpty( xs::Rect*  rc)
+{
+	rc->left  = rc->right = rc->top = rc->bottom = 0;
+	return true;
+} 
+
+inline bool CopyRect( xs::Rect* rcDst, const xs::Rect* rcSrc)
+{
+	rcDst->left = rcSrc->left;
+	rcDst->top = rcSrc->top;
+	rcDst->right = rcSrc->right;
+	rcDst->bottom = rcSrc->bottom;
+	return true;
+}
+
 #endif //

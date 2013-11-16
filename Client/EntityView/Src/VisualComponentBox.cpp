@@ -25,7 +25,7 @@ VisualComponentBOX::VisualComponentBOX()
 
 	m_bIsInit = false;
 	m_pTexture = 0;
-	m_pImageSet = 0;	
+	//m_pImageSet = 0;	
 	m_nlastTick = 0;
 	m_nEffectID = 0;
 
@@ -79,14 +79,15 @@ void VisualComponentBOX::releaseRes()
 void VisualComponentBOX::draw(IRenderSystem* pRenderSystem)
 {
 	if( 0 == m_pTexture
-		|| 0 ==m_pImageSet)
+		/*|| 0 ==m_pImageSet*/)
 		return;
 
-	POINT ptScreen;
+	xs::Point ptScreen;
 	gGlobalClient->getSceneManager()->world2Screen(getOwner()->getWorld(), ptScreen);
-	RECT rect = getOwner()->getShowRect();
+	xs::Rect rect = getOwner()->getShowRect();
 	::OffsetRect(&rect, ptScreen.x, ptScreen.y);
 	
+	/*
 	const xsgui::Image & image = m_pImageSet->getImage(m_imageName);
 	int nImageWidth = image.getWidth();
 	int nImageHeigh = image.getHeight();
@@ -110,7 +111,7 @@ void VisualComponentBOX::draw(IRenderSystem* pRenderSystem)
 
 	Rect rc;
 	rc.left = ptScreen.x - nImageHeigh / 2;
-	rc.top = rect.top /*- m_foffset*/;
+	rc.top = rect.top ;//- m_foffset;
 	rc.right = rc.left + nImageWidth;
 	rc.bottom = rc.top + nImageHeigh;
 
@@ -124,6 +125,7 @@ void VisualComponentBOX::draw(IRenderSystem* pRenderSystem)
 	pRenderSystem->switchTo2D();
 	pRenderSystem->rectangle(rc,m_pTexture,lefttop, leftbottom,rightbottom,rightop );
 	pRenderSystem->switchTo3D();
+	*/
 
 	// 播特效,5秒拨一次
 	IEntityFactory * pEntityFactory = gGlobalClient->getEntityFactory();
@@ -132,7 +134,7 @@ void VisualComponentBOX::draw(IRenderSystem* pRenderSystem)
 		long curTick = GetTickCount();
 		if( curTick - m_nlastTick > 5 * 1000)
 		{
-			POINT ptTile;
+			xs::Point ptTile;
 			gGlobalClient->getSceneManager()->world2Tile(getOwner()->getWorld(), ptTile);		
 			pEntityFactory->createEffect(m_nEffectID,ptTile);
 			m_nlastTick = curTick;
@@ -235,9 +237,9 @@ void VisualComponentBOX::handleMessage(ulong msgId, ulong param1, ulong param2)
 	{
 	case msgTileChanged:
 		{
-			RECT rc;
+			xs::Rect rc;
 			
-			RECT rcArea;
+			xs::Rect rcArea;
 			rcArea.right = rcArea.left = getOwner()->getTile().x;
 			rcArea.bottom = rcArea.top = getOwner()->getTile().y;	// 是单点对象，右上角跟左下角一样
 			getOwner()->setArea(rcArea);
@@ -245,11 +247,11 @@ void VisualComponentBOX::handleMessage(ulong msgId, ulong param1, ulong param2)
 		
 			updateWorldCoord();
 
-			POINT pt;
-			gGlobalClient->getSceneManager()->tile2World((POINT&)rc, pt);
+			xs::Point pt;
+			gGlobalClient->getSceneManager()->tile2World((xs::Point&)rc, pt);
 			getOwner()->setSortLeft(pt);
 
-			POINT ptRightTile = {rc.right, rc.bottom};
+			xs::Point ptRightTile (rc.right, rc.bottom);
 			gGlobalClient->getSceneManager()->tile2World(ptRightTile, pt);
 			getOwner()->setSortRight(pt);
 
@@ -338,8 +340,8 @@ bool VisualComponentBOX::InitBigImageSet()
 			if( 0 == m_pTexture)
 				m_pTexture = gGlobalClient->getRenderSystem()->getTextureManager()->createTextureFromFile(imageName,FO_POINT,FO_POINT);
 			
-			if( 0 == m_pImageSet)
-				m_pImageSet = xsgui::ImagesetManager::getSingleton().getImageset(imageSetName);		
+			//if( 0 == m_pImageSet)
+			//	m_pImageSet = xsgui::ImagesetManager::getSingleton().getImageset(imageSetName);		
 			
 			m_bIsInit = true;
 		}

@@ -422,7 +422,7 @@ bool EntityFactory::createEffect(ulong type, const void* context, size_t len)
 	return true;
 }
 
-bool EntityFactory::createEffect(ulong effId, const POINT& ptTile)
+bool EntityFactory::createEffect(ulong effId, const xs::Point& ptTile)
 {	
 	if (effId == 0) return false;
 

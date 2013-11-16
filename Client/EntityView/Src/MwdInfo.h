@@ -46,7 +46,7 @@ struct MwdInfo // 24 bytes
 {
 	ulong	w;				/// 图片最大宽度(像素)
 	ulong	h;				/// 图片最大高度(像素)
-	POINT	anchorOffset;	/// 锚点相对于图片左上角最大矩形的偏移量(像素)
+	xs::Point	anchorOffset;	/// 锚点相对于图片左上角最大矩形的偏移量(像素)
 	TileOff	sortOffset1;	/// 第一排序点（相对锚点偏移）
 	TileOff	sortOffset2;	/// 第二排序点（相对锚点偏移）
 	TileOff	tileOffset;		/// 占位块矩形区域左上角相对锚点的偏移

@@ -50,10 +50,15 @@ bool ConfigCreatures::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileN
 		child->Attribute("ColorB",&temp);cc->diffuse.b = temp;
 		child->Attribute("Transparency",&temp);cc->diffuse.a = temp;
 		child->Attribute("StepLength",&cc->stepLength);
-		child->Attribute("ShowRectLeft",&cc->boundingBox.left);
-		child->Attribute("ShowRectTop",&cc->boundingBox.top);
-		child->Attribute("ShowRectRight",&cc->boundingBox.right);
-		child->Attribute("ShowRectBottom",&cc->boundingBox.bottom);
+		int intTemp = 0;
+		child->Attribute("ShowRectLeft",&intTemp);
+		cc->boundingBox.left = intTemp;
+		child->Attribute("ShowRectTop",&intTemp);
+		cc->boundingBox.top = intTemp;
+		child->Attribute("ShowRectRight",&intTemp);
+		cc->boundingBox.right = intTemp;
+		child->Attribute("ShowRectBottom",&intTemp);
+		cc->boundingBox.bottom = intTemp;
 
 		TiXmlElement *pSubModel = child->FirstChildElement();
 		if(pSubModel)
