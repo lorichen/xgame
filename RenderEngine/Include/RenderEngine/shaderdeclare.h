@@ -67,6 +67,7 @@ namespace xs
 		ESP_V3_UV,
 		ESP_V3,
 		ESP_V3_N_UV,
+		ESP_V3_UV_GC,
 
 		ESP_NUM,
 	};
@@ -76,7 +77,8 @@ namespace xs
 		"sp_v3_uv_c",	
 		"sp_v3_uv",		
 		"sp_v3",		
-		"sp_v3_n_uv",  
+		"sp_v3_n_uv",
+		"sp_v3_uv_gc",
 	};
 
 }

@@ -25,6 +25,7 @@
 #include "RenderEngine/Light.h"
 #include "RenderEngine/IShaderManager.h"
 #include "RenderEngine/Viewport.h"
+#include "RenderEngine/shaderdeclare.h"
 
 using namespace xs;
 

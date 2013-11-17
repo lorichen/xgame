@@ -160,6 +160,11 @@ void GroundRenderQueue::render()
 	IRenderSystem *pRenderSystem = getRenderEngine()->getRenderSystem();
 	Matrix4 mtxWorld = pRenderSystem->getWorldMatrix();
 
+	//add by kevin.chen -------
+	pRenderSystem->setNormalVertexBuffer(0);
+	pRenderSystem->setIndexBuffer(0);
+	//----------------------------------
+
     if(pRenderSystem->getCapabilities()->hasCapability(RSC_HIGHLEVEL_SHADER))	
 	{
 		pRenderSystem->setTexcoordVertexBuffer(0,m_pVBTexcoord);
@@ -178,6 +183,11 @@ void GroundRenderQueue::render()
 				++begin;
 				continue;
 			}
+		
+			
+			IHighLevelShaderProgram* pProgram = static_cast<IHighLevelShaderProgram*>(m_pShaderPrograms[pTile->m_textureLayerNum - 1]);
+			pRenderSystem->bindCurrentShaderProgram(pProgram);//pProgram->bind();
+
 			pRenderSystem->setTexture(0,pTile->getTexture(0));
 			pRenderSystem->setTexture(1,pTile->getShaderMapTexture());
 			for(uint i = 1;i < pTile->m_textureLayerNum;i++)
@@ -185,8 +195,7 @@ void GroundRenderQueue::render()
 				pRenderSystem->setTexture(i + 1,pTile->getTexture(i));	
 			}
 			
-			IHighLevelShaderProgram* pProgram = static_cast<IHighLevelShaderProgram*>(m_pShaderPrograms[pTile->m_textureLayerNum - 1]);
-			pRenderSystem->bindCurrentShaderProgram(pProgram);//pProgram->bind();
+			//must be after bind shader!!!
 			pProgram->bindSampler( pTile->m_textureLayerNum);
 			
 			pRenderSystem->setWorldMatrix(mtxWorld * pTile->getWorldMatrix());
@@ -307,9 +316,9 @@ void GroundRenderQueue::initialize()
 			for(int i = 0;i < 4;i++)
 			{
 				char str[256];
-				sprintf(str,"Shader/OGLES2/terrain%d.frag",i + 1);
+				sprintf(str,"data/Shader/OGLES2/terrain%d.frag",i + 1);
 				m_pShaderPrograms[i] = pShaderProgamMgr->createShaderProgram(SPT_HIGHLEVEL);
-				m_pShaderPrograms[i]->addShaderFromFile(ST_VERTEX_PROGRAM,"Shader/OGLES2/terrain.vs");
+				m_pShaderPrograms[i]->addShaderFromFile(ST_VERTEX_PROGRAM,"data/Shader/OGLES2/terrain.vs");
 				m_pShaderPrograms[i]->addShaderFromFile(ST_FRAGMENT_PROGRAM,str);
 				m_pShaderPrograms[i]->link();
 			}

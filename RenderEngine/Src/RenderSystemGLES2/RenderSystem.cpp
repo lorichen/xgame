@@ -1492,6 +1492,14 @@ namespace xs
 			_checkCacheAndFlush(m_batchStatus.colorCount);
 			m_batchStatus.colors[m_batchStatus.colorCount++] = color.getAsABGR();
 		}
+		else
+		{
+			if(m_pCurrentShaderProgram)
+			{
+				Vector4 c(color.r,color.g,color.b,color.a);
+				m_pCurrentShaderProgram->setUniformVector4(G_COLOR,c);
+			}
+		}
 	}
 
 	const ColorValue&		RenderSystem::getColor()
@@ -3183,8 +3191,8 @@ namespace xs
 		for(int i = 0;i < ESP_NUM;++i)
 		{
 			m_pInnerShader[i] = static_cast<IHighLevelShaderProgram*>(pShaderProgamMgr->createShaderProgram(SPT_HIGHLEVEL));
-			vs = "Shader/OGLES2/";
-			fs = "Shader/OGLES2/";
+			vs = "data/Shader/OGLES2/";
+			fs = "data/Shader/OGLES2/";
 			
 			vs += g_shader_program_name[i];
 			vs += VS;

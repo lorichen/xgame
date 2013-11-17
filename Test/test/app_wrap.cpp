@@ -57,9 +57,8 @@ bool AppWrap::init(void* hwnd)
 	param.colorDepth = 32;
 	param.hwnd = hwnd;
 
-    ////xs::getFileSystem()->addFindPath(""); //globalclient have done!
-	//xs::getFileSystem()->addFindPath("maps");
-    xs::getFileSystem()->addFindPath("data");
+	xs::getFileSystem()->addFindPath("");
+	xs::getFileSystem()->addFindPath("data");
 
 	//g_psRenderSystem = xs::createRenderSystem(&param);
     if(!gs_global.create(hwnd))
@@ -84,9 +83,9 @@ bool AppWrap::init(void* hwnd)
 	
 	g_psScenemanager->setRunType(RUN_TYPE_GAME);
 
-	std::string strMapFile = "maps/cyc.mp";
-	std::string strWayFile = "maps/苍隐村路点.xml";
-    std::string strPicName = "11.dds";
+	std::string strMapFile = "data/maps/苍隐村.mp";		//"maps/戮战之野.mp";
+	std::string strWayFile = "data/maps/苍隐村路点.xml"; //"maps/戮战之野路点.xml";
+    //std::string strPicName = "11.dds";
     
     xs::CPath pathTest;
     pathTest = "x\\2\\t\\3.3";
@@ -112,9 +111,11 @@ bool AppWrap::init(void* hwnd)
 	xs::Rect  rc(0,0,gs_width,gs_height);
 
 	//gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
-    gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile(strPicName.c_str());
+    //gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile(strPicName.c_str());
     
-	bool bLoadMap = g_psScenemanager->loadScene(strMapFile.c_str(),strWayFile.c_str(),&rc,NULL,false,&pt);
+	IEntityFactory* pEngityFactory = gs_global.getEntityFactory();
+
+	bool bLoadMap = g_psScenemanager->loadScene(strMapFile.c_str(),strWayFile.c_str(),&rc,pEngityFactory,false,&pt);
 	if(!bLoadMap)
 	{
 		assert(0);

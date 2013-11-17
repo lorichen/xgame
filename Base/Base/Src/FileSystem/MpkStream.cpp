@@ -51,17 +51,17 @@ bool MpkStream::readString(IN OUT char* str,IN OUT uint& length)
 	return true;
 }
 
-bool MpkStream::seek(int offset, uint from) const
+bool MpkStream::seek(int offset, uint from) 
 {
 	return m_pFileManip->seek(offset,from);
 }
 
-bool MpkStream::seekToBegin() const
+bool MpkStream::seekToBegin() 
 {
 	return m_pFileManip->seek(0,SEEK_SET);
 }
 
-bool MpkStream::seekToEnd() const
+bool MpkStream::seekToEnd() 
 {
 	return m_pFileManip->seek(0,SEEK_END);
 }
@@ -71,7 +71,7 @@ int MpkStream::getPosition() const
 	return m_pFileManip->getPos();
 }
 
-uint MpkStream::getLength() const
+uint MpkStream::getLength() 
 {
 	return m_pFileManip->getOriginSize();
 }

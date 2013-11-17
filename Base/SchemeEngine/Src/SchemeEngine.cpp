@@ -87,8 +87,8 @@ bool CSchemeEngine::LoadScheme(const char * pszFileName, ISchemeUpdateSink * pSi
 	char szFullFileName[MAX_PATH] = { 0 };
 	strncpy(szFullFileName, pszFileName, sizeof(szFullFileName));
 
-	// 将文件名全部转成大写
-	strlwr(szFullFileName);
+	// 将文件名全部转成大写 
+	//strlwr(szFullFileName);  //不转换.modify by kevin.chen
 
 	// 注册sink
 	if(!RegisterSink(szFullFileName, pSink, bDynamic))
@@ -280,22 +280,22 @@ bool CSchemeEngine::__Load(const char * szFileName, CCsvReader * pCSVReader, TiX
 	}
 
 	const char * pExternName = szFileName + nLen - 3;
-	if(strcmp(pExternName, "CSV") == 0)
+	if(strcmp(pExternName, "csv") == 0)
 	{	
 		bIsCsv = true;
 		return __LoadCSV(szFileName, false, pCSVReader);		
 	}
-	else if(strcmp(pExternName, "CSC") == 0)
+	else if(strcmp(pExternName, "csc") == 0)
 	{
 		bIsCsv = true;
 		return __LoadCSV(szFileName, true, pCSVReader);		
 	}
-	else if(strcmp(pExternName, "XML") == 0)
+	else if(strcmp(pExternName, "xml") == 0)
 	{
 		bIsCsv = false;
 		return __LoadXML(szFileName, false, pTiXmlDocument);		
 	}
-	else if(strcmp(pExternName, "XMC") == 0)
+	else if(strcmp(pExternName, "xmc") == 0)
 	{
 		bIsCsv = false;
 		return __LoadXML(szFileName, true, pTiXmlDocument);		

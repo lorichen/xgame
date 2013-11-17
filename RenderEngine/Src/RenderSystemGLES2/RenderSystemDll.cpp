@@ -11,7 +11,7 @@
 namespace xs
 {
 
-	extern "C" __declspec(dllexport) IRenderSystem* createRenderSystem(RenderEngineCreationParameters* param)
+	API_EXPORT IRenderSystem* createRenderSystem(RenderEngineCreationParameters* param)
 	{
 		PP_BY_NAME("dllexport createRenderSystem");
 		RenderSystem *pRenderSystem = new RenderSystem;

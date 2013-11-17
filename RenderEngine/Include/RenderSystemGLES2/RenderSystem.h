@@ -2,7 +2,7 @@
 #define __RenderSystem_H__
 
 #include "RenderTarget.h"
-#include "shaderdeclare.h"
+
 
 
 namespace xs{

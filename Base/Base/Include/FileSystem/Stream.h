@@ -65,34 +65,34 @@ public:
 	 @param toWrite 要写入的字节大小
 	 @return 成功返回true，否则返回false
 	 */
-	virtual bool write(const void* bufer, uint toWrite) { return false; }
+	virtual bool write(const void* bufer, uint toWrite)  { return false; }
 
 	/** 文件读写位置定位
 	 @param offset 偏移量
 	 @param from 从那种指定的位置开始进行偏移，参考: SEEK_SET 文件头; SEEK_CUR 文件当前位置; SEEK_END 文件尾
 	 @return 
 	 */ 
-	virtual bool seek(int offset, uint from = SEEK_SET)  { return false; }
+	virtual bool seek(int offset, uint from = SEEK_SET) = 0;
 
 	/// 文件读写位置定位到文件头
-	virtual bool seekToBegin()  { return false; }
+	virtual bool seekToBegin()  = 0;
 
 	/// 文件读写位置定位到文件尾
-	virtual bool seekToEnd()  { return false; }
+	virtual bool seekToEnd()  = 0;
 
 	/// 获得文件指针的位置
-	virtual int getPosition() const { return 0; }
+	virtual int getPosition() const = 0;
 
 
 	/// 将文件的缓冲区内容写入磁盘(包文件不支持)
-	virtual bool flush() { return false; }
+	virtual bool flush()  { return false; }
 
 
 	/// 获取文件长度(文件没打开时也能获取长度),如果是包文件,则是指压缩后的长度
-	virtual uint getLength() const  { return 0; }
+	virtual uint getLength()  = 0;
 
 	/// 设置流的长度
-	virtual bool setLength(uint newLen) { return false; }
+	virtual bool setLength(uint newLen)  { return false; }
 
 	/** 设置流路径
 	 @param path 流的路径名

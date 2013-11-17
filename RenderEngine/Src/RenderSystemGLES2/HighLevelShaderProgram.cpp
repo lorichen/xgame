@@ -242,6 +242,7 @@ namespace xs
 
 		glUniform4f(loc,value.x, value.y, value.z, value.w);
 
+		TestGLError("setUniformVector4");
 		return true;
 	}
 
@@ -259,6 +260,8 @@ namespace xs
 			glUniformMatrix4fv(loc, 1, GL_TRUE, &value[0][0]); 
 		else
 			glUniformMatrix4fv(loc, 1, GL_FALSE, &value[0][0]);//这里应该是false,否则传投影矩阵过去就错了
+
+		TestGLError("setUniformMatrix");
 		return true;
 	}
 

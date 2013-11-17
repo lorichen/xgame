@@ -69,13 +69,13 @@ public:
 	virtual bool write(const void* bufer, uint toWrite);
 
 	/// 用法同Stream
-	virtual bool seek(int offset, uint from = SEEK_SET) const;
+	virtual bool seek(int offset, uint from = SEEK_SET) ;
 
 	/// 用法同Stream
-	virtual bool seekToBegin() const;
+	virtual bool seekToBegin() ;
 
 	/// 用法同Stream
-	virtual bool seekToEnd() const;
+	virtual bool seekToEnd() ;
 
 	/// 用法同Stream
 	virtual int getPosition() const;
@@ -84,7 +84,7 @@ public:
 	virtual bool flush() ;
 
 	/// 用法同Stream
-	virtual uint getLength() const;
+	virtual uint getLength() ;
 
 	/// 用法同Stream
 	virtual bool setLength(uint newLen);

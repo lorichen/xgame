@@ -40,12 +40,75 @@
 #include "IFormManager.h"
 
 //  测试代码：修改为直接读取csv文件，以便于观察配置文件修改的效果；
-#define MAGIC_CONFIG_FILENAME		"Data\\Scp\\Magic.csv"
-#define EFFECTVIEW_CONFIG_FILENAME	"Data\\Scp\\EffectView.csv"
-#define SKILLVIEW_CONFIG_FILENAME	"Data\\Scp\\SkillView.csv"
-#define MWDINFO_CONFIG_FILENAME		"Data\\mpw.info"
+#define MAGIC_CONFIG_FILENAME		"data/Scp/Magic.csv"
+#define EFFECTVIEW_CONFIG_FILENAME	"data/Scp/EffectView.csv"
+#define SKILLVIEW_CONFIG_FILENAME	"data/Scp/SkillView.csv"
+#define MWDINFO_CONFIG_FILENAME		"data/mpw.info"
 
 static bool g_bRegistered = false;
+
+
+
+
+API_EXPORT IEntityFactory* LoadCEV()
+{
+	if (!gGlobalClient)
+		Error("Parameter error: IGlobalClient object pointer is NULL"<<endl);
+
+	if (!gGlobalClient->getResourceManager() || !gGlobalClient->getSchemeEngine())
+		Error("CreateEntityFactory, create order error"<<endl);
+
+	EntityFactory* ef = new EntityFactory();
+	if (!ef || !ef->create())
+	{
+		Error("EntityFactory::create() failed"<<endl);
+		return NULL;
+	}
+
+	//静态变量也是魔鬼!!!
+	//把静态鬼变成全局鬼，在Release的时候让它投胎 >_<
+	//static bool registered = false;
+	if(!g_bRegistered)
+	{
+		gGlobalClient->getResourceManager()->registerResourceLoader(typeResourcePic,ResourceLoaderMpw::Instance());
+		gGlobalClient->getResourceManager()->registerResourceLoader(typeResourceModel,ResourceLoaderMz::Instance());
+
+		//  测试代码：修改为直接读取csv文件，以便于观察配置文件修改的效果；
+		if(!ConfigCreaturePart::Instance()->load("data/scp/CreaturePart.csv"))
+		{
+			Error("load(data/scp/CreaturePart.csv) failed"<<endl);
+			return NULL;
+		}
+		//  测试代码：修改为直接读取xml文件，以便于观察配置文件修改的效果；
+		//if(!ConfigCreatureRes::Instance()->load("scp\\ConfigCreature.xmc"))
+		if(!ConfigCreatureRes::Instance()->load("data/scp\\ConfigCreature.xml"))
+		{
+			Error("load(data/scp\\ConfigCreature.xml) failed"<<endl);
+			return NULL;
+		}
+		//  测试代码：修改为直接读取xml文件，以便于观察配置文件修改的效果；
+		//if(!ConfigCreatures::Instance()->load("scp\\Creature.xmc"))
+		if(!ConfigCreatures::Instance()->load("data/scp\\Creature.xml"))
+		{
+			Error("load(data/scp\\Creatures.xml) failed"<<endl);
+			return NULL;
+		}
+
+
+		if( !ConfigActionMap::Instance()->load("data/scp\\ActionMap.csv"))
+		{
+			Error("load(data/scp\\ActionMap.csv) failed"<<endl);
+			return NULL;	
+		}
+
+		g_bRegistered = true;
+	}
+
+	//VisualComponent::mSelectedTexture = gGlobalClient->getRenderSystem()->getTextureManager()->createTextureFromFile("Selected.dds");
+	return static_cast<IEntityFactory*>(ef);
+}
+
+
 
 EntityFactory::EntityFactory()
 {
@@ -1711,66 +1774,6 @@ void EntityFactory::release()
 	g_bRegistered = false;
 }
 
-
-
-API_EXPORT IEntityFactory* LoadCEV()
-{
-	if (!gGlobalClient)
-		Error("Parameter error: IGlobalClient object pointer is NULL"<<endl);
-
-	if (!gGlobalClient->getResourceManager() || !gGlobalClient->getSchemeEngine())
-		Error("CreateEntityFactory, create order error"<<endl);
-
-	EntityFactory* ef = new EntityFactory();
-	if (!ef || !ef->create())
-	{
-		Error("EntityFactory::create() failed"<<endl);
-		return NULL;
-	}
-
-	//静态变量也是魔鬼!!!
-	//把静态鬼变成全局鬼，在Release的时候让它投胎 >_<
-	//static bool registered = false;
-	if(!g_bRegistered)
-	{
-		gGlobalClient->getResourceManager()->registerResourceLoader(typeResourcePic,ResourceLoaderMpw::Instance());
-		gGlobalClient->getResourceManager()->registerResourceLoader(typeResourceModel,ResourceLoaderMz::Instance());
-
-        //  测试代码：修改为直接读取csv文件，以便于观察配置文件修改的效果；
-		if(!ConfigCreaturePart::Instance()->load("data\\scp\\CreaturePart.csv"))
-		{
-			Error("load(scp\\CreaturePart.csv) failed"<<endl);
-			return NULL;
-		}
-        //  测试代码：修改为直接读取xml文件，以便于观察配置文件修改的效果；
-		//if(!ConfigCreatureRes::Instance()->load("scp\\ConfigCreature.xmc"))
-        if(!ConfigCreatureRes::Instance()->load("data\\scp\\ConfigCreature.xml"))
-		{
-			Error("load(scp\\ConfigCreature.xml) failed"<<endl);
-			return NULL;
-		}
-        //  测试代码：修改为直接读取xml文件，以便于观察配置文件修改的效果；
-        //if(!ConfigCreatures::Instance()->load("scp\\Creature.xmc"))
-        if(!ConfigCreatures::Instance()->load("data\\scp\\Creature.xml"))
-		{
-			Error("load(scp\\Creatures.xml) failed"<<endl);
-			return NULL;
-		}
-
-		
-		if( !ConfigActionMap::Instance()->load("data\\scp\\ActionMap.csv"))
-		{
-			Error("load(scp\\ActionMap.csv) failed"<<endl);
-			return NULL;	
-		}
-
-		g_bRegistered = true;
-	}
-
-	//VisualComponent::mSelectedTexture = gGlobalClient->getRenderSystem()->getTextureManager()->createTextureFromFile("Selected.dds");
-	
-	return static_cast<IEntityFactory*>(ef);
-}
 
 std::string EntityFactory::GetFileNameByCreatureId(long id)
 {

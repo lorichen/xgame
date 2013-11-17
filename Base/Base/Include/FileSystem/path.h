@@ -188,6 +188,9 @@ public:
 
 	_MyType& addTailSlash()
 	{
+		if(this->empty())
+			return (*this);
+
 		if (*(this->end() - 1) != CHAR_SLASH || *(this->end() - 1) != CHAR_SLASH2)
 			*this += CHAR_SLASH2;
 		return (*this);

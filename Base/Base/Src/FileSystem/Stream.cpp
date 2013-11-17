@@ -104,21 +104,20 @@ RKT_API bool checkPath(const char* path, bool& isAbsolutePath, uint& attrib)
 	CPathA mypath ;
     mypath = path;
 	
-    
+	//toggleFullPath(mypath);
+	if(mypath.empty())
+	{
+		attrib |= 16;
+		return true;
+	}
+
 #if (TARGET_PLATFORM == PLATFORM_WIN32)
-    toggleFullPath(mypath);
 	_finddata_t fd;
 	intptr_t r = _findfirst(mypath.c_str(), &fd); // "c:\"“≤ª·∑µªÿ£≠1£¨µ±ƒø¬º≤ª¥Ê‘⁄£¨“ÚŒ™«˝∂Ø∆˜≤ª «ƒø¬º
 	attrib = fd.attrib;
 	_findclose(r);
 	return r != -1;
 #else
-    //toggleFullPath(mypath);
-    if(mypath.empty())
-    {
-        attrib |= 16;
-        return true;
-    }
     DIR* dir;
     if((dir = opendir(mypath.c_str())))
     {

@@ -223,7 +223,6 @@ bool GlobalClient::create(void* hwnd)
          */
 
 
-        /*
 		// 实体工厂
 		CREATE_BEGIN("CreateEntityFactory............");
 		if ((mEntityFactory = CreateEntityFactoryProc()) == NULL)
@@ -232,8 +231,7 @@ bool GlobalClient::create(void* hwnd)
 			return false;
 		}
 		CREATE_SUCCESS();
-         */
-
+         
 
 		// 实体管理
 		/*

@@ -179,7 +179,7 @@ namespace xs
 	}
 
 
-	extern "C" API_EXPORT IResourceManager* LoadRMM(uint threads)
+	API_EXPORT IResourceManager* LoadRMM(uint threads)
 	{
 
 		ResourceManager* resourceManager = new ResourceManager();

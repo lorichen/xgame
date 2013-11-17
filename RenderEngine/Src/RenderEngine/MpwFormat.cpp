@@ -58,17 +58,16 @@ bool PackFileHeader::Open(xs::Stream * pStream)
 	}
 
 	// 移动末
-	pStream->seek(0, SEEK_END);
-
+	//pStream->seek(0, SEEK_END);
 	// 取得长度
-	long lLen = pStream->getPosition();
+	//long lLen = pStream->getPosition();
 
 	long length = pStream->getLength();
 
 	long pl = sizeof(SPackFileHeader);
 
 	// 看长度是否会小于包文件
-	if(lLen < sizeof(SPackFileHeader))
+	if(length < sizeof(SPackFileHeader))
 	{
 		return false;
 	}

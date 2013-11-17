@@ -2,6 +2,7 @@
 #include "Image.h"
 #include "MpwFrame.h"
 
+
 namespace xs
 {
 #define MPW_FRAME_SPLIT_DEPTH	2
@@ -349,6 +350,13 @@ namespace xs
 		if(!m_pRenderSystem)return;
 		if(m_vMpwFrameSub.empty())return;
 
+
+		//add by kevin.chen-----------------
+		m_pRenderSystem->setNormalVertexBuffer(0);
+		IShaderProgram* pShader = m_pRenderSystem->getShaderProgram(ESP_V3_UV_GC);
+		m_pRenderSystem->bindCurrentShaderProgram(pShader,true);
+		//--------------------------------
+
 		ColorValue c = m_pRenderSystem->getColor();
 		m_pRenderSystem->setColor(ColorValue(1,1,1,alpha));
 		MpwFrameSubList::iterator begin = m_vMpwFrameSub.begin();
@@ -358,17 +366,8 @@ namespace xs
 		{
 			const MpwFrameSub&	sub = (*it);
 			m_pRenderSystem->setTexture(0,sub.texture);
-			//m_pRenderSystem->beginPrimitive(PT_QUADS);
-			//m_pRenderSystem->setTexcoord(sub.t[0]);m_pRenderSystem->sendVertex(sub.v[0]);
-			//m_pRenderSystem->setTexcoord(sub.t[1]);m_pRenderSystem->sendVertex(sub.v[1]);
-			//m_pRenderSystem->setTexcoord(sub.t[2]);m_pRenderSystem->sendVertex(sub.v[2]);
-			//m_pRenderSystem->setTexcoord(sub.t[3]);m_pRenderSystem->sendVertex(sub.v[3]);
-			//m_pRenderSystem->endPrimitive();
-			//m_pRenderSystem->setTexture(0,0);
-
 			m_pRenderSystem->setTexcoordVertexBuffer(0,sub.vbTexcoord);
 			m_pRenderSystem->setVertexVertexBuffer(sub.vb);
-			m_pRenderSystem->setTexture(0,sub.texture);
 			m_pRenderSystem->drawPrimitive( PT_TRIANGLE_FAN, 0, 4);
 			++it;
 		}

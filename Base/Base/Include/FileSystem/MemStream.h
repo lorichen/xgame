@@ -103,7 +103,7 @@ public:
 	virtual bool flush() ;
 
 	/// 获取内存流的大小（小于等于内存缓冲区大小）
-	virtual uint getLength() const;
+	virtual uint getLength() ;
 
 	/** 设置内存流的长度
 	 @param newLen 要设定的内存流长度（当小于内存流当前大小时会截取内存流尾部数据）

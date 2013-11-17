@@ -230,7 +230,7 @@ bool MemoryStream::flush()
 	return true;
 }
 
-uint MemoryStream::getLength() const
+uint MemoryStream::getLength() 
 {
    return m_fileSize;
 }

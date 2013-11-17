@@ -145,19 +145,19 @@ bool FileStream::write(const void* buffer, uint toWrite)
 	return true;
 }
 
-bool FileStream::seek(int offset, uint from) const
+bool FileStream::seek(int offset, uint from) 
 {
 	Assert(m_stream != NULL);
 	return (fseek(m_stream, offset, from) == 0);
 }
 
-bool FileStream::seekToBegin() const
+bool FileStream::seekToBegin() 
 {
 	Assert(m_stream != NULL);
 	return seek(0, SEEK_SET);
 }
 
-bool FileStream::seekToEnd() const
+bool FileStream::seekToEnd() 
 {
 	Assert(m_stream != NULL);
 	return seek(0, SEEK_END);
@@ -169,7 +169,7 @@ bool FileStream::flush()
 	return fflush(m_stream) == 0;
 }
 
-uint FileStream::getLength() const
+uint FileStream::getLength() 
 {
 	if (isOpen())
 	{

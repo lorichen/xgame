@@ -168,7 +168,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		//---------------------------
 		bool b = AppWrap::init(param.hwnd);
-		assert(b);
+		if(!b) 
+			goto _exit;
+
 
 		LARGE_INTEGER nFreq;
 		LARGE_INTEGER nLast;
@@ -209,7 +211,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			}
 		}
-
+_exit:
 		AppWrap::uninit();
 	}
 

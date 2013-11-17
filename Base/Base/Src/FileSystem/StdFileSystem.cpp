@@ -52,6 +52,9 @@ Stream* StdFileSystem::get(const char* streamName)
 
 	CPathA path = m_path;
 	//if(find(streamName))
+
+	//modify by kevin.chen 已经全部改为相对路径
+#if 0
 	if(isAbsolutePath(streamName))
 	{
 		path = streamName;
@@ -61,8 +64,12 @@ Stream* StdFileSystem::get(const char* streamName)
 		path.addTailSlash();
 		path += streamName;
 	}
+#else
+	path.addTailSlash();
+	path += streamName;
+#endif
 
-	Assert(isAbsolutePath(path.c_str()));
+	//Assert(isAbsolutePath(path.c_str()));
 
 	stream->setPath(path.c_str());
 

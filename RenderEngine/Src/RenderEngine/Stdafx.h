@@ -43,6 +43,7 @@ using namespace Gdiplus;
 #include "RenderEngine/SharedPtr.h"
 #include "RenderEngine/RenderQueue.h"
 #include "RenderEngine/ImageRect.h"
+#include "RenderEngine/shaderdeclare.h"
 
 #include "IPerfProf.h"
 
