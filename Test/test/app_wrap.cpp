@@ -88,6 +88,9 @@ bool AppWrap::init(void* hwnd)
 	std::string strWayFile = "maps/²ÔÒþ´åÂ·µã.xml";
     std::string strPicName = "11.dds";
     
+    xs::CPath pathTest;
+    pathTest = "x\\2\\t\\3.3";
+    
     /*
     std::ifstream file;
     file.open("test",std::ios::binary|std::ios::in);

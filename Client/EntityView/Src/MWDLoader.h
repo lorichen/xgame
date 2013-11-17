@@ -11,7 +11,7 @@
 #define __MWDLOADER_H__
 
 #include "PacketFormat.h"
-#include <hash_map>
+//#include <hash_map>
 /*
 class MWDLoader : public SingletonEx<MWDLoader>
 {
@@ -38,7 +38,7 @@ public:
 
 class MZIDMap : public SingletonEx<MZIDMap>
 {
-	typedef stdext::hash_multimap<ulong, ulong>	MZMap;
+	typedef HASH_MAP_NAMESPACE::hash_multimap<ulong, ulong>	MZMap;
 	MZMap	mMZMap;
 public:
 	ulong add(ulong id, ulong flag);

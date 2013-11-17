@@ -43,30 +43,78 @@ public:
 		// 读文件头
 		MwdInfoHeader header;
 		if (!stream->read(&header, sizeof(header)))
-			goto ReadErr;
+		{
+            safeDelete(mData);
+            if (stream)
+            {
+                stream->close();
+                stream->release();
+            }
+            return false;
+        }
 
 		// 校验文件头
 		if (header.mask != 'OFNI' || header.version != 1)
-			goto ReadErr;
+		{
+            safeDelete(mData);
+            if (stream)
+            {
+                stream->close();
+                stream->release();
+            }
+            return false;
+        }
 		if (stream->getLength() - header.tableOff != header.itemCount * (sizeof(ulong) + sizeof(TableItem)))
-			goto ReadErr;
+		{
+            safeDelete(mData);
+            if (stream)
+            {
+                stream->close();
+                stream->release();
+            }
+            return false;
+        }
 
 		// 读取整个数据
 		size_t dataLen = header.tableOff - sizeof(header);
 		mData = new uchar[dataLen];
 		if (!stream->read(mData, dataLen))
-			goto ReadErr;
+        {
+            safeDelete(mData);
+            if (stream)
+            {
+                stream->close();
+                stream->release();
+            }
+            return false;
+        }
 
 		// 读取映射表
 		for (ulong i=0; i<header.itemCount; i++)
 		{
 			ulong id;
 			if (!stream->read(&id, sizeof(id)))
-				goto ReadErr;
+            {
+                safeDelete(mData);
+                if (stream)
+                {
+                    stream->close();
+                    stream->release();
+                }
+                return false;
+            }
 
 			TableItem item;
 			if (!stream->read(&item, sizeof(item)))
-				goto ReadErr;
+            {
+                safeDelete(mData);
+                if (stream)
+                {
+                    stream->close();
+                    stream->release();
+                }
+                return false;
+            }
 
 			mInfoMap[id] = item;
 		}
@@ -75,7 +123,7 @@ public:
 		stream->release();
 		return true;
 
-ReadErr:
+//ReadErr:
 		safeDelete(mData);
 		if (stream)
 		{

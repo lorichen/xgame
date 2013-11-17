@@ -1,6 +1,13 @@
 #include "stdafx.h"
 #include "ConfigCreatureRes.h"
 
+
+ConfigCreatureRes*	ConfigCreatureRes::Instance()
+{
+    static ConfigCreatureRes c;
+    return &c;
+}
+
 bool ConfigCreatureRes::load(const char* fileName)
 {
 	ISchemeEngine *pSchemeEngine = CreateSchemeEngineProc();
@@ -17,12 +24,12 @@ void ConfigCreatureRes::save()
 {
 }
 
-bool ConfigCreatureRes::OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName)
+bool ConfigCreatureRes::OnSchemeLoad(ICSVReader * pCSVReader,const char* szFileName)
 {
 	return false;
 }
 
-bool ConfigCreatureRes::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName)
+bool ConfigCreatureRes::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFileName)
 {
 	m_creatures.clear();
 
@@ -84,12 +91,12 @@ bool ConfigCreatureRes::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFil
 	return true;
 }
 
-bool ConfigCreatureRes::OnSchemeUpdate(ICSVReader * pCSVReader, LPCSTR szFileName)
+bool ConfigCreatureRes::OnSchemeUpdate(ICSVReader * pCSVReader, const char* szFileName)
 {
 	return false;
 }
 
-bool ConfigCreatureRes::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, LPCSTR szFileName)
+bool ConfigCreatureRes::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, const char* szFileName)
 {
 	return false;
 }

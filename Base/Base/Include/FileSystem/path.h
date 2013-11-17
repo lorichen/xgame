@@ -118,11 +118,9 @@ public:
 	 */
 	void normalize()
 	{
-        /*
 		_Elem slash[2] = {CHAR_SLASH2};
 		_Elem slash2[2] = {CHAR_SLASH};
 		replace_all(_String(slash2), _String(slash));
-        */
 	}
 
 	void replace_all(const _String& substr,const _String& str)

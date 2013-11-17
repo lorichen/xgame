@@ -37,7 +37,11 @@ typedef unsigned short          uint16;
 typedef float                   Real;
 
 typedef long long               __int64;
-typedef long long       LONGLONG;
+typedef long long           LONGLONG;
+typedef unsigned long long  ULONGLONG;
+
+typedef void*           LPVOID;
+typedef unsigned short  USHORT;
 
 //#define min			std::min
 

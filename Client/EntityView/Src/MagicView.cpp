@@ -457,7 +457,7 @@ void MagicView::drawTopMost(IRenderSystem* pRenderSystem)
         xs::Rect rectBoundingBox = mShowRect;
         ::OffsetRect(&rectBoundingBox, pointtScreen.x, pointtScreen.y);
         //  微调一下，使显示更协调；
-        Rect rectShow;
+        xs::Rect rectShow;
         rectShow.left = rectBoundingBox.left;
         rectShow.top = rectBoundingBox.top;
         rectShow.right = rectBoundingBox.right - 1;

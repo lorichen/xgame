@@ -174,7 +174,7 @@ struct SMsgMapLoadMap_SC
 {
 	DWORD		dwMapID;		// 地图ID
 	DWORD		dwZoneID;		// 场景ID
-	POINT		ptTile;			// 主角中心点
+    xs::Point	ptTile;			// 主角中心点
 	int         nLoadReason;
 };
 
@@ -358,19 +358,19 @@ struct SMsgActionMove_SS
 struct SMsgActionStopHere_SS
 {
 	DWORD		dwNewZoneID;	// 场景ID
-	POINT		ptHere;			// 停留的位置	
+	xs::Point		ptHere;			// 停留的位置
 };
 
 struct SMsgActionStopHere_SC
 {
-	POINT		ptHere;			// 停留的位置
+	xs::Point		ptHere;			// 停留的位置
 
 	char		szTTOO[128];	// 优化，未来要去掉
 };
 
 struct SMsgActionStopHere_CS
 {
-	POINT		ptHere;			// 停留的位置
+	xs::Point		ptHere;			// 停留的位置
 };
 
 ///////////////////////////////////////////////////////////////////
@@ -693,7 +693,7 @@ struct SMsgActionUIData_CS
 struct SMsgActionPrepMove_CC
 {	
 	DWORD			dwPathLen;		// 路径长度
-	POINT *			pPath;			// 路径
+	xs::Point *			pPath;			// 路径
 };
 
 ///////////////////////////////////////////////////////////////////
@@ -1117,7 +1117,7 @@ struct SMsgActionPetCommand_CS
 	LONGLONG	uidPet;
 	LONGLONG	uidMaster;
 	LONGLONG	uidTarget;
-	POINT		ptTarget;
+	xs::Point		ptTarget;
 };
 
 struct SMsgActionPetCommand_SC
@@ -1149,7 +1149,7 @@ struct SMsgActionPlayGeneralEffect_SC
 	DWORD		dwSoundID;		// 音效
 	DWORD		dwZoneID;		// 场景
 	DWORD		dwMapID;		// 地图
-	POINT		ptLoc;			// 地点
+	xs::Point		ptLoc;			// 地点
 };
 
 // add by zjp.泡泡爆炸
@@ -1157,7 +1157,7 @@ struct SMsgActionPlayGeneralEffect_SC
 struct SMsgActionBubbleBomb_SC
 {
 	DWORD		dwZoneID;		// 场景
-	POINT		ptLoc;			// 爆炸地点
+	xs::Point		ptLoc;			// 爆炸地点
 	short       sSkillId;		        // 技能大类ID
 	short       sSkillLevel;	        // 子技能Id，用于角色时指等级
 };
@@ -1214,7 +1214,7 @@ struct SMsgActionAutoMove_SC
 struct  SMsgActionDrawAutoMovePath_SC
 {
 	bool       bTaskTrace; //任务追踪
-	POINT      ptDest;
+	xs::Point      ptDest;
 };
 
 // add by zjp；死亡复活方式
@@ -1360,7 +1360,7 @@ struct SMsgActionPetFightNum_SC
 #define MSG_ACTION_SKILL_TILE								117
 struct SMsgActionSkillTile
 {
-	POINT pt;
+	xs::Point pt;
 };
 
 // 宠物技能经验更新

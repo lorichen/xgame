@@ -131,7 +131,7 @@ void VisualComponentBOX::draw(IRenderSystem* pRenderSystem)
 	IEntityFactory * pEntityFactory = gGlobalClient->getEntityFactory();
 	if(pEntityFactory != NULL && m_nEffectID)
 	{		
-		long curTick = GetTickCount();
+		long curTick = getTickCount();
 		if( curTick - m_nlastTick > 5 * 1000)
 		{
 			xs::Point ptTile;

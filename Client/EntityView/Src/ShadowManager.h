@@ -47,7 +47,7 @@ public:
 	bool create(EntityView* view, const xs::Point& ptBegin, const xs::Point& ptEnd);
 	bool update(ModelNode* pShadowNode, ulong tick, ulong deltaTick);
 	void render(IRenderSystem* pRenderSystem, ModelNode* pShadowNode);
-	void ShadowManager::SetTime(ulong LifeTime,ulong CreateIntval,ulong AllTime,ulong DelayStart,ulong DelayEnd);
+	void SetTime(ulong LifeTime,ulong CreateIntval,ulong AllTime,ulong DelayStart,ulong DelayEnd);
 
 private:
 	void createShadow(ModelNode* pNode, ulong tick);

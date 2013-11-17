@@ -329,7 +329,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 	gGlobalClient->getSceneManager()->world2Screen(getOwner()->getWorld(), ptScreen);
 	xs::Rect rc = entity->getShowRect();
 	::OffsetRect(&rc, ptScreen.x, ptScreen.y);
-	Rect rect;
+    xs::Rect rect;
 	rect.left = rc.left;
 	rect.top = rc.top;
 	rect.right = rc.right - 1;
@@ -384,7 +384,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 	{
 		PP_BY_NAME("VisualComponent::drawTopMost::drawFlagDrawMP");
 		yOffset -= HPMPINFO_H;
-		Rect rc;
+        xs::Rect rc;
 		rc.left = ptScreen.x - HPMPINFO_W/2;
 		rc.top = yOffset;
 		rc.right = rc.left + HPMPINFO_W - 1;
@@ -392,7 +392,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 
 		pRenderSystem->rectangle(rc, ColorValue(1,1,1,mAlpha));
 
-		Rect rcLeft;
+        xs::Rect rcLeft;
 		rcLeft.left = rc.left + 1;
 		rcLeft.top = rc.top + 1;
 		rcLeft.right = rcLeft.left + (int)(mCurMP * (float)(HPMPINFO_W - 2) / mMaxMP) - 1;
@@ -533,7 +533,7 @@ void VisualComponent::drawTopMost(IRenderSystem* pRenderSystem)
 
 					if(pEntityFactory != NULL)
 					{		
-						long curTick = GetTickCount();
+						long curTick = getTickCount();
 						if( curTick - mTextEffectTickCount > 5 * 1000)
 						{
 							xs::Point ptTile,ptScreenEffect;

@@ -570,7 +570,7 @@ void FlowTextManager::flowAreaText(int area, const std::string& text, const Colo
 	if (area == FlowArea_Mouse)
 	{
 		// 获取鼠标位置
-	
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient((HWND)gGlobalClient->getHWND(), &pt);
@@ -591,6 +591,7 @@ void FlowTextManager::flowAreaText(int area, const std::string& text, const Colo
 		if (ft->create(ftc))
 			mMouseTipsList.push_back(ft);
 		return;
+#endif
 	}
 
 	if (area >= 0 && area < MaxFlowAreaCount-1)
@@ -607,7 +608,7 @@ const std::string FlowTextManager::GetLastFlowString(FlowAreaType area)
 	{
 		return "";
 	}
-
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 	int nBufSize = ::WideCharToMultiByte(GetACP(), 0, pFlowItem->text, -1, NULL, 0, 0, FALSE);
 	char *szBuf = new char[nBufSize];
 	::WideCharToMultiByte(GetACP(), 0, pFlowItem->text, -1, szBuf, nBufSize, 0, FALSE);
@@ -615,6 +616,9 @@ const std::string FlowTextManager::GetLastFlowString(FlowAreaType area)
 	delete []szBuf;
 	szBuf = NULL;
 	return strRet;
+#else
+    return "";
+#endif
 }
 
 void FlowTextManager::updateFlowText(ulong deltaTime)

@@ -425,7 +425,7 @@ public:
 /// 区域类效果上下文
 struct EffectContext_Area : public EffectContext_General
 {
-	const IntArray* arr;/// 区域
+    IntArray* arr;/// 区域
 	ulong	interval;	/// 每次之间的间隔
 	ulong	life;		/// 生命期(毫秒)
 };

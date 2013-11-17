@@ -2,6 +2,12 @@
 #include "ConfigCreatures.h"
 #include "ConfigCreatureRes.h"
 
+ConfigCreatures* ConfigCreatures::Instance()
+{
+    static ConfigCreatures cc;
+    return &cc;
+}
+
 ConfigCreatures::~ConfigCreatures()
 {
 	STLDeleteAssociate(m_creatures);
@@ -15,12 +21,12 @@ std::string getRes(int id)
 	return (*it).second;
 }
 
-bool ConfigCreatures::OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName)
+bool ConfigCreatures::OnSchemeLoad(ICSVReader * pCSVReader,const char* szFileName)
 {
 	return false;
 }
 
-bool ConfigCreatures::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName)
+bool ConfigCreatures::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFileName)
 {
 	STLDeleteAssociate(m_creatures);
 	TiXmlElement* root = pTiXmlDocument->RootElement();
@@ -198,12 +204,12 @@ bool ConfigCreatures::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileN
 	return true;
 }
 
-bool ConfigCreatures::OnSchemeUpdate(ICSVReader * pCSVReader, LPCSTR szFileName)
+bool ConfigCreatures::OnSchemeUpdate(ICSVReader * pCSVReader, const char* szFileName)
 {
 	return false;
 }
 
-bool ConfigCreatures::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, LPCSTR szFileName)
+bool ConfigCreatures::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, const char* szFileName)
 {
 	return false;
 }

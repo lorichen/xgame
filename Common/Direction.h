@@ -219,8 +219,8 @@ long calcAngle_descartes(const T& ptFrom, const T& ptTo)
 #ifdef __Vector3_H__
 inline long calcAngle_space(const Vector3& spaceFrom, const Vector3& spaceTo)
 {
-	POINT ptFrom	= { spaceFrom.z, spaceFrom.x};
-	POINT ptTo		= { spaceTo.z, spaceTo.x};
+    xs::Point ptFrom( spaceFrom.z, spaceFrom.x);
+    xs::Point ptTo	( spaceTo.z, spaceTo.x);
 	return calcAngle_descartes(ptFrom, ptTo);
 }
 #endif

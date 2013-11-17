@@ -18,10 +18,10 @@ class ConfigCreaturePart : public ISchemeUpdateSink
 {
 public:
 	// ISchemeUpdateSink
-	virtual bool			OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName);
-	virtual bool			OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName);
-	virtual bool			OnSchemeUpdate(ICSVReader * pCSVReader, LPCSTR szFileName);
-	virtual bool			OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, LPCSTR szFileName);
+	virtual bool			OnSchemeLoad(ICSVReader * pCSVReader,const char* szFileName);
+	virtual bool			OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFileName);
+	virtual bool			OnSchemeUpdate(ICSVReader * pCSVReader, const char* szFileName);
+	virtual bool			OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, const char* szFileName);
 public:
 	bool load(const char* fileName);
 	CreaturePart *getByType(const std::string& partType);
@@ -30,13 +30,9 @@ protected:
 	{
 	}
 public:
-	static ConfigCreaturePart*	Instance()
-	{
-		static ConfigCreaturePart c;
-		return &c;
-	}
+	static ConfigCreaturePart*	Instance();
 private:
-	typedef stdext::hash_map<std::string,CreaturePart> CreaturePartMap;
+	typedef HASH_MAP_NAMESPACE::hash_map<std::string,CreaturePart> CreaturePartMap;
 	CreaturePartMap	m_cp;
 };
 

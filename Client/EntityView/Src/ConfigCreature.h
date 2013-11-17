@@ -10,7 +10,7 @@ struct IDName
 };
 
 typedef std::vector<IDName> PartType;
-typedef stdext::hash_map<std::string,PartType> PartTypeMap;
+typedef HASH_MAP_NAMESPACE::hash_map<std::string,PartType> PartTypeMap;
 
 struct CreatureResourceEx
 {

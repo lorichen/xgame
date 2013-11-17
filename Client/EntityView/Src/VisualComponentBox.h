@@ -40,7 +40,7 @@ public:
 	void requestRes(int priority);
 	void releaseRes();
 	virtual size_t onLoad(Stream* stream, size_t len);
-	bool VisualComponentBOX::update(float tick, float deltaTick, IRenderSystem* pRenderSystem);
+	virtual bool update(float tick, float deltaTick, IRenderSystem* pRenderSystem);
 	virtual void handleMessage(ulong msgId, ulong param1, ulong param2);
 private:	
 	bool InitBigImageSet();

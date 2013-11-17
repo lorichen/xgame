@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187481181838A5FF0098EE4A /* libentityview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 187481031838A59F0098EE4A /* libentityview.a */; };
 		1880D62B18271A9A001FD16C /* libbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18810198182623AA002AF8D8 /* libbase.a */; };
 		1880D7F218271B01001FD16C /* libmpk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D7EF18271AFB001FD16C /* libmpk.a */; };
 		1880D7FC18271B67001FD16C /* libRenderEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1880D7F918271B5D001FD16C /* libRenderEngine.a */; };
@@ -40,6 +41,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		187481021838A59F0098EE4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 187480FB1838A59F0098EE4A /* entityview.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1874804C18373B3D0098EE4A;
+			remoteInfo = entityview;
+		};
+		187481041838A59F0098EE4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 187480FB1838A59F0098EE4A /* entityview.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1874805C18373B3D0098EE4A;
+			remoteInfo = entityviewTests;
+		};
 		1880D7EE18271AFB001FD16C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1880D7E918271AFB001FD16C /* mpk.xcodeproj */;
@@ -190,6 +205,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187480FB1838A59F0098EE4A /* entityview.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = entityview.xcodeproj; path = ../../Client/EntityView/Build/entityview/entityview.xcodeproj; sourceTree = "<group>"; };
 		1880D7E918271AFB001FD16C /* mpk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mpk.xcodeproj; path = ../../Base/MpkLib/Build/mpk/mpk.xcodeproj; sourceTree = "<group>"; };
 		1880D7F318271B5D001FD16C /* RenderEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RenderEngine.xcodeproj; path = ../../RenderEngine/Build/RenderEngine/RenderEngine.xcodeproj; sourceTree = "<group>"; };
 		188101391824A892002AF8D8 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187481181838A5FF0098EE4A /* libentityview.a in Frameworks */,
 				18EFA8F4182D342900A5A7B4 /* libluaengine.a in Frameworks */,
 				18EFA8F5182D342900A5A7B4 /* libschemengine.a in Frameworks */,
 				CDF86287182CAFA70028C260 /* libsquish.a in Frameworks */,
@@ -267,6 +284,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		187480FC1838A59F0098EE4A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				187481031838A59F0098EE4A /* libentityview.a */,
+				187481051838A59F0098EE4A /* entityviewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1880D7EA18271AFB001FD16C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +314,7 @@
 		188101301824A892002AF8D8 = {
 			isa = PBXGroup;
 			children = (
+				187480FB1838A59F0098EE4A /* entityview.xcodeproj */,
 				CD0406541835CFBD0039DC3F /* data */,
 				18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */,
 				18EFA8D2182D338F00A5A7B4 /* schemengine.xcodeproj */,
@@ -521,6 +548,10 @@
 					ProjectRef = 18810192182623AA002AF8D8 /* base.xcodeproj */;
 				},
 				{
+					ProductGroup = 187480FC1838A59F0098EE4A /* Products */;
+					ProjectRef = 187480FB1838A59F0098EE4A /* entityview.xcodeproj */;
+				},
+				{
 					ProductGroup = 18EFA8EC182D340C00A5A7B4 /* Products */;
 					ProjectRef = 18EFA8EB182D340C00A5A7B4 /* luaengine.xcodeproj */;
 				},
@@ -566,6 +597,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		187481031838A59F0098EE4A /* libentityview.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libentityview.a;
+			remoteRef = 187481021838A59F0098EE4A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		187481051838A59F0098EE4A /* entityviewTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = entityviewTests.xctest;
+			remoteRef = 187481041838A59F0098EE4A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		1880D7EF18271AFB001FD16C /* libmpk.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

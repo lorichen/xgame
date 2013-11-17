@@ -604,9 +604,9 @@ inline float getFloat(int id, int field)
 	return SkillViewDataManager::getInstance().getValue(id, field).getFloat();
 }
 
-inline IntArray getIntArray(int id, int field)
+inline IntArray& getIntArray(int id, int field)
 {
-	return SkillViewDataManager::getInstance().getValue(id, field).getIntArray();
+	return (IntArray&)SkillViewDataManager::getInstance().getValue(id, field).getIntArray();
 }
 bool EntityFactory::createSkillReadyEffect(const SkillEffectContext& context, bool bPlayAction, bool bHasInterval)
 {
@@ -1460,7 +1460,9 @@ bool EntityFactory::createSkillTrackEffect(const SkillEffectContext& context)
 			ec.tile = context.ptCenter;
 			ec.interval = getInt(context.id, SkillViewProperty_Delay);
 			ec.life = getInt(context.id, SkillViewProperty_LifeTime);
-			ec.arr = &getIntArray(context.id, SkillViewProperty_AttackRange);
+            
+            IntArray& intArray = getIntArray(context.id, SkillViewProperty_AttackRange);
+			ec.arr = &intArray;
 			//return createEffect(EffectType_Area, &ec, sizeof(EffectContext_Area));
 
 			EffectControl_Area* ctrl = new EffectControl_Area();

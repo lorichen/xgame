@@ -1,6 +1,12 @@
 #include "StdAfx.h"
 #include "ConfigActionMap.h"
 
+ConfigActionMap* ConfigActionMap::Instance()
+{
+    static ConfigActionMap cam;
+    return &cam;
+}
+
 bool ConfigActionMap::load(const char* fileName)
 {
 	ISchemeEngine *pSchemeEngine = CreateSchemeEngineProc();
@@ -47,7 +53,7 @@ ConfigActionMap::ConfigActionMap()
 }
 
 // ISchemeUpdateSink
-bool ConfigActionMap::OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName)
+bool ConfigActionMap::OnSchemeLoad(ICSVReader * pCSVReader,const char* szFileName)
 {
 	if( pCSVReader == 0) return false;
 	m_actionMap.clear();
@@ -101,15 +107,15 @@ bool ConfigActionMap::OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName)
 	}
 	return true;
 }
-bool ConfigActionMap::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName)
+bool ConfigActionMap::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFileName)
 {
 	return false;
 }
-bool ConfigActionMap::OnSchemeUpdate(ICSVReader * pCSVReader, LPCSTR szFileName)
+bool ConfigActionMap::OnSchemeUpdate(ICSVReader * pCSVReader, const char* szFileName)
 {
 	return false;
 }
-bool ConfigActionMap::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, LPCSTR szFileName)
+bool ConfigActionMap::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, const char* szFileName)
 {
 	return false;
 }

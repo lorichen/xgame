@@ -136,9 +136,9 @@ struct SEventCreatureInjured_C
 struct SEventCreatureChangeLoc_S
 {
 	DWORD			dwOldZoneID;	// 旧场景ID
-	POINT			ptOldTile;		// 旧Tile
+    xs::Point			ptOldTile;		// 旧Tile
 	DWORD			dwNewZoneID;	// 新场景ID
-	POINT			ptNewTile;		// 新Tile
+	xs::Point			ptNewTile;		// 新Tile
 	bool			bSameServer;	// 旧场景与新场景是否为同服务器
 };
 
@@ -377,7 +377,7 @@ struct CEventPersonAutoMove_C
 struct CEventPersonDrawAutoMove_C
 {
 	bool bTaskTrace; //任务追踪 
-	POINT ptDest;
+	xs::Point ptDest;
 };
 // 绘制地图上队员图标
 #define  EVENT_PERSON_DRAWTEAMMEMBERPLACE						38
@@ -829,7 +829,7 @@ struct SEventSystemChangeZone_S
 {
 	DWORD dwPDBID;
 	DWORD dwDstZoneID;
-	POINT ptDstTile;
+	xs::Point ptDstTile;
 };
 
 #define EVENT_SYSTEM_LOADINGFINISH		                         308
@@ -950,7 +950,7 @@ struct SEventCollect_S
 #define EVENT_BUBBLE_BOMB									   499
 struct SEventBubbleBomb
 {
-	POINT		BombCenterTile;
+	xs::Point		BombCenterTile;
 };
 
 /***************************************************************/

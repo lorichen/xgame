@@ -34,10 +34,10 @@ class ConfigCreatures : public ISchemeUpdateSink
 {
 public:
 	// ISchemeUpdateSink
-	virtual bool			OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName);
-	virtual bool			OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName);
-	virtual bool			OnSchemeUpdate(ICSVReader * pCSVReader, LPCSTR szFileName);
-	virtual bool			OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, LPCSTR szFileName);
+	virtual bool			OnSchemeLoad(ICSVReader * pCSVReader,const char* szFileName);
+	virtual bool			OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFileName);
+	virtual bool			OnSchemeUpdate(ICSVReader * pCSVReader, const char* szFileName);
+	virtual bool			OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, const char* szFileName);
 
 public:
 	bool load(const std::string& filename);
@@ -48,16 +48,12 @@ public:
 	ConfigCreature* getNextCreature();
 
 private:
-	typedef stdext::hash_map<int,ConfigCreature*>	CreatureMap;
+	typedef HASH_MAP_NAMESPACE::hash_map<int,ConfigCreature*>	CreatureMap;
 	CreatureMap m_creatures;
 	CreatureMap::iterator	m_it;
 
 public:
-	static ConfigCreatures* Instance()
-	{
-		static ConfigCreatures cc;
-		return &cc;
-	}
+	static ConfigCreatures* Instance();
 
 	~ConfigCreatures();
 

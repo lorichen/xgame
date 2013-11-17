@@ -1,6 +1,13 @@
 #include "stdafx.h"
 #include "ConfigCreaturePart.h"
 
+
+ConfigCreaturePart*	ConfigCreaturePart::Instance()
+{
+    static ConfigCreaturePart c;
+    return &c;
+}
+
 CreaturePart *ConfigCreaturePart::getByType(const std::string& partType)
 {
 	CreaturePartMap::iterator it = m_cp.find(partType);
@@ -20,7 +27,7 @@ bool ConfigCreaturePart::load(const char* fileName)
 	return false;
 }
 
-bool ConfigCreaturePart::OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName)
+bool ConfigCreaturePart::OnSchemeLoad(ICSVReader * pCSVReader,const char* szFileName)
 {
 	DWORD dwRecordNum = pCSVReader->GetRecordCount();
 	DWORD dwFieldNum = pCSVReader->GetFieldCount();
@@ -42,17 +49,17 @@ bool ConfigCreaturePart::OnSchemeLoad(ICSVReader * pCSVReader,LPCSTR szFileName)
 	return true;
 }
 
-bool ConfigCreaturePart::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,LPCSTR szFileName)
+bool ConfigCreaturePart::OnSchemeLoad(TiXmlDocument * pTiXmlDocument,const char* szFileName)
 {
 	return false;
 }
 
-bool ConfigCreaturePart::OnSchemeUpdate(ICSVReader * pCSVReader, LPCSTR szFileName)
+bool ConfigCreaturePart::OnSchemeUpdate(ICSVReader * pCSVReader, const char* szFileName)
 {
 	return false;
 }
 
-bool ConfigCreaturePart::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, LPCSTR szFileName)
+bool ConfigCreaturePart::OnSchemeUpdate(TiXmlDocument * pTiXmlDocument, const char* szFileName)
 {
 	return false;
 }
