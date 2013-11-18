@@ -50,11 +50,11 @@ namespace xs
 
 		/**获得包围盒
 		*/
-		inline const AABB&	getAABB();
+        const AABB&	getAABB();
 
 		/**获得包围球
 		*/
-		inline const Sphere& getBoundingSphere();
+        const Sphere& getBoundingSphere();
 
 		/**设置当前的动画
 		@param animation 动画的名称
@@ -63,23 +63,23 @@ namespace xs
 		inline bool			setCurrentAnimation(const std::string& animation,int loopTimes = -1);
 
 		// add by zjp；获取当前动作的耗时
-		inline int			getAnimationTicks(const std::string& animation);
+        int			getAnimationTicks(const std::string& animation);
 
 		inline void			advanceTime(float tickDelta);
 
-		inline void setAnimationTime(uint time);
+        void setAnimationTime(uint time);
 
-		inline AnimationTime*	getAnimationTime();
+        AnimationTime*	getAnimationTime();
 		/**获得当前动画名称
 		*/
-		inline const std::string& getCurrentAnimation();
+        const std::string& getCurrentAnimation();
 
-		inline Animation* _getCurrentAnimation();
+        Animation* _getCurrentAnimation();
 
 		/**设置动画速度
 		@param speed 速度
 		*/
-		inline void	setAnimationSpeed(float speed);
+        void	setAnimationSpeed(float speed);
 		float getAnimationSpeed() { return m_speed; }
 
 		ModelNode* getModelNode();

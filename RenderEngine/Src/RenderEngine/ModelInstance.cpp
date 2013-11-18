@@ -174,7 +174,7 @@ namespace xs
 		return m_pNode;
 	}
 
-	const AABB& ModelInstance::getAABB()
+    const AABB& ModelInstance::getAABB()
 	{
 		return m_pModel->getAABB();
 	}

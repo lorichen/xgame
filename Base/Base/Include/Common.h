@@ -78,8 +78,8 @@
 #else
 #	define CLASS_EXPORT
 #	define CLASS_IMPORT
-#	define API_EXPORT
-#	define API_IMPORT
+#	define API_EXPORT      extern "C"
+#	define API_IMPORT      extern "C"
 #endif
 
 #ifdef RKT_WIN32

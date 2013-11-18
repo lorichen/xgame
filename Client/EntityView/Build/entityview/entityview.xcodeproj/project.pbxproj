@@ -164,6 +164,7 @@
 		187480E61838A0EB0098EE4A /* ShadowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShadowManager.h; path = ../../Src/ShadowManager.h; sourceTree = "<group>"; };
 		187480ED1838A13A0098EE4A /* EntityFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityFactory.cpp; path = ../../Src/EntityFactory.cpp; sourceTree = "<group>"; };
 		187480EF1838A3170098EE4A /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Path.h; path = ../../../../Base/Base/Include/FileSystem/Path.h; sourceTree = "<group>"; };
+		CD0406621839EED20039DC3F /* libRenderEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRenderEngine.a; path = "../../../../../../../Library/Developer/Xcode/DerivedData/test-bnehdtjuulwxptfvzayetwquetdf/Build/Products/Debug-iphoneos/libRenderEngine.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +225,7 @@
 		1874804E18373B3D0098EE4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD0406621839EED20039DC3F /* libRenderEngine.a */,
 				1874804F18373B3D0098EE4A /* Foundation.framework */,
 				1874805D18373B3D0098EE4A /* XCTest.framework */,
 				1874806018373B3D0098EE4A /* UIKit.framework */,
@@ -658,9 +660,14 @@
 					../../../controller/Include,
 					../../../../Base/net/Include,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/test-bnehdtjuulwxptfvzayetwquetdf/Build/Products/Debug-iphoneos",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -692,9 +699,14 @@
 					../../../controller/Include,
 					../../../../Base/net/Include,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/test-bnehdtjuulwxptfvzayetwquetdf/Build/Products/Debug-iphoneos",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -755,6 +767,7 @@
 				1874807118373B3D0098EE4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1874807218373B3D0098EE4A /* Build configuration list for PBXNativeTarget "entityviewTests" */ = {
 			isa = XCConfigurationList;
@@ -763,6 +776,7 @@
 				1874807418373B3D0098EE4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
