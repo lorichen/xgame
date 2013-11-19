@@ -631,6 +631,8 @@ bool GlobalClient::init3D(void* hwnd)
 	// 获取渲染系统
 	IRenderSystem* renderSystem = mRenderEngine->getRenderSystem();
 
+	renderSystem->clearFrameBuffer(true,true,true);
+
 	// 创建视口
 	mViewport = mRenderEngine->createViewport();
 	Assert(mViewport != NULL);
@@ -644,6 +646,7 @@ bool GlobalClient::init3D(void* hwnd)
 	mViewport->setValues(left,top,width,height);
 	mViewport->setBackgroundColor(ColorValue(0.223f, 0.427f, 0.647f));
 	mViewport->setClearEveryFrame(true);
+	//renderSystem->setViewport(0,0,width,height);
 
 	// 创建相机
 	mCamera = mRenderEngine->createCamera(mViewport);
@@ -653,7 +656,7 @@ bool GlobalClient::init3D(void* hwnd)
 		Error("[3D]Create mCamera failed"<<endl);
 		return false;
 	}
-	mCamera->setPosition(0,10,0);
+	mCamera->setPosition(0,32,32);
 	mCamera->lookAt(0,0,0);
 	mCamera->setFillMode(FM_SOLID);
 	mCamera->setNearDistance(1);
@@ -663,7 +666,7 @@ bool GlobalClient::init3D(void* hwnd)
 	// 深度检测
 	renderSystem->setDepthBufferCheckEnabled(true);
 	renderSystem->setDepthBufferWriteEnabled(true);
-	renderSystem->setVerticalSync(true);
+	//renderSystem->setVerticalSync(true);
 
 	// 光照
 	mLight = new Light;

@@ -1145,8 +1145,11 @@ void SceneManager::draw(IRenderSystem* pRenderSystem, bool bWholeGround)
 	PP_BY_NAME_START("SceneManager::draw::m_GroundEyeshot.onDraw");
 	pRenderSystem->switchTo2D();
     pRenderSystem->setSceneBlending(SBF_SOURCE_ALPHA,SBF_ONE_MINUS_SOURCE_ALPHA);
+	
 	if(m_dwDrawFlag & eDrawGround)m_GroundEyeshot.onDraw(bWholeGround);
+	
 	pRenderSystem->switchTo3D();
+
 	PP_BY_NAME_STOP();
 
 	PP_BY_NAME_START("SceneManager::draw::m_VisibleListGround.onDraw");

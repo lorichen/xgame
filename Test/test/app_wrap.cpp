@@ -43,6 +43,7 @@ static IRenderSystem*	g_psRenderSystem = 0;
 static ISceneManager2*  g_psScenemanager = 0;
 static Entity2DAniPack*	g_pMpwTest = 0;
 static ITexture* gs_pTex = 0;
+static ModelNode* g_pModelNode = 0;
 
 void AppWrap::setViewSize(unsigned int width,unsigned int height)
 {
@@ -127,10 +128,18 @@ bool AppWrap::init(void* hwnd)
 		return false;
 	}
 	*/
-
-	g_pMpwTest = new Entity2DAniPack;
-	g_pMpwTest->Open(g_psRenderSystem,"data/mpw/出云村/出云村特效遮罩修改/015.mpw");
+	
+	//g_pMpwTest = new Entity2DAniPack;
+	//g_pMpwTest->Open(g_psRenderSystem,"data/mpw/出云村/出云村特效遮罩修改/015.mpw");
     
+	g_pModelNode = new ModelNode;
+	g_pModelNode->setModel("data/Model/Creature/有翼人/yyr.mz");
+	//g_pModelNode->setModel("Model/Common/Effect/紫色受击/紫色受击.TX");
+	g_pModelNode->setPosition(0,0,0);
+	g_pModelNode->setScale(4,4,4);
+	g_pModelNode->setVisible(true);
+
+
 	return true;
 }
 
@@ -157,14 +166,22 @@ void AppWrap::update(int tick,int delta_ms)
 		g_psScenemanager->draw(g_psRenderSystem);
 	}
 
-	//g_psRenderSystem->switchTo3D();
+	g_psRenderSystem->switchTo3D();
 
 	//测试mpw绘制成功，可绘制图片
-	IShaderProgram* pShader = g_psRenderSystem->getShaderProgram(ESP_V3_UV_GC);
-	g_psRenderSystem->bindCurrentShaderProgram(pShader,true);
-	g_pMpwTest->Draw(0.5f);
+	if(g_pMpwTest)
+	{
+		IShaderProgram* pShader = g_psRenderSystem->getShaderProgram(ESP_V3_UV_GC);
+		g_psRenderSystem->bindCurrentShaderProgram(pShader,true);
+		g_pMpwTest->Draw(1.f);
+	}
 
 	//测试绘制模型
+	if(g_pModelNode)
+	{
+		g_pModelNode->update(tick,delta_ms,g_psRenderSystem);
+		g_pModelNode->render(g_psRenderSystem,true);
+	}
 
 	g_psRenderSystem->endFrame();
 }

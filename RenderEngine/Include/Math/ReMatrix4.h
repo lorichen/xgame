@@ -48,7 +48,8 @@ namespace xs
     */
     class _ReMathExport Matrix4
     {
-    protected:
+    //protected:
+	public:
         /// The matrix entries, indexed by [row][col].
         union {
             float m[4][4];

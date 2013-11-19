@@ -183,9 +183,9 @@ namespace xs
 		if(cx == 0 || cy == 0)return;
 
         setViewport(0, 0, cx, cy);
-        
 		//glViewport(0,0,cx,cy);
-		//GLfloat fAspectRatio = (GLfloat)cx / (GLfloat)cy;
+
+		GLfloat fAspectRatio = (GLfloat)cx / (GLfloat)cy;
 		
 		/*
 		glMatrixMode(GL_PROJECTION);
@@ -195,7 +195,32 @@ namespace xs
 		glLoadIdentity();
 		gluLookAt(0,0,1,0,0,0,0,1,0);
 		*/
+		if(!m_pCurrentRenderTarget->m_b2D)
+		{
+			Matrix4 mtxW = Matrix4::IDENTITY;
+			mtxW._m[0]=1.0000000;	
+			mtxW._m[1]=-0.00000000;	
+			mtxW._m[2]=0.00000000;	
+			mtxW._m[3]=0.00000000;	
+			mtxW._m[4]=0.00000000;	
+			mtxW._m[5]=1.0000000;	
+			mtxW._m[6]=0.00000000;	
+			mtxW._m[7]=-0.00000000;	
+			mtxW._m[8]=-0.00000000;	
+			mtxW._m[9]=0.00000000;	
+			mtxW._m[10]=1.0000000;	
+			mtxW._m[11]=-1.0000000;	
+			mtxW._m[12]=0.00000000;	
+			mtxW._m[13]=0.00000000;	
+			mtxW._m[14]=0.00000000;	
+			mtxW._m[15]=1.0000000;	
+			setViewMatrix(mtxW);
 
+			Degree d(60.0f);
+			Radian r(d);
+			setProjectionMatrix(Matrix4::perspectiveProjection(r,fAspectRatio,1.0f,1000.0f));
+		}
+		
 		//glClearColor(0.223f,0.427f,0.647f,1);
 		glClearDepthf(1.0f);
 	}
