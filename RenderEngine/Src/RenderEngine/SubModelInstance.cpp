@@ -417,7 +417,7 @@ namespace xs
 		if( !useMtl && !m_pMI->needDrawShadow() ) //不需要绘制阴影
 			return; 
 
-		if( m_pMI->getBlendShaderProgram() )
+		if( m_pMI->getBlendShaderProgram() )   //目前只有RS_D3D9渲染器采用了bendershaderprogram
 			renderGPUVertexBlend(pRenderSystem, useMtl);
 		else
 			renderCPUVertexBlend(pRenderSystem, useMtl);

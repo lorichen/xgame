@@ -12,7 +12,9 @@
 #include "IResourceManager.h"
 #include "ISceneManager2.h"
 #include "RenderEngine/Entity2DAniPack.h"
+#include "RenderEngine/shaderdeclare.h"
 #include "MWDLoader.h"
+
 
 VisualComponentMPW* flag = 0;
 VisualComponentMPW::VisualComponentMPW()  : mMwdInfo(0)
@@ -201,6 +203,11 @@ void VisualComponentMPW::drawPickObject(IRenderSystem* pRenderSystem)
 		Matrix4 mtxSave = pRenderSystem->getWorldMatrix();
 
 		Matrix4 mtxViewNow = pRenderSystem->getViewMatrix();
+
+		//add by kevin.chen-----------------
+		IShaderProgram* pShader = pRenderSystem->getShaderProgram(ESP_V3_UV_GC);
+		pRenderSystem->bindCurrentShaderProgram(pShader);
+		//--------------------------------
 		pRenderSystem->setViewMatrix(mtxViewOld);
 		pRenderSystem->setWorldMatrix(mtxWorld);
 		pPack->Draw(mAlpha);

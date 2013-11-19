@@ -350,12 +350,8 @@ namespace xs
 		if(!m_pRenderSystem)return;
 		if(m_vMpwFrameSub.empty())return;
 
-
 		//add by kevin.chen-----------------
 		m_pRenderSystem->setNormalVertexBuffer(0);
-		IShaderProgram* pShader = m_pRenderSystem->getShaderProgram(ESP_V3_UV_GC);
-		m_pRenderSystem->bindCurrentShaderProgram(pShader,true);
-		//--------------------------------
 
 		ColorValue c = m_pRenderSystem->getColor();
 		m_pRenderSystem->setColor(ColorValue(1,1,1,alpha));

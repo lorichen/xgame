@@ -25,9 +25,10 @@
 #include "../app_wrap.h"
 using namespace xs;
 
-#pragma comment(lib, "xs_com_rd.lib")
+#pragma comment(lib,"xs_com_rd.lib")
 #pragma comment(lib,"winmm.lib")
 #pragma comment(lib,"RenderSystemGLES2_rd.lib")
+#pragma comment(lib,"xs_cev_rd.lib")
 
 
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )

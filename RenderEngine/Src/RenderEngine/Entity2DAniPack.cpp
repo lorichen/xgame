@@ -159,6 +159,9 @@ namespace xs
 	*/
 	void Entity2DAniPack::Draw(float alpha)
 	{
+		if(m_dwImageCount <= 0)
+			return;
+
 		if(m_dwImageCount > 1)
 		{
 			// ≥ı ºªØ

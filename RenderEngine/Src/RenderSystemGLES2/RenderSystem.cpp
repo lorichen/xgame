@@ -1553,6 +1553,7 @@ namespace xs
 
 		setIndexBuffer(0);
 		//setVertexVertexBuffer(0);
+		setDiffuseVertexBuffer(0);
 		setNormalVertexBuffer(0);
 		setTexcoordVertexBuffer(0,0);
 		setTexcoordVertexBuffer(1,0);
@@ -1572,7 +1573,8 @@ namespace xs
 		m_batchStatus.isPrimitiveing = false;
 
 		//disable all except vetext pos
-		//setVertexVertexBuffer(0);
+		setVertexVertexBuffer(0);
+		setIndexBuffer(0);
 		setDiffuseVertexBuffer(0);
 		setNormalVertexBuffer(0);
 		setTexcoordVertexBuffer(0,0);

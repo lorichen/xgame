@@ -23,6 +23,9 @@ using namespace xs;
 #include "FileSystem/IFileSystem.h"
 #include "FileSystem/VirtualFileSystem.h"
 #include "ISceneManager2.h"
+#include "Entity2DAniPack.h"
+#include "shaderdeclare.h"
+
 
 #include "app_wrap.h"
 
@@ -38,7 +41,7 @@ static unsigned int gs_width,gs_height;
 static GlobalClient		gs_global;
 static IRenderSystem*	g_psRenderSystem = 0;
 static ISceneManager2*  g_psScenemanager = 0;
-
+static Entity2DAniPack*	g_pMpwTest = 0;
 static ITexture* gs_pTex = 0;
 
 void AppWrap::setViewSize(unsigned int width,unsigned int height)
@@ -115,6 +118,7 @@ bool AppWrap::init(void* hwnd)
     
 	IEntityFactory* pEngityFactory = gs_global.getEntityFactory();
 
+	/*
 	bool bLoadMap = g_psScenemanager->loadScene(strMapFile.c_str(),strWayFile.c_str(),&rc,pEngityFactory,false,&pt);
 	if(!bLoadMap)
 	{
@@ -122,6 +126,10 @@ bool AppWrap::init(void* hwnd)
 		printf("\n加载错误!");
 		return false;
 	}
+	*/
+
+	g_pMpwTest = new Entity2DAniPack;
+	g_pMpwTest->Open(g_psRenderSystem,"data/mpw/出云村/出云村特效遮罩修改/015.mpw");
     
 	return true;
 }
@@ -139,7 +147,7 @@ void AppWrap::update(int tick,int delta_ms)
 	g_psRenderSystem->line(xs::Point(0,0),xs::Point(800,600),ColorValue(1,0,0,1));
     
     xs::Rect rc(0,0,256,256);
-	g_psRenderSystem->rectangle(rc,gs_pTex);
+	//g_psRenderSystem->rectangle(rc,gs_pTex);
 
 	//---------------------------------------------
 
@@ -148,6 +156,15 @@ void AppWrap::update(int tick,int delta_ms)
 		g_psScenemanager->update(tick,delta_ms,g_psRenderSystem);
 		g_psScenemanager->draw(g_psRenderSystem);
 	}
+
+	//g_psRenderSystem->switchTo3D();
+
+	//测试mpw绘制成功，可绘制图片
+	IShaderProgram* pShader = g_psRenderSystem->getShaderProgram(ESP_V3_UV_GC);
+	g_psRenderSystem->bindCurrentShaderProgram(pShader,true);
+	g_pMpwTest->Draw(0.5f);
+
+	//测试绘制模型
 
 	g_psRenderSystem->endFrame();
 }
