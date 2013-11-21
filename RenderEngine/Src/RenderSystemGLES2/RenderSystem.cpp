@@ -2393,6 +2393,12 @@ namespace xs
 		m_surfaceDiffuse = diffuse;
 		GLfloat f4val[4] = {diffuse.r,diffuse.g,diffuse.b,diffuse.a};
 		//glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,f4val);
+
+		if(m_pCurrentShaderProgram)
+		{
+			Vector4 c(diffuse.r,diffuse.g,diffuse.b,diffuse.a);
+			m_pCurrentShaderProgram->setUniformVector4(G_COLOR,c);
+		}
 	}
 
 	//-----------------------------------------------------------------------------
@@ -3134,6 +3140,8 @@ namespace xs
 
 			if(m_batchStatus.flagBits.normal)
 			{
+				assert(0);
+
 				const AttrInfo* pInfo =  getAttrInfo(EVA_NORMAL);
 				GLint location = getAttrLocation(pInfo->usage,pInfo->index);
 
@@ -3174,6 +3182,8 @@ namespace xs
 
 			if(m_batchStatus.flagBits.texCoord1)
 			{
+				assert(0);
+
 				const AttrInfo* pInfo =  getAttrInfo(EVA_TEX_COORDS_1);
 				GLint location = getAttrLocation(pInfo->usage,pInfo->index);
 

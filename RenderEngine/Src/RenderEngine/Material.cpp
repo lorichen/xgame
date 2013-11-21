@@ -23,9 +23,17 @@ namespace xs
 		{
 			pRenderSystem->setTextureWrapS(0,TAM_CLAMP_TO_EDGE);
 		}
+		else
+		{
+			pRenderSystem->setTextureWrapS(0,TAM_WRAP);
+		}
 		if(m_bClampT)
 		{
 			pRenderSystem->setTextureWrapT(0,TAM_CLAMP_TO_EDGE);
+		}
+		else
+		{
+			pRenderSystem->setTextureWrapT(0,TAM_WRAP);
 		}
 		if(m_bTwoSide)
 		{

@@ -87,8 +87,8 @@ bool AppWrap::init(void* hwnd)
 	
 	g_psScenemanager->setRunType(RUN_TYPE_GAME);
 
-	std::string strMapFile = "data/maps/苍隐村.mp";		//"maps/戮战之野.mp";
-	std::string strWayFile = "data/maps/苍隐村路点.xml"; //"maps/戮战之野路点.xml";
+	std::string strMapFile = "data/maps/戮战之野.mp";		//"maps/戮战之野.mp";
+	std::string strWayFile = "data/maps/戮战之野路点.xml"; //"maps/戮战之野路点.xml";
     //std::string strPicName = "11.dds";
     
     xs::CPath pathTest;
@@ -119,7 +119,7 @@ bool AppWrap::init(void* hwnd)
     
 	IEntityFactory* pEngityFactory = gs_global.getEntityFactory();
 
-	/*
+	
 	bool bLoadMap = g_psScenemanager->loadScene(strMapFile.c_str(),strWayFile.c_str(),&rc,pEngityFactory,false,&pt);
 	if(!bLoadMap)
 	{
@@ -127,17 +127,20 @@ bool AppWrap::init(void* hwnd)
 		printf("\n加载错误!");
 		return false;
 	}
-	*/
+	
+	
 	
 	//g_pMpwTest = new Entity2DAniPack;
 	//g_pMpwTest->Open(g_psRenderSystem,"data/mpw/出云村/出云村特效遮罩修改/015.mpw");
     
+	/*
 	g_pModelNode = new ModelNode;
-	g_pModelNode->setModel("data/Model/Creature/有翼人/yyr.mz");
-	//g_pModelNode->setModel("Model/Common/Effect/紫色受击/紫色受击.TX");
+	//g_pModelNode->setModel("data/Model/Creature/9尾狐/stand.MZ");
+	g_pModelNode->setModel("data/Model/Common/Effect/BUFF封魔/封魔.TX");
 	g_pModelNode->setPosition(0,0,0);
-	g_pModelNode->setScale(4,4,4);
+	g_pModelNode->setScale(1,1,1);
 	g_pModelNode->setVisible(true);
+	*/
 
 
 	return true;

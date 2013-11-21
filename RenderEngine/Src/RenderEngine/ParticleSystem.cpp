@@ -745,6 +745,10 @@ namespace xs
 		//»æÖÆ
 		if( m_uiPreviousQuads > 0 )
 		{
+			IShaderProgram* pShader = pRenderSystem->getShaderProgram(ESP_V3_UV_C);
+			pRenderSystem->bindCurrentShaderProgram(pShader,true);
+
+			pRenderSystem->setNormalVertexBuffer(0);
 			pRenderSystem->setVertexVertexBuffer(m_pVB,0);
 			pRenderSystem->setTexcoordVertexBuffer(0,m_pTexVB, 0);
 			pRenderSystem->setDiffuseVertexBuffer(m_pDiffuseVB, 0);

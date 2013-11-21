@@ -44,7 +44,7 @@ void ResourceGT::loadTextures(GroundTile *pTile)
 		if(!m_res.m_pTextures[i])
 		{
 			//应该是TAM_CLAMP_TO_EDGE模式
-			m_res.m_pTextures[i] = getRenderEngine()->getRenderSystem()->getTextureManager()->createTextureFromFile(pTile->getTextureFileName(i),FO_POINT,FO_POINT,FO_NONE,TAM_CLAMP_TO_EDGE/*TAM_WRAP*/,TAM_CLAMP_TO_EDGE/*TAM_WRAP*/);
+			m_res.m_pTextures[i] = getRenderEngine()->getRenderSystem()->getTextureManager()->createTextureFromFile(pTile->getTextureFileName(i),FO_POINT,FO_POINT,FO_NONE,TAM_CLAMP_TO_EDGE,TAM_CLAMP_TO_EDGE);
 		}
 	}
 }
@@ -72,23 +72,29 @@ void ResourceGT::loadAllTextures(GroundTile *pTile)
 			}
 
 
+#if 1  //采用opengl渲染系统
 			//将格式由PF_R8G8B8转换成PF_B8G8R8.所以将数据反转过来填充
-			//for(int p = 0;p < 64 * 64;p++)
-			//{
-			//	shaderMap[p * 3 + i - 1] = pAlphaMap[p];
-			//}
+			for(int p = 0;p < 64 * 64;p++)
+			{
+				shaderMap[p * 3 + i - 1] = pAlphaMap[p];
+			}
+#else
 			for( int p = 0; p < 64*64; ++p)
 			{
 				//shaderMap[p * 3 + 2 -( i - 1) ] = pAlphaMap[p];//等价于下面
 				shaderMap[p * 3 + 3 - i ] = pAlphaMap[p];
 			}
+#endif
 		}
-		if(layerNum > 1)
-		{
-			//将格式由PF_R8G8B8转换成PF_B8G8R8
-			m_res.m_pShaderMap = getRenderEngine()->getRenderSystem()->getTextureManager()->
-				createTextureFromRawData(shaderMap,64, 64,PF_B8G8R8 /*PF_R8G8B8*/,FO_POINT,FO_POINT,FO_NONE,TAM_CLAMP_TO_EDGE,TAM_CLAMP_TO_EDGE);
-		}
+		
+		//将格式由PF_R8G8B8转换成PF_B8G8R8
+#if 1
+		m_res.m_pShaderMap = getRenderEngine()->getRenderSystem()->getTextureManager()->
+			createTextureFromRawData(shaderMap,64, 64,PF_R8G8B8,FO_POINT,FO_POINT,FO_NONE,TAM_CLAMP_TO_EDGE,TAM_CLAMP_TO_EDGE);
+#else
+		m_res.m_pShaderMap = getRenderEngine()->getRenderSystem()->getTextureManager()->
+		createTextureFromRawData(shaderMap,64, 64,PF_B8G8R8 /*PF_R8G8B8*/,FO_POINT,FO_POINT,FO_NONE,TAM_CLAMP_TO_EDGE,TAM_CLAMP_TO_EDGE);
+#endif
 	}
 }
 

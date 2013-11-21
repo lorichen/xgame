@@ -406,6 +406,105 @@ namespace xs
 		pRenderSystem->setTexcoordVertexBuffer(0,0);
 	}
 
+	void  SubModelInstance::renderForGLES2(IRenderSystem* pRenderSystem,bool useMtl)
+	{
+		PP_BY_NAME("SubModelInstance::renderCPUVertexBlend");
+
+		IVertexBuffer *pVB = m_pMI->getVertexBuffer();
+		if( pVB == 0) 
+			return;
+
+		IIndexBuffer *pIndexBuffer = m_pMI->getIndexBuffer();
+		if( pIndexBuffer ==0 ) 
+			return;
+
+		IShaderProgram* pShader = pRenderSystem->getShaderProgram(ESP_V3_N_UV);
+		pRenderSystem->bindCurrentShaderProgram(pShader);
+
+		//索引缓冲从从vb的第0个开始技术，所以偏移，只偏移索引缓冲，不偏移vb缓冲
+		unsigned int vertex_offset = 0;		//vertexStart * 12;  //3*sizeof(float)
+		unsigned int tex_coord_offset = 0;	//vertexStart * 8;	 //2*sizeof(float)
+
+		pRenderSystem->setIndexBuffer(pIndexBuffer);
+		pRenderSystem->setNormalVertexBuffer(pVB,m_pMI->getNumVertices() * 12 + vertex_offset);
+		//pRenderSystem->setTexcoordVertexBuffer(0,m_pMI->getVertexBufferTexcoord());
+		pRenderSystem->setVertexVertexBuffer(pVB,vertex_offset);
+
+		Matrix4 mtx = pRenderSystem->getWorldMatrix();
+		pRenderSystem->setWorldMatrix(mtx * getWorldTransform());
+
+		IndexType it = m_pMI->getIndexBuffer()->getType();
+		unsigned int indexoffset = indexStart << 1;
+		if(it == IT_32BIT)
+			indexoffset <<= 1;
+
+		if( useMtl)
+		{
+			if(m_pMI->isAnimatedTexCoord() )
+			{
+				int numLayer = m_mtl.numLayers();
+				for(int i = 0;i < numLayer;i++)
+				{
+					MaterialLayer *pLayer = m_mtl.getLayer(i);
+					if(pLayer->beginPass(pRenderSystem))
+					{
+						PP_BY_NAME_START("SubModelInstance::renderCPUVertexBlend::drawRangeIndexedPrimitive(useMtl=true,isAnimatedTexCoord=true)");
+
+						pRenderSystem->setTexcoordVertexBuffer(0, m_pMI->getTexCoordBuffer( i ),tex_coord_offset );
+						//pRenderSystem->drawRangeIndexedPrimitive(PT_TRIANGLES,m_pMI->getIndexBuffer()->getType(),indexStart,indexCount,vertexStart,vertexEnd);
+						pRenderSystem->drawIndexedPrimitive(PT_TRIANGLES,indexCount,it,(void*)indexoffset);
+
+						PP_BY_NAME_STOP();
+
+						pLayer->endPass(pRenderSystem);
+					}
+				}
+
+			}
+			else
+			{
+				pRenderSystem->setTexcoordVertexBuffer(0,m_pMI->getVertexBufferTexcoord(),tex_coord_offset);
+				int numLayer = m_mtl.numLayers();
+				for(int i = 0;i < numLayer;i++)
+				{
+					MaterialLayer *pLayer = m_mtl.getLayer(i);
+					if(pLayer->beginPass(pRenderSystem))
+					{
+						PP_BY_NAME_START("SubModelInstance::renderCPUVertexBlend::drawRangeIndexedPrimitive(useMtl=true,isAnimatedTexCoord=false)");
+
+						//pRenderSystem->drawRangeIndexedPrimitive(PT_TRIANGLES,m_pMI->getIndexBuffer()->getType(),indexStart,indexCount,vertexStart,vertexEnd);
+						pRenderSystem->drawIndexedPrimitive(PT_TRIANGLES,indexCount,it,(void*)indexoffset);
+
+						PP_BY_NAME_STOP();
+
+						pLayer->endPass(pRenderSystem);
+					}
+				}
+			}
+
+		}
+		else
+		{
+			PP_BY_NAME_START("SubModelInstance::renderCPUVertexBlend::drawRangeIndexedPrimitive(useMtl=false)");
+			IShaderProgram*		pShaderProgram = pRenderSystem->getShaderProgramManager()->getCurrentShaderProgam();
+			if( 0 != pShaderProgram )
+			{
+			}
+			pRenderSystem->setTexcoordVertexBuffer(0,m_pMI->getVertexBufferTexcoord(),tex_coord_offset);
+			//pRenderSystem->drawRangeIndexedPrimitive(PT_TRIANGLES,m_pMI->getIndexBuffer()->getType(),indexStart,indexCount,vertexStart,vertexEnd);
+			pRenderSystem->drawIndexedPrimitive(PT_TRIANGLES,indexCount,it,(void*)indexoffset);
+			
+			PP_BY_NAME_STOP();
+		}
+
+		pRenderSystem->setWorldMatrix(mtx);
+
+		pRenderSystem->setIndexBuffer(0);
+		pRenderSystem->setVertexVertexBuffer(0);
+		pRenderSystem->setNormalVertexBuffer(0);
+		pRenderSystem->setTexcoordVertexBuffer(0,0);
+	}
+
 	void  SubModelInstance::render(IRenderSystem* pRenderSystem,bool useMtl)
 	{
 		if(m_GeosetAlpha < 0.001f)
@@ -417,10 +516,26 @@ namespace xs
 		if( !useMtl && !m_pMI->needDrawShadow() ) //不需要绘制阴影
 			return; 
 
-		if( m_pMI->getBlendShaderProgram() )   //目前只有RS_D3D9渲染器采用了bendershaderprogram
-			renderGPUVertexBlend(pRenderSystem, useMtl);
+		if(pRenderSystem->getRenderSystemType() == RS_OPENGLES2)
+		{
+			if( m_pMI->getBlendShaderProgram() ) 
+			{
+				assert(0);
+			}
+			else
+			{
+				renderForGLES2(pRenderSystem, useMtl);
+			}
+		}
 		else
-			renderCPUVertexBlend(pRenderSystem, useMtl);
+		{
+			if( m_pMI->getBlendShaderProgram() )   //目前只有RS_D3D9渲染器采用了bendershaderprogram
+				renderGPUVertexBlend(pRenderSystem, useMtl);
+			else
+			{
+				renderCPUVertexBlend(pRenderSystem, useMtl);
+			}
+		}
 	}
 
 	const Matrix4& SubModelInstance::getWorldTransform() const

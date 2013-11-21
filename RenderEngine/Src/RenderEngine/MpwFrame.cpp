@@ -352,6 +352,7 @@ namespace xs
 
 		//add by kevin.chen-----------------
 		m_pRenderSystem->setNormalVertexBuffer(0);
+		m_pRenderSystem->setIndexBuffer(0);
 
 		ColorValue c = m_pRenderSystem->getColor();
 		m_pRenderSystem->setColor(ColorValue(1,1,1,alpha));

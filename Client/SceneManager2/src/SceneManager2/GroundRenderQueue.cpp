@@ -196,8 +196,11 @@ void GroundRenderQueue::render()
 			}
 			
 			//must be after bind shader!!!
-			pProgram->bindSampler( pTile->m_textureLayerNum);
-			
+			//if(pRenderSystem->getRenderSystemType() != RS_OPENGLES2)
+			{
+				pProgram->bindSampler( pTile->m_textureLayerNum);
+			}
+
 			pRenderSystem->setWorldMatrix(mtxWorld * pTile->getWorldMatrix());
 			pRenderSystem->drawPrimitive(PT_TRIANGLES,0,6);
 			//pProgram->unbind();			

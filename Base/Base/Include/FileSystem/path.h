@@ -191,14 +191,14 @@ public:
 		if(this->empty())
 			return (*this);
 
-		if (*(this->end() - 1) != CHAR_SLASH || *(this->end() - 1) != CHAR_SLASH2)
+		if (*(this->end() - 1) != CHAR_SLASH2 || *(this->end() - 1) != CHAR_SLASH)
 			*this += CHAR_SLASH2;
 		return (*this);
 	}
 
 	_MyType& removeTailSlash()
 	{
-		if (*(this->end() - 1) == CHAR_SLASH)
+		if (*(this->end() - 1) == CHAR_SLASH2 || *(this->end() - 1) != CHAR_SLASH)
 			this->erase(this->end() - 1);
 		return (*this);
 	}
@@ -218,14 +218,14 @@ protected:
 	}
 	inline size_type getLastSlashPos() const
 	{
-		return this->find_last_of(CHAR_SLASH);
+		return this->find_last_of(CHAR_SLASH2);
 	}
 	inline size_type getLastSlashPos(int count) const
 	{
 		size_type pos;
-		pos = this->find_last_of(CHAR_SLASH);
+		pos = this->find_last_of(CHAR_SLASH2);
 		while (pos != this->npos && --count > 0)
-			pos = this->find_last_of(CHAR_SLASH, pos - 1);
+			pos = this->find_last_of(CHAR_SLASH2, pos - 1);
 		return pos;
 	}
 private:
@@ -235,6 +235,18 @@ private:
 typedef basic_path<char>			CPathA;
 typedef basic_path<wchar_t>			CPathW;
 typedef basic_path<char >			CPath;
+
+
+inline void normalize_path(char* path,int len)
+{
+	for(int i = 0;i < len;++i)
+	{
+		if(path[i] == '\\')
+		{
+			path[i] = '/';
+		}
+	}
+}
 
 	/** @} */
 }

@@ -61,7 +61,7 @@ namespace xs
 	private:
 		void  renderCPUVertexBlend(IRenderSystem* pRenderSystem,bool useMtl);
 		void  renderGPUVertexBlend(IRenderSystem* pRenderSystem,bool useMtl);	
-
+		void  renderForGLES2(IRenderSystem* pRenderSystem,bool useMtl);	
 	private:
 		bool m_bVisible;
 		Material	m_mtl,m_mtlOrigin;

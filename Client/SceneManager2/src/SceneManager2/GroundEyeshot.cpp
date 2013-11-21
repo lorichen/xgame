@@ -337,8 +337,8 @@ void GroundEyeshot::getNameList(std::vector<std::string> &v,char *pFileNames,uin
 	char *pName = (char*)pFileNames;
 	while(pName < (char*)pFileNames + size)
 	{
+		normalize_path(pName,strlen(pName));
 		std::string strName = pName;
-
 		v.push_back(strName);
 		pName += strlen(pName) + 1;
 	}
@@ -382,6 +382,7 @@ void GroundEyeshot::load(xs::Stream* pMapFile)
                 char* szFileName = new char[cbFileNameLength + 1];
                 memcpy(szFileName, (BYTE*)(pChunk->m_pData) + sizeof(BYTE), cbFileNameLength);
                 szFileName[cbFileNameLength] = 0;
+				normalize_path(szFileName,strlen(szFileName));
                 SetDistanceTexture(szFileName);
 
                 delete[] szFileName;
