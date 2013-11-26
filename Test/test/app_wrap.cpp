@@ -87,8 +87,8 @@ bool AppWrap::init(void* hwnd)
 	
 	g_psScenemanager->setRunType(RUN_TYPE_GAME);
 
-	std::string strMapFile = "data/maps/戮战之野.mp";		//"maps/戮战之野.mp";
-	std::string strWayFile = "data/maps/戮战之野路点.xml"; //"maps/戮战之野路点.xml";
+	std::string strMapFile = "data/maps/苍隐村.mp";		//"maps/戮战之野.mp";
+	std::string strWayFile = "data/maps/苍隐村路点.xml"; //"maps/戮战之野路点.xml";
     //std::string strPicName = "11.dds";
     
     xs::CPath pathTest;
@@ -114,7 +114,7 @@ bool AppWrap::init(void* hwnd)
 	xs::Point pt;
 	xs::Rect  rc(0,0,gs_width,gs_height);
 
-	//gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
+	gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
     //gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile(strPicName.c_str());
     
 	IEntityFactory* pEngityFactory = gs_global.getEntityFactory();
@@ -130,14 +130,16 @@ bool AppWrap::init(void* hwnd)
 	
 	
 	
-	//g_pMpwTest = new Entity2DAniPack;
-	//g_pMpwTest->Open(g_psRenderSystem,"data/mpw/出云村/出云村特效遮罩修改/015.mpw");
-    
+	/*
+	g_pMpwTest = new Entity2DAniPack;
+	g_pMpwTest->Open(g_psRenderSystem,"data/mpw/出云村/出云村特效遮罩修改/015.mpw");
+    */
+
 	/*
 	g_pModelNode = new ModelNode;
 	//g_pModelNode->setModel("data/Model/Creature/9尾狐/stand.MZ");
-	g_pModelNode->setModel("data/Model/Common/Effect/BUFF封魔/封魔.TX");
-	g_pModelNode->setPosition(0,0,0);
+	g_pModelNode->setModel("data/Model/Common/Effect/爆裂箭/爆裂箭.TX");
+	g_pModelNode->setPosition(0,0,-1);
 	g_pModelNode->setScale(1,1,1);
 	g_pModelNode->setVisible(true);
 	*/
@@ -158,8 +160,8 @@ void AppWrap::update(int tick,int delta_ms)
 	//g_psRenderSystem->point(xs::Point(100,100),xs::ColorValue(1.0,0,0,1.0));
 	g_psRenderSystem->line(xs::Point(0,0),xs::Point(800,600),ColorValue(1,0,0,1));
     
-    xs::Rect rc(0,0,256,256);
-	//g_psRenderSystem->rectangle(rc,gs_pTex);
+    xs::Rect rc(0,0,140,140);
+	g_psRenderSystem->rectangle(rc,gs_pTex);
 
 	//---------------------------------------------
 
@@ -174,6 +176,7 @@ void AppWrap::update(int tick,int delta_ms)
 	//测试mpw绘制成功，可绘制图片
 	if(g_pMpwTest)
 	{
+		//g_psRenderSystem->switchTo2D();
 		IShaderProgram* pShader = g_psRenderSystem->getShaderProgram(ESP_V3_UV_GC);
 		g_psRenderSystem->bindCurrentShaderProgram(pShader,true);
 		g_pMpwTest->Draw(1.f);

@@ -609,14 +609,12 @@ bool GlobalClient::init3D(void* hwnd)
 	RenderEngineCreationParameters params;
 	params.hwnd = hwnd;
 
-    //xs::Rect rc;
-	//GetClientRect((void*)hwnd, &rc);
-	params.w = 1;//rc.right - rc.left;
-	params.h = 1;//rc.bottom - rc.top;
+	params.w = 1;
+	params.h = 1;
 	params.colorDepth = 32;
 	params.fullscreen = false;
 	params.refreshRate = 85;
-	params.rst = RS_OPENGLES2;
+	params.rst = RS_OPENGLES2;//RS_OPENGL;//RS_OPENGLES2
 	params.stencilBuffer = true;
 
 	// 创建渲染引擎
@@ -642,11 +640,20 @@ bool GlobalClient::init3D(void* hwnd)
 		return false;
 	}
     int left,top,width,height;
+#ifdef WIN32
+	//兼容原来的opengl rendersystem用来比对测试!
+	xs::Rect rc;
+	GetClientRect((void*)hwnd, &rc);
+	left = top = 0;
+	width = rc.right - rc.left;
+	height = rc.bottom - rc.top;
+#else
     renderSystem->getViewport(left,top,width,height);
+#endif
 	mViewport->setValues(left,top,width,height);
 	mViewport->setBackgroundColor(ColorValue(0.223f, 0.427f, 0.647f));
 	mViewport->setClearEveryFrame(true);
-	//renderSystem->setViewport(0,0,width,height);
+	renderSystem->setViewport(0,0,width,height);
 
 	// 创建相机
 	mCamera = mRenderEngine->createCamera(mViewport);
