@@ -114,12 +114,12 @@ bool AppWrap::init(void* hwnd)
 	xs::Point pt;
 	xs::Rect  rc(0,0,gs_width,gs_height);
 
-	gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
+	//gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile("13.png");
     //gs_pTex = g_psRenderSystem->getTextureManager()->createTextureFromFile(strPicName.c_str());
     
 	IEntityFactory* pEngityFactory = gs_global.getEntityFactory();
 
-	
+	/*
 	bool bLoadMap = g_psScenemanager->loadScene(strMapFile.c_str(),strWayFile.c_str(),&rc,pEngityFactory,false,&pt);
 	if(!bLoadMap)
 	{
@@ -127,6 +127,7 @@ bool AppWrap::init(void* hwnd)
 		printf("\n¼ÓÔØ´íÎó!");
 		return false;
 	}
+	*/
 	
 	
 	
@@ -135,14 +136,14 @@ bool AppWrap::init(void* hwnd)
 	g_pMpwTest->Open(g_psRenderSystem,"data/mpw/³öÔÆ´å/³öÔÆ´åÌØÐ§ÕÚÕÖÐÞ¸Ä/015.mpw");
     */
 
-	/*
+	
 	g_pModelNode = new ModelNode;
-	//g_pModelNode->setModel("data/Model/Creature/9Î²ºü/stand.MZ");
-	g_pModelNode->setModel("data/Model/Common/Effect/±¬ÁÑ¼ý/±¬ÁÑ¼ý.TX");
-	g_pModelNode->setPosition(0,0,-1);
+	g_pModelNode->setModel("data/Model/test/stand.MZ");
+	//g_pModelNode->setModel("data/Model/Common/Effect/±¬ÁÑ¼ý/±¬ÁÑ¼ý.TX");
+	g_pModelNode->setPosition(0,-0.5,-1.5);
 	g_pModelNode->setScale(1,1,1);
 	g_pModelNode->setVisible(true);
-	*/
+	
 
 
 	return true;
@@ -158,10 +159,10 @@ void AppWrap::update(int tick,int delta_ms)
 	g_psRenderSystem->setSceneBlending(SBF_SOURCE_ALPHA,SBF_ONE_MINUS_SOURCE_ALPHA);
 
 	//g_psRenderSystem->point(xs::Point(100,100),xs::ColorValue(1.0,0,0,1.0));
-	g_psRenderSystem->line(xs::Point(0,0),xs::Point(800,600),ColorValue(1,0,0,1));
+	//g_psRenderSystem->line(xs::Point(0,0),xs::Point(800,600),ColorValue(1,0,0,1));
     
     xs::Rect rc(0,0,140,140);
-	g_psRenderSystem->rectangle(rc,gs_pTex);
+	//g_psRenderSystem->rectangle(rc,gs_pTex);
 
 	//---------------------------------------------
 
