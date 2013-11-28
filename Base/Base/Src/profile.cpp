@@ -73,7 +73,7 @@ namespace xs
 		*/
 #else
         //assert(0);
-        printf("\n Profile_Get_Ticks have not implement!");
+        //printf("\n Profile_Get_Ticks have not implement!");
 #endif
 	}
 
@@ -88,8 +88,7 @@ namespace xs
 		} 
 #else
         //assert(0);
-        printf("\n Profile_Get_Tick_Rate have not implement!");
-
+        //printf("\n Profile_Get_Tick_Rate have not implement!");
 #endif
 		return _CPUFrequency;
 	}

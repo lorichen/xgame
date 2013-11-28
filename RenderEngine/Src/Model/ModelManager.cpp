@@ -125,6 +125,7 @@ namespace xs
 			{
 				if(pMz->decode(data))
 				{
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 					std::string mziFile = strFileName;
 					mziFile += "i";
 
@@ -187,6 +188,7 @@ namespace xs
 						pMz->loadFeiBian(data,animationName.c_str() + 1);
 						++begin;
 					}
+#endif
 
 					do_add(fileName,pMz,pMz);
 					return pMz;

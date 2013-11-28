@@ -1443,7 +1443,7 @@ namespace xs
 
 	void RenderSystem::setTextureCoordCalculation(ushort unit,TexCoordCalcMethod m)
 	{
-		assert(0);
+		//assert(0);
 		/*
 		if(unit)glActiveTexture(GL_TEXTURE0 + unit);
 		switch(m)
@@ -2231,13 +2231,13 @@ namespace xs
 
 	void	RenderSystem::enableFog(bool enable)
 	{
-		assert(0);
+		//assert(0);
 		//enable ? glEnable(GL_FOG) : glDisable(GL_FOG);
 	}
 
 	bool	RenderSystem::isFogEnabled()
 	{
-		assert(0);
+		//assert(0);
 		return false;
 		/*
 		PP_BY_NAME("isFogEnabled");

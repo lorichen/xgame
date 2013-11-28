@@ -199,11 +199,17 @@ void AppWrap::uninit()
     gs_global.close();
 }
 
-void AppWrap::move(int dx,int dy)
+void AppWrap::move(float dx,float dy)
 {
 	if(g_psScenemanager)
 	{
 		g_psScenemanager->scrollViewport(dx,dy);
 	}
+    
+    if(g_pModelNode)
+    {
+        g_pModelNode->yaw(3*dx);
+        g_pModelNode->pitch(3*dy);
+    }
 }
 

@@ -189,4 +189,30 @@ using namespace xs;
 }
 
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    originalLocation = [touch locationInView:self];
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint currentLocation = [touch locationInView:self];
+    CGPoint d;
+    d.x = currentLocation.x - originalLocation.x;
+    d.y = currentLocation.y - originalLocation.y;
+    AppWrap::move(d.x,d.y);
+    originalLocation = currentLocation;
+    
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
+
 @end

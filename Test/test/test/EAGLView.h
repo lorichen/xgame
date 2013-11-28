@@ -36,6 +36,7 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
     NSTimer *animationTimer;
     NSTimeInterval animationInterval;
 
+    CGPoint originalLocation;
 }
 
 @property NSTimeInterval animationInterval;
@@ -44,5 +45,10 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 - (void)startAnimation;
 - (void)stopAnimation;
 - (void)drawView:(id)sender;
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

@@ -10,7 +10,7 @@ public:
 	static void uninit();
 
 	//simple input
-	static void move(int dx,int dy);
+	static void move(float dx,float dy);
 };
 
 
