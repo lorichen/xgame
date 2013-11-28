@@ -118,7 +118,7 @@ namespace xs
 			return false;
 		}
 
-		if(!StringHelper::casecmp(strExt,"mz"))
+		if(!StringHelper::casecmp(strExt,"MZ"))
 		{
 			ModelCodecMz *pMz = new ModelCodecMz(strFileName,m_pRenderSystem);
 			if(pMz)
@@ -176,7 +176,7 @@ namespace xs
 						}
 
 						std::string fbFilename = path.getParentDir();
-						fbFilename += "\\";
+						fbFilename += "/";
 						fbFilename += pathFb.c_str();
 						CStreamHelper data = xs::getFileSystem()->open(fbFilename.c_str());
 						if(!data)
@@ -198,7 +198,7 @@ namespace xs
 			}
 		}
 
-		if(!StringHelper::casecmp(strExt,"tx"))
+		if(!StringHelper::casecmp(strExt,"TX"))
 		{
 			ModelCodecTx *pTx = new ModelCodecTx(strFileName,m_pRenderSystem);
 			if(pTx)
@@ -256,7 +256,7 @@ namespace xs
 						}
 
 						std::string fbFilename = path.getParentDir();
-						fbFilename += "\\";
+						fbFilename += "/";
 						fbFilename += pathFb.c_str();
 						CStreamHelper data = xs::getFileSystem()->open(fbFilename.c_str());
 						if(!data)
@@ -278,7 +278,7 @@ namespace xs
 			}
 		}
 
-		if(!StringHelper::casecmp(strExt,"mx"))
+		if(!StringHelper::casecmp(strExt,"MX"))
 		{
 			ModelCodecMx *pMx = new ModelCodecMx(strFileName,m_pRenderSystem);
 			if(pMx)
@@ -296,7 +296,7 @@ namespace xs
 			}
 		}
 
-		if(!StringHelper::casecmp(strExt,"mdx"))
+		if(!StringHelper::casecmp(strExt,"MDX"))
 		{
 			ModelCodecWarcraft3 *pMm = new ModelCodecWarcraft3(strFileName,m_pRenderSystem);
 			if(pMm)
@@ -313,7 +313,7 @@ namespace xs
 			}
 		}
 
-		if(!StringHelper::casecmp(strExt,"mm"))
+		if(!StringHelper::casecmp(strExt,"MM"))
 		{
 			ModelCodecMm *pMm = new ModelCodecMm(strFileName,m_pRenderSystem);
 			if(pMm)

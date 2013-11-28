@@ -23,13 +23,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "app_wrap.cpp"
-            timestampString = "406365945.8519"
+            filePath = "../../RenderEngine/Src/Model/ModelManager.cpp"
+            timestampString = "407289861.544368"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "AppWrap::init(void* hwnd)"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "ModelManager::loadModel(const char* fileName)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Base/Base/Src/FileSystem/Stream.cpp"
+            timestampString = "407289890.387981"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "_browseDir(CPathA&amp; absoluteDir, CPathA&amp; relativeDir, bool (*DIRPROC)(const char*, const char*, uint), bool (*FILEPROC)(const char*, const char*, uint), uint userData, uint mask,bool recursive)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../RenderEngine/Src/Model/ModelManager.cpp"
+            timestampString = "407289946.718063"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "ModelManager::loadModel(const char* fileName)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

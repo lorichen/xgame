@@ -74,30 +74,30 @@ API_EXPORT IEntityFactory* LoadCEV()
 		gGlobalClient->getResourceManager()->registerResourceLoader(typeResourceModel,ResourceLoaderMz::Instance());
 
 		//  测试代码：修改为直接读取csv文件，以便于观察配置文件修改的效果；
-		if(!ConfigCreaturePart::Instance()->load("data/scp/CreaturePart.csv"))
+		if(!ConfigCreaturePart::Instance()->load("data/Scp/CreaturePart.csv"))
 		{
 			Error("load(data/scp/CreaturePart.csv) failed"<<endl);
 			return NULL;
 		}
 		//  测试代码：修改为直接读取xml文件，以便于观察配置文件修改的效果；
 		//if(!ConfigCreatureRes::Instance()->load("scp\\ConfigCreature.xmc"))
-		if(!ConfigCreatureRes::Instance()->load("data/scp\\ConfigCreature.xml"))
+		if(!ConfigCreatureRes::Instance()->load("data/Scp/ConfigCreature.xml"))
 		{
-			Error("load(data/scp\\ConfigCreature.xml) failed"<<endl);
+			Error("load(data/scp/ConfigCreature.xml) failed"<<endl);
 			return NULL;
 		}
 		//  测试代码：修改为直接读取xml文件，以便于观察配置文件修改的效果；
 		//if(!ConfigCreatures::Instance()->load("scp\\Creature.xmc"))
-		if(!ConfigCreatures::Instance()->load("data/scp\\Creature.xml"))
+		if(!ConfigCreatures::Instance()->load("data/Scp/Creature.xml"))
 		{
-			Error("load(data/scp\\Creatures.xml) failed"<<endl);
+			Error("load(data/scp/Creatures.xml) failed"<<endl);
 			return NULL;
 		}
 
 
-		if( !ConfigActionMap::Instance()->load("data/scp\\ActionMap.csv"))
+		if( !ConfigActionMap::Instance()->load("data/Scp/ActionMap.csv"))
 		{
-			Error("load(data/scp\\ActionMap.csv) failed"<<endl);
+			Error("load(data/scp/ActionMap.csv) failed"<<endl);
 			return NULL;	
 		}
 

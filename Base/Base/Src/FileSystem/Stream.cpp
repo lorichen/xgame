@@ -278,7 +278,7 @@ static bool _browseDir(CPathA& absoluteDir, CPathA& relativeDir, bool (*DIRPROC)
 	_finddata_t fd;
 
 	CPathA strFiles = absoluteDir;
-	strFiles += "\\*.*";
+	strFiles += "/*.*";
 
 	if ((hFile = _findfirst(strFiles.c_str(), &fd)) != -1)
 	{

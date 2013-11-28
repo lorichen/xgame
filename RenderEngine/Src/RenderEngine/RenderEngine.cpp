@@ -176,7 +176,11 @@ namespace xs
 			ParticleSystemEmitterFactory::registerEmitterFactory(PSET_REAL_SPHERE, ParticleSystemEmitterFactoryRealSphere::Instance() );
 
 			PP_BY_NAME_START("createModelManager");
+#if (TARGET_PLATFORM == PLATFORM_WIN32)
 			m_pModelManager = createModelManager();
+#else
+            m_pModelManager = LoadModelManager(m_pRenderSystem);
+#endif
 			PP_BY_NAME_STOP();
 		}
 
