@@ -3292,8 +3292,8 @@ namespace xs
 		if(m_pCurrentShaderProgram)
 		{
 			Matrix4 proj = getProjectionMatrix() * getModelViewMatrix();
-			Matrix4 m = proj;//proj.transpose(); //是否需要。。。要仔细和gl版本比对
-			m_pCurrentShaderProgram->setUniformMatrix(G_WORLD_VIEW_PROJ,m,false);
+			//Matrix4 m = proj.transpose(); //是否需要。。。要仔细和gl版本比对
+			m_pCurrentShaderProgram->setUniformMatrix(G_WORLD_VIEW_PROJ,proj/*m*/,false);
 		}
 	}
 
