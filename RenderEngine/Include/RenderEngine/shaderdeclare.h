@@ -44,7 +44,6 @@ namespace xs
 	//Í³Ò»shader uniformÃû
 	#define G_WORLD_VIEW_PROJ "g_WorldViewProj"
 	#define G_WORLD			  "g_World"
-	#define G_COLOR			  "g_Color"
 	#define G_TEXTURE_0		  "texture0"
 	#define G_TEXTURE_1		  "texture1"
 	#define G_TEXTURE_2		  "texture2"

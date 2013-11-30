@@ -17,7 +17,7 @@ void main(void)
 	//gl_Position.y = 0.0;
 	//gl_Position.z = 0.0;
 	
-	//vColor = dot() * g_Diffuse;
+	vColor = g_Diffuse;
 	
 	//vColor.r = 1.0;
 	//vColor.g = 0.0;

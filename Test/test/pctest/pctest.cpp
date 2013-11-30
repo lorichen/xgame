@@ -103,8 +103,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	param.rst = RS_OPENGLES2;
 	param.fullscreen;	
 	param.stencilBuffer;
-	param.w = 800;
-	param.h = 600;
+	param.w = 1024;
+	param.h = 728;
 	param.refreshRate = 60;
 	param.colorDepth = 32;
 	IRenderEngine* pRenderEngine = NULL;

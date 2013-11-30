@@ -172,7 +172,7 @@ const int ConfigCreatureRes::getSoundIDFromId(int id)
 	IDName i = (*it).second;
 	return i.soundid;
 }
-const std::string c_effectResPath = "data\\Model\\Common\\Effect\\";
+const std::string c_effectResPath = "data/Model/Common/Effect/";
 const int ConfigCreatureRes::getResId(int id)
 {
 	ResMap::iterator it = m_resMap.find(id);

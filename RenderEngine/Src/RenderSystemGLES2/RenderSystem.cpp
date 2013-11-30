@@ -1522,7 +1522,7 @@ namespace xs
 			if(m_pCurrentShaderProgram)
 			{
 				Vector4 c(color.r,color.g,color.b,color.a);
-				m_pCurrentShaderProgram->setUniformVector4(G_COLOR,c);
+				m_pCurrentShaderProgram->setUniformVector4(G_DIFFUSE,c);
 			}
 		}
 	}
@@ -2397,7 +2397,7 @@ namespace xs
 		if(m_pCurrentShaderProgram)
 		{
 			Vector4 c(diffuse.r,diffuse.g,diffuse.b,diffuse.a);
-			m_pCurrentShaderProgram->setUniformVector4(G_COLOR,c);
+			m_pCurrentShaderProgram->setUniformVector4(G_DIFFUSE,c);
 		}
 	}
 

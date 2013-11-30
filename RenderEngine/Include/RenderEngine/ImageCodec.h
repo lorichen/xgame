@@ -24,7 +24,7 @@ virtual bool getDimension(xs::Stream*,uint& width,uint& height,uint& depth) = 0;
 virtual const char*	getType() const;	\
 virtual bool decode(xs::Stream*,ImageData& data,const void  *p1 = 0,const void  *p2 = 0) const ;	\
 virtual bool code(void ) const ; \
-virtual bool codeToFile(xs::FileStream&,const ImageData& data) const ;	\
+virtual bool codeToFile(xs::FileStream& fs,const ImageData& data) const ;	\
 virtual bool getDimension(xs::Stream*,uint& width,uint& height,uint& depth);
 
 

@@ -308,9 +308,9 @@ namespace xs
 			//crr add 
 			//部分文件不是以game.exe所在位置算相对路径，而是默认从data开始
 			//这里加上data重试，fixme
-			std::string strTmp = "data\\" + strFileName;
+			std::string strTmp = "data/" + strFileName;
 
-			WarningLn(std::string(std::string("need try to prefix data\\  to open ") + strFileName).c_str());
+			WarningLn(std::string(std::string("need try to prefix data/  to open ") + strFileName).c_str());
 			data = xs::getFileSystem()->open(strTmp.c_str());
 			if(!data)
 			{

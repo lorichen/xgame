@@ -5,7 +5,7 @@
 
 #pragma once
 
-#if WIN_32
+#ifdef _WIN32
 // 如果必须将位于下面指定平台之前的平台作为目标，请修改下列定义。
 // 有关不同平台对应值的最新信息，请参考 MSDN。
 #ifndef WINVER				// 允许使用特定于 Windows XP 或更高版本的功能。

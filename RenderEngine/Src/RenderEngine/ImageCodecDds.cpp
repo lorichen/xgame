@@ -134,6 +134,11 @@ namespace xs
 		uint               dwTextureStage;         // stage in multitexture cascade
 	} DDSURFACEDESC2;
 
+	ImageCodecDds::ImageCodecDds()
+	{
+		m_trans2rgba = true;
+	}
+
 	const char*	ImageCodecDds::getType() const
 	{
 		static std::string strType = "dds";
@@ -219,21 +224,30 @@ namespace xs
 			//else
 				data.format = PF_DXT1;
 		}
-		//else if(ddsd2.ddpfPixelFormat.dwFourCC == (uint)'2TXD')
-		//{
-		//	data.format = PF_DXT2;
-		//}
+		/*
+		else if(ddsd2.ddpfPixelFormat.dwFourCC == (uint)'2TXD')
+		{
+			data.format = PF_DXT2;
+		}
+		*/
 		else if(ddsd2.ddpfPixelFormat.dwFourCC == (uint)'3TXD')
 		{
 			data.format = PF_DXT3;
 		}
-		//else if(ddsd2.ddpfPixelFormat.dwFourCC == (uint)'4TXD')
-		//{
-		//	data.format = PF_DXT4;
-		//}
-		else
+		/*
+		else if(ddsd2.ddpfPixelFormat.dwFourCC == (uint)'4TXD')
+		{
+			data.format = PF_DXT4;
+		}
+		*/
+		else if(ddsd2.ddpfPixelFormat.dwFourCC == (uint)'5TXD')
 		{
 			data.format = PF_DXT5;
+		}
+		else
+		{
+			Error("DdsCodec Only Support DXT1,DXT3,DXT5 Now!");
+			return false;
 		}
 
 		uint ui32ImageDataSize = input->getLength() - sizeof(ddsd2) - 4;
@@ -261,21 +275,38 @@ namespace xs
 			}
 			data.pData = new uchar[data.size];
             
-			switch(data.format)
+			w = data.width;
+			h = data.height;
+			
+			uchar* pSrc2 = pSrc;
+			uchar* pDes2 = data.pData;
+			for(uint i = 0;i < data.num_mipmaps;i++)
 			{
-                case PF_DXT1:
-                    squish::DecompressImage(data.pData,data.width,data.height,pSrc,squish::kDxt1);
-                    break;
-                    
-                case PF_DXT3:
-                    squish::DecompressImage(data.pData,data.width,data.height,pSrc,squish::kDxt3);
-                    break;
-                    
-                case PF_DXT5:
-                    squish::DecompressImage(data.pData,data.width,data.height,pSrc,squish::kDxt5);
-                    break;
+				switch(data.format)
+				{
+				case PF_DXT1:
+					squish::DecompressImage(pDes2,w,h,pSrc2,squish::kDxt1);
+					break;
+
+				case PF_DXT3:
+					squish::DecompressImage(pDes2,w,h,pSrc2,squish::kDxt3);
+					break;
+
+				case PF_DXT5:
+					squish::DecompressImage(pDes2,w,h,pSrc2,squish::kDxt5);
+					break;
+
+				default:
+					assert(0);
+					break;
+				}
+				pDes2 += PixelUtil::getMemorySize(w,h,data.depth,desFormat);
+				pSrc2 += PixelUtil::getMemorySize(w,h,data.depth,data.format);
+				w /= 2;
+				h /= 2;
+				if(w == 0)w = 1;
+				if(h == 0)h = 1;
 			}
-            
 			data.format = desFormat;
             
 			delete []pSrc;
@@ -290,7 +321,7 @@ namespace xs
 		return false;
 	}
 
-	bool ImageCodecDds::codeToFile(xs::FileStream&,const ImageData& data) const
+	bool ImageCodecDds::codeToFile(xs::FileStream& fs,const ImageData& data) const
 	{
 		Error("Code to DDS Not Implement Yet!");
 		return false;

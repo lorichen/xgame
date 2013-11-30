@@ -33,6 +33,7 @@ namespace xs {
     struct IRenderEngine;
     struct IRenderSystem;
     struct IFont;
+	struct IFileSystem;
 }
 
 struct ISceneManager2;
