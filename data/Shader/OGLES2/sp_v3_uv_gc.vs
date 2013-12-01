@@ -10,7 +10,7 @@ varying highp vec4		vColor0;
 
 void main(void)
 {
-	gl_Position = position * g_WorldViewProj ;
+	gl_Position = position * g_WorldViewProj;
 	vTexCoord0 = texcoord0;
 	vColor0 = g_Diffuse;
 }
