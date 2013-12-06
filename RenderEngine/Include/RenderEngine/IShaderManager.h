@@ -87,6 +87,10 @@ namespace xs
 		TMT_VIEW_NORMAL = 0x80,
 		// transform normal from object space to view space
 		TMT_WORLD_VIEW_NORMAL = 0x100,
+		// transform normal diffuse color
+		TMT_DIFFUSE_COLOR = 0x200,
+		// color
+		TMT_COLOR = 0x0400,
 	};
 
 	/** 着色器程序类型

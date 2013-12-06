@@ -1196,6 +1196,7 @@ void SceneManager::draw(IRenderSystem* pRenderSystem, bool bWholeGround)
 		if( m_pShadowProgram ) 
 		{
 			//采样器和变换矩阵的绑定是在绘制代码里面
+			//pRenderSystem->bindCurrentShaderProgram(m_pShadowProgram);
 			m_pShadowProgram->bind();
 		}
 
@@ -1220,6 +1221,7 @@ void SceneManager::draw(IRenderSystem* pRenderSystem, bool bWholeGround)
 
 		if( m_pShadowProgram ) 
 		{
+			//pRenderSystem->bindCurrentShaderProgram(0);
 			m_pShadowProgram->unbind();
 		}
 
@@ -1920,7 +1922,7 @@ void SceneManager::sortVisibleEntities()
 	DisplayListPtr _end = m_VisibleListMultiOcc.end();
 	for (; it!=_end; ++it)
 	{
-		addSortingEntities((*it), m_VisibleListObj);
+ 		addSortingEntities((*it), m_VisibleListObj);
 	}
 }
 

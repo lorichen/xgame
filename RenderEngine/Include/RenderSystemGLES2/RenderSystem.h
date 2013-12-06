@@ -743,9 +743,9 @@ public:
 	*/
 	virtual bool		getDisplayMode(RenderEngineCreationParameters & createParam);
 
-	virtual IShaderProgram* getShaderProgram(int id);
+	virtual IHighLevelShaderProgram* getShaderProgram(int id);
 
-	virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false);
+	//virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false);
 public:
 	TextureStageOperator getTextureStageOp(GLint op);
 	GLint				 getTextureStageOp( TextureStageOperator op);
@@ -821,7 +821,7 @@ private:
 	ITexture*	    m_pWhiteTex;				
 	void			_setTempTexture();
 
-	IHighLevelShaderProgram* m_pCurrentShaderProgram;
+	//IHighLevelShaderProgram* m_pCurrentShaderProgram;
 	
 	bool			_createInnerShader();
 	void			_releaseInnerShader();

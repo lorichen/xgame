@@ -114,7 +114,7 @@ namespace xs
 		m_pOverlayRenderTarget = 0;
 
 		m_pWhiteTex = 0;
-		m_pCurrentShaderProgram = 0;
+		//m_pCurrentShaderProgram = 0;
 
 		for(int i = 0;i < ESP_NUM;++i)
 		{
@@ -772,6 +772,8 @@ namespace xs
 	bool	RenderSystem::create(RenderEngineCreationParameters *param)
 	{
 		if(param->rst != RS_OPENGLES2)return false;
+
+		ShaderProgramManagerOGL::Instance()->m_pRenderSystem = this;
 
 		HWND hWnd = (HWND)param->hwnd;
 		if(!hWnd)
@@ -1519,10 +1521,19 @@ namespace xs
 		}
 		else
 		{
+			/*
 			if(m_pCurrentShaderProgram)
 			{
 				Vector4 c(color.r,color.g,color.b,color.a);
 				m_pCurrentShaderProgram->setUniformVector4(G_DIFFUSE,c);
+			}
+			*/
+			IHighLevelShaderProgram* pShader = static_cast<IHighLevelShaderProgram*>(getShaderProgramManager()->getCurrentShaderProgam());
+			if(pShader)
+			{
+				//Vector4 c(color.r,color.g,color.b,color.a);
+				//pShader->setUniformVector4(G_DIFFUSE,c);
+				pShader->bindTransformMatrix(TMT_COLOR);
 			}
 		}
 	}
@@ -1586,7 +1597,12 @@ namespace xs
 		//vertex pos and color always
 
 		//bind shader
-		bindCurrentShaderProgram(getShaderProgram(ESP_V3_UV_C));
+		//bindCurrentShaderProgram(getShaderProgram(ESP_V3_UV_C));
+		IHighLevelShaderProgram* pShader = getShaderProgram(ESP_V3_UV_C);
+		if(pShader)
+		{
+			pShader->bind();
+		}
 	}
 
 	void		RenderSystem::endPrimitive()
@@ -2391,13 +2407,22 @@ namespace xs
 	void RenderSystem::setSurfaceDiffuse(const ColorValue &diffuse)
 	{
 		m_surfaceDiffuse = diffuse;
-		GLfloat f4val[4] = {diffuse.r,diffuse.g,diffuse.b,diffuse.a};
+		//GLfloat f4val[4] = {diffuse.r,diffuse.g,diffuse.b,diffuse.a};
 		//glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,f4val);
 
+		/*
 		if(m_pCurrentShaderProgram)
 		{
 			Vector4 c(diffuse.r,diffuse.g,diffuse.b,diffuse.a);
 			m_pCurrentShaderProgram->setUniformVector4(G_DIFFUSE,c);
+		}
+		*/
+		IHighLevelShaderProgram* pShader = static_cast<IHighLevelShaderProgram*>(getShaderProgramManager()->getCurrentShaderProgam());
+		if(pShader)
+		{
+			//Vector4 c(diffuse.r,diffuse.g,diffuse.b,diffuse.a);
+			//pShader->setUniformVector4(G_DIFFUSE,c);
+			pShader->bindTransformMatrix(TMT_DIFFUSE_COLOR);
 		}
 	}
 
@@ -3255,7 +3280,7 @@ namespace xs
 		}
 	}
 
-	IShaderProgram* RenderSystem::getShaderProgram(int id)
+	IHighLevelShaderProgram* RenderSystem::getShaderProgram(int id)
 	{
 		if(id >= ESP_NUM)
 			return 0;
@@ -3263,6 +3288,7 @@ namespace xs
 		return m_pInnerShader[id];
 	}
 
+	/*
 	void RenderSystem::bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst)
 	{
 		if(m_pCurrentShaderProgram == pShaderProgram)
@@ -3286,14 +3312,23 @@ namespace xs
 			}
 		}
 	}
+	*/
 
 	void RenderSystem::_setWorldViewProj2Shader()
 	{
+		/*
 		if(m_pCurrentShaderProgram)
 		{
 			Matrix4 proj = getProjectionMatrix() * getModelViewMatrix();
 			//Matrix4 m = proj.transpose(); //是否需要。。。要仔细和gl版本比对
-			m_pCurrentShaderProgram->setUniformMatrix(G_WORLD_VIEW_PROJ,proj/*m*/,false);
+			m_pCurrentShaderProgram->setUniformMatrix(G_WORLD_VIEW_PROJ,proj,false);
+		}
+		*/
+
+		IHighLevelShaderProgram* pShader = static_cast<IHighLevelShaderProgram*>(getShaderProgramManager()->getCurrentShaderProgam());
+		if(pShader)
+		{
+			pShader->bindTransformMatrix(TMT_WORLD_VIEW_PROJECTION);
 		}
 	}
 

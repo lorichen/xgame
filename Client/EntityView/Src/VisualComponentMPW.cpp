@@ -206,7 +206,11 @@ void VisualComponentMPW::drawPickObject(IRenderSystem* pRenderSystem)
 
 		//add by kevin.chen-----------------
 		IShaderProgram* pShader = pRenderSystem->getShaderProgram(ESP_V3_UV_GC);
-		pRenderSystem->bindCurrentShaderProgram(pShader);
+		//pRenderSystem->bindCurrentShaderProgram(pShader);
+		if(pShader)
+		{
+			pShader->bind();
+		}
 		//--------------------------------
 		pRenderSystem->setViewMatrix(mtxViewOld);
 		pRenderSystem->setWorldMatrix(mtxWorld);

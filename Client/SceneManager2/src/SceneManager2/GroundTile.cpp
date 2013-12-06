@@ -223,18 +223,18 @@ void GroundTile::_updateAlphaMap(uint index,bool updateShaderMap)
 		for(uint i = 1;i < m_textureLayerNum;i++)
 		{
 			//将格式由PF_R8G8B8转换成PF_B8G8R8.所以将数据反转过来填充
+#if 0
 			for(int p = 0;p < 64 * 64;p++)
 			{
 				shaderMap[p * 3 + i - 1] = m_alphaMap[i - 1][p];
 			}
-			
-			/*
+#else
 			for( int p = 0; p < 64*64; ++p)
 			{
-				shaderMap[p * 3 + 2 -( i - 1) ] = m_alphaMap[i-1][p];//等价于下面
-				//shaderMap[p * 3 + 3 - i ] = m_alphaMap[i-1][p];
+				//shaderMap[p * 3 + 2 -( i - 1) ] = m_alphaMap[i-1][p];//等价于下面
+				shaderMap[p * 3 + 3 - i ] = m_alphaMap[i-1][p];
 			}
-			*/
+#endif
 			
 		}
 		if(m_textureLayerNum > 1)
@@ -243,7 +243,7 @@ void GroundTile::_updateAlphaMap(uint index,bool updateShaderMap)
 			{
 				//将格式由PF_R8G8B8转换成PF_B8G8R8
 				pResource->m_pShaderMap = m_pRenderSystem->getTextureManager()->createTextureFromRawData(
-					shaderMap,64,64,PF_R8G8B8/*PF_B8G8R8*/,FO_POINT,FO_POINT,FO_NONE,TAM_CLAMP_TO_EDGE,TAM_CLAMP_TO_EDGE);
+					shaderMap,64,64,/*PF_R8G8B8*/PF_B8G8R8,FO_POINT,FO_POINT,FO_NONE,TAM_CLAMP_TO_EDGE,TAM_CLAMP_TO_EDGE);
 			}
 			else
 				pResource->m_pShaderMap->setSubData(0,0,0,64,64,shaderMap);

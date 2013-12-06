@@ -3,6 +3,7 @@
 #include "HighLevelShader.h"
 #include "HighLevelShaderManager.h"
 #include "ShaderProgramManagerOGL.h"
+#include "RenderSystem.h"
 
 namespace xs
 {
@@ -111,8 +112,12 @@ namespace xs
 	
 	bool	HighLevelShaderProgram::bind()
 	{
-		glUseProgram(m_handle);
-		m_pShaderProgramManager->onShaderProgramBinded(this);
+		if(m_pShaderProgramManager->getCurrentShaderProgam() != this)
+		{
+			glUseProgram(m_handle);
+			m_pShaderProgramManager->onShaderProgramBinded(this);
+			return true;
+		}
 		return true;
 	}
 
@@ -380,6 +385,39 @@ namespace xs
 	*/
 	void HighLevelShaderProgram::bindTransformMatrix( uint flag )
 	{
-		//内部已经绑定了?????
+		if( flag & TMT_WORLD_VIEW_PROJECTION)
+		{
+			RenderSystem* pRenderSystem = m_pShaderProgramManager->m_pRenderSystem;
+			//world view projection matrix
+			if(pRenderSystem)
+			{
+				Matrix4 proj = pRenderSystem->getProjectionMatrix() * pRenderSystem->getModelViewMatrix();
+				//Matrix4 m = proj.transpose(); //是否需要。。。要仔细和gl版本比对
+				setUniformMatrix(G_WORLD_VIEW_PROJ,proj,false);
+			}
+		}
+
+		if(flag & TMT_DIFFUSE_COLOR)
+		{
+			RenderSystem* pRenderSystem = m_pShaderProgramManager->m_pRenderSystem;
+			if(pRenderSystem)
+			{
+				ColorValue color = pRenderSystem->m_surfaceDiffuse;
+				Vector4 c(color.r,color.g,color.b,color.a);
+				setUniformVector4(G_DIFFUSE,c);
+			}
+		}
+
+		if(flag & TMT_COLOR)
+		{
+			RenderSystem* pRenderSystem = m_pShaderProgramManager->m_pRenderSystem;
+			
+			if(pRenderSystem)
+			{
+				ColorValue color = pRenderSystem->getColor();
+				Vector4 c(color.r,color.g,color.b,color.a);
+				setUniformVector4(G_DIFFUSE,c);
+			}
+		}
 	}
 }

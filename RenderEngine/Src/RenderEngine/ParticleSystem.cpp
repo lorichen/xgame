@@ -745,8 +745,13 @@ namespace xs
 		//»æÖÆ
 		if( m_uiPreviousQuads > 0 )
 		{
-			IShaderProgram* pShader = pRenderSystem->getShaderProgram(ESP_V3_UV_C);
-			pRenderSystem->bindCurrentShaderProgram(pShader,true);
+			IHighLevelShaderProgram* pShader = pRenderSystem->getShaderProgram(ESP_V3_UV_C);
+			//pRenderSystem->bindCurrentShaderProgram(pShader,true);
+			if(pShader)
+			{
+				pShader->bind();
+				pShader->bindTransformMatrix(TMT_WORLD_VIEW_PROJECTION);
+			}
 
 			pRenderSystem->setNormalVertexBuffer(0);
 			pRenderSystem->setVertexVertexBuffer(m_pVB,0);

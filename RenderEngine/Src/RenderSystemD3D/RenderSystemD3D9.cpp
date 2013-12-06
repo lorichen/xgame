@@ -876,6 +876,7 @@ namespace xs
 
 	}
 
+	/*
 	void RenderSystemD3D9::bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst)
 	{
 		if(pShaderProgram)
@@ -883,7 +884,7 @@ namespace xs
 			pShaderProgram->bind();
 		}
 	}
-
+	*/
 
 	void RenderSystemD3D9::clearFrameBuffer(bool clearColorBuffer,bool clearDepthBuffer ,bool clearStencilBuffer)
 	{

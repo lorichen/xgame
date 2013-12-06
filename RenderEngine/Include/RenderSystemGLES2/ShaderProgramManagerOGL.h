@@ -5,6 +5,7 @@ namespace xs
 {
 	class ShaderManager;
 	class HighLevelShaderManager;
+	class RenderSystem;
 
 	class ShaderProgramManagerOGL: public IShaderProgramManager
 	{ 
@@ -36,8 +37,9 @@ namespace xs
 			static ShaderProgramManagerOGL spm;
 			return &spm;
 		}
+		RenderSystem* m_pRenderSystem;
 	protected:
-		ShaderProgramManagerOGL():m_pCurrentShaderProgram(0) {};
+		ShaderProgramManagerOGL():m_pCurrentShaderProgram(0),m_pRenderSystem(0) {};
 
 	private:
 		IShaderProgram * m_pCurrentShaderProgram;

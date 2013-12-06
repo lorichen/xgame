@@ -9,7 +9,7 @@ void main()
 	c1 = texture2D(texture0,vTexCoord0);
 	a = texture2D(texture1,vTexCoord0);
 	c2 = texture2D(texture2,vTexCoord0);
-	c = mix(c1,c2,a.r);
+	c = mix(c1,c2,a.b);
 
 	gl_FragColor = c;
 }

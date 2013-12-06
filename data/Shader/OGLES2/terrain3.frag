@@ -11,7 +11,7 @@ void main()
 	a = texture2D(texture1,vTexCoord0);
 	c2 = texture2D(texture2,vTexCoord0);
 	c3 = texture2D(texture3,vTexCoord0);
-	c = mix(c1,c2,a.r);
+	c = mix(c1,c2,a.b);
 	c = mix(c,c3,a.g);
 
 	gl_FragColor = c;

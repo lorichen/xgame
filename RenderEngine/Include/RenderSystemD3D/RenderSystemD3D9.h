@@ -868,9 +868,9 @@ namespace xs
 		*/
 		virtual bool		getDisplayMode(RenderEngineCreationParameters & createParam);
 
-		virtual IShaderProgram* getShaderProgram(int id){return 0;}
+		virtual IHighLevelShaderProgram* getShaderProgram(int id){return 0;}
 
-		virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false);
+		//virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false);
 	public:
 		RenderSystemD3D9();
 		bool	create(RenderEngineCreationParameters *);

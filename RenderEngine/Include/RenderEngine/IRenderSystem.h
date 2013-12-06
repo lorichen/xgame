@@ -12,16 +12,17 @@ namespace xs
 	struct IFontManager;
 	struct ITextureManager;
 	struct IBufferManager;
-	class RenderSystemCapabilities;
+	class  RenderSystemCapabilities;
 	struct ITexture;
 	struct IShaderProgramManager;
-	class Light;
-	class Viewport;
-	class RenderOperation;
-	class RenderDirect;
+	class  Light;
+	class  Viewport;
+	class  RenderOperation;
+	class  RenderDirect;
 	struct IVideoObject;
 	struct IHardwareCursorManager;
 	struct IShaderProgram;
+	struct IHighLevelShaderProgram;
 
 	/** 渲染系统接口
 	*/
@@ -775,11 +776,11 @@ namespace xs
 
 		//-------kevin.chen 新增接口-------
 		//得到内置的shaderprogram
-		virtual IShaderProgram* getShaderProgram(int id) = 0;
+		virtual IHighLevelShaderProgram* getShaderProgram(int id) = 0;
 		
 		//设置当前绑定的shader,如为空则接绑定之前的shader
 		//该接口可用于内置shader和外置shader,外置shader 需要关注声明周期对该接口的影响
-		virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false) = 0;
+		//virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false) = 0;
 	};
 	/** @} */
 

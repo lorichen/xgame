@@ -419,7 +419,11 @@ namespace xs
 			return;
 
 		IShaderProgram* pShader = pRenderSystem->getShaderProgram(ESP_V3_N_UV);
-		pRenderSystem->bindCurrentShaderProgram(pShader);
+		//pRenderSystem->bindCurrentShaderProgram(pShader);
+		if(pShader)
+		{
+			pShader->bind();
+		}
 
 		//索引缓冲从从vb的第0个开始技术，所以偏移，只偏移索引缓冲，不偏移vb缓冲
 		unsigned int vertex_offset = 0;		//vertexStart * 12;  //3*sizeof(float)
@@ -498,7 +502,6 @@ namespace xs
 		}
 
 		pRenderSystem->setWorldMatrix(mtx);
-
 		pRenderSystem->setIndexBuffer(0);
 		pRenderSystem->setVertexVertexBuffer(0);
 		pRenderSystem->setNormalVertexBuffer(0);

@@ -2823,6 +2823,7 @@ namespace xs
 		return HardwareCursorManagerOGL::instance();
 	}
 
+	/*
 	void RenderSystem::bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst)
 	{
 		if(pShaderProgram)
@@ -2830,4 +2831,5 @@ namespace xs
 			pShaderProgram->bind();
 		}
 	}
+	*/
 }

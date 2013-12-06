@@ -33,7 +33,13 @@ bool GroundRenderQueue::RenderDistance(int nMapWidth, int nMapHeight, int nViewW
 		return false;
 	}
 
-	pRenderSystem->bindCurrentShaderProgram(m_pShaderPrograms[0],true);
+	if(pRenderSystem->getRenderSystemType() == RS_OPENGLES2)
+	{
+		//pRenderSystem->bindCurrentShaderProgram(m_pShaderPrograms[0],true);
+		m_pShaderPrograms[0]->bind();
+		IHighLevelShaderProgram* pShader = static_cast<IHighLevelShaderProgram*>(m_pShaderPrograms[0]);
+		pShader->bindTransformMatrix(TMT_WORLD_VIEW_PROJECTION);
+	}
 
     //  计算远景图的偏移比例：这个偏移比例这样来算，L(a, b)表示a和b之间的距离：
     //
@@ -186,7 +192,7 @@ void GroundRenderQueue::render()
 		
 			
 			IHighLevelShaderProgram* pProgram = static_cast<IHighLevelShaderProgram*>(m_pShaderPrograms[pTile->m_textureLayerNum - 1]);
-			pRenderSystem->bindCurrentShaderProgram(pProgram);//pProgram->bind();
+			pProgram->bind();//pRenderSystem->bindCurrentShaderProgram(pProgram);
 
 			pRenderSystem->setTexture(0,pTile->getTexture(0));
 			pRenderSystem->setTexture(1,pTile->getShaderMapTexture());
@@ -210,7 +216,8 @@ void GroundRenderQueue::render()
 			}
 			++begin;
 		}
-		pRenderSystem->bindCurrentShaderProgram(0);
+
+		//pProgram->unbind();//pRenderSystem->bindCurrentShaderProgram(0);
 		pRenderSystem->setTexcoordVertexBuffer(0,0);
 		pRenderSystem->setVertexVertexBuffer(0);
 		pRenderSystem->setCullingMode(cm);

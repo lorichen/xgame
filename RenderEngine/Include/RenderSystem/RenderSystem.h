@@ -742,8 +742,8 @@ public:
 	virtual bool		getDisplayMode(RenderEngineCreationParameters & createParam);
 
 
-	virtual IShaderProgram* getShaderProgram(int id){return 0;}
-	virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false);
+	virtual IHighLevelShaderProgram* getShaderProgram(int id){return 0;}
+	//virtual void		bindCurrentShaderProgram(IShaderProgram* pShaderProgram,bool setShaderConst = false);
 
 public:
 	TextureStageOperator getTextureStageOp(GLint op);
