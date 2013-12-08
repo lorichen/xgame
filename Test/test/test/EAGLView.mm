@@ -80,13 +80,19 @@ using namespace xs;
         //FILE* fp = fopen(str.c_str(),"r");
 
         
-        //init
-        AppWrap::init(self);
+        CGSize size = [self bounds].size;
         
         if ([self respondsToSelector:@selector(setContentScaleFactor:)])
 		{
 			self.contentScaleFactor = [[UIScreen mainScreen] scale];
+            size.width *= self.contentScaleFactor;
+            size.height *= self.contentScaleFactor;
 		}
+        
+        AppWrap::setViewSize(size.width, size.height);
+        //init
+        AppWrap::init(self);
+        
         animationInterval = 1.0 / 60.0;
         animating = FALSE;
         displayLink = nil;
@@ -201,7 +207,7 @@ using namespace xs;
     CGPoint d;
     d.x = currentLocation.x - originalLocation.x;
     d.y = currentLocation.y - originalLocation.y;
-    AppWrap::move(d.x,d.y);
+    AppWrap::move(-d.x,-d.y);
     originalLocation = currentLocation;
     
 }
