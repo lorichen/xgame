@@ -338,7 +338,7 @@ static bool _browseDir(CPathA& absoluteDir, CPathA& relativeDir, bool (*DIRPROC)
 
 	return true;
 #else
-    assert(0);
+    //assert(0);
     return false;
 #endif
 }

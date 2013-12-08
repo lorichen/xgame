@@ -5,6 +5,9 @@
 #include "ModelCodecMm.h"
 #include "ModelCodecTx.h"
 #include "ModelCodecMx.h"
+#include <cctype>
+#include <algorithm>
+
 
 namespace xs
 {
@@ -98,7 +101,6 @@ namespace xs
 		}
 
 		std::string strFileName = fileName;
-
 		std::string strExt;
 
 		uint pos = strFileName.find_last_of(".");
@@ -118,7 +120,14 @@ namespace xs
 			return false;
 		}
 
-		if(!StringHelper::casecmp(strExt,"MZ"))
+        //strExt to lower
+        //std::transform(strExt.begin(),strExt.end(),strExt.begin(),std::tolower);
+        for(int i = 0;i < strExt.length();++i)
+        {
+            strExt[i] = tolower(strExt[i]);
+        }
+        
+		if(!StringHelper::casecmp(strExt,"mz") )
 		{
 			ModelCodecMz *pMz = new ModelCodecMz(strFileName,m_pRenderSystem);
 			if(pMz)
@@ -200,7 +209,7 @@ namespace xs
 			}
 		}
 
-		if(!StringHelper::casecmp(strExt,"TX"))
+		if(!StringHelper::casecmp(strExt,"tx") )
 		{
 			ModelCodecTx *pTx = new ModelCodecTx(strFileName,m_pRenderSystem);
 			if(pTx)
@@ -280,7 +289,7 @@ namespace xs
 			}
 		}
 
-		if(!StringHelper::casecmp(strExt,"MX"))
+		if(!StringHelper::casecmp(strExt,"mx") )
 		{
 			ModelCodecMx *pMx = new ModelCodecMx(strFileName,m_pRenderSystem);
 			if(pMx)
@@ -298,7 +307,7 @@ namespace xs
 			}
 		}
 
-		if(!StringHelper::casecmp(strExt,"MDX"))
+		if(!StringHelper::casecmp(strExt,"mdx") )
 		{
 			ModelCodecWarcraft3 *pMm = new ModelCodecWarcraft3(strFileName,m_pRenderSystem);
 			if(pMm)
@@ -315,7 +324,7 @@ namespace xs
 			}
 		}
 
-		if(!StringHelper::casecmp(strExt,"MM"))
+		if(!StringHelper::casecmp(strExt,"mm"))
 		{
 			ModelCodecMm *pMm = new ModelCodecMm(strFileName,m_pRenderSystem);
 			if(pMm)
