@@ -119,7 +119,7 @@ bool AppWrap::init(void* hwnd)
     
 	IEntityFactory* pEngityFactory = gs_global.getEntityFactory();
 
-    
+    /*
 	bool bLoadMap = g_psScenemanager->loadScene(strMapFile.c_str(),strWayFile.c_str(),&rc,pEngityFactory,false,&pt);
 	if(!bLoadMap)
 	{
@@ -127,7 +127,7 @@ bool AppWrap::init(void* hwnd)
 		printf("\n加载错误!");
 		return false;
 	}
-    
+    */
 	
 	
 	/*
@@ -135,14 +135,15 @@ bool AppWrap::init(void* hwnd)
 	g_pMpwTest->Open(g_psRenderSystem,"data/mpw/出云村/出云村特效遮罩修改/015.mpw");
     */
 
-	/*
+	
 	g_pModelNode = new ModelNode;
-	g_pModelNode->setModel("data/Model/test/stand.MZ");
+	//g_pModelNode->setModel("data/Model/test/stand.MZ");
 	//g_pModelNode->setModel("data/Model/Common/Effect/新手村特效/新手村3/传送门.TX");
+	g_pModelNode->setModel("data/Model/test/xsc/csm.TX");
 	g_pModelNode->setPosition(0,-0.5,-1.5);
 	g_pModelNode->setScale(1,1,1);
 	g_pModelNode->setVisible(true);
-	*/
+	
 
 
 	return true;
@@ -166,7 +167,7 @@ void AppWrap::update(int tick,int delta_ms)
 	//---------------------------------------------
 	g_psRenderSystem->switchTo3D();//转换到3d模式，这是默认模式，同时其它地方可能修改了这个模式
     
-#if 0
+#if 1
     //测试mpw绘制成功，可绘制图片
 	if(g_pMpwTest)
 	{
