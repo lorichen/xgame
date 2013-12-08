@@ -119,7 +119,7 @@ bool AppWrap::init(void* hwnd)
     
 	IEntityFactory* pEngityFactory = gs_global.getEntityFactory();
 
-    
+  
 	bool bLoadMap = g_psScenemanager->loadScene(strMapFile.c_str(),strWayFile.c_str(),&rc,pEngityFactory,false,&pt);
 	if(!bLoadMap)
 	{
@@ -128,7 +128,6 @@ bool AppWrap::init(void* hwnd)
 		return false;
 	}
 
-	
 	
 	/*
 	g_pMpwTest = new Entity2DAniPack;

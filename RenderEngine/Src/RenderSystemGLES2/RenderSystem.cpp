@@ -110,7 +110,7 @@ namespace xs
 #endif
 
 		m_surfaceDiffuse = ColorValue(0.8f,0.8f,0.8f,1.0f);
-		m_textureUnit = 0;
+		m_textureUnit = -1;
 		m_pOverlayRenderTarget = 0;
 
 		m_pWhiteTex = 0;
@@ -1846,25 +1846,34 @@ namespace xs
 
 	void RenderSystem::setTexture(ushort unit,ITexture* pTexture)
 	{
-		
-
-		
+        TestGLError("befor setTexture");
 		//modified by xxh 由于压缩纹理的同步加载
-		if(m_textureUnit != unit)glActiveTexture(GL_TEXTURE0 + unit);
+		if(m_textureUnit != unit)
+        {
+            glActiveTexture(GL_TEXTURE0 + unit);
+            TestGLError("glActiveTexture");
+        }
+        
+        //GLboolean b = glIsEnabled(GL_TEXTURE_2D);
 
 		Texture * pTextureImp =static_cast<Texture *>(pTexture);
-
 		if( pTextureImp && pTextureImp->uploadTextureToGraphicMemory() )
 		{
-			glEnable(GL_TEXTURE_2D);
+			//glEnable(GL_TEXTURE_2D);
+            //TestGLError("glEnable");
+            
 			glBindTexture(GL_TEXTURE_2D, pTextureImp->getGLTextureID() );
+            TestGLError("glBindTexture");
 		}
 		else
 		{
 			//glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			glDisable(GL_TEXTURE_2D);
+            
+			//glDisable(GL_TEXTURE_2D);
+            //TestGLError("glDisable");
 		}
 		m_textureUnit = unit;
+        TestGLError("after setTexture");
 	}
 
 	const ColorValue& RenderSystem::getAmbientLight()

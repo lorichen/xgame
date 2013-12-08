@@ -261,12 +261,14 @@ namespace xs
 		GLint loc = glGetUniformLocation(m_handle, strPara.c_str() );
 		if( loc < 0) return false;
 		
+        TestGLError("befor setUniformMatrix");
+        
 		if(normal)
 			glUniformMatrix4fv(loc, 1, GL_TRUE, &value[0][0]); 
 		else
 			glUniformMatrix4fv(loc, 1, GL_FALSE, &value[0][0]);//这里应该是false,否则传投影矩阵过去就错了
 
-		TestGLError("setUniformMatrix");
+		TestGLError("after setUniformMatrix");
 		return true;
 	}
 
@@ -372,12 +374,16 @@ namespace xs
 			"texture7",
 		};
 
+        TestGLError("befor bindSampler");
+        
 		if( smaplerNum > 8 ) smaplerNum =  8;
 		for( uint i=0; i < smaplerNum; ++i)
 		{
 			GLint loc = glGetUniformLocation( m_handle, s_pSamplerName[i]);
 			if( loc < 0) continue;
 			glUniform1i(loc,i);
+            
+            TestGLError("bindSampler");
 		}
 	}
 

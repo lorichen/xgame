@@ -777,7 +777,7 @@ private:
 	float	m_lineWidth;
 	bool	m_scissorEnabled;
 
-	ushort	m_textureUnit;
+	ushort     m_textureUnit;
 
 public:
     

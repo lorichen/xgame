@@ -209,7 +209,7 @@ void GroundRenderQueue::render()
 
 			pRenderSystem->setWorldMatrix(mtxWorld * pTile->getWorldMatrix());
 			pRenderSystem->drawPrimitive(PT_TRIANGLES,0,6);
-			//pProgram->unbind();			
+			//pProgram->unbind();
 			for(uint i = 0;i < pTile->m_textureLayerNum + 1;i++)
 			{		
 				pRenderSystem->setTexture(i,0);				
@@ -217,7 +217,7 @@ void GroundRenderQueue::render()
 			++begin;
 		}
 
-		//pProgram->unbind();//pRenderSystem->bindCurrentShaderProgram(0);
+		//pRenderSystem->bindCurrentShaderProgram(0);
 		pRenderSystem->setTexcoordVertexBuffer(0,0);
 		pRenderSystem->setVertexVertexBuffer(0);
 		pRenderSystem->setCullingMode(cm);
