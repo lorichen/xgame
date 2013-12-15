@@ -151,14 +151,13 @@ bool SceneManager::scrollViewport(int dx, int dy)
 		if(pEntityClient)
 		{
 			IPerson* pHero = pEntityClient->GetHero();
-			if (!pHero)
+			if (pHero)
 			{
-				return false;
+                xs::Point ptWorld;
+                xs::Point ptTitle = pHero->GetMapLoc();
+                tile2World(ptTitle,ptWorld);
+                m_MinimapEyeshot.moveViewportTo(ptWorld.x,ptWorld.y,dx,dy);
 			}
-			xs::Point ptWorld;
-			xs::Point ptTitle = pHero->GetMapLoc();
-			tile2World(ptTitle,ptWorld);	
-			m_MinimapEyeshot.moveViewportTo(ptWorld.x,ptWorld.y,dx,dy);
 		}
 	}
 	const xs::Rect& rc = getViewportRect();
